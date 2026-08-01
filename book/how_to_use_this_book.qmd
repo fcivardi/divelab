@@ -1,0 +1,16 @@
+# How to Use This Book {.unnumbered}
+
+DiveLab combines a continuous book with executable Jupyter notebooks.
+
+## Recommended sequence
+
+1. Read the physical motivation.
+2. Study the model and assumptions.
+3. Open the companion notebook.
+4. Run all cells.
+5. Change at least one parameter.
+6. Explain what changed and why.
+
+## Safety and scope
+
+The models are simplified teaching models and must not be used for operational dive planning.

@@ -1,0 +1,3 @@
+# Notebook Map
+
+This appendix will map each book chapter to the canonical DiveLab notebooks.

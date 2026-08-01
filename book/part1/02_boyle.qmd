@@ -1,0 +1,320 @@
+---
+title: "Compressible Gases"
+subtitle: "From Pressure to Volume"
+---
+
+# Engineering Question
+
+::: {.callout-note title="Engineering Question"}
+Why can a diver become increasingly buoyant during an ascent without adding any air?
+:::
+
+At first sight, the answer appears obvious.
+
+The diver is surrounded by water, and water is essentially incompressible. If the amount of water does not change, why should buoyancy change?
+
+The answer lies elsewhere.
+
+The most important component of the underwater environment is not the water itself, but the **gas** trapped inside the diver's equipment and lungs.
+
+Unlike water, gases are highly compressible.
+
+As pressure changes with depth, gas volume changes accordingly.
+
+Those changes in volume alter buoyancy, and buoyancy alters motion.
+
+This chapter explores one of the most elegant relationships in classical physics:
+
+> **Pressure does not directly change buoyancy.**
+>
+> **Pressure changes volume, and volume changes buoyancy.**
+
+In this chapter we focus only on the first half of that chain:
+
+**Pressure → Volume**
+
+The second half,
+
+**Volume → Buoyant Force**,
+
+will be developed in the following chapter through Archimedes' Principle.
+
+# Learning Objectives
+
+After completing this chapter, you should be able to:
+
+- explain why gases behave differently from liquids;
+- describe Robert Boyle's contribution to gas physics;
+- state Boyle's Law;
+- explain why **absolute pressure** must be used in gas calculations;
+- predict how gas volume changes during descent and ascent;
+- understand why pressure produces nonlinear changes in volume;
+- prepare for the introduction of Archimedes' Principle in the next chapter.
+
+# A Simple Experiment
+
+Imagine holding an empty plastic bottle sealed with a small amount of air.
+
+At the surface its shape appears perfectly normal.
+
+Now imagine taking that bottle to a depth of 10 metres.
+
+Nothing has happened to the plastic itself.
+
+Nothing has happened to the surrounding water.
+
+Yet the bottle begins to deform because the trapped air occupies a smaller volume.
+
+When you return to the surface, the bottle expands again.
+
+The bottle has become a simple pressure sensor.
+
+::: {.callout-important title="DiveLab Insight"}
+Pressure acts on gases by changing their volume.
+
+Understanding this relationship is the first step toward understanding buoyancy.
+:::
+
+# Why Gases Behave Differently
+
+Water is only weakly compressible under recreational diving conditions.
+
+Air is highly compressible.
+
+That single difference explains why lung volume, bubbles and buoyancy compensators continuously change during a dive.
+
+# Robert Boyle and the Birth of Gas Physics
+
+Robert Boyle (1627–1691) showed that, for a fixed amount of gas at constant temperature, pressure and volume are inversely related.
+
+This relationship, known as **Boyle's Law**, underpins virtually every aspect of scuba diving involving trapped gas.
+
+# A New State Variable
+
+Chapter 1 introduced:
+
+$$
+\text{Depth}
+\rightarrow
+\text{Pressure}.
+$$
+
+This chapter extends the systems chain:
+
+$$
+\boxed{
+\text{Depth}
+\rightarrow
+\text{Pressure}
+\rightarrow
+\text{Volume}
+}
+$$
+
+The next chapter will show how volume determines buoyant force.
+
+# Looking Ahead
+
+Once we understand how pressure changes gas volume, we are ready to answer the next question:
+
+**Why does volume generate an upward force?**
+
+That question leads directly to Archimedes' Principle.
+
+# Boyle's Law
+
+## A Fundamental Experimental Observation
+
+Imagine a transparent syringe whose nozzle has been sealed.
+
+Inside the syringe there is only air.
+
+Initially, the piston can move freely.
+
+As we push the piston inward, something interesting happens.
+
+The force required to continue compressing the air becomes progressively larger.
+
+The air resists compression.
+
+If we release the piston, the air expands again, returning almost to its original volume.
+
+Nothing has been added to the syringe.
+
+Nothing has been removed.
+
+Only two quantities have changed:
+
+- the pressure inside the syringe;
+- the volume occupied by the air.
+
+This simple experiment reveals one of the most important properties of gases:
+
+> Increasing pressure decreases volume.
+
+The relationship is not arbitrary.
+
+It follows a remarkably simple mathematical law discovered by Robert Boyle.
+
+---
+
+## Boyle's Law
+
+For a fixed amount of gas maintained at constant temperature,
+
+the product of pressure and volume remains constant.
+
+Mathematically,
+
+$$
+PV = \text{constant}.
+$$
+
+Equivalently, comparing two different states of the same gas,
+
+$$
+P_1V_1=P_2V_2.
+$$
+
+This equation is known as **Boyle's Law**.
+
+Although deceptively simple, it explains nearly every phenomenon involving trapped gas during a recreational dive.
+
+::: {.callout-important title="DiveLab Insight"}
+Boyle's Law does **not** describe the behaviour of water.
+
+It describes the behaviour of **gases**.
+
+Whenever a diver breathes, inflates a buoyancy compensator, observes bubbles, or carries an air space underwater, Boyle's Law is at work.
+:::
+
+---
+
+## Where Does Boyle's Law Come From?
+
+Boyle originally discovered the relationship experimentally.
+
+Today we can derive it from the Ideal Gas Law,
+
+$$
+PV=nRT,
+$$
+
+where
+
+- \(P\) is the absolute pressure;
+- \(V\) is the gas volume;
+- \(n\) is the number of moles of gas;
+- \(R\) is the universal gas constant;
+- \(T\) is the absolute temperature.
+
+During a typical diving manoeuvre, we assume that
+
+- the amount of gas remains constant;
+- the temperature changes only slightly.
+
+Under these assumptions,
+
+\(n\), \(R\), and \(T\) may all be considered constant.
+
+Therefore,
+
+$$
+PV=\text{constant},
+$$
+
+which is precisely Boyle's Law.
+
+This derivation also reveals the assumptions behind the model.
+
+Boyle's Law is not a universal law valid under every circumstance.
+
+It is an excellent approximation for many recreational diving situations.
+
+---
+
+## An Inverse Relationship
+
+Boyle's Law tells us that pressure and volume vary in opposite directions.
+
+If pressure doubles,
+
+volume becomes half as large.
+
+If pressure triples,
+
+volume becomes one third of its original value.
+
+More generally,
+
+$$
+V=\frac{K}{P},
+$$
+
+where \(K\) is a constant.
+
+The relationship is therefore **inverse**, not linear.
+
+This distinction is extremely important.
+
+Pressure increases almost linearly with depth.
+
+Volume does not.
+
+Consequently, equal changes in depth do **not** produce equal changes in volume.
+
+That observation will become one of the key ideas of this chapter.
+
+---
+
+## Engineering Perspective
+
+Control engineers often ask two questions.
+
+1. **What is the input?**
+
+In this chapter,
+
+the input is pressure.
+
+2. **What is the output?**
+
+The output is gas volume.
+
+The system therefore transforms
+
+$$
+\text{Pressure}
+\longrightarrow
+\text{Volume}.
+$$
+
+In later chapters,
+
+this volume will generate buoyancy,
+
+and buoyancy will generate motion.
+
+Each chapter adds one new link to the chain.
+
+The complete diver will eventually emerge as an interconnected dynamical system.
+
+---
+
+## Looking Ahead
+
+Boyle's Law tells us *how* pressure changes volume.
+
+The next question is equally important.
+
+**How much does pressure actually increase underwater?**
+
+To answer that question we must distinguish between
+
+- atmospheric pressure,
+- hydrostatic pressure,
+- and absolute pressure.
+
+Only absolute pressure can be used in Boyle's Law.
+
+The next section explains why.

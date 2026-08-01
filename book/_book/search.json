@@ -1,0 +1,1690 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "DiveLab",
+    "section": "",
+    "text": "1 Welcome\nDiveLab teaches dynamical systems and control engineering through one coherent physical system: a scuba diver underwater.\nThe book provides the narrative. The notebooks provide the executable laboratory.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>DiveLab</span>"
+    ]
+  },
+  {
+    "objectID": "index.html#educational-scope",
+    "href": "index.html#educational-scope",
+    "title": "DiveLab",
+    "section": "1.1 Educational scope",
+    "text": "1.1 Educational scope\nDiveLab is an educational resource. It is not a diving manual, decompression planner, or substitute for certified training and approved equipment.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>DiveLab</span>"
+    ]
+  },
+  {
+    "objectID": "preface.html",
+    "href": "preface.html",
+    "title": "Preface",
+    "section": "",
+    "text": "Imagine floating effortlessly beneath the surface of the sea.\nEverything appears calm. The water is almost still. Your breathing is slow and regular. A small movement of your lungs gently changes your buoyancy.\nTo an experienced diver, this feels natural.\nTo an engineer, it is extraordinary.\nBeneath this apparent simplicity lies a remarkably rich dynamical system.\nEvery breath closes a feedback loop.\nEvery ascent and descent is the response of a nonlinear dynamical system.\nEvery dive is an exercise in control engineering.\nDiveLab began with a simple question:\n\nWhat if an entire control-engineering course could be taught through one coherent physical system?\n\nThe diver is our guide.\nThe true subject is systems thinking.\nWelcome.\nLet us begin our descent.",
+    "crumbs": [
+      "Preface"
+    ]
+  },
+  {
+    "objectID": "how_to_use_this_book.html",
+    "href": "how_to_use_this_book.html",
+    "title": "How to Use This Book",
+    "section": "",
+    "text": "Recommended sequence\nDiveLab combines a continuous book with executable Jupyter notebooks.",
+    "crumbs": [
+      "How to Use This Book"
+    ]
+  },
+  {
+    "objectID": "how_to_use_this_book.html#recommended-sequence",
+    "href": "how_to_use_this_book.html#recommended-sequence",
+    "title": "How to Use This Book",
+    "section": "",
+    "text": "Read the physical motivation.\nStudy the model and assumptions.\nOpen the companion notebook.\nRun all cells.\nChange at least one parameter.\nExplain what changed and why.",
+    "crumbs": [
+      "How to Use This Book"
+    ]
+  },
+  {
+    "objectID": "how_to_use_this_book.html#safety-and-scope",
+    "href": "how_to_use_this_book.html#safety-and-scope",
+    "title": "How to Use This Book",
+    "section": "Safety and scope",
+    "text": "Safety and scope\nThe models are simplified teaching models and must not be used for operational dive planning.",
+    "crumbs": [
+      "How to Use This Book"
+    ]
+  },
+  {
+    "objectID": "part1/01_pressure.html",
+    "href": "part1/01_pressure.html",
+    "title": "2  Pressure and Depth",
+    "section": "",
+    "text": "3 Engineering Question\nThe intuitive answer is often: at great depth.\nThat answer is only partly correct.\nAbsolute pressure continues to increase as a diver descends, but the largest relative change occurs immediately below the surface. This distinction between absolute change and relative change is the key to understanding why the first metres of a dive are so important.\nThis chapter develops that idea carefully. We begin with physical intuition, derive the hydrostatic-pressure equation, examine its assumptions, and connect it to the broader systems story of DiveLab.",
+    "crumbs": [
+      "Part I — Physics of Diving",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Pressure and Depth</span>"
+    ]
+  },
+  {
+    "objectID": "part1/01_pressure.html#learning-objectives",
+    "href": "part1/01_pressure.html#learning-objectives",
+    "title": "2  Pressure and Depth",
+    "section": "2.2 Learning objectives",
+    "text": "2.2 Learning objectives\nBy the end of this chapter, the reader will be able to:\n\nexplain the central concept;\nidentify the relevant variables;\ninterpret the main equations;\nconnect theory to simulation.",
+    "crumbs": [
+      "Part I — Physics of Diving",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Pressure and Depth</span>"
+    ]
+  },
+  {
+    "objectID": "part1/01_pressure.html#physical-motivation",
+    "href": "part1/01_pressure.html#physical-motivation",
+    "title": "2  Pressure and Depth",
+    "section": "2.3 Physical motivation",
+    "text": "2.3 Physical motivation\nThis section will be developed during the DiveLab v2 refactoring.",
+    "crumbs": [
+      "Part I — Physics of Diving",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Pressure and Depth</span>"
+    ]
+  },
+  {
+    "objectID": "part1/01_pressure.html#mathematical-model",
+    "href": "part1/01_pressure.html#mathematical-model",
+    "title": "2  Pressure and Depth",
+    "section": "2.4 Mathematical model",
+    "text": "2.4 Mathematical model\nThe equations will follow the conventions in STYLE_GUIDE.md.",
+    "crumbs": [
+      "Part I — Physics of Diving",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Pressure and Depth</span>"
+    ]
+  },
+  {
+    "objectID": "part1/01_pressure.html#computational-laboratory",
+    "href": "part1/01_pressure.html#computational-laboratory",
+    "title": "2  Pressure and Depth",
+    "section": "2.5 Computational laboratory",
+    "text": "2.5 Computational laboratory\nOpen 01_Pressure.ipynb on GitHub\nOpen in Colab",
+    "crumbs": [
+      "Part I — Physics of Diving",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Pressure and Depth</span>"
+    ]
+  },
+  {
+    "objectID": "part1/01_pressure.html#interpretation",
+    "href": "part1/01_pressure.html#interpretation",
+    "title": "2  Pressure and Depth",
+    "section": "2.6 Interpretation",
+    "text": "2.6 Interpretation\nExplain what the simulation shows and why it matters.",
+    "crumbs": [
+      "Part I — Physics of Diving",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Pressure and Depth</span>"
+    ]
+  },
+  {
+    "objectID": "part1/01_pressure.html#summary",
+    "href": "part1/01_pressure.html#summary",
+    "title": "2  Pressure and Depth",
+    "section": "2.7 Summary",
+    "text": "2.7 Summary\nState the central insight and motivate the next chapter.",
+    "crumbs": [
+      "Part I — Physics of Diving",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Pressure and Depth</span>"
+    ]
+  },
+  {
+    "objectID": "part1/02_archimedes.html",
+    "href": "part1/02_archimedes.html",
+    "title": "3  Archimedes’ Principle",
+    "section": "",
+    "text": "3.1 Guiding question\nWhat physical or systems-engineering idea does this chapter introduce?",
+    "crumbs": [
+      "Part I — Physics of Diving",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Archimedes' Principle</span>"
+    ]
+  },
+  {
+    "objectID": "part1/02_archimedes.html#learning-objectives",
+    "href": "part1/02_archimedes.html#learning-objectives",
+    "title": "3  Archimedes’ Principle",
+    "section": "3.2 Learning objectives",
+    "text": "3.2 Learning objectives\nBy the end of this chapter, the reader will be able to:\n\nexplain the central concept;\nidentify the relevant variables;\ninterpret the main equations;\nconnect theory to simulation.",
+    "crumbs": [
+      "Part I — Physics of Diving",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Archimedes' Principle</span>"
+    ]
+  },
+  {
+    "objectID": "part1/02_archimedes.html#physical-motivation",
+    "href": "part1/02_archimedes.html#physical-motivation",
+    "title": "3  Archimedes’ Principle",
+    "section": "3.3 Physical motivation",
+    "text": "3.3 Physical motivation\nThis section will be developed during the DiveLab v2 refactoring.",
+    "crumbs": [
+      "Part I — Physics of Diving",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Archimedes' Principle</span>"
+    ]
+  },
+  {
+    "objectID": "part1/02_archimedes.html#mathematical-model",
+    "href": "part1/02_archimedes.html#mathematical-model",
+    "title": "3  Archimedes’ Principle",
+    "section": "3.4 Mathematical model",
+    "text": "3.4 Mathematical model\nThe equations will follow the conventions in STYLE_GUIDE.md.",
+    "crumbs": [
+      "Part I — Physics of Diving",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Archimedes' Principle</span>"
+    ]
+  },
+  {
+    "objectID": "part1/02_archimedes.html#computational-laboratory",
+    "href": "part1/02_archimedes.html#computational-laboratory",
+    "title": "3  Archimedes’ Principle",
+    "section": "3.5 Computational laboratory",
+    "text": "3.5 Computational laboratory\nOpen 02_Archimedes.ipynb on GitHub\nOpen in Colab",
+    "crumbs": [
+      "Part I — Physics of Diving",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Archimedes' Principle</span>"
+    ]
+  },
+  {
+    "objectID": "part1/02_archimedes.html#interpretation",
+    "href": "part1/02_archimedes.html#interpretation",
+    "title": "3  Archimedes’ Principle",
+    "section": "3.6 Interpretation",
+    "text": "3.6 Interpretation\nExplain what the simulation shows and why it matters.",
+    "crumbs": [
+      "Part I — Physics of Diving",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Archimedes' Principle</span>"
+    ]
+  },
+  {
+    "objectID": "part1/02_archimedes.html#summary",
+    "href": "part1/02_archimedes.html#summary",
+    "title": "3  Archimedes’ Principle",
+    "section": "3.7 Summary",
+    "text": "3.7 Summary\nState the central insight and motivate the next chapter.",
+    "crumbs": [
+      "Part I — Physics of Diving",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Archimedes' Principle</span>"
+    ]
+  },
+  {
+    "objectID": "part1/03_boyle.html",
+    "href": "part1/03_boyle.html",
+    "title": "4  Boyle’s Law",
+    "section": "",
+    "text": "4.1 Guiding question\nWhat physical or systems-engineering idea does this chapter introduce?",
+    "crumbs": [
+      "Part I — Physics of Diving",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Boyle's Law</span>"
+    ]
+  },
+  {
+    "objectID": "part1/03_boyle.html#learning-objectives",
+    "href": "part1/03_boyle.html#learning-objectives",
+    "title": "4  Boyle’s Law",
+    "section": "4.2 Learning objectives",
+    "text": "4.2 Learning objectives\nBy the end of this chapter, the reader will be able to:\n\nexplain the central concept;\nidentify the relevant variables;\ninterpret the main equations;\nconnect theory to simulation.",
+    "crumbs": [
+      "Part I — Physics of Diving",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Boyle's Law</span>"
+    ]
+  },
+  {
+    "objectID": "part1/03_boyle.html#physical-motivation",
+    "href": "part1/03_boyle.html#physical-motivation",
+    "title": "4  Boyle’s Law",
+    "section": "4.3 Physical motivation",
+    "text": "4.3 Physical motivation\nThis section will be developed during the DiveLab v2 refactoring.",
+    "crumbs": [
+      "Part I — Physics of Diving",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Boyle's Law</span>"
+    ]
+  },
+  {
+    "objectID": "part1/03_boyle.html#mathematical-model",
+    "href": "part1/03_boyle.html#mathematical-model",
+    "title": "4  Boyle’s Law",
+    "section": "4.4 Mathematical model",
+    "text": "4.4 Mathematical model\nThe equations will follow the conventions in STYLE_GUIDE.md.",
+    "crumbs": [
+      "Part I — Physics of Diving",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Boyle's Law</span>"
+    ]
+  },
+  {
+    "objectID": "part1/03_boyle.html#computational-laboratory",
+    "href": "part1/03_boyle.html#computational-laboratory",
+    "title": "4  Boyle’s Law",
+    "section": "4.5 Computational laboratory",
+    "text": "4.5 Computational laboratory\nOpen 02_Boyles_Law.ipynb on GitHub\nOpen in Colab",
+    "crumbs": [
+      "Part I — Physics of Diving",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Boyle's Law</span>"
+    ]
+  },
+  {
+    "objectID": "part1/03_boyle.html#interpretation",
+    "href": "part1/03_boyle.html#interpretation",
+    "title": "4  Boyle’s Law",
+    "section": "4.6 Interpretation",
+    "text": "4.6 Interpretation\nExplain what the simulation shows and why it matters.",
+    "crumbs": [
+      "Part I — Physics of Diving",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Boyle's Law</span>"
+    ]
+  },
+  {
+    "objectID": "part1/03_boyle.html#summary",
+    "href": "part1/03_boyle.html#summary",
+    "title": "4  Boyle’s Law",
+    "section": "4.7 Summary",
+    "text": "4.7 Summary\nState the central insight and motivate the next chapter.",
+    "crumbs": [
+      "Part I — Physics of Diving",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Boyle's Law</span>"
+    ]
+  },
+  {
+    "objectID": "part1/04_buoyancy_dynamics.html",
+    "href": "part1/04_buoyancy_dynamics.html",
+    "title": "5  Buoyancy and Vertical Dynamics",
+    "section": "",
+    "text": "5.1 Guiding question\nWhat physical or systems-engineering idea does this chapter introduce?",
+    "crumbs": [
+      "Part I — Physics of Diving",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Buoyancy and Vertical Dynamics</span>"
+    ]
+  },
+  {
+    "objectID": "part1/04_buoyancy_dynamics.html#learning-objectives",
+    "href": "part1/04_buoyancy_dynamics.html#learning-objectives",
+    "title": "5  Buoyancy and Vertical Dynamics",
+    "section": "5.2 Learning objectives",
+    "text": "5.2 Learning objectives\nBy the end of this chapter, the reader will be able to:\n\nexplain the central concept;\nidentify the relevant variables;\ninterpret the main equations;\nconnect theory to simulation.",
+    "crumbs": [
+      "Part I — Physics of Diving",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Buoyancy and Vertical Dynamics</span>"
+    ]
+  },
+  {
+    "objectID": "part1/04_buoyancy_dynamics.html#physical-motivation",
+    "href": "part1/04_buoyancy_dynamics.html#physical-motivation",
+    "title": "5  Buoyancy and Vertical Dynamics",
+    "section": "5.3 Physical motivation",
+    "text": "5.3 Physical motivation\nThis section will be developed during the DiveLab v2 refactoring.",
+    "crumbs": [
+      "Part I — Physics of Diving",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Buoyancy and Vertical Dynamics</span>"
+    ]
+  },
+  {
+    "objectID": "part1/04_buoyancy_dynamics.html#mathematical-model",
+    "href": "part1/04_buoyancy_dynamics.html#mathematical-model",
+    "title": "5  Buoyancy and Vertical Dynamics",
+    "section": "5.4 Mathematical model",
+    "text": "5.4 Mathematical model\nThe equations will follow the conventions in STYLE_GUIDE.md.",
+    "crumbs": [
+      "Part I — Physics of Diving",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Buoyancy and Vertical Dynamics</span>"
+    ]
+  },
+  {
+    "objectID": "part1/04_buoyancy_dynamics.html#computational-laboratory",
+    "href": "part1/04_buoyancy_dynamics.html#computational-laboratory",
+    "title": "5  Buoyancy and Vertical Dynamics",
+    "section": "5.5 Computational laboratory",
+    "text": "5.5 Computational laboratory\nOpen 03_Buoyancy_Feedback.ipynb on GitHub\nOpen in Colab",
+    "crumbs": [
+      "Part I — Physics of Diving",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Buoyancy and Vertical Dynamics</span>"
+    ]
+  },
+  {
+    "objectID": "part1/04_buoyancy_dynamics.html#interpretation",
+    "href": "part1/04_buoyancy_dynamics.html#interpretation",
+    "title": "5  Buoyancy and Vertical Dynamics",
+    "section": "5.6 Interpretation",
+    "text": "5.6 Interpretation\nExplain what the simulation shows and why it matters.",
+    "crumbs": [
+      "Part I — Physics of Diving",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Buoyancy and Vertical Dynamics</span>"
+    ]
+  },
+  {
+    "objectID": "part1/04_buoyancy_dynamics.html#summary",
+    "href": "part1/04_buoyancy_dynamics.html#summary",
+    "title": "5  Buoyancy and Vertical Dynamics",
+    "section": "5.7 Summary",
+    "text": "5.7 Summary\nState the central insight and motivate the next chapter.",
+    "crumbs": [
+      "Part I — Physics of Diving",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Buoyancy and Vertical Dynamics</span>"
+    ]
+  },
+  {
+    "objectID": "part2/05_state_space.html",
+    "href": "part2/05_state_space.html",
+    "title": "6  State-Space Models",
+    "section": "",
+    "text": "6.1 Guiding question\nWhat physical or systems-engineering idea does this chapter introduce?",
+    "crumbs": [
+      "Part II — Dynamical Systems",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>State-Space Models</span>"
+    ]
+  },
+  {
+    "objectID": "part2/05_state_space.html#learning-objectives",
+    "href": "part2/05_state_space.html#learning-objectives",
+    "title": "6  State-Space Models",
+    "section": "6.2 Learning objectives",
+    "text": "6.2 Learning objectives\nBy the end of this chapter, the reader will be able to:\n\nexplain the central concept;\nidentify the relevant variables;\ninterpret the main equations;\nconnect theory to simulation.",
+    "crumbs": [
+      "Part II — Dynamical Systems",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>State-Space Models</span>"
+    ]
+  },
+  {
+    "objectID": "part2/05_state_space.html#physical-motivation",
+    "href": "part2/05_state_space.html#physical-motivation",
+    "title": "6  State-Space Models",
+    "section": "6.3 Physical motivation",
+    "text": "6.3 Physical motivation\nThis section will be developed during the DiveLab v2 refactoring.",
+    "crumbs": [
+      "Part II — Dynamical Systems",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>State-Space Models</span>"
+    ]
+  },
+  {
+    "objectID": "part2/05_state_space.html#mathematical-model",
+    "href": "part2/05_state_space.html#mathematical-model",
+    "title": "6  State-Space Models",
+    "section": "6.4 Mathematical model",
+    "text": "6.4 Mathematical model\nThe equations will follow the conventions in STYLE_GUIDE.md.",
+    "crumbs": [
+      "Part II — Dynamical Systems",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>State-Space Models</span>"
+    ]
+  },
+  {
+    "objectID": "part2/05_state_space.html#computational-laboratory",
+    "href": "part2/05_state_space.html#computational-laboratory",
+    "title": "6  State-Space Models",
+    "section": "6.5 Computational laboratory",
+    "text": "6.5 Computational laboratory\nOpen 07_Observability_and_State_Estimation.ipynb on GitHub\nOpen in Colab",
+    "crumbs": [
+      "Part II — Dynamical Systems",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>State-Space Models</span>"
+    ]
+  },
+  {
+    "objectID": "part2/05_state_space.html#interpretation",
+    "href": "part2/05_state_space.html#interpretation",
+    "title": "6  State-Space Models",
+    "section": "6.6 Interpretation",
+    "text": "6.6 Interpretation\nExplain what the simulation shows and why it matters.",
+    "crumbs": [
+      "Part II — Dynamical Systems",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>State-Space Models</span>"
+    ]
+  },
+  {
+    "objectID": "part2/05_state_space.html#summary",
+    "href": "part2/05_state_space.html#summary",
+    "title": "6  State-Space Models",
+    "section": "6.7 Summary",
+    "text": "6.7 Summary\nState the central insight and motivate the next chapter.",
+    "crumbs": [
+      "Part II — Dynamical Systems",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>State-Space Models</span>"
+    ]
+  },
+  {
+    "objectID": "part2/06_stability.html",
+    "href": "part2/06_stability.html",
+    "title": "7  Equilibria and Stability",
+    "section": "",
+    "text": "7.1 Guiding question\nWhat physical or systems-engineering idea does this chapter introduce?",
+    "crumbs": [
+      "Part II — Dynamical Systems",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Equilibria and Stability</span>"
+    ]
+  },
+  {
+    "objectID": "part2/06_stability.html#learning-objectives",
+    "href": "part2/06_stability.html#learning-objectives",
+    "title": "7  Equilibria and Stability",
+    "section": "7.2 Learning objectives",
+    "text": "7.2 Learning objectives\nBy the end of this chapter, the reader will be able to:\n\nexplain the central concept;\nidentify the relevant variables;\ninterpret the main equations;\nconnect theory to simulation.",
+    "crumbs": [
+      "Part II — Dynamical Systems",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Equilibria and Stability</span>"
+    ]
+  },
+  {
+    "objectID": "part2/06_stability.html#physical-motivation",
+    "href": "part2/06_stability.html#physical-motivation",
+    "title": "7  Equilibria and Stability",
+    "section": "7.3 Physical motivation",
+    "text": "7.3 Physical motivation\nThis section will be developed during the DiveLab v2 refactoring.",
+    "crumbs": [
+      "Part II — Dynamical Systems",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Equilibria and Stability</span>"
+    ]
+  },
+  {
+    "objectID": "part2/06_stability.html#mathematical-model",
+    "href": "part2/06_stability.html#mathematical-model",
+    "title": "7  Equilibria and Stability",
+    "section": "7.4 Mathematical model",
+    "text": "7.4 Mathematical model\nThe equations will follow the conventions in STYLE_GUIDE.md.",
+    "crumbs": [
+      "Part II — Dynamical Systems",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Equilibria and Stability</span>"
+    ]
+  },
+  {
+    "objectID": "part2/06_stability.html#computational-laboratory",
+    "href": "part2/06_stability.html#computational-laboratory",
+    "title": "7  Equilibria and Stability",
+    "section": "7.5 Computational laboratory",
+    "text": "7.5 Computational laboratory\nOpen 03_Buoyancy_Feedback.ipynb on GitHub\nOpen in Colab",
+    "crumbs": [
+      "Part II — Dynamical Systems",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Equilibria and Stability</span>"
+    ]
+  },
+  {
+    "objectID": "part2/06_stability.html#interpretation",
+    "href": "part2/06_stability.html#interpretation",
+    "title": "7  Equilibria and Stability",
+    "section": "7.6 Interpretation",
+    "text": "7.6 Interpretation\nExplain what the simulation shows and why it matters.",
+    "crumbs": [
+      "Part II — Dynamical Systems",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Equilibria and Stability</span>"
+    ]
+  },
+  {
+    "objectID": "part2/06_stability.html#summary",
+    "href": "part2/06_stability.html#summary",
+    "title": "7  Equilibria and Stability",
+    "section": "7.7 Summary",
+    "text": "7.7 Summary\nState the central insight and motivate the next chapter.",
+    "crumbs": [
+      "Part II — Dynamical Systems",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Equilibria and Stability</span>"
+    ]
+  },
+  {
+    "objectID": "part2/07_estimation.html",
+    "href": "part2/07_estimation.html",
+    "title": "8  Observability and State Estimation",
+    "section": "",
+    "text": "8.1 Guiding question\nWhat physical or systems-engineering idea does this chapter introduce?",
+    "crumbs": [
+      "Part II — Dynamical Systems",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Observability and State Estimation</span>"
+    ]
+  },
+  {
+    "objectID": "part2/07_estimation.html#learning-objectives",
+    "href": "part2/07_estimation.html#learning-objectives",
+    "title": "8  Observability and State Estimation",
+    "section": "8.2 Learning objectives",
+    "text": "8.2 Learning objectives\nBy the end of this chapter, the reader will be able to:\n\nexplain the central concept;\nidentify the relevant variables;\ninterpret the main equations;\nconnect theory to simulation.",
+    "crumbs": [
+      "Part II — Dynamical Systems",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Observability and State Estimation</span>"
+    ]
+  },
+  {
+    "objectID": "part2/07_estimation.html#physical-motivation",
+    "href": "part2/07_estimation.html#physical-motivation",
+    "title": "8  Observability and State Estimation",
+    "section": "8.3 Physical motivation",
+    "text": "8.3 Physical motivation\nThis section will be developed during the DiveLab v2 refactoring.",
+    "crumbs": [
+      "Part II — Dynamical Systems",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Observability and State Estimation</span>"
+    ]
+  },
+  {
+    "objectID": "part2/07_estimation.html#mathematical-model",
+    "href": "part2/07_estimation.html#mathematical-model",
+    "title": "8  Observability and State Estimation",
+    "section": "8.4 Mathematical model",
+    "text": "8.4 Mathematical model\nThe equations will follow the conventions in STYLE_GUIDE.md.",
+    "crumbs": [
+      "Part II — Dynamical Systems",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Observability and State Estimation</span>"
+    ]
+  },
+  {
+    "objectID": "part2/07_estimation.html#computational-laboratory",
+    "href": "part2/07_estimation.html#computational-laboratory",
+    "title": "8  Observability and State Estimation",
+    "section": "8.5 Computational laboratory",
+    "text": "8.5 Computational laboratory\nOpen 08_Kalman_Filter.ipynb on GitHub\nOpen in Colab",
+    "crumbs": [
+      "Part II — Dynamical Systems",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Observability and State Estimation</span>"
+    ]
+  },
+  {
+    "objectID": "part2/07_estimation.html#interpretation",
+    "href": "part2/07_estimation.html#interpretation",
+    "title": "8  Observability and State Estimation",
+    "section": "8.6 Interpretation",
+    "text": "8.6 Interpretation\nExplain what the simulation shows and why it matters.",
+    "crumbs": [
+      "Part II — Dynamical Systems",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Observability and State Estimation</span>"
+    ]
+  },
+  {
+    "objectID": "part2/07_estimation.html#summary",
+    "href": "part2/07_estimation.html#summary",
+    "title": "8  Observability and State Estimation",
+    "section": "8.7 Summary",
+    "text": "8.7 Summary\nState the central insight and motivate the next chapter.",
+    "crumbs": [
+      "Part II — Dynamical Systems",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Observability and State Estimation</span>"
+    ]
+  },
+  {
+    "objectID": "part2/08_laplace.html",
+    "href": "part2/08_laplace.html",
+    "title": "9  Laplace Transforms and Transfer Functions",
+    "section": "",
+    "text": "9.1 Guiding question\nWhat physical or systems-engineering idea does this chapter introduce?",
+    "crumbs": [
+      "Part II — Dynamical Systems",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Laplace Transforms and Transfer Functions</span>"
+    ]
+  },
+  {
+    "objectID": "part2/08_laplace.html#learning-objectives",
+    "href": "part2/08_laplace.html#learning-objectives",
+    "title": "9  Laplace Transforms and Transfer Functions",
+    "section": "9.2 Learning objectives",
+    "text": "9.2 Learning objectives\nBy the end of this chapter, the reader will be able to:\n\nexplain the central concept;\nidentify the relevant variables;\ninterpret the main equations;\nconnect theory to simulation.",
+    "crumbs": [
+      "Part II — Dynamical Systems",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Laplace Transforms and Transfer Functions</span>"
+    ]
+  },
+  {
+    "objectID": "part2/08_laplace.html#physical-motivation",
+    "href": "part2/08_laplace.html#physical-motivation",
+    "title": "9  Laplace Transforms and Transfer Functions",
+    "section": "9.3 Physical motivation",
+    "text": "9.3 Physical motivation\nThis section will be developed during the DiveLab v2 refactoring.",
+    "crumbs": [
+      "Part II — Dynamical Systems",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Laplace Transforms and Transfer Functions</span>"
+    ]
+  },
+  {
+    "objectID": "part2/08_laplace.html#mathematical-model",
+    "href": "part2/08_laplace.html#mathematical-model",
+    "title": "9  Laplace Transforms and Transfer Functions",
+    "section": "9.4 Mathematical model",
+    "text": "9.4 Mathematical model\nThe equations will follow the conventions in STYLE_GUIDE.md.",
+    "crumbs": [
+      "Part II — Dynamical Systems",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Laplace Transforms and Transfer Functions</span>"
+    ]
+  },
+  {
+    "objectID": "part2/08_laplace.html#computational-laboratory",
+    "href": "part2/08_laplace.html#computational-laboratory",
+    "title": "9  Laplace Transforms and Transfer Functions",
+    "section": "9.5 Computational laboratory",
+    "text": "9.5 Computational laboratory\nOpen 14_Laplace_Transforms.ipynb on GitHub\nOpen in Colab",
+    "crumbs": [
+      "Part II — Dynamical Systems",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Laplace Transforms and Transfer Functions</span>"
+    ]
+  },
+  {
+    "objectID": "part2/08_laplace.html#interpretation",
+    "href": "part2/08_laplace.html#interpretation",
+    "title": "9  Laplace Transforms and Transfer Functions",
+    "section": "9.6 Interpretation",
+    "text": "9.6 Interpretation\nExplain what the simulation shows and why it matters.",
+    "crumbs": [
+      "Part II — Dynamical Systems",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Laplace Transforms and Transfer Functions</span>"
+    ]
+  },
+  {
+    "objectID": "part2/08_laplace.html#summary",
+    "href": "part2/08_laplace.html#summary",
+    "title": "9  Laplace Transforms and Transfer Functions",
+    "section": "9.7 Summary",
+    "text": "9.7 Summary\nState the central insight and motivate the next chapter.",
+    "crumbs": [
+      "Part II — Dynamical Systems",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Laplace Transforms and Transfer Functions</span>"
+    ]
+  },
+  {
+    "objectID": "part3/09_feedback.html",
+    "href": "part3/09_feedback.html",
+    "title": "10  Feedback Control",
+    "section": "",
+    "text": "10.1 Guiding question\nWhat physical or systems-engineering idea does this chapter introduce?",
+    "crumbs": [
+      "Part III — Control Engineering",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Feedback Control</span>"
+    ]
+  },
+  {
+    "objectID": "part3/09_feedback.html#learning-objectives",
+    "href": "part3/09_feedback.html#learning-objectives",
+    "title": "10  Feedback Control",
+    "section": "10.2 Learning objectives",
+    "text": "10.2 Learning objectives\nBy the end of this chapter, the reader will be able to:\n\nexplain the central concept;\nidentify the relevant variables;\ninterpret the main equations;\nconnect theory to simulation.",
+    "crumbs": [
+      "Part III — Control Engineering",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Feedback Control</span>"
+    ]
+  },
+  {
+    "objectID": "part3/09_feedback.html#physical-motivation",
+    "href": "part3/09_feedback.html#physical-motivation",
+    "title": "10  Feedback Control",
+    "section": "10.3 Physical motivation",
+    "text": "10.3 Physical motivation\nThis section will be developed during the DiveLab v2 refactoring.",
+    "crumbs": [
+      "Part III — Control Engineering",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Feedback Control</span>"
+    ]
+  },
+  {
+    "objectID": "part3/09_feedback.html#mathematical-model",
+    "href": "part3/09_feedback.html#mathematical-model",
+    "title": "10  Feedback Control",
+    "section": "10.4 Mathematical model",
+    "text": "10.4 Mathematical model\nThe equations will follow the conventions in STYLE_GUIDE.md.",
+    "crumbs": [
+      "Part III — Control Engineering",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Feedback Control</span>"
+    ]
+  },
+  {
+    "objectID": "part3/09_feedback.html#computational-laboratory",
+    "href": "part3/09_feedback.html#computational-laboratory",
+    "title": "10  Feedback Control",
+    "section": "10.5 Computational laboratory",
+    "text": "10.5 Computational laboratory\nOpen 04_Buoyancy_Control.ipynb on GitHub\nOpen in Colab",
+    "crumbs": [
+      "Part III — Control Engineering",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Feedback Control</span>"
+    ]
+  },
+  {
+    "objectID": "part3/09_feedback.html#interpretation",
+    "href": "part3/09_feedback.html#interpretation",
+    "title": "10  Feedback Control",
+    "section": "10.6 Interpretation",
+    "text": "10.6 Interpretation\nExplain what the simulation shows and why it matters.",
+    "crumbs": [
+      "Part III — Control Engineering",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Feedback Control</span>"
+    ]
+  },
+  {
+    "objectID": "part3/09_feedback.html#summary",
+    "href": "part3/09_feedback.html#summary",
+    "title": "10  Feedback Control",
+    "section": "10.7 Summary",
+    "text": "10.7 Summary\nState the central insight and motivate the next chapter.",
+    "crumbs": [
+      "Part III — Control Engineering",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Feedback Control</span>"
+    ]
+  },
+  {
+    "objectID": "part3/10_pid.html",
+    "href": "part3/10_pid.html",
+    "title": "11  PID Control",
+    "section": "",
+    "text": "11.1 Guiding question\nWhat physical or systems-engineering idea does this chapter introduce?",
+    "crumbs": [
+      "Part III — Control Engineering",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>PID Control</span>"
+    ]
+  },
+  {
+    "objectID": "part3/10_pid.html#learning-objectives",
+    "href": "part3/10_pid.html#learning-objectives",
+    "title": "11  PID Control",
+    "section": "11.2 Learning objectives",
+    "text": "11.2 Learning objectives\nBy the end of this chapter, the reader will be able to:\n\nexplain the central concept;\nidentify the relevant variables;\ninterpret the main equations;\nconnect theory to simulation.",
+    "crumbs": [
+      "Part III — Control Engineering",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>PID Control</span>"
+    ]
+  },
+  {
+    "objectID": "part3/10_pid.html#physical-motivation",
+    "href": "part3/10_pid.html#physical-motivation",
+    "title": "11  PID Control",
+    "section": "11.3 Physical motivation",
+    "text": "11.3 Physical motivation\nThis section will be developed during the DiveLab v2 refactoring.",
+    "crumbs": [
+      "Part III — Control Engineering",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>PID Control</span>"
+    ]
+  },
+  {
+    "objectID": "part3/10_pid.html#mathematical-model",
+    "href": "part3/10_pid.html#mathematical-model",
+    "title": "11  PID Control",
+    "section": "11.4 Mathematical model",
+    "text": "11.4 Mathematical model\nThe equations will follow the conventions in STYLE_GUIDE.md.",
+    "crumbs": [
+      "Part III — Control Engineering",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>PID Control</span>"
+    ]
+  },
+  {
+    "objectID": "part3/10_pid.html#computational-laboratory",
+    "href": "part3/10_pid.html#computational-laboratory",
+    "title": "11  PID Control",
+    "section": "11.5 Computational laboratory",
+    "text": "11.5 Computational laboratory\nOpen 16_PID_Control.ipynb on GitHub\nOpen in Colab",
+    "crumbs": [
+      "Part III — Control Engineering",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>PID Control</span>"
+    ]
+  },
+  {
+    "objectID": "part3/10_pid.html#interpretation",
+    "href": "part3/10_pid.html#interpretation",
+    "title": "11  PID Control",
+    "section": "11.6 Interpretation",
+    "text": "11.6 Interpretation\nExplain what the simulation shows and why it matters.",
+    "crumbs": [
+      "Part III — Control Engineering",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>PID Control</span>"
+    ]
+  },
+  {
+    "objectID": "part3/10_pid.html#summary",
+    "href": "part3/10_pid.html#summary",
+    "title": "11  PID Control",
+    "section": "11.7 Summary",
+    "text": "11.7 Summary\nState the central insight and motivate the next chapter.",
+    "crumbs": [
+      "Part III — Control Engineering",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>PID Control</span>"
+    ]
+  },
+  {
+    "objectID": "part3/11_frequency_response.html",
+    "href": "part3/11_frequency_response.html",
+    "title": "12  Frequency Response",
+    "section": "",
+    "text": "12.1 Guiding question\nWhat physical or systems-engineering idea does this chapter introduce?",
+    "crumbs": [
+      "Part III — Control Engineering",
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Frequency Response</span>"
+    ]
+  },
+  {
+    "objectID": "part3/11_frequency_response.html#learning-objectives",
+    "href": "part3/11_frequency_response.html#learning-objectives",
+    "title": "12  Frequency Response",
+    "section": "12.2 Learning objectives",
+    "text": "12.2 Learning objectives\nBy the end of this chapter, the reader will be able to:\n\nexplain the central concept;\nidentify the relevant variables;\ninterpret the main equations;\nconnect theory to simulation.",
+    "crumbs": [
+      "Part III — Control Engineering",
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Frequency Response</span>"
+    ]
+  },
+  {
+    "objectID": "part3/11_frequency_response.html#physical-motivation",
+    "href": "part3/11_frequency_response.html#physical-motivation",
+    "title": "12  Frequency Response",
+    "section": "12.3 Physical motivation",
+    "text": "12.3 Physical motivation\nThis section will be developed during the DiveLab v2 refactoring.",
+    "crumbs": [
+      "Part III — Control Engineering",
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Frequency Response</span>"
+    ]
+  },
+  {
+    "objectID": "part3/11_frequency_response.html#mathematical-model",
+    "href": "part3/11_frequency_response.html#mathematical-model",
+    "title": "12  Frequency Response",
+    "section": "12.4 Mathematical model",
+    "text": "12.4 Mathematical model\nThe equations will follow the conventions in STYLE_GUIDE.md.",
+    "crumbs": [
+      "Part III — Control Engineering",
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Frequency Response</span>"
+    ]
+  },
+  {
+    "objectID": "part3/11_frequency_response.html#computational-laboratory",
+    "href": "part3/11_frequency_response.html#computational-laboratory",
+    "title": "12  Frequency Response",
+    "section": "12.5 Computational laboratory",
+    "text": "12.5 Computational laboratory\nOpen 17_Frequency_Response.ipynb on GitHub\nOpen in Colab",
+    "crumbs": [
+      "Part III — Control Engineering",
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Frequency Response</span>"
+    ]
+  },
+  {
+    "objectID": "part3/11_frequency_response.html#interpretation",
+    "href": "part3/11_frequency_response.html#interpretation",
+    "title": "12  Frequency Response",
+    "section": "12.6 Interpretation",
+    "text": "12.6 Interpretation\nExplain what the simulation shows and why it matters.",
+    "crumbs": [
+      "Part III — Control Engineering",
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Frequency Response</span>"
+    ]
+  },
+  {
+    "objectID": "part3/11_frequency_response.html#summary",
+    "href": "part3/11_frequency_response.html#summary",
+    "title": "12  Frequency Response",
+    "section": "12.7 Summary",
+    "text": "12.7 Summary\nState the central insight and motivate the next chapter.",
+    "crumbs": [
+      "Part III — Control Engineering",
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Frequency Response</span>"
+    ]
+  },
+  {
+    "objectID": "part3/12_human_in_the_loop.html",
+    "href": "part3/12_human_in_the_loop.html",
+    "title": "13  The Diver in the Loop",
+    "section": "",
+    "text": "13.1 Guiding question\nWhat physical or systems-engineering idea does this chapter introduce?",
+    "crumbs": [
+      "Part III — Control Engineering",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>The Diver in the Loop</span>"
+    ]
+  },
+  {
+    "objectID": "part3/12_human_in_the_loop.html#learning-objectives",
+    "href": "part3/12_human_in_the_loop.html#learning-objectives",
+    "title": "13  The Diver in the Loop",
+    "section": "13.2 Learning objectives",
+    "text": "13.2 Learning objectives\nBy the end of this chapter, the reader will be able to:\n\nexplain the central concept;\nidentify the relevant variables;\ninterpret the main equations;\nconnect theory to simulation.",
+    "crumbs": [
+      "Part III — Control Engineering",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>The Diver in the Loop</span>"
+    ]
+  },
+  {
+    "objectID": "part3/12_human_in_the_loop.html#physical-motivation",
+    "href": "part3/12_human_in_the_loop.html#physical-motivation",
+    "title": "13  The Diver in the Loop",
+    "section": "13.3 Physical motivation",
+    "text": "13.3 Physical motivation\nThis section will be developed during the DiveLab v2 refactoring.",
+    "crumbs": [
+      "Part III — Control Engineering",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>The Diver in the Loop</span>"
+    ]
+  },
+  {
+    "objectID": "part3/12_human_in_the_loop.html#mathematical-model",
+    "href": "part3/12_human_in_the_loop.html#mathematical-model",
+    "title": "13  The Diver in the Loop",
+    "section": "13.4 Mathematical model",
+    "text": "13.4 Mathematical model\nThe equations will follow the conventions in STYLE_GUIDE.md.",
+    "crumbs": [
+      "Part III — Control Engineering",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>The Diver in the Loop</span>"
+    ]
+  },
+  {
+    "objectID": "part3/12_human_in_the_loop.html#computational-laboratory",
+    "href": "part3/12_human_in_the_loop.html#computational-laboratory",
+    "title": "13  The Diver in the Loop",
+    "section": "13.5 Computational laboratory",
+    "text": "13.5 Computational laboratory\nOpen 13_Human_in_the_Loop.ipynb on GitHub\nOpen in Colab",
+    "crumbs": [
+      "Part III — Control Engineering",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>The Diver in the Loop</span>"
+    ]
+  },
+  {
+    "objectID": "part3/12_human_in_the_loop.html#interpretation",
+    "href": "part3/12_human_in_the_loop.html#interpretation",
+    "title": "13  The Diver in the Loop",
+    "section": "13.6 Interpretation",
+    "text": "13.6 Interpretation\nExplain what the simulation shows and why it matters.",
+    "crumbs": [
+      "Part III — Control Engineering",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>The Diver in the Loop</span>"
+    ]
+  },
+  {
+    "objectID": "part3/12_human_in_the_loop.html#summary",
+    "href": "part3/12_human_in_the_loop.html#summary",
+    "title": "13  The Diver in the Loop",
+    "section": "13.7 Summary",
+    "text": "13.7 Summary\nState the central insight and motivate the next chapter.",
+    "crumbs": [
+      "Part III — Control Engineering",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>The Diver in the Loop</span>"
+    ]
+  },
+  {
+    "objectID": "part4/13_breathing.html",
+    "href": "part4/13_breathing.html",
+    "title": "14  Breathing Dynamics",
+    "section": "",
+    "text": "14.1 Guiding question\nWhat physical or systems-engineering idea does this chapter introduce?",
+    "crumbs": [
+      "Part IV — Integrated Diving Systems",
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Breathing Dynamics</span>"
+    ]
+  },
+  {
+    "objectID": "part4/13_breathing.html#learning-objectives",
+    "href": "part4/13_breathing.html#learning-objectives",
+    "title": "14  Breathing Dynamics",
+    "section": "14.2 Learning objectives",
+    "text": "14.2 Learning objectives\nBy the end of this chapter, the reader will be able to:\n\nexplain the central concept;\nidentify the relevant variables;\ninterpret the main equations;\nconnect theory to simulation.",
+    "crumbs": [
+      "Part IV — Integrated Diving Systems",
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Breathing Dynamics</span>"
+    ]
+  },
+  {
+    "objectID": "part4/13_breathing.html#physical-motivation",
+    "href": "part4/13_breathing.html#physical-motivation",
+    "title": "14  Breathing Dynamics",
+    "section": "14.3 Physical motivation",
+    "text": "14.3 Physical motivation\nThis section will be developed during the DiveLab v2 refactoring.",
+    "crumbs": [
+      "Part IV — Integrated Diving Systems",
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Breathing Dynamics</span>"
+    ]
+  },
+  {
+    "objectID": "part4/13_breathing.html#mathematical-model",
+    "href": "part4/13_breathing.html#mathematical-model",
+    "title": "14  Breathing Dynamics",
+    "section": "14.4 Mathematical model",
+    "text": "14.4 Mathematical model\nThe equations will follow the conventions in STYLE_GUIDE.md.",
+    "crumbs": [
+      "Part IV — Integrated Diving Systems",
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Breathing Dynamics</span>"
+    ]
+  },
+  {
+    "objectID": "part4/13_breathing.html#computational-laboratory",
+    "href": "part4/13_breathing.html#computational-laboratory",
+    "title": "14  Breathing Dynamics",
+    "section": "14.5 Computational laboratory",
+    "text": "14.5 Computational laboratory\nOpen 18_Breathing_Dynamics.ipynb on GitHub\nOpen in Colab",
+    "crumbs": [
+      "Part IV — Integrated Diving Systems",
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Breathing Dynamics</span>"
+    ]
+  },
+  {
+    "objectID": "part4/13_breathing.html#interpretation",
+    "href": "part4/13_breathing.html#interpretation",
+    "title": "14  Breathing Dynamics",
+    "section": "14.6 Interpretation",
+    "text": "14.6 Interpretation\nExplain what the simulation shows and why it matters.",
+    "crumbs": [
+      "Part IV — Integrated Diving Systems",
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Breathing Dynamics</span>"
+    ]
+  },
+  {
+    "objectID": "part4/13_breathing.html#summary",
+    "href": "part4/13_breathing.html#summary",
+    "title": "14  Breathing Dynamics",
+    "section": "14.7 Summary",
+    "text": "14.7 Summary\nState the central insight and motivate the next chapter.",
+    "crumbs": [
+      "Part IV — Integrated Diving Systems",
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Breathing Dynamics</span>"
+    ]
+  },
+  {
+    "objectID": "part4/14_gas_consumption.html",
+    "href": "part4/14_gas_consumption.html",
+    "title": "15  Gas Consumption",
+    "section": "",
+    "text": "15.1 Guiding question\nWhat physical or systems-engineering idea does this chapter introduce?",
+    "crumbs": [
+      "Part IV — Integrated Diving Systems",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Gas Consumption</span>"
+    ]
+  },
+  {
+    "objectID": "part4/14_gas_consumption.html#learning-objectives",
+    "href": "part4/14_gas_consumption.html#learning-objectives",
+    "title": "15  Gas Consumption",
+    "section": "15.2 Learning objectives",
+    "text": "15.2 Learning objectives\nBy the end of this chapter, the reader will be able to:\n\nexplain the central concept;\nidentify the relevant variables;\ninterpret the main equations;\nconnect theory to simulation.",
+    "crumbs": [
+      "Part IV — Integrated Diving Systems",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Gas Consumption</span>"
+    ]
+  },
+  {
+    "objectID": "part4/14_gas_consumption.html#physical-motivation",
+    "href": "part4/14_gas_consumption.html#physical-motivation",
+    "title": "15  Gas Consumption",
+    "section": "15.3 Physical motivation",
+    "text": "15.3 Physical motivation\nThis section will be developed during the DiveLab v2 refactoring.",
+    "crumbs": [
+      "Part IV — Integrated Diving Systems",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Gas Consumption</span>"
+    ]
+  },
+  {
+    "objectID": "part4/14_gas_consumption.html#mathematical-model",
+    "href": "part4/14_gas_consumption.html#mathematical-model",
+    "title": "15  Gas Consumption",
+    "section": "15.4 Mathematical model",
+    "text": "15.4 Mathematical model\nThe equations will follow the conventions in STYLE_GUIDE.md.",
+    "crumbs": [
+      "Part IV — Integrated Diving Systems",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Gas Consumption</span>"
+    ]
+  },
+  {
+    "objectID": "part4/14_gas_consumption.html#computational-laboratory",
+    "href": "part4/14_gas_consumption.html#computational-laboratory",
+    "title": "15  Gas Consumption",
+    "section": "15.5 Computational laboratory",
+    "text": "15.5 Computational laboratory\nOpen 19_Gas_Consumption.ipynb on GitHub\nOpen in Colab",
+    "crumbs": [
+      "Part IV — Integrated Diving Systems",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Gas Consumption</span>"
+    ]
+  },
+  {
+    "objectID": "part4/14_gas_consumption.html#interpretation",
+    "href": "part4/14_gas_consumption.html#interpretation",
+    "title": "15  Gas Consumption",
+    "section": "15.6 Interpretation",
+    "text": "15.6 Interpretation\nExplain what the simulation shows and why it matters.",
+    "crumbs": [
+      "Part IV — Integrated Diving Systems",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Gas Consumption</span>"
+    ]
+  },
+  {
+    "objectID": "part4/14_gas_consumption.html#summary",
+    "href": "part4/14_gas_consumption.html#summary",
+    "title": "15  Gas Consumption",
+    "section": "15.7 Summary",
+    "text": "15.7 Summary\nState the central insight and motivate the next chapter.",
+    "crumbs": [
+      "Part IV — Integrated Diving Systems",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Gas Consumption</span>"
+    ]
+  },
+  {
+    "objectID": "part4/15_dive_computers.html",
+    "href": "part4/15_dive_computers.html",
+    "title": "16  Dive Computers",
+    "section": "",
+    "text": "16.1 Guiding question\nWhat physical or systems-engineering idea does this chapter introduce?",
+    "crumbs": [
+      "Part IV — Integrated Diving Systems",
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Dive Computers</span>"
+    ]
+  },
+  {
+    "objectID": "part4/15_dive_computers.html#learning-objectives",
+    "href": "part4/15_dive_computers.html#learning-objectives",
+    "title": "16  Dive Computers",
+    "section": "16.2 Learning objectives",
+    "text": "16.2 Learning objectives\nBy the end of this chapter, the reader will be able to:\n\nexplain the central concept;\nidentify the relevant variables;\ninterpret the main equations;\nconnect theory to simulation.",
+    "crumbs": [
+      "Part IV — Integrated Diving Systems",
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Dive Computers</span>"
+    ]
+  },
+  {
+    "objectID": "part4/15_dive_computers.html#physical-motivation",
+    "href": "part4/15_dive_computers.html#physical-motivation",
+    "title": "16  Dive Computers",
+    "section": "16.3 Physical motivation",
+    "text": "16.3 Physical motivation\nThis section will be developed during the DiveLab v2 refactoring.",
+    "crumbs": [
+      "Part IV — Integrated Diving Systems",
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Dive Computers</span>"
+    ]
+  },
+  {
+    "objectID": "part4/15_dive_computers.html#mathematical-model",
+    "href": "part4/15_dive_computers.html#mathematical-model",
+    "title": "16  Dive Computers",
+    "section": "16.4 Mathematical model",
+    "text": "16.4 Mathematical model\nThe equations will follow the conventions in STYLE_GUIDE.md.",
+    "crumbs": [
+      "Part IV — Integrated Diving Systems",
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Dive Computers</span>"
+    ]
+  },
+  {
+    "objectID": "part4/15_dive_computers.html#computational-laboratory",
+    "href": "part4/15_dive_computers.html#computational-laboratory",
+    "title": "16  Dive Computers",
+    "section": "16.5 Computational laboratory",
+    "text": "16.5 Computational laboratory\nOpen 20_Dive_Computers.ipynb on GitHub\nOpen in Colab",
+    "crumbs": [
+      "Part IV — Integrated Diving Systems",
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Dive Computers</span>"
+    ]
+  },
+  {
+    "objectID": "part4/15_dive_computers.html#interpretation",
+    "href": "part4/15_dive_computers.html#interpretation",
+    "title": "16  Dive Computers",
+    "section": "16.6 Interpretation",
+    "text": "16.6 Interpretation\nExplain what the simulation shows and why it matters.",
+    "crumbs": [
+      "Part IV — Integrated Diving Systems",
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Dive Computers</span>"
+    ]
+  },
+  {
+    "objectID": "part4/15_dive_computers.html#summary",
+    "href": "part4/15_dive_computers.html#summary",
+    "title": "16  Dive Computers",
+    "section": "16.7 Summary",
+    "text": "16.7 Summary\nState the central insight and motivate the next chapter.",
+    "crumbs": [
+      "Part IV — Integrated Diving Systems",
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Dive Computers</span>"
+    ]
+  },
+  {
+    "objectID": "part4/16_decompression_models.html",
+    "href": "part4/16_decompression_models.html",
+    "title": "17  Decompression Models",
+    "section": "",
+    "text": "17.1 Guiding question\nWhat physical or systems-engineering idea does this chapter introduce?",
+    "crumbs": [
+      "Part IV — Integrated Diving Systems",
+      "<span class='chapter-number'>17</span>  <span class='chapter-title'>Decompression Models</span>"
+    ]
+  },
+  {
+    "objectID": "part4/16_decompression_models.html#learning-objectives",
+    "href": "part4/16_decompression_models.html#learning-objectives",
+    "title": "17  Decompression Models",
+    "section": "17.2 Learning objectives",
+    "text": "17.2 Learning objectives\nBy the end of this chapter, the reader will be able to:\n\nexplain the central concept;\nidentify the relevant variables;\ninterpret the main equations;\nconnect theory to simulation.",
+    "crumbs": [
+      "Part IV — Integrated Diving Systems",
+      "<span class='chapter-number'>17</span>  <span class='chapter-title'>Decompression Models</span>"
+    ]
+  },
+  {
+    "objectID": "part4/16_decompression_models.html#physical-motivation",
+    "href": "part4/16_decompression_models.html#physical-motivation",
+    "title": "17  Decompression Models",
+    "section": "17.3 Physical motivation",
+    "text": "17.3 Physical motivation\nThis section will be developed during the DiveLab v2 refactoring.",
+    "crumbs": [
+      "Part IV — Integrated Diving Systems",
+      "<span class='chapter-number'>17</span>  <span class='chapter-title'>Decompression Models</span>"
+    ]
+  },
+  {
+    "objectID": "part4/16_decompression_models.html#mathematical-model",
+    "href": "part4/16_decompression_models.html#mathematical-model",
+    "title": "17  Decompression Models",
+    "section": "17.4 Mathematical model",
+    "text": "17.4 Mathematical model\nThe equations will follow the conventions in STYLE_GUIDE.md.",
+    "crumbs": [
+      "Part IV — Integrated Diving Systems",
+      "<span class='chapter-number'>17</span>  <span class='chapter-title'>Decompression Models</span>"
+    ]
+  },
+  {
+    "objectID": "part4/16_decompression_models.html#computational-laboratory",
+    "href": "part4/16_decompression_models.html#computational-laboratory",
+    "title": "17  Decompression Models",
+    "section": "17.5 Computational laboratory",
+    "text": "17.5 Computational laboratory\nOpen 21_Decompression_Models.ipynb on GitHub\nOpen in Colab",
+    "crumbs": [
+      "Part IV — Integrated Diving Systems",
+      "<span class='chapter-number'>17</span>  <span class='chapter-title'>Decompression Models</span>"
+    ]
+  },
+  {
+    "objectID": "part4/16_decompression_models.html#interpretation",
+    "href": "part4/16_decompression_models.html#interpretation",
+    "title": "17  Decompression Models",
+    "section": "17.6 Interpretation",
+    "text": "17.6 Interpretation\nExplain what the simulation shows and why it matters.",
+    "crumbs": [
+      "Part IV — Integrated Diving Systems",
+      "<span class='chapter-number'>17</span>  <span class='chapter-title'>Decompression Models</span>"
+    ]
+  },
+  {
+    "objectID": "part4/16_decompression_models.html#summary",
+    "href": "part4/16_decompression_models.html#summary",
+    "title": "17  Decompression Models",
+    "section": "17.7 Summary",
+    "text": "17.7 Summary\nState the central insight and motivate the next chapter.",
+    "crumbs": [
+      "Part IV — Integrated Diving Systems",
+      "<span class='chapter-number'>17</span>  <span class='chapter-title'>Decompression Models</span>"
+    ]
+  },
+  {
+    "objectID": "appendices/python.html",
+    "href": "appendices/python.html",
+    "title": "18  Python and Colab",
+    "section": "",
+    "text": "This appendix will introduce the small subset of Python required by DiveLab.",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>18</span>  <span class='chapter-title'>Python and Colab</span>"
+    ]
+  },
+  {
+    "objectID": "appendices/mathematics.html",
+    "href": "appendices/mathematics.html",
+    "title": "19  Mathematical Foundations",
+    "section": "",
+    "text": "This appendix will collect supporting material on vectors, differential equations, eigenvalues, complex numbers, and Laplace transforms.",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>19</span>  <span class='chapter-title'>Mathematical Foundations</span>"
+    ]
+  },
+  {
+    "objectID": "appendices/notebook_map.html",
+    "href": "appendices/notebook_map.html",
+    "title": "20  Notebook Map",
+    "section": "",
+    "text": "This appendix will map each book chapter to the canonical DiveLab notebooks.",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>20</span>  <span class='chapter-title'>Notebook Map</span>"
+    ]
+  },
+  {
+    "objectID": "part1/01_pressure.html#gauge-pressure",
+    "href": "part1/01_pressure.html#gauge-pressure",
+    "title": "2  Pressure and Depth",
+    "section": "9.1 Gauge Pressure",
+    "text": "9.1 Gauge Pressure\nGauge pressure measures pressure relative to the atmosphere:\n\\[\nP_{\\mathrm{gauge}} = P - P_0.\n\\]\nUsing Equation 7.2:\n\\[\nP_{\\mathrm{gauge}} = \\rho gh.\n\\]\nAt the surface, \\(P_{\\mathrm{gauge}} = 0\\).",
+    "crumbs": [
+      "Part I — Physics of Diving",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Pressure and Depth</span>"
+    ]
+  },
+  {
+    "objectID": "part1/01_pressure.html#absolute-pressure",
+    "href": "part1/01_pressure.html#absolute-pressure",
+    "title": "2  Pressure and Depth",
+    "section": "9.2 Absolute Pressure",
+    "text": "9.2 Absolute Pressure\nAbsolute pressure is measured relative to vacuum:\n\\[\nP_{\\mathrm{abs}} = P_0 + \\rho gh.\n\\]\nAt the surface, \\(P_{\\mathrm{abs}} = P_0\\).\nFor gas-volume calculations, absolute pressure must be used.\n\n\n\n\n\n\nWarningCommon Misconception\n\n\n\nBoyle’s law cannot be applied using gauge pressure. A gauge pressure of zero at the surface does not mean that the gas is under zero pressure.",
+    "crumbs": [
+      "Part I — Physics of Diving",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Pressure and Depth</span>"
+    ]
+  },
+  {
+    "objectID": "part1/01_pressure.html#numerical-example",
+    "href": "part1/01_pressure.html#numerical-example",
+    "title": "2  Pressure and Depth",
+    "section": "12.1 Numerical Example",
+    "text": "12.1 Numerical Example\nUsing the diving approximation:\n\nfrom 0 m to 10 m, pressure rises from 1 bar to 2 bar;\nfrom 10 m to 20 m, pressure rises from 2 bar to 3 bar;\nfrom 20 m to 30 m, pressure rises from 3 bar to 4 bar.\n\nThe absolute increase is 1 bar each time.\nThe relative increases are:\n\\[\n\\frac{2-1}{1} = 100\\%,\n\\]\n\\[\n\\frac{3-2}{2} = 50\\%,\n\\]\n\\[\n\\frac{4-3}{3} \\approx 33.3\\%.\n\\]\nThe first 10 metres therefore produce the largest proportional increase.\n\n\n\n\n\n\nImportantEngineering Answer\n\n\n\nThe first metres of descent are not special because pressure rises faster in an absolute sense. They are special because the same pressure increment represents the largest fraction of the current pressure.",
+    "crumbs": [
+      "Part I — Physics of Diving",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Pressure and Depth</span>"
+    ]
+  },
+  {
+    "objectID": "part1/01_pressure.html#the-fluid-is-at-rest",
+    "href": "part1/01_pressure.html#the-fluid-is-at-rest",
+    "title": "2  Pressure and Depth",
+    "section": "14.1 The Fluid Is at Rest",
+    "text": "14.1 The Fluid Is at Rest\nHydrostatics neglects acceleration and flow effects.",
+    "crumbs": [
+      "Part I — Physics of Diving",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Pressure and Depth</span>"
+    ]
+  },
+  {
+    "objectID": "part1/01_pressure.html#density-is-constant",
+    "href": "part1/01_pressure.html#density-is-constant",
+    "title": "2  Pressure and Depth",
+    "section": "14.2 Density Is Constant",
+    "text": "14.2 Density Is Constant\nWater is only weakly compressible over ordinary recreational-diving depths, so constant density is an excellent approximation.",
+    "crumbs": [
+      "Part I — Physics of Diving",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Pressure and Depth</span>"
+    ]
+  },
+  {
+    "objectID": "part1/01_pressure.html#gravity-is-constant",
+    "href": "part1/01_pressure.html#gravity-is-constant",
+    "title": "2  Pressure and Depth",
+    "section": "14.3 Gravity Is Constant",
+    "text": "14.3 Gravity Is Constant\nOver diving depths, variation in \\(g\\) is negligible.",
+    "crumbs": [
+      "Part I — Physics of Diving",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Pressure and Depth</span>"
+    ]
+  },
+  {
+    "objectID": "part1/01_pressure.html#the-free-surface-pressure-is-known",
+    "href": "part1/01_pressure.html#the-free-surface-pressure-is-known",
+    "title": "2  Pressure and Depth",
+    "section": "14.4 The Free-Surface Pressure Is Known",
+    "text": "14.4 The Free-Surface Pressure Is Known\nAt sea level this is approximately atmospheric pressure. At altitude, \\(P_0\\) is lower.",
+    "crumbs": [
+      "Part I — Physics of Diving",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Pressure and Depth</span>"
+    ]
+  },
+  {
+    "objectID": "part1/01_pressure.html#depth-is-measured-vertically",
+    "href": "part1/01_pressure.html#depth-is-measured-vertically",
+    "title": "2  Pressure and Depth",
+    "section": "14.5 Depth Is Measured Vertically",
+    "text": "14.5 Depth Is Measured Vertically\nHydrostatic pressure depends on vertical depth below the free surface, not on path length travelled.\n\n\n\n\n\n\nTipModelling Principle\n\n\n\nA model is useful when its assumptions match the question being asked. The simple hydrostatic model is extremely accurate for introductory diving calculations.",
+    "crumbs": [
+      "Part I — Physics of Diving",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Pressure and Depth</span>"
+    ]
+  },
+  {
+    "objectID": "part1/01_pressure.html#absolute-pressure-at-18-m",
+    "href": "part1/01_pressure.html#absolute-pressure-at-18-m",
+    "title": "2  Pressure and Depth",
+    "section": "18.1 Absolute Pressure at 18 m",
+    "text": "18.1 Absolute Pressure at 18 m\nUsing Equation 10.1:\n\\[\nP_{\\mathrm{abs}}\n\\approx\n1+\\frac{18}{10}\n=\n2.8\\ \\mathrm{bar}.\n\\]",
+    "crumbs": [
+      "Part I — Physics of Diving",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Pressure and Depth</span>"
+    ]
+  },
+  {
+    "objectID": "part1/01_pressure.html#gauge-pressure-at-18-m",
+    "href": "part1/01_pressure.html#gauge-pressure-at-18-m",
+    "title": "2  Pressure and Depth",
+    "section": "18.2 Gauge Pressure at 18 m",
+    "text": "18.2 Gauge Pressure at 18 m\n\\[\nP_{\\mathrm{gauge}}\n\\approx\n2.8-1\n=\n1.8\\ \\mathrm{bar}.\n\\]",
+    "crumbs": [
+      "Part I — Physics of Diving",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Pressure and Depth</span>"
+    ]
+  },
+  {
+    "objectID": "part1/01_pressure.html#relative-pressure-change-from-5-m-to-10-m",
+    "href": "part1/01_pressure.html#relative-pressure-change-from-5-m-to-10-m",
+    "title": "2  Pressure and Depth",
+    "section": "18.3 Relative Pressure Change from 5 m to 10 m",
+    "text": "18.3 Relative Pressure Change from 5 m to 10 m\nAt 5 m, \\(P_1\\approx1.5\\ \\mathrm{bar}\\).\nAt 10 m, \\(P_2\\approx2.0\\ \\mathrm{bar}\\).\nTherefore:\n\\[\n\\frac{P_2-P_1}{P_1}\n=\n\\frac{0.5}{1.5}\n\\approx\n33.3\\%.\n\\]",
+    "crumbs": [
+      "Part I — Physics of Diving",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Pressure and Depth</span>"
+    ]
+  },
+  {
+    "objectID": "part1/01_pressure.html#relative-pressure-change-from-25-m-to-30-m",
+    "href": "part1/01_pressure.html#relative-pressure-change-from-25-m-to-30-m",
+    "title": "2  Pressure and Depth",
+    "section": "18.4 Relative Pressure Change from 25 m to 30 m",
+    "text": "18.4 Relative Pressure Change from 25 m to 30 m\nAt 25 m, \\(P_1\\approx3.5\\ \\mathrm{bar}\\).\nAt 30 m, \\(P_2\\approx4.0\\ \\mathrm{bar}\\).\nTherefore:\n\\[\n\\frac{0.5}{3.5}\n\\approx\n14.3\\%.\n\\]",
+    "crumbs": [
+      "Part I — Physics of Diving",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Pressure and Depth</span>"
+    ]
+  },
+  {
+    "objectID": "part1/01_pressure.html#pressure-increases-faster-near-the-surface",
+    "href": "part1/01_pressure.html#pressure-increases-faster-near-the-surface",
+    "title": "2  Pressure and Depth",
+    "section": "19.1 “Pressure increases faster near the surface”",
+    "text": "19.1 “Pressure increases faster near the surface”\nNot in the constant-density hydrostatic model. The absolute gradient \\(dP/dh=\\rho g\\) is constant. What decreases with depth is the fractional gradient.",
+    "crumbs": [
+      "Part I — Physics of Diving",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Pressure and Depth</span>"
+    ]
+  },
+  {
+    "objectID": "part1/01_pressure.html#pressure-is-zero-at-the-surface",
+    "href": "part1/01_pressure.html#pressure-is-zero-at-the-surface",
+    "title": "2  Pressure and Depth",
+    "section": "19.2 “Pressure is zero at the surface”",
+    "text": "19.2 “Pressure is zero at the surface”\nGauge pressure is zero at the surface. Absolute pressure is approximately 1 bar.",
+    "crumbs": [
+      "Part I — Physics of Diving",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Pressure and Depth</span>"
+    ]
+  },
+  {
+    "objectID": "part1/01_pressure.html#depth-travelled-determines-pressure",
+    "href": "part1/01_pressure.html#depth-travelled-determines-pressure",
+    "title": "2  Pressure and Depth",
+    "section": "19.3 “Depth travelled determines pressure”",
+    "text": "19.3 “Depth travelled determines pressure”\nOnly vertical depth below the free surface matters.",
+    "crumbs": [
+      "Part I — Physics of Diving",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Pressure and Depth</span>"
+    ]
+  },
+  {
+    "objectID": "part1/01_pressure.html#a-1-bar-increase-always-has-the-same-effect",
+    "href": "part1/01_pressure.html#a-1-bar-increase-always-has-the-same-effect",
+    "title": "2  Pressure and Depth",
+    "section": "19.4 “A 1 bar increase always has the same effect”",
+    "text": "19.4 “A 1 bar increase always has the same effect”\nIt has the same absolute magnitude, but not the same relative magnitude.",
+    "crumbs": [
+      "Part I — Physics of Diving",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Pressure and Depth</span>"
+    ]
+  },
+  {
+    "objectID": "part1/01_pressure.html#conceptual-exercises",
+    "href": "part1/01_pressure.html#conceptual-exercises",
+    "title": "2  Pressure and Depth",
+    "section": "20.1 Conceptual Exercises",
+    "text": "20.1 Conceptual Exercises\n\nExplain why the hydrostatic pressure gradient is constant in the simple model.\nExplain the difference between gauge and absolute pressure.\nWhy is absolute pressure required in Boyle’s law?\nWhy do the first 10 m produce a larger gas-volume change than the next 10 m?\nA diver swims horizontally at constant depth. Does hydrostatic pressure change?\nWhy does seawater produce a slightly greater pressure at a given depth than fresh water?",
+    "crumbs": [
+      "Part I — Physics of Diving",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Pressure and Depth</span>"
+    ]
+  },
+  {
+    "objectID": "part1/01_pressure.html#calculation-exercises",
+    "href": "part1/01_pressure.html#calculation-exercises",
+    "title": "2  Pressure and Depth",
+    "section": "20.2 Calculation Exercises",
+    "text": "20.2 Calculation Exercises\n\nCalculate the approximate absolute pressure at 3 m, 12 m, 25 m, and 40 m.\nCalculate the gauge pressure at the same depths.\nUsing \\(\\rho=1025\\ \\mathrm{kg\\,m^{-3}}\\), calculate the pressure increase per metre.\nCompare the fractional pressure increase for 0–5 m, 5–10 m, and 20–25 m.\nAt what depth is the absolute pressure approximately 2.5 bar?",
+    "crumbs": [
+      "Part I — Physics of Diving",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Pressure and Depth</span>"
+    ]
+  },
+  {
+    "objectID": "part1/01_pressure.html#computational-exercises",
+    "href": "part1/01_pressure.html#computational-exercises",
+    "title": "2  Pressure and Depth",
+    "section": "20.3 Computational Exercises",
+    "text": "20.3 Computational Exercises\n\nPlot absolute pressure from 0 m to 40 m.\nPlot gauge and absolute pressure on the same graph.\nPlot the relative pressure gradient from Equation 12.2.\nCompare fresh water and seawater.\nModify the surface pressure to represent altitude.",
+    "crumbs": [
+      "Part I — Physics of Diving",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Pressure and Depth</span>"
+    ]
+  },
+  {
+    "objectID": "part1/02_boyle.html",
+    "href": "part1/02_boyle.html",
+    "title": "3  Compressible Gases",
+    "section": "",
+    "text": "4 Engineering Question\nAt first sight, the answer appears obvious.\nThe diver is surrounded by water, and water is essentially incompressible. If the amount of water does not change, why should buoyancy change?\nThe answer lies elsewhere.\nThe most important component of the underwater environment is not the water itself, but the gas trapped inside the diver’s equipment and lungs.\nUnlike water, gases are highly compressible.\nAs pressure changes with depth, gas volume changes accordingly.\nThose changes in volume alter buoyancy, and buoyancy alters motion.\nThis chapter explores one of the most elegant relationships in classical physics:\nIn this chapter we focus only on the first half of that chain:\nPressure → Volume\nThe second half,\nVolume → Buoyant Force,\nwill be developed in the following chapter through Archimedes’ Principle.",
+    "crumbs": [
+      "Part I — Physics of Diving",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Compressible Gases</span>"
+    ]
+  },
+  {
+    "objectID": "part1/03_archimedes.html",
+    "href": "part1/03_archimedes.html",
+    "title": "4  Boyle’s Law",
+    "section": "",
+    "text": "4.1 Guiding question\nWhat physical or systems-engineering idea does this chapter introduce?",
+    "crumbs": [
+      "Part I — Physics of Diving",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Boyle's Law</span>"
+    ]
+  },
+  {
+    "objectID": "part1/03_archimedes.html#learning-objectives",
+    "href": "part1/03_archimedes.html#learning-objectives",
+    "title": "4  Boyle’s Law",
+    "section": "4.2 Learning objectives",
+    "text": "4.2 Learning objectives\nBy the end of this chapter, the reader will be able to:\n\nexplain the central concept;\nidentify the relevant variables;\ninterpret the main equations;\nconnect theory to simulation.",
+    "crumbs": [
+      "Part I — Physics of Diving",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Boyle's Law</span>"
+    ]
+  },
+  {
+    "objectID": "part1/03_archimedes.html#physical-motivation",
+    "href": "part1/03_archimedes.html#physical-motivation",
+    "title": "4  Boyle’s Law",
+    "section": "4.3 Physical motivation",
+    "text": "4.3 Physical motivation\nThis section will be developed during the DiveLab v2 refactoring.",
+    "crumbs": [
+      "Part I — Physics of Diving",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Boyle's Law</span>"
+    ]
+  },
+  {
+    "objectID": "part1/03_archimedes.html#mathematical-model",
+    "href": "part1/03_archimedes.html#mathematical-model",
+    "title": "4  Boyle’s Law",
+    "section": "4.4 Mathematical model",
+    "text": "4.4 Mathematical model\nThe equations will follow the conventions in STYLE_GUIDE.md.",
+    "crumbs": [
+      "Part I — Physics of Diving",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Boyle's Law</span>"
+    ]
+  },
+  {
+    "objectID": "part1/03_archimedes.html#computational-laboratory",
+    "href": "part1/03_archimedes.html#computational-laboratory",
+    "title": "4  Boyle’s Law",
+    "section": "4.5 Computational laboratory",
+    "text": "4.5 Computational laboratory\nOpen 02_Boyles_Law.ipynb on GitHub\nOpen in Colab",
+    "crumbs": [
+      "Part I — Physics of Diving",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Boyle's Law</span>"
+    ]
+  },
+  {
+    "objectID": "part1/03_archimedes.html#interpretation",
+    "href": "part1/03_archimedes.html#interpretation",
+    "title": "4  Boyle’s Law",
+    "section": "4.6 Interpretation",
+    "text": "4.6 Interpretation\nExplain what the simulation shows and why it matters.",
+    "crumbs": [
+      "Part I — Physics of Diving",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Boyle's Law</span>"
+    ]
+  },
+  {
+    "objectID": "part1/03_archimedes.html#summary",
+    "href": "part1/03_archimedes.html#summary",
+    "title": "4  Boyle’s Law",
+    "section": "4.7 Summary",
+    "text": "4.7 Summary\nState the central insight and motivate the next chapter.",
+    "crumbs": [
+      "Part I — Physics of Diving",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Boyle's Law</span>"
+    ]
+  },
+  {
+    "objectID": "part1/02_boyle.html#a-fundamental-experimental-observation",
+    "href": "part1/02_boyle.html#a-fundamental-experimental-observation",
+    "title": "3  Compressible Gases",
+    "section": "11.1 A Fundamental Experimental Observation",
+    "text": "11.1 A Fundamental Experimental Observation\nImagine a transparent syringe whose nozzle has been sealed.\nInside the syringe there is only air.\nInitially, the piston can move freely.\nAs we push the piston inward, something interesting happens.\nThe force required to continue compressing the air becomes progressively larger.\nThe air resists compression.\nIf we release the piston, the air expands again, returning almost to its original volume.\nNothing has been added to the syringe.\nNothing has been removed.\nOnly two quantities have changed:\n\nthe pressure inside the syringe;\nthe volume occupied by the air.\n\nThis simple experiment reveals one of the most important properties of gases:\n\nIncreasing pressure decreases volume.\n\nThe relationship is not arbitrary.\nIt follows a remarkably simple mathematical law discovered by Robert Boyle.",
+    "crumbs": [
+      "Part I — Physics of Diving",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Compressible Gases</span>"
+    ]
+  },
+  {
+    "objectID": "part1/02_boyle.html#boyles-law-1",
+    "href": "part1/02_boyle.html#boyles-law-1",
+    "title": "3  Compressible Gases",
+    "section": "11.2 Boyle’s Law",
+    "text": "11.2 Boyle’s Law\nFor a fixed amount of gas maintained at constant temperature,\nthe product of pressure and volume remains constant.\nMathematically,\n\\[\nPV = \\text{constant}.\n\\]\nEquivalently, comparing two different states of the same gas,\n\\[\nP_1V_1=P_2V_2.\n\\]\nThis equation is known as Boyle’s Law.\nAlthough deceptively simple, it explains nearly every phenomenon involving trapped gas during a recreational dive.\n\n\n\n\n\n\nImportantDiveLab Insight\n\n\n\nBoyle’s Law does not describe the behaviour of water.\nIt describes the behaviour of gases.\nWhenever a diver breathes, inflates a buoyancy compensator, observes bubbles, or carries an air space underwater, Boyle’s Law is at work.",
+    "crumbs": [
+      "Part I — Physics of Diving",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Compressible Gases</span>"
+    ]
+  },
+  {
+    "objectID": "part1/02_boyle.html#where-does-boyles-law-come-from",
+    "href": "part1/02_boyle.html#where-does-boyles-law-come-from",
+    "title": "3  Compressible Gases",
+    "section": "11.3 Where Does Boyle’s Law Come From?",
+    "text": "11.3 Where Does Boyle’s Law Come From?\nBoyle originally discovered the relationship experimentally.\nToday we can derive it from the Ideal Gas Law,\n\\[\nPV=nRT,\n\\]\nwhere\n\n(P) is the absolute pressure;\n(V) is the gas volume;\n(n) is the number of moles of gas;\n(R) is the universal gas constant;\n(T) is the absolute temperature.\n\nDuring a typical diving manoeuvre, we assume that\n\nthe amount of gas remains constant;\nthe temperature changes only slightly.\n\nUnder these assumptions,\n(n), (R), and (T) may all be considered constant.\nTherefore,\n\\[\nPV=\\text{constant},\n\\]\nwhich is precisely Boyle’s Law.\nThis derivation also reveals the assumptions behind the model.\nBoyle’s Law is not a universal law valid under every circumstance.\nIt is an excellent approximation for many recreational diving situations.",
+    "crumbs": [
+      "Part I — Physics of Diving",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Compressible Gases</span>"
+    ]
+  },
+  {
+    "objectID": "part1/02_boyle.html#an-inverse-relationship",
+    "href": "part1/02_boyle.html#an-inverse-relationship",
+    "title": "3  Compressible Gases",
+    "section": "11.4 An Inverse Relationship",
+    "text": "11.4 An Inverse Relationship\nBoyle’s Law tells us that pressure and volume vary in opposite directions.\nIf pressure doubles,\nvolume becomes half as large.\nIf pressure triples,\nvolume becomes one third of its original value.\nMore generally,\n\\[\nV=\\frac{K}{P},\n\\]\nwhere (K) is a constant.\nThe relationship is therefore inverse, not linear.\nThis distinction is extremely important.\nPressure increases almost linearly with depth.\nVolume does not.\nConsequently, equal changes in depth do not produce equal changes in volume.\nThat observation will become one of the key ideas of this chapter.",
+    "crumbs": [
+      "Part I — Physics of Diving",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Compressible Gases</span>"
+    ]
+  },
+  {
+    "objectID": "part1/02_boyle.html#engineering-perspective",
+    "href": "part1/02_boyle.html#engineering-perspective",
+    "title": "3  Compressible Gases",
+    "section": "11.5 Engineering Perspective",
+    "text": "11.5 Engineering Perspective\nControl engineers often ask two questions.\n\nWhat is the input?\n\nIn this chapter,\nthe input is pressure.\n\nWhat is the output?\n\nThe output is gas volume.\nThe system therefore transforms\n\\[\n\\text{Pressure}\n\\longrightarrow\n\\text{Volume}.\n\\]\nIn later chapters,\nthis volume will generate buoyancy,\nand buoyancy will generate motion.\nEach chapter adds one new link to the chain.\nThe complete diver will eventually emerge as an interconnected dynamical system.",
+    "crumbs": [
+      "Part I — Physics of Diving",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Compressible Gases</span>"
+    ]
+  },
+  {
+    "objectID": "part1/02_boyle.html#looking-ahead-1",
+    "href": "part1/02_boyle.html#looking-ahead-1",
+    "title": "3  Compressible Gases",
+    "section": "11.6 Looking Ahead",
+    "text": "11.6 Looking Ahead\nBoyle’s Law tells us how pressure changes volume.\nThe next question is equally important.\nHow much does pressure actually increase underwater?\nTo answer that question we must distinguish between\n\natmospheric pressure,\nhydrostatic pressure,\nand absolute pressure.\n\nOnly absolute pressure can be used in Boyle’s Law.\nThe next section explains why.",
+    "crumbs": [
+      "Part I — Physics of Diving",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Compressible Gases</span>"
+    ]
+  }
+]

@@ -1,0 +1,3 @@
+# Python and Colab
+
+This appendix will introduce the small subset of Python required by DiveLab.

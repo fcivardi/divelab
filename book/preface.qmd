@@ -1,0 +1,29 @@
+# Preface {.unnumbered}
+
+Imagine floating effortlessly beneath the surface of the sea.
+
+Everything appears calm. The water is almost still. Your breathing is slow and regular. A small movement of your lungs gently changes your buoyancy.
+
+To an experienced diver, this feels natural.
+
+To an engineer, it is extraordinary.
+
+Beneath this apparent simplicity lies a remarkably rich dynamical system.
+
+Every breath closes a feedback loop.
+
+Every ascent and descent is the response of a nonlinear dynamical system.
+
+Every dive is an exercise in control engineering.
+
+DiveLab began with a simple question:
+
+> What if an entire control-engineering course could be taught through one coherent physical system?
+
+The diver is our guide.
+
+The true subject is systems thinking.
+
+Welcome.
+
+Let us begin our descent.

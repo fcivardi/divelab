@@ -1,1 +1,62 @@
+project:
+  type: book
+  output-dir: _book
 
+book:
+  title: "DiveLab"
+  subtitle: "Teaching Control Engineering Through Scuba Diving"
+  author: "Francesco Civardi"
+  date: today
+  repo-url: https://github.com/fcivardi/divelab
+  repo-actions: [edit, issue]
+  chapters:
+    - index.qmd
+    - preface.qmd
+    - how_to_use_this_book.qmd
+    - part: "Part I — Physics of Diving"
+      chapters:
+        - part1/01_pressure.qmd
+        - part1/02_boyle.qmd
+        - part1/03_archimedes.qmd
+        - part1/04_buoyancy_dynamics.qmd
+    - part: "Part II — Dynamical Systems"
+      chapters:
+        - part2/05_state_space.qmd
+        - part2/06_stability.qmd
+        - part2/07_estimation.qmd
+        - part2/08_laplace.qmd
+    - part: "Part III — Control Engineering"
+      chapters:
+        - part3/09_feedback.qmd
+        - part3/10_pid.qmd
+        - part3/11_frequency_response.qmd
+        - part3/12_human_in_the_loop.qmd
+    - part: "Part IV — Integrated Diving Systems"
+      chapters:
+        - part4/13_breathing.qmd
+        - part4/14_gas_consumption.qmd
+        - part4/15_dive_computers.qmd
+        - part4/16_decompression_models.qmd
+    - part: "Appendices"
+      chapters:
+        - appendices/python.qmd
+        - appendices/mathematics.qmd
+        - appendices/notebook_map.qmd
+
+bibliography: references.bib
+
+format:
+  html:
+    theme:
+      - cosmo
+      - styles.scss
+    toc: true
+    number-sections: true
+    code-tools: true
+  pdf:
+    documentclass: scrreprt
+    toc: true
+    number-sections: true
+
+execute:
+  freeze: auto

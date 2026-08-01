@@ -1,0 +1,17 @@
+---
+title: "DiveLab"
+subtitle: "Teaching Control Engineering Through Scuba Diving"
+author: "Francesco Civardi"
+---
+
+# Welcome
+
+DiveLab teaches dynamical systems and control engineering through one coherent physical system: a scuba diver underwater.
+
+The book provides the narrative. The notebooks provide the executable laboratory.
+
+> **Learn one system deeply. Understand many systems forever.**
+
+## Educational scope
+
+DiveLab is an educational resource. It is not a diving manual, decompression planner, or substitute for certified training and approved equipment.

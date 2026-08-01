@@ -1,0 +1,3 @@
+# Mathematical Foundations
+
+This appendix will collect supporting material on vectors, differential equations, eigenvalues, complex numbers, and Laplace transforms.

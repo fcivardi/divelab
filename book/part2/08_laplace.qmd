@@ -1,0 +1,36 @@
+# Laplace Transforms and Transfer Functions
+
+## Guiding question
+
+What physical or systems-engineering idea does this chapter introduce?
+
+## Learning objectives
+
+By the end of this chapter, the reader will be able to:
+
+- explain the central concept;
+- identify the relevant variables;
+- interpret the main equations;
+- connect theory to simulation.
+
+## Physical motivation
+
+This section will be developed during the DiveLab v2 refactoring.
+
+## Mathematical model
+
+The equations will follow the conventions in `STYLE_GUIDE.md`.
+
+## Computational laboratory
+
+[Open `14_Laplace_Transforms.ipynb` on GitHub](https://github.com/fcivardi/divelab/blob/main/notebooks/14_Laplace_Transforms.ipynb)
+
+[Open in Colab](https://colab.research.google.com/github/fcivardi/divelab/blob/main/notebooks/14_Laplace_Transforms.ipynb)
+
+## Interpretation
+
+Explain what the simulation shows and why it matters.
+
+## Summary
+
+State the central insight and motivate the next chapter.
