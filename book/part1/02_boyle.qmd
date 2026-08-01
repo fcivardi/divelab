@@ -922,3 +922,240 @@ It comes from another scientist who lived almost two thousand years earlier.
 In the next chapter we introduce **Archimedes' Principle**, which explains how the volume of displaced water determines the upward force acting on every immersed object.
 
 Only when Boyle's Law and Archimedes' Principle are combined can we fully understand the dynamics of buoyancy.
+
+# Visualizing Boyle's Law
+
+## Seeing the Mathematics
+
+Equations are concise, but graphs often reveal relationships more clearly than formulas alone.
+
+Boyle's Law predicts that the relationship between pressure and volume is not linear.
+
+Instead,
+
+$$
+PV=K,
+$$
+
+which can be written as
+
+$$
+V=\frac{K}{P}.
+$$
+
+The graph of this equation is a **hyperbola**.
+
+Unlike a straight line, the curve falls rapidly at low pressures and progressively flattens as pressure increases.
+
+This behaviour has profound consequences for scuba diving.
+
+---
+
+## Pressure Versus Volume
+
+Figure XX illustrates the relationship between pressure and gas volume for a fixed amount of gas.
+
+> **Figure XX.** Hyperbolic relationship between pressure and volume according to Boyle's Law.
+
+*(Placeholder for pressure–volume graph.)*
+
+Several important observations immediately emerge.
+
+- Volume decreases continuously as pressure increases.
+- The decrease is rapid at low pressures.
+- At greater pressures the curve becomes progressively flatter.
+- Equal increases in pressure do not produce equal decreases in volume.
+
+This nonlinearity explains why divers experience the greatest buoyancy changes near the surface.
+
+---
+
+## From Mathematics to Diving
+
+Suppose that an air bubble occupies one litre at the surface.
+
+Descending to 10 m halves its volume.
+
+Descending another 10 m reduces the volume much less dramatically.
+
+The same depth interval produces a different physical response because the operating point on the curve has changed.
+
+The diver is therefore interacting with a nonlinear physical system.
+
+::: {.callout-important title="DiveLab Insight"}
+
+The underwater environment changes almost linearly with depth.
+
+Gas volume does not.
+
+The difference between these two behaviours is one of the fundamental reasons why buoyancy control becomes challenging.
+
+:::
+
+# Sensitivity Near the Surface
+
+## Why Small Depth Changes Matter
+
+Experienced divers know that maintaining neutral buoyancy is often most difficult during the final few metres of an ascent.
+
+Boyle's Law explains why.
+
+The mathematical model
+
+$$
+V=\frac{K}{P}
+$$
+
+changes much more rapidly when pressure is low.
+
+Near the surface,
+
+a pressure change of only a few tenths of a bar corresponds to a significant percentage variation.
+
+At greater depths,
+
+the same pressure variation represents only a small fraction of the ambient pressure.
+
+Consequently,
+
+small changes in depth produce much larger changes in gas volume near the surface.
+
+---
+
+## Engineering Interpretation
+
+Control engineers describe this behaviour by saying that the **system sensitivity depends on the operating point**.
+
+Near the surface,
+
+the system has a high sensitivity.
+
+At depth,
+
+the sensitivity decreases.
+
+The physical system has not changed.
+
+Only the operating conditions have changed.
+
+This is one of the defining characteristics of nonlinear systems.
+
+---
+
+## Practical Consequences
+
+The consequences are immediately recognisable during recreational diving.
+
+- Buoyancy adjustments become increasingly delicate during ascent.
+- Small errors near the surface are amplified.
+- Ascents require progressively finer control.
+- Rapid ascents are more likely if expanding gas is not released from the BCD.
+
+Understanding these effects allows the diver to anticipate the behaviour of the system rather than merely reacting to it.
+
+# From Physics to Systems
+
+Up to this point we have developed a simple causal chain.
+
+```text
+Depth
+    ↓
+Pressure
+    ↓
+Gas Volume
+```
+
+Each quantity influences the next according to a well-defined physical law.
+
+Pressure depends on depth.
+
+Gas volume depends on pressure.
+
+Although this chain explains many important diving phenomena, it does **not** yet explain why a diver moves upward or downward.
+
+Volume alone cannot generate motion.
+
+A second physical principle is required.
+
+That principle is Archimedes' Principle.
+
+In the next chapter we shall discover that gas volume determines the amount of water displaced.
+
+The displaced water produces an upward force.
+
+Only then will we obtain
+
+```text
+Depth
+    ↓
+Pressure
+    ↓
+Volume
+    ↓
+Buoyant Force
+```
+
+The addition of force transforms a purely physical description into the foundation of a dynamic model.
+
+The final step—motion—will complete the feedback loop that lies at the heart of DiveLab.
+
+# Chapter Summary
+
+In this chapter we have established the physical behaviour of compressible gases underwater.
+
+The principal ideas are:
+
+- Gas volume decreases as pressure increases.
+- Boyle's Law relates pressure and volume through an inverse relationship.
+- Boyle's Law always uses absolute pressure.
+- Equal depth intervals do not produce equal volume changes.
+- The greatest volume changes occur near the surface.
+- Lungs, buoyancy compensators, dry suits and bubbles all obey the same physical law.
+- The diver therefore operates within a nonlinear physical system.
+
+These ideas form the foundation for understanding buoyancy control.
+
+# Key Equations
+
+| Equation | Interpretation |
+|-----------|----------------|
+| \(P_1V_1=P_2V_2\) | Boyle's Law |
+| \(P_{\mathrm{abs}}=P_{\mathrm{atm}}+P_{\mathrm{hyd}}\) | Absolute pressure |
+| \(V=\frac{K}{P}\) | Hyperbolic pressure-volume relationship |
+
+# Exercises
+
+## Conceptual Questions
+
+1. Why must Boyle's Law be applied using absolute pressure?
+2. Why does a rising bubble increase in size?
+3. Why is buoyancy control more difficult near the surface than at depth?
+4. Explain why Boyle's Law is considered a nonlinear model.
+
+## Numerical Problems
+
+1. An air bubble occupies 2 L at the surface. Determine its volume at 20 m.
+
+2. A BCD contains 6 L of air at 30 m. What volume will the gas occupy at the surface if no air is released?
+
+3. A diver carries a dry suit containing 4 L of gas at 10 m. Calculate the gas volume after ascending to the surface.
+
+## Engineering Questions
+
+1. Identify the input and output variables of Boyle's Law.
+
+2. Explain why the pressure–volume relationship represents a nonlinear system.
+
+3. Draw the causal chain connecting depth and gas volume.
+
+4. Which additional physical principle is required before the diver can be modelled as a dynamic system?
+
+# Looking Ahead
+
+Boyle explained how pressure changes gas volume.
+
+Archimedes will explain how gas volume generates buoyant force.
+
+Only by combining these two principles can we construct the first complete engineering model of the diver.
+
+The next chapter therefore represents a decisive step in the development of DiveLab.
