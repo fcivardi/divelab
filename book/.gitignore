@@ -1,10 +1,7 @@
-# Quarto cache
 /.quarto/
-/**/*.quarto_ipynb
-
-# Generated book output
 /_book/
-
-# Optional
+/site_libs/
+/search.json
+/**/*.html
+/**/*.quarto_ipynb
 *.log
-**/*.quarto_ipynb
