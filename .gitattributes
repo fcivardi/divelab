@@ -1,0 +1,18 @@
+# Normalize text files in the repository
+* text=auto
+
+# Documentation
+*.md   text
+*.qmd  text
+
+# Source code
+*.py   text
+*.yml  text
+*.yaml text
+
+# Binary files
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.pdf binary
