@@ -1,4 +1,9 @@
-# Boyle's Law
+---
+title: "Archimedes' Principle"
+subtitle: "The Origin of Buoyancy"
+---
+
+# Archimedes' Principle
 
 ## Guiding question
 
