@@ -318,3 +318,226 @@ To answer that question we must distinguish between
 Only absolute pressure can be used in Boyle's Law.
 
 The next section explains why.
+
+# Absolute Pressure
+
+## Pressure Is Not What It Seems
+
+Imagine standing at the edge of a swimming pool.
+
+Although we often say that the pressure at the surface is "zero," this is not physically true.
+
+Even before entering the water, every object around us is already subjected to atmospheric pressure.
+
+The Earth's atmosphere behaves like an invisible ocean of air.
+
+At sea level, the weight of this column of air produces a pressure of approximately
+
+$$
+P_{\mathrm{atm}} \approx 1 \text{ bar}.
+$$
+
+This pressure is always present.
+
+We usually do not notice it because it acts equally in every direction.
+
+When a diver enters the water, the pressure produced by the water is **added** to the atmospheric pressure already acting on the body.
+
+Consequently, a diver at depth is subjected to two different contributions:
+
+- atmospheric pressure;
+- hydrostatic pressure.
+
+The sum of these two quantities is called **absolute pressure**.
+
+---
+
+## Gauge Pressure and Absolute Pressure
+
+In everyday life we often use **gauge pressure**.
+
+A tyre pressure gauge, for example, reads zero when exposed to the atmosphere.
+
+It measures only the pressure **above atmospheric pressure**.
+
+Divers frequently think in the same way.
+
+We say that
+
+- the surface corresponds to **0 bar**;
+- 10 metres corresponds to **1 bar** of water pressure;
+- 20 metres corresponds to **2 bar** of water pressure.
+
+These values are convenient.
+
+However, they are **gauge pressures**, not the actual pressures acting on the gas.
+
+Boyle's Law requires **absolute pressure**.
+
+The atmosphere cannot be ignored.
+
+---
+
+## Calculating Absolute Pressure
+
+The relationship is straightforward:
+
+$$
+P_{\mathrm{abs}}
+=
+P_{\mathrm{atm}}
++
+P_{\mathrm{hyd}}.
+$$
+
+Since atmospheric pressure is approximately one bar,
+
+we obtain the familiar diving values.
+
+| Depth | Gauge Pressure | Absolute Pressure |
+|------:|---------------:|------------------:|
+| Surface | 0 bar | **1 bar** |
+| 10 m | 1 bar | **2 bar** |
+| 20 m | 2 bar | **3 bar** |
+| 30 m | 3 bar | **4 bar** |
+| 40 m | 4 bar | **5 bar** |
+
+These are the pressures that must always be used when applying Boyle's Law.
+
+---
+
+## Why Absolute Pressure Matters
+
+Suppose a diver carries a small air bubble with a volume of one litre at the surface.
+
+At the surface,
+
+the bubble is exposed to
+
+$$
+P=1\;\text{bar}.
+$$
+
+After descending to 10 metres,
+
+the absolute pressure becomes
+
+$$
+P=2\;\text{bar}.
+$$
+
+Applying Boyle's Law,
+
+$$
+P_1V_1=P_2V_2,
+$$
+
+gives
+
+$$
+1 \times 1
+=
+2 \times V_2.
+$$
+
+Therefore,
+
+$$
+V_2=0.5\;\text{L}.
+$$
+
+The bubble has lost half of its volume.
+
+Now imagine that we had incorrectly used gauge pressure.
+
+At the surface we would write
+
+$$
+P=0.
+$$
+
+Boyle's Law would become
+
+$$
+0 \times V_1
+=
+1 \times V_2,
+$$
+
+which immediately gives
+
+$$
+V_2=0.
+$$
+
+The bubble would disappear completely.
+
+Clearly, this result is physically impossible.
+
+The mistake arises because Boyle's Law depends on the **total pressure acting on the gas**, not merely on the pressure produced by the water.
+
+---
+
+::: {.callout-important title="DiveLab Insight"}
+
+Whenever a gas law is used,
+
+always ask:
+
+> **What is the absolute pressure?**
+
+Never use gauge pressure in Boyle's Law.
+
+This simple rule avoids one of the most common errors in diving calculations.
+
+:::
+
+---
+
+## Engineering Interpretation
+
+In Chapter 1 we introduced pressure as a function of depth.
+
+We can now refine that model.
+
+The environmental input is not simply depth.
+
+Instead,
+
+the diver experiences
+
+$$
+\text{Depth}
+\longrightarrow
+P_{\mathrm{abs}}
+\longrightarrow
+\text{Gas Volume}.
+$$
+
+Absolute pressure therefore becomes the true system input.
+
+Everything that follows—
+
+gas compression,
+
+lung expansion,
+
+buoyancy compensators,
+
+and eventually buoyancy itself—
+
+depends on this quantity.
+
+---
+
+## Looking Ahead
+
+Now that we know how to calculate absolute pressure,
+
+we can finally answer practical questions such as
+
+- How much does a buoyancy compensator shrink during descent?
+- Why do bubbles expand so rapidly near the surface?
+- Why is buoyancy more difficult to control in shallow water?
+
+The next section develops these ideas through numerical examples and graphical interpretations of Boyle's Law.

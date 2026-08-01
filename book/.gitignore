@@ -7,3 +7,4 @@
 
 # Optional
 *.log
+**/*.quarto_ipynb
