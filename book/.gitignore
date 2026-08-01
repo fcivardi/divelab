@@ -1,2 +1,9 @@
+# Quarto cache
 /.quarto/
-**/*.quarto_ipynb
+/**/*.quarto_ipynb
+
+# Generated book output
+/_book/
+
+# Optional
+*.log
