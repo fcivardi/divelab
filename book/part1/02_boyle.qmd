@@ -717,3 +717,208 @@ In the next section we apply these ideas to real diving equipment.
 We shall see that the lungs, the buoyancy compensator and even a rising bubble all obey the same physical law.
 
 Understanding this common behaviour will allow us to build a unified model of compressible buoyancy.
+
+# Boyle's Law in Action
+
+## One Law, Many Applications
+
+At first glance, the lungs, a buoyancy compensator, a dry suit and an exhaled bubble appear to have little in common.
+
+They have different functions.
+
+They are made of different materials.
+
+They are used for different purposes.
+
+Yet all of them obey exactly the same physical law.
+
+Each contains a compressible volume of gas.
+
+Consequently, each responds to changes in pressure according to Boyle's Law.
+
+Recognizing this common behaviour is one of the keys to understanding scuba diving from an engineering perspective.
+
+Instead of studying many independent systems, we begin to recognize a single physical principle acting in different situations.
+
+---
+
+# The Diver's Lungs
+
+The lungs are perhaps the most important gas-filled volume carried by a diver.
+
+At the surface, an inhalation fills the lungs with air at atmospheric pressure.
+
+During descent, however, the surrounding pressure increases.
+
+When breathing from a scuba regulator, the regulator automatically delivers air at the surrounding ambient pressure.
+
+This allows the diver to fill the lungs normally at every depth.
+
+The situation becomes very different during ascent.
+
+If a diver ascends while holding their breath, the surrounding pressure decreases.
+
+According to Boyle's Law, the air inside the lungs expands.
+
+The lungs cannot expand indefinitely.
+
+Excessive expansion may damage the delicate alveoli, producing pulmonary barotrauma.
+
+For this reason, one of the first rules taught in scuba diving is:
+
+::: {.callout-warning title="Fundamental Safety Rule"}
+
+**Never hold your breath while breathing compressed gas underwater.**
+
+Always breathe continuously during ascent.
+
+:::
+
+This rule is not merely a training recommendation.
+
+It is a direct consequence of Boyle's Law.
+
+---
+
+# The Buoyancy Compensator (BCD)
+
+The buoyancy compensator contains another compressible gas volume.
+
+At depth, the gas occupies a relatively small volume.
+
+As the diver ascends, the surrounding pressure decreases.
+
+The gas expands.
+
+The BCD therefore produces greater displacement of water.
+
+Greater displacement leads to greater buoyancy.
+
+Unless some air is released, the diver becomes increasingly positively buoyant.
+
+This illustrates an important systems concept.
+
+The diver does not actively add more air.
+
+The increase in buoyancy is produced automatically by the changing environment.
+
+The environment itself modifies the state of the system.
+
+---
+
+# Exhaled Bubbles
+
+Every bubble released by a diver behaves like a miniature experiment demonstrating Boyle's Law.
+
+Immediately after leaving the regulator, the bubble is subjected to the surrounding water pressure.
+
+As it rises,
+
+the pressure decreases continuously.
+
+The bubble therefore expands continuously.
+
+Divers often notice that bubbles appear much larger when they reach the surface than when they were first released.
+
+Boyle's Law explains this behaviour completely.
+
+---
+
+# The Dry Suit
+
+For divers using a dry suit,
+
+another gas-filled volume must be considered.
+
+Air trapped inside the suit behaves exactly like the air inside the BCD.
+
+During descent,
+
+the suit compresses.
+
+During ascent,
+
+the trapped air expands.
+
+Without proper venting,
+
+this expanding gas can increase buoyancy and alter body position.
+
+Again,
+
+the same physical law is responsible.
+
+---
+
+# A Unified Physical Model
+
+We have now encountered four apparently different systems:
+
+- lungs;
+- buoyancy compensator;
+- exhaled bubbles;
+- dry suit.
+
+Despite their differences,
+
+they all share the same mathematical model.
+
+In every case,
+
+the environmental input is
+
+$$
+\text{Pressure},
+$$
+
+and the system output is
+
+$$
+\text{Gas Volume}.
+$$
+
+The physical device changes,
+
+but the governing equation remains identical.
+
+This observation illustrates one of the central ideas of engineering:
+
+different systems often share the same mathematical description.
+
+Recognizing these common structures allows us to understand complex systems using a small number of fundamental principles.
+
+---
+
+::: {.callout-important title="DiveLab Insight"}
+
+One equation.
+
+Four applications.
+
+Many engineering systems.
+
+Boyle's Law is not simply a gas law.
+
+It is the mathematical model governing every compressible air space carried by a diver.
+
+:::
+
+---
+
+# Preparing for the Next Chapter
+
+Up to this point we have concentrated on one question:
+
+> **How does pressure change gas volume?**
+
+A second question now naturally arises.
+
+> **Why does changing volume alter buoyancy?**
+
+The answer does not come from Boyle.
+
+It comes from another scientist who lived almost two thousand years earlier.
+
+In the next chapter we introduce **Archimedes' Principle**, which explains how the volume of displaced water determines the upward force acting on every immersed object.
+
+Only when Boyle's Law and Archimedes' Principle are combined can we fully understand the dynamics of buoyancy.
