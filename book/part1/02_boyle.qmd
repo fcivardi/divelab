@@ -541,3 +541,179 @@ we can finally answer practical questions such as
 - Why is buoyancy more difficult to control in shallow water?
 
 The next section develops these ideas through numerical examples and graphical interpretations of Boyle's Law.
+
+# Volume Changes During a Dive
+
+## From Equations to Reality
+
+Boyle's Law is simple to state,
+
+but its consequences are surprisingly profound.
+
+Every gas-filled space carried by a diver continuously changes its volume as depth changes.
+
+Examples include:
+
+- the lungs;
+- the buoyancy compensator (BCD);
+- bubbles released during exhalation;
+- a dry suit;
+- any trapped air inside equipment.
+
+Although these systems have very different purposes, they all obey exactly the same physical law.
+
+The only quantities that matter are pressure and volume.
+
+---
+
+## A Descent to 10 Metres
+
+Consider a diver carrying a small air bubble with an initial volume of
+
+$$
+V_1 = 1.0\ \mathrm{L}
+$$
+
+at the surface.
+
+At the surface,
+
+the absolute pressure is
+
+$$
+P_1 = 1\ \mathrm{bar}.
+$$
+
+After descending to 10 metres,
+
+the pressure becomes
+
+$$
+P_2 = 2\ \mathrm{bar}.
+$$
+
+Applying Boyle's Law,
+
+$$
+P_1V_1=P_2V_2,
+$$
+
+we obtain
+
+$$
+1 \times 1.0 = 2 \times V_2.
+$$
+
+Therefore,
+
+$$
+V_2=0.50\ \mathrm{L}.
+$$
+
+The bubble now occupies only half of its original volume.
+
+Nothing has escaped.
+
+Nothing has been compressed mechanically.
+
+The surrounding pressure alone has produced this change.
+
+---
+
+## Descending Further
+
+The same calculation can be repeated for greater depths.
+
+| Depth | Absolute Pressure | Relative Volume |
+|------:|------------------:|----------------:|
+| Surface | 1 bar | 1.00 |
+| 10 m | 2 bar | 0.50 |
+| 20 m | 3 bar | 0.33 |
+| 30 m | 4 bar | 0.25 |
+| 40 m | 5 bar | 0.20 |
+
+Notice that the reduction in volume becomes progressively smaller.
+
+From the surface to 10 metres,
+
+the volume decreases by **50%**.
+
+From 10 to 20 metres,
+
+it decreases by only **17%**.
+
+From 20 to 30 metres,
+
+the decrease is approximately **8%**.
+
+Equal depth intervals do **not** produce equal volume changes.
+
+---
+
+## The Hyperbolic Relationship
+
+Boyle's Law can also be written as
+
+$$
+V=\frac{K}{P},
+$$
+
+where \(K\) is a constant.
+
+This equation represents a **hyperbola**.
+
+Unlike a straight line,
+
+a hyperbola changes rapidly at low pressures and more slowly at high pressures.
+
+This explains an important observation familiar to experienced divers.
+
+Small depth changes near the surface produce surprisingly large changes in gas volume.
+
+The same vertical movement at greater depths produces a much smaller effect.
+
+---
+
+::: {.callout-important title="DiveLab Insight"}
+
+The most rapid changes in buoyancy do **not** occur in deep water.
+
+They occur close to the surface,
+
+where pressure changes represent the largest percentage variation.
+
+This simple consequence of Boyle's Law explains why buoyancy control is often most challenging during the final metres of an ascent.
+
+:::
+
+---
+
+## An Engineering View
+
+The graph of Boyle's Law is nonlinear.
+
+The environment changes almost linearly with depth,
+
+but the gas responds according to a hyperbola.
+
+This means that the diver is inherently operating within a **nonlinear system**.
+
+From a control engineering perspective,
+
+this observation is extremely important.
+
+A controller designed for deep water may behave quite differently near the surface because the sensitivity of the system is changing continuously.
+
+This increasing sensitivity is one of the reasons why novice divers often find buoyancy control difficult during the last few metres before surfacing.
+
+---
+
+## Looking Ahead
+
+So far we have examined only isolated volumes of gas.
+
+In the next section we apply these ideas to real diving equipment.
+
+We shall see that the lungs, the buoyancy compensator and even a rising bubble all obey the same physical law.
+
+Understanding this common behaviour will allow us to build a unified model of compressible buoyancy.

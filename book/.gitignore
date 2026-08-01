@@ -5,3 +5,5 @@
 /**/*.html
 /**/*.quarto_ipynb
 *.log
+
+**/*.quarto_ipynb
