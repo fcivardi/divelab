@@ -994,64 +994,263 @@ The difference between these two behaviours is one of the fundamental reasons wh
 
 # Sensitivity Near the Surface
 
-## Why Small Depth Changes Matter
+## The Most Sensitive Region of a Dive
 
-Experienced divers know that maintaining neutral buoyancy is often most difficult during the final few metres of an ascent.
+Maintaining neutral buoyancy is often more difficult near the surface than at depth.
 
-Boyle's Law explains why.
+This is not merely an empirical observation. It follows directly from the slope of Boyle's pressure–volume curve.
 
-The mathematical model
+For a fixed amount of gas at approximately constant temperature,
 
 $$
-V=\frac{K}{P}
+V(P)=\frac{K}{P},
 $$
 
-changes much more rapidly when pressure is low.
+where \(K\) is constant.
 
-Near the surface,
+Differentiating with respect to pressure gives
 
-a pressure change of only a few tenths of a bar corresponds to a significant percentage variation.
+$$
+\frac{dV}{dP}
+=
+-\frac{K}{P^2}.
+$$
 
-At greater depths,
+Because \(K=PV\), the same derivative may be written as
 
-the same pressure variation represents only a small fraction of the ambient pressure.
+$$
+\boxed{
+\frac{dV}{dP}
+=
+-\frac{V}{P}
+}
+$$
 
-Consequently,
+The derivative measures the local change in gas volume produced by a small change in absolute pressure.
 
-small changes in depth produce much larger changes in gas volume near the surface.
+The negative sign shows that pressure and volume move in opposite directions:
+
+- increasing pressure reduces volume;
+- decreasing pressure increases volume.
+
+The magnitude of the sensitivity is
+
+$$
+\left|\frac{dV}{dP}\right|
+=
+\frac{K}{P^2}.
+$$
+
+This quantity is largest when pressure is low and decreases rapidly as pressure increases.
 
 ---
 
-## Engineering Interpretation
+## Numerical Comparison
 
-Control engineers describe this behaviour by saying that the **system sensitivity depends on the operating point**.
+Consider a gas volume of \(1\ \mathrm{L}\) at the surface.
 
-Near the surface,
+Using pressure in bar,
 
-the system has a high sensitivity.
+$$
+K=P_0V_0
+=
+1\ \mathrm{bar}
+\times
+1\ \mathrm{L}
+=
+1\ \mathrm{bar\,L}.
+$$
 
-At depth,
+At the surface, \(P=1\ \mathrm{bar}\), so
 
-the sensitivity decreases.
+$$
+\frac{dV}{dP}
+=
+-\frac{1}{1^2}
+=
+-1\ \mathrm{L\,bar^{-1}}.
+$$
 
-The physical system has not changed.
+At 10 m, \(P\approx2\ \mathrm{bar}\), so
 
-Only the operating conditions have changed.
+$$
+\frac{dV}{dP}
+=
+-\frac{1}{2^2}
+=
+-0.25\ \mathrm{L\,bar^{-1}}.
+$$
 
-This is one of the defining characteristics of nonlinear systems.
+At 30 m, \(P\approx4\ \mathrm{bar}\), so
+
+$$
+\frac{dV}{dP}
+=
+-\frac{1}{4^2}
+=
+-0.0625\ \mathrm{L\,bar^{-1}}.
+$$
+
+Therefore, for this fixed gas sample, the absolute pressure sensitivity at the surface is:
+
+- four times greater than at 10 m;
+- sixteen times greater than at 30 m.
+
+This provides a precise mathematical explanation for the steepness of the Boyle curve near the surface.
 
 ---
 
-## Practical Consequences
+## Sensitivity with Respect to Depth
 
-The consequences are immediately recognisable during recreational diving.
+Pressure is itself a function of depth:
 
-- Buoyancy adjustments become increasingly delicate during ascent.
-- Small errors near the surface are amplified.
-- Ascents require progressively finer control.
-- Rapid ascents are more likely if expanding gas is not released from the BCD.
+$$
+P(h)=P_0+\rho gh.
+$$
 
-Understanding these effects allows the diver to anticipate the behaviour of the system rather than merely reacting to it.
+Therefore, gas volume as a function of depth is
+
+$$
+V(h)
+=
+\frac{K}{P_0+\rho gh}.
+$$
+
+Using the chain rule,
+
+$$
+\frac{dV}{dh}
+=
+\frac{dV}{dP}
+\frac{dP}{dh}.
+$$
+
+Since
+
+$$
+\frac{dP}{dh}
+=
+\rho g,
+$$
+
+we obtain
+
+$$
+\boxed{
+\frac{dV}{dh}
+=
+-\frac{K\rho g}
+{\left(P_0+\rho gh\right)^2}
+}
+$$
+
+or, equivalently,
+
+$$
+\boxed{
+\frac{dV}{dh}
+=
+-\frac{\rho g\,V}{P}
+}
+$$
+
+The negative sign corresponds to descent: increasing depth increases pressure and reduces gas volume.
+
+During ascent, depth decreases and the gas expands.
+
+Most importantly, the magnitude
+
+$$
+\left|\frac{dV}{dh}\right|
+=
+\frac{K\rho g}
+{\left(P_0+\rho gh\right)^2}
+$$
+
+is greatest near the surface.
+
+---
+
+## Relative Sensitivity
+
+The absolute derivative depends on the size of the gas sample.
+
+A larger gas volume naturally produces a larger absolute volume change.
+
+To compare different gas spaces, it is useful to define the relative sensitivity:
+
+$$
+\frac{1}{V}\frac{dV}{dP}.
+$$
+
+Using
+
+$$
+\frac{dV}{dP}
+=
+-\frac{V}{P},
+$$
+
+we obtain
+
+$$
+\boxed{
+\frac{1}{V}\frac{dV}{dP}
+=
+-\frac{1}{P}
+}
+$$
+
+Similarly, with respect to depth:
+
+$$
+\boxed{
+\frac{1}{V}\frac{dV}{dh}
+=
+-\frac{\rho g}{P_0+\rho gh}
+}
+$$
+
+This relative sensitivity is independent of the initial gas volume.
+
+A lung, a BCD and a bubble have different sizes, but their fractional response to the same pressure change follows the same law.
+
+---
+
+::: {.callout-important title="DiveLab Insight"}
+Boyle's Law is nonlinear because its local gain is not constant.
+
+The pressure-to-volume gain is
+
+$$
+G(P)
+=
+\frac{dV}{dP}
+=
+-\frac{K}{P^2}.
+$$
+
+Near the surface, the magnitude of this gain is large.
+
+At depth, it is smaller.
+
+The diver is therefore controlling a plant whose sensitivity changes continuously with the operating point.
+:::
+
+---
+
+## Engineering Consequences
+
+The derivative explains why:
+
+- small ascents near the surface produce comparatively large gas expansion;
+- BCD venting must become more precise during the final metres;
+- vertical disturbances are more strongly amplified near the surface;
+- a controller tuned at depth may perform differently in shallow water.
+
+This is the first explicit appearance of **variable plant gain** in DiveLab.
+
+Later, when the gas volume is connected to buoyant force through Archimedes' Principle, this changing gain will become part of the buoyancy feedback loop.
 
 # From Physics to Systems
 
@@ -1118,10 +1317,20 @@ These ideas form the foundation for understanding buoyancy control.
 # Key Equations
 
 | Equation | Interpretation |
-|-----------|----------------|
-| \(P_1V_1=P_2V_2\) | Boyle's Law |
-| \(P_{\mathrm{abs}}=P_{\mathrm{atm}}+P_{\mathrm{hyd}}\) | Absolute pressure |
-| \(V=\frac{K}{P}\) | Hyperbolic pressure-volume relationship |
+|:---------|:---------------|
+| $P_1V_1=P_2V_2$ | Boyle's Law |
+| $P_{\mathrm{abs}}=P_{\mathrm{atm}}+P_{\mathrm{hyd}}$ | Absolute pressure |
+| $V=\dfrac{K}{P}$ | Hyperbolic pressure-volume relationship |
+
+
+Formula inline: $P_1V_1=P_2V_2$
+
+Formula display:
+
+$$
+P_1V_1=P_2V_2
+$$
+
 
 # Exercises
 

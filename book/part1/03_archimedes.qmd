@@ -1,41 +1,149 @@
 ---
 title: "Archimedes' Principle"
-subtitle: "The Origin of Buoyancy"
+subtitle: "From Volume to Buoyant Force"
 ---
 
-# Archimedes' Principle
+# Engineering Question
 
-## Guiding question
+In the previous chapter we learned that pressure changes the volume of every gas carried by a diver. Yet volume alone cannot make a diver move.
 
-What physical or systems-engineering idea does this chapter introduce?
+How does a change in volume become an upward force?
 
-## Learning objectives
+This chapter derives Archimedes' Principle from the hydrostatic pressure field and interprets it as the transformation from **volume** to **force**.
 
-By the end of this chapter, the reader will be able to:
+# Learning Objectives
 
-- explain the central concept;
-- identify the relevant variables;
-- interpret the main equations;
-- connect theory to simulation.
+- Explain hydrostatic pressure.
+- Derive Archimedes' Principle.
+- Relate buoyancy to displaced volume.
+- Explain neutral buoyancy.
+- Connect Boyle's Law with Archimedes' Principle.
 
-## Physical motivation
+# 3.1 Hydrostatic Pressure
 
-This section will be developed during the DiveLab v2 refactoring.
+The pressure in a fluid at rest is
 
-## Mathematical model
+$$
+P(h)=P_0+\rho gh
+$$
 
-The equations will follow the conventions in `STYLE_GUIDE.md`.
+where $P_0$ is atmospheric pressure.
 
-## Computational laboratory
+# 3.2 Pressure Distribution
 
-[Open `02_Boyles_Law.ipynb` on GitHub](https://github.com/fcivardi/divelab/blob/main/notebooks/02_Boyles_Law.ipynb)
+Pressure acts in every direction.
 
-[Open in Colab](https://colab.research.google.com/github/fcivardi/divelab/blob/main/notebooks/02_Boyles_Law.ipynb)
+Because the lower surface of a submerged body is deeper than the upper surface, it experiences a greater pressure.
 
-## Interpretation
+Horizontal forces cancel.
 
-Explain what the simulation shows and why it matters.
+The remaining resultant acts upward.
 
-## Summary
+> **Figure placeholder:** Pressure distribution on a submerged block.
 
-State the central insight and motivate the next chapter.
+# 3.3 Derivation of Archimedes' Principle
+
+Let the body have cross-sectional area $A$ and height $\Delta h$.
+
+The pressure difference is
+
+$$
+\Delta P=\rho g\Delta h.
+$$
+
+The upward force is
+
+$$
+F_B=\Delta P\,A.
+$$
+
+Since
+
+$$
+V=A\Delta h,
+$$
+
+we obtain
+
+$$
+\boxed{F_B=\rho gV}
+$$
+
+::: {.callout-important title="DiveLab Insight"}
+
+Archimedes transforms **volume** into **force**.
+
+:::
+
+# 3.4 Weight, Buoyancy and Equilibrium
+
+Weight is
+
+$$
+W=mg.
+$$
+
+The net force is
+
+$$
+F_{net}=F_B-W.
+$$
+
+Neutral buoyancy occurs when
+
+$$
+F_B=W.
+$$
+
+# 3.5 Applications to Scuba Diving
+
+Increasing the gas volume inside the BCD increases displaced water and therefore buoyancy.
+
+The same principle applies to lungs, dry suits and bubbles.
+
+# 3.6 From Physics to Systems
+
+```text
+Depth
+    ↓
+Pressure
+    ↓
+Volume
+    ↓
+Buoyant Force
+```
+
+The next chapter will add Newton's Second Law to transform force into motion.
+
+# Chapter Summary
+
+- Pressure increases with depth.
+- Pressure differences generate buoyancy.
+- Archimedes' Principle follows from hydrostatics.
+- Buoyant force is proportional to displaced volume.
+- Boyle and Archimedes together link pressure to force.
+
+# Key Equations
+
+| Equation | Interpretation |
+|:---------|:---------------|
+| $P(h)=P_0+\rho gh$ | Hydrostatic pressure |
+| $F_B=\rho gV$ | Archimedes' Principle |
+| $W=mg$ | Weight |
+| $F_{net}=F_B-W$ | Net force |
+
+# Exercises
+
+1. Derive Archimedes' Principle from the hydrostatic pressure field.
+2. Explain why the horizontal pressure forces cancel.
+3. Calculate the buoyant force for 10 L of displaced seawater.
+4. Explain neutral buoyancy.
+5. Draw the chain Depth → Pressure → Volume → Buoyant Force.
+
+# Looking Ahead
+
+Boyle transformed pressure into volume.
+
+Archimedes transformed volume into force.
+
+Newton will transform force into motion.
