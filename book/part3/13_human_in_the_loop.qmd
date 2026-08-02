@@ -42,23 +42,15 @@ The treatment of delay, intermittent decisions, limited human response, and huma
 
 ### The Human Feedback Architecture
 
-The loop contains
+The loop contains seven recurring stages:
 
-$$
-\text{target depth}
-\rightarrow
-\text{perception}
-\rightarrow
-\text{state interpretation}
-\rightarrow
-\text{decision}
-\rightarrow
-\text{action}
-\rightarrow
-\text{diver dynamics}
-\rightarrow
-\text{new sensory information}.
-$$
+1. compare the current situation with the target depth;
+2. perceive available sensory and instrument information;
+3. interpret the likely state and motion;
+4. select a corrective decision;
+5. act through the available actuators;
+6. allow the diver dynamics to evolve;
+7. receive new sensory information and repeat the cycle.
 
 The **plant** is the diver, equipment, and surrounding-fluid dynamics. Sensors include vision, pressure/depth instruments, proprioception, and vestibular cues. Actuation may involve breathing, BCD or drysuit operation, posture, and finning. This chapter represents their combined vertical effect as a bounded force; it does not model operational technique.
 

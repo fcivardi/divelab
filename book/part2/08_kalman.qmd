@@ -314,19 +314,13 @@ In exact arithmetic the forms are equivalent. The Joseph form better preserves s
 
 ### The Complete Cycle
 
-At every sample:
+At every sample, the filter:
 
-$$
-\text{posterior}_{k-1}
-\longrightarrow
-\text{predict state and covariance}
-\longrightarrow
-\text{compute innovation}
-\longrightarrow
-\text{calculate gain}
-\longrightarrow
-\text{correct state and covariance}.
-$$
+1. starts from the previous posterior state and covariance;
+2. predicts the next state and covariance;
+3. computes the measurement innovation;
+4. calculates the Kalman gain;
+5. corrects the predicted state and covariance.
 
 The filter is recursive. It stores the current estimate and covariance rather than the entire measurement history.
 

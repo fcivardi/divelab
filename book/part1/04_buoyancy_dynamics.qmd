@@ -202,17 +202,10 @@ $$
 
 A small upward displacement reduces $z$. Pressure falls, the flexible gas expands, and buoyant force increases. The resulting upward acceleration reinforces the initial displacement:
 
-$$
-\text{rise}
-\longrightarrow
-\text{lower pressure}
-\longrightarrow
-\text{larger gas volume}
-\longrightarrow
-\text{greater buoyancy}
-\longrightarrow
-\text{further rise}.
-$$
+1. depth decreases and ambient pressure falls;
+2. the flexible gas expands;
+3. buoyant force increases;
+4. the resulting acceleration reinforces the rise.
 
 A small downward displacement produces the opposite reinforcing sequence. Drag opposes velocity, but it does not remove the underlying depth–buoyancy coupling. Formal equilibrium and stability analysis are reserved for later chapters.
 

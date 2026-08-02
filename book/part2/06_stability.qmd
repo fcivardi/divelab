@@ -412,17 +412,10 @@ For a compressible gas space, the local buoyancy slope is negative. That sign pr
 
 Linearization is a local model-building operation:
 
-$$
-\text{nonlinear physics}
-\longrightarrow
-\text{operating state}
-\longrightarrow
-\text{Jacobian}
-\longrightarrow
-\text{eigenstructure}
-\longrightarrow
-\text{local behavior}.
-$$
+1. choose an operating state in the nonlinear model;
+2. evaluate the Jacobian at that state;
+3. compute its eigenstructure;
+4. interpret the resulting local behavior.
 
 The Jacobian does not replace the nonlinear model. It explains behavior near one operating state and provides the mathematical foundation for later estimation and control design.
 
