@@ -1,4 +1,7 @@
-# Dive Computers as Real-Time Estimators
+---
+title: "Dive Computers as Real-Time Estimators"
+subtitle: "From Pressure Samples to Model-Based Information"
+---
 
 ## Companion Resources
 
@@ -36,13 +39,19 @@ $$
 \hat z_k=\frac{P_{m,k}-\hat P_0}{\hat\rho g}.
 $$
 
-The hats matter: surface pressure, water density, and sensor calibration are estimates. Vertical speed is not directly measured in the minimal architecture; a finite-difference estimate is
+The hats matter: surface pressure, water density, and sensor calibration are estimates. Vertical speed is not directly measured in the minimal architecture. Because depth is positive downward, a finite-difference estimate of depth rate is
 
 $$
 \hat{\dot z}_k=\frac{\hat z_k-\hat z_{k-1}}{\Delta t}.
 $$
 
-If depth-noise variance is $\sigma_z^2$ and consecutive errors are independent, the difference has variance $2\sigma_z^2/\Delta t^2$. Faster sampling alone therefore does not guarantee a cleaner derivative.
+This quantity is positive during descent. The upward-positive velocity used in the DiveLab plant is instead
+
+$$
+\hat v_k=-\hat{\dot z}_k.
+$$
+
+If depth-noise variance is $\sigma_z^2$ and consecutive errors are independent, either signed velocity estimate has variance $2\sigma_z^2/\Delta t^2$. Faster sampling alone therefore does not guarantee a cleaner derivative.
 
 ### Filtering and latency
 
@@ -60,7 +69,7 @@ Smaller $\alpha$ suppresses more noise but adds lag. Chapter 8 provides a model-
 A compact processing pipeline is
 
 $$
-P_m\rightarrow\hat z\rightarrow\hat v\rightarrow
+P_m\rightarrow\hat z\rightarrow\hat{\dot z},\hat v\rightarrow
 \begin{cases}
 \hat G & \text{gas model},\\
 \hat P_{t,i} & \text{decompression model},\\
@@ -68,7 +77,7 @@ P_m\rightarrow\hat z\rightarrow\hat v\rightarrow
 \end{cases}
 $$
 
-Depth is derived from a sensor; velocity and gas state are estimated; future gas or decompression status is predicted conditionally on a model.
+Depth is derived from a sensor; depth rate and upward-positive velocity are estimated with opposite signs. Gas state is propagated from an initialized inventory and an assumed or measured respiratory demand. Future gas or decompression status is predicted conditionally on a model.
 
 ### Fault-aware computation
 
@@ -92,7 +101,7 @@ For $b_P=1~\mathrm{kPa}$ in seawater, $b_z\approx0.10~\mathrm{m}$.
 
 ### Example 2: derivative noise
 
-If $sigma_z=0.03~\mathrm{m}$ and $\Delta t=1~\mathrm{s}$, then
+If $\sigma_z=0.03~\mathrm{m}$ and $\Delta t=1~\mathrm{s}$, then
 
 $$
 \sigma_{\dot z}\approx\frac{\sqrt{2}\sigma_z}{\Delta t}=0.042~\mathrm{m/s}.
@@ -115,7 +124,7 @@ This architecture is a small cyber-physical system. Sensor calibration, sampling
 ## Summary
 
 - Ambient pressure is measured; depth is derived.
-- Vertical speed is estimated and differentiation amplifies noise.
+- Depth rate is estimated by differentiation; the plant velocity is $v=-\dot z$.
 - Filtering trades noise suppression against latency.
 - Gas and tissue loading are hidden states propagated by models.
 - A teaching pipeline is not a validated dive computer.
@@ -126,6 +135,8 @@ $$
 \hat z_k=\frac{P_{m,k}-\hat P_0}{\hat\rho g},
 \qquad
 \hat{\dot z}_k=\frac{\hat z_k-\hat z_{k-1}}{\Delta t},
+\qquad
+\hat v_k=-\hat{\dot z}_k,
 $$
 
 $$
@@ -144,7 +155,7 @@ $$
 
 ## Companion Notebook
 
-Open [Notebook 16 — Dive-Computer Estimation Pipeline](https://colab.research.google.com/github/fcivardi/divelab/blob/editorial-v2/notebooks/16_Dive_Computer_Estimation.ipynb) to inject sensor noise and bias, compare estimators, and implement fault checks.
+Open Notebook 16 — Dive-Computer Estimation Pipeline on [GitHub](https://github.com/fcivardi/divelab/blob/editorial-v2/notebooks/16_Dive_Computer_Estimation.ipynb) or [Google Colab](https://colab.research.google.com/github/fcivardi/divelab/blob/editorial-v2/notebooks/16_Dive_Computer_Estimation.ipynb) to inject sensor noise and bias, compare estimators, and implement fault checks.
 
 ## Looking Ahead
 

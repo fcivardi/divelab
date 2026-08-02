@@ -1,4 +1,7 @@
-# Gas Consumption
+---
+title: "Gas Consumption"
+subtitle: "From Respiratory Demand to Resource Depletion"
+---
 
 ## Companion Resources
 
@@ -52,13 +55,14 @@ $$
 \dot G(t)=-q_S(t)\frac{P_{\mathrm{amb}}(z(t))}{P_0}.
 $$
 
-For a cylinder with internal volume $V_{\mathrm{cyl}}$, an idealized pressure estimate is
+For a cylinder with internal volume $V_{\mathrm{cyl}}$, the ideal-gas relation at the same reference temperature is
 
 $$
-P_{\mathrm{cyl}}(t)=\frac{G(t)}{V_{\mathrm{cyl}}}.
+P_{\mathrm{cyl,abs}}(t)
+=P_0\frac{G(t)}{V_{\mathrm{cyl}}}.
 $$
 
-This approximation omits non-ideal gas behavior, temperature transients, gauge error, regulator limits, and unusable residual gas.
+Here $P_{\mathrm{cyl,abs}}$ is absolute cylinder pressure. Gauge pressure would be $P_{\mathrm{cyl,g}}=P_{\mathrm{cyl,abs}}-P_0$ when the cylinder and gauge are at the same atmospheric reference. This approximation omits non-ideal gas behavior, temperature transients, gauge error, regulator limits, and unusable residual gas.
 
 ### Workload and uncertainty
 
@@ -131,7 +135,7 @@ $$
 $$
 G(T)=G(0)-\int_0^Tq_S(t)\frac{P_{\mathrm{amb}}(z(t))}{P_0}\,dt,
 \qquad
-P_{\mathrm{cyl}}\approx\frac{G}{V_{\mathrm{cyl}}}.
+P_{\mathrm{cyl,abs}}\approx P_0\frac{G}{V_{\mathrm{cyl}}}.
 $$
 
 ## Exercises
@@ -144,7 +148,7 @@ $$
 
 ## Companion Notebook
 
-Open [Notebook 15 — Gas Consumption](https://colab.research.google.com/github/fcivardi/divelab/blob/editorial-v2/notebooks/15_Gas_Consumption.ipynb) to integrate gas use over depth and workload profiles and test forecast sensitivity.
+Open Notebook 15 — Gas Consumption on [GitHub](https://github.com/fcivardi/divelab/blob/editorial-v2/notebooks/15_Gas_Consumption.ipynb) or [Google Colab](https://colab.research.google.com/github/fcivardi/divelab/blob/editorial-v2/notebooks/15_Gas_Consumption.ipynb) to integrate gas use over depth and workload profiles and test forecast sensitivity.
 
 ## Looking Ahead
 

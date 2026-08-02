@@ -1,4 +1,7 @@
-# Breathing Dynamics
+---
+title: "Breathing Dynamics"
+subtitle: "From Lung Volume to Buoyancy Actuation"
+---
 
 ## Companion Resources
 
@@ -168,7 +171,7 @@ $$
 
 ## Companion Notebook
 
-Open [Notebook 14 — Breathing Dynamics](https://colab.research.google.com/github/fcivardi/divelab/blob/editorial-v2/notebooks/14_Breathing_Dynamics.ipynb) to simulate tidal forcing, actuator lag, saturation, and two-timescale control allocation.
+Open Notebook 14 — Breathing Dynamics on [GitHub](https://github.com/fcivardi/divelab/blob/editorial-v2/notebooks/14_Breathing_Dynamics.ipynb) or [Google Colab](https://colab.research.google.com/github/fcivardi/divelab/blob/editorial-v2/notebooks/14_Breathing_Dynamics.ipynb) to simulate tidal forcing, actuator lag, saturation, and two-timescale control allocation.
 
 ## Looking Ahead
 

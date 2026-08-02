@@ -20,7 +20,7 @@ The companion notebooks provide executable experiments for the models developed 
 | [Chapter 7 — Observability and State Estimation](../part2/07_estimation.qmd) | Notebook 07 — Observability and State Estimation | [GitHub](https://github.com/fcivardi/divelab/blob/editorial-v2/notebooks/07_Observability_and_State_Estimation.ipynb) · [Colab](https://colab.research.google.com/github/fcivardi/divelab/blob/editorial-v2/notebooks/07_Observability_and_State_Estimation.ipynb) |
 | [Chapter 8 — Kalman Filtering](../part2/08_kalman.qmd) | Notebook 08 — Kalman Filtering | [GitHub](https://github.com/fcivardi/divelab/blob/editorial-v2/notebooks/08_Kalman_Filter.ipynb) · [Colab](https://colab.research.google.com/github/fcivardi/divelab/blob/editorial-v2/notebooks/08_Kalman_Filter.ipynb) |
 
-## Part III — Control Systems
+## Part III — Control Engineering
 
 | Book chapter | Companion notebook | Access |
 |:-------------|:-------------------|:-------|

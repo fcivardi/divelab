@@ -8,6 +8,7 @@ book:
   author: "Francesco Civardi"
   date: today
   repo-url: https://github.com/fcivardi/divelab
+  repo-branch: editorial-v2
   repo-actions: [edit, issue]
   chapters:
     - index.qmd
@@ -39,11 +40,10 @@ book:
         - part4/16_dive_computers.qmd
         - part4/17_decompression_models.qmd
         - part4/18_complete_dive.qmd
-    - part: "Appendices"
-      chapters:
-        - appendices/python.qmd
-        - appendices/mathematics.qmd
-        - appendices/notebook_map.qmd
+  appendices:
+    - appendices/python.qmd
+    - appendices/mathematics.qmd
+    - appendices/notebook_map.qmd
 
 bibliography: references.bib
 

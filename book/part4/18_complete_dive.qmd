@@ -1,4 +1,7 @@
-# The Complete Dive as a Dynamic System
+---
+title: "The Complete Dive as a Dynamic System"
+subtitle: "From Components to Engineering Understanding"
+---
 
 ## Companion Resources
 
@@ -189,7 +192,7 @@ $$
 
 ## Companion Notebook
 
-Open [Notebook 18 — Integrated DiveLab Capstone](https://colab.research.google.com/github/fcivardi/divelab/blob/editorial-v2/notebooks/18_Integrated_DiveLab_Capstone.ipynb) to propagate one synthetic pressure history through the book's pressure, buoyancy, gas-resource, sensing, and inert-gas models.
+Open Notebook 18 — Integrated DiveLab Capstone on [GitHub](https://github.com/fcivardi/divelab/blob/editorial-v2/notebooks/18_Integrated_DiveLab_Capstone.ipynb) or [Google Colab](https://colab.research.google.com/github/fcivardi/divelab/blob/editorial-v2/notebooks/18_Integrated_DiveLab_Capstone.ipynb) to propagate one synthetic pressure history through the book's pressure, buoyancy, gas-resource, sensing, and inert-gas models.
 
 ## Looking Ahead
 

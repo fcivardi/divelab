@@ -1,4 +1,7 @@
-# Decompression Models
+---
+title: "Decompression Models"
+subtitle: "From Pressure History to Hidden Physiological State"
+---
 
 ## Companion Resources
 
@@ -159,8 +162,8 @@ $$
 
 ## Companion Notebook
 
-Open [Notebook 17 — Inert-Gas Compartment Models](https://colab.research.google.com/github/fcivardi/divelab/blob/editorial-v2/notebooks/17_Inert_Gas_Compartments.ipynb) to simulate one and multiple time scales, compare numerical updates, and demonstrate history dependence without generating operational limits.
+Open Notebook 17 — Inert-Gas Compartment Models on [GitHub](https://github.com/fcivardi/divelab/blob/editorial-v2/notebooks/17_Inert_Gas_Compartments.ipynb) or [Google Colab](https://colab.research.google.com/github/fcivardi/divelab/blob/editorial-v2/notebooks/17_Inert_Gas_Compartments.ipynb) to simulate one and multiple time scales, compare numerical updates, and demonstrate history dependence without generating operational limits.
 
 ## Looking Ahead
 
-Part IV has assembled an integrated system: human breathing, a finite gas resource, a sampled estimator, and model-based hidden physiological states. The appendices provide the Python and mathematical tools used throughout the book.
+Chapter 18 assembles human breathing, a finite gas resource, sampled estimation, control, and hidden physiological states into one integrated view of the complete dive system.
