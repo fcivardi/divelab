@@ -1,34 +1,475 @@
-# Equilibria and Stability
+---
+title: "Equilibria and Stability"
+subtitle: "From State to Local Behavior"
+---
 
-## Guiding question
+## Companion Resources
 
-What physical or systems-engineering idea does this chapter introduce?
+::: {.callout-tip title="Companion Resources"}
 
-## Learning objectives
+**Chapter:** 6 — Equilibria and Stability
 
-By the end of this chapter, the reader will be able to:
+**Companion notebook:** Notebook 06 — Equilibria and Stability
 
-- explain the central concept;
-- identify the relevant variables;
-- interpret the main equations;
-- connect theory to simulation.
+**Estimated study time:** 150–180 minutes, including the notebook
 
-## Physical motivation
+**Prerequisites:** Chapters 1–5, partial derivatives, matrices, and eigenvalues
 
-This section will be developed during the DiveLab v2 refactoring.
+:::
 
-## Mathematical model
+## Engineering Question
 
-The equations will follow the conventions in `STYLE_GUIDE.md`.
+If a neutrally buoyant diver is disturbed, does the diver return to the original depth or move away from it?
 
-## Computational laboratory
+Neutral buoyancy identifies a force balance. It does not determine what happens after a small displacement. Chapter 6 uses the state-space model from Chapter 5 to distinguish equilibrium from stability and to expose the local geometry of buoyancy feedback.
 
-A dedicated stability notebook will be developed during the editorial-v2 refactoring. Notebook 03 is reserved for Chapter 3 and Archimedes' principle.
+## Learning Objectives
 
-## Interpretation
+After completing this chapter, you should be able to:
 
-Explain what the simulation shows and why it matters.
+- determine the equilibrium conditions of the vertical-motion model;
+- distinguish equilibrium, Lyapunov stability, asymptotic stability, and instability;
+- calculate the local sensitivity of buoyant force to depth;
+- derive the Jacobian matrix at a neutral operating state;
+- classify a two-state equilibrium from its eigenvalues;
+- interpret stable and unstable eigendirections;
+- read trajectory direction and saddle geometry in a phase portrait;
+- explain why quadratic drag affects nonlinear trajectories but not the first-order linearization at zero velocity.
+
+## Theory
+
+### Equilibrium Is a State, Not Only a Force Balance
+
+For the unforced model,
+
+$$
+\dot{\mathbf{x}}=\mathbf{f}(\mathbf{x}),
+\qquad
+\mathbf{x}=
+\begin{bmatrix}
+z\\
+v
+\end{bmatrix},
+$$
+
+an equilibrium $\mathbf{x}^{\ast}$ satisfies
+
+$$
+\boxed{\mathbf{f}(\mathbf{x}^{\ast})=\mathbf{0}}.
+$$
+
+The vertical-motion equations are
+
+$$
+\dot{z}=-v,
+$$
+
+$$
+\dot{v}
+=
+\frac{F_B(z)-mg-cv|v|}{m}.
+$$
+
+Therefore an equilibrium requires both
+
+$$
+v^{\ast}=0
+$$
+
+and
+
+$$
+F_B(z^{\ast})=mg.
+$$
+
+Neutral buoyancy is necessary, but the complete equilibrium also requires zero vertical velocity. A neutrally buoyant diver who is moving is not at equilibrium.
+
+### Stability Asks a Different Question
+
+Equilibrium describes what happens when the model starts exactly at $\mathbf{x}^{\ast}$. Stability describes what happens when it starts nearby.
+
+- **Stable in the sense of Lyapunov:** sufficiently small initial perturbations remain close to the equilibrium.
+- **Asymptotically stable:** sufficiently small perturbations remain close and converge to the equilibrium.
+- **Unstable:** arbitrarily small perturbations can eventually leave a prescribed neighborhood of the equilibrium.
+
+A force balance alone cannot distinguish these cases. We must examine how the vector field changes around the equilibrium.
+
+### Buoyant-Force Sensitivity
+
+The flexible gas volume is
+
+$$
+V_g(z)
+=
+V_{g0}\frac{P_0}{P_0+\rho gz},
+$$
+
+so the buoyant force is
+
+$$
+F_B(z)
+=
+\rho g\left[
+V_f+V_{g0}\frac{P_0}{P_0+\rho gz}
+\right].
+$$
+
+Its local depth sensitivity is
+
+$$
+k_B
+=
+\left.\frac{dF_B}{dz}\right|_{z^{\ast}}
+=
+-\frac{(\rho g)^2V_{g0}P_0}
+{\left(P_0+\rho gz^{\ast}\right)^2}.
+$$
+
+Thus
+
+$$
+\boxed{k_B<0}.
+$$
+
+Moving deeper reduces buoyant force; moving shallower increases it. This sign is the physical origin of the local instability in the simplified open-loop model.
+
+### Perturbation Coordinates
+
+Define deviations from equilibrium:
+
+$$
+\delta z=z-z^{\ast},
+\qquad
+\delta v=v-v^{\ast}=v.
+$$
+
+Collect them in
+
+$$
+\boldsymbol{\xi}
+=
+\begin{bmatrix}
+\delta z\\
+\delta v
+\end{bmatrix}.
+$$
+
+Near the equilibrium, expand the nonlinear dynamics to first order:
+
+$$
+\dot{\boldsymbol{\xi}}
+\approx
+A\boldsymbol{\xi},
+$$
+
+where
+
+$$
+A
+=
+\left.
+\frac{\partial\mathbf{f}}{\partial\mathbf{x}}
+\right|_{\mathbf{x}^{\ast}}
+$$
+
+is the Jacobian matrix.
+
+### Linearization of the Vertical Model
+
+The kinematic equation gives
+
+$$
+\delta\dot{z}=-\delta v.
+$$
+
+The buoyancy term contributes $k_B\delta z/m$. Quadratic drag requires special care:
+
+$$
+F_D(v)=-cv|v|.
+$$
+
+Because
+
+$$
+\left.
+\frac{d}{dv}\left(v|v|\right)
+\right|_{v=0}
+=0,
+$$
+
+quadratic drag contributes no first-order velocity term at the stationary equilibrium. The local linear model is therefore
+
+$$
+\boxed{
+\dot{\boldsymbol{\xi}}
+=
+\begin{bmatrix}
+0 & -1\\
+k_B/m & 0
+\end{bmatrix}
+\boldsymbol{\xi}
+}.
+$$
+
+Drag still influences the nonlinear motion away from equilibrium. Its absence from $A$ means only that its leading effect near $v=0$ is second order.
+
+### Eigenvalues and the Saddle Point
+
+The characteristic equation is
+
+$$
+\det(\lambda I-A)=0,
+$$
+
+which gives
+
+$$
+\lambda^2+\frac{k_B}{m}=0.
+$$
+
+Since $k_B<0$,
+
+$$
+\boxed{
+\lambda_{\pm}
+=
+\pm\sqrt{-\frac{k_B}{m}}
+}.
+$$
+
+One eigenvalue is positive and one is negative. This is the signature of a **saddle point**. The equilibrium is unstable even though one exceptional direction is locally attracting.
+
+For a continuous-time linear model, the real parts of the eigenvalues determine local behavior:
+
+| Eigenvalue pattern | Local classification |
+|:-------------------|:---------------------|
+| All real parts negative | Asymptotically stable |
+| At least one positive real part | Unstable |
+| Mixed positive and negative real parts | Saddle; unstable |
+| Zero real part with none positive | Linearization alone may be inconclusive |
+
+The present equilibrium is hyperbolic because neither eigenvalue has zero real part. Consequently, its local nonlinear phase portrait has the same saddle character as the linearized model.
+
+### Stable and Unstable Eigdirections
+
+For an eigenvalue $\lambda$, the first row of
+
+$$
+A\mathbf{e}=\lambda\mathbf{e}
+$$
+
+gives
+
+$$
+e_v=-\lambda e_z.
+$$
+
+The eigenvector associated with $\lambda_-<0$ defines the local **stable eigendirection**. Linearized trajectories placed exactly on this line approach the equilibrium.
+
+The eigenvector associated with $\lambda_+>0$ defines the local **unstable eigendirection**. Its slope in the $(\delta z,\delta v)$ plane is negative:
+
+$$
+\frac{\delta v}{\delta z}=-\lambda_+.
+$$
+
+This direction has a direct physical interpretation:
+
+- $\delta z<0$ and $\delta v>0$: shallower and moving upward;
+- $\delta z>0$ and $\delta v<0$: deeper and moving downward.
+
+Both combinations reinforce the departure from equilibrium.
+
+For the nonlinear model, the corresponding local curves are the stable and unstable manifolds. They are tangent to the linear eigendirections at the equilibrium.
+
+### Reading the Phase Portrait
+
+A time plot shows $z(t)$ or $v(t)$ against time. A phase portrait plots one state against another, here
+
+$$
+(z,v).
+$$
+
+Each point represents a complete instantaneous state. A trajectory shows the sequence of states, while the vector field
+
+$$
+(\dot{z},\dot{v})
+$$
+
+shows the local direction of motion.
+
+Because $\dot{z}=-v$:
+
+- above the horizontal axis, $v>0$ and trajectories move toward smaller depth;
+- below the horizontal axis, $v<0$ and trajectories move toward greater depth.
+
+A complete phase portrait must identify the equilibrium, indicate trajectory direction, and distinguish stable from unstable directions. The saddle geometry reveals why most nearby initial conditions eventually move away even though a special stable curve approaches the equilibrium.
+
+### What Quadratic Drag Changes
+
+Quadratic drag reduces velocity once motion develops. It bends nonlinear trajectories and limits their speed relative to the drag-free model. However, it does not reverse the sign of $k_B$ and does not create first-order damping at $v=0$.
+
+Therefore, increasing $C_D$ or projected area $A$ changes the nonlinear transient but leaves the Jacobian and its eigenvalues unchanged for this specific quadratic-drag model. A linear drag term $-b v$ would appear in the Jacobian and change the eigenvalues, but it would not eliminate the saddle while $k_B<0$: the determinant of the linearized matrix would remain negative.
+
+## Worked Examples
+
+### Example 1: Equilibrium Conditions
+
+An $85.0\ \mathrm{kg}$ diver-and-equipment model has a flexible surface-gas volume $V_{g0}=8.0\ \mathrm{L}$ and is designed to be neutral at $z^{\ast}=20.0\ \mathrm{m}$ in seawater.
+
+The fixed displaced volume must satisfy
+
+$$
+V_f
+=
+\frac{m}{\rho}
+-V_{g0}\frac{P_0}{P_0+\rho gz^{\ast}}.
+$$
+
+Using $\rho=1025\ \mathrm{kg\,m^{-3}}$, $g=9.80665\ \mathrm{m\,s^{-2}}$, and $P_0=101325\ \mathrm{Pa}$ gives approximately
+
+$$
+V_f=80.25\ \mathrm{L}.
+$$
+
+The equilibrium state is
+
+$$
+\mathbf{x}^{\ast}
+=
+\begin{bmatrix}
+20.0\ \mathrm{m}\\
+0\ \mathrm{m\,s^{-1}}
+\end{bmatrix}.
+$$
+
+### Example 2: Local Eigenvalues
+
+For the same operating state, the buoyancy sensitivity is approximately
+
+$$
+k_B=-0.90\ \mathrm{N\,m^{-1}}.
+$$
+
+The eigenvalue magnitude is
+
+$$
+\sqrt{-\frac{k_B}{m}}
+\approx
+\sqrt{\frac{0.90}{85.0}}
+=0.103\ \mathrm{s^{-1}}.
+$$
+
+Thus
+
+$$
+\lambda_+\approx+0.103\ \mathrm{s^{-1}},
+\qquad
+\lambda_-\approx-0.103\ \mathrm{s^{-1}}.
+$$
+
+The positive eigenvalue proves local instability. Its reciprocal, about $9.7\ \mathrm{s}$, is a local growth timescale, not the time required to reach the surface or any operational threshold.
+
+### Example 3: Interpreting an Unstable Eigenvector
+
+Choose $e_z=1$. For the positive eigenvalue,
+
+$$
+e_v=-\lambda_+e_z\approx-0.103.
+$$
+
+The unstable eigendirection can therefore be represented by
+
+$$
+\mathbf{e}_u
+\propto
+\begin{bmatrix}
+1\\
+-0.103
+\end{bmatrix}.
+$$
+
+A positive multiple describes a deeper state with downward velocity; a negative multiple describes a shallower state with upward velocity. Both branches move away from equilibrium.
+
+## DiveLab Insight
+
+::: {.callout-important title="DiveLab Insight"}
+
+Neutral buoyancy answers
+
+> Is the net force zero here?
+
+Stability answers
+
+> What happens after a small error?
+
+For a compressible gas space, the local buoyancy slope is negative. That sign produces one growing state-space direction and makes the neutral operating state a saddle.
+
+:::
+
+## Engineering Perspective
+
+Linearization is a local model-building operation:
+
+$$
+\text{nonlinear physics}
+\longrightarrow
+\text{operating state}
+\longrightarrow
+\text{Jacobian}
+\longrightarrow
+\text{eigenstructure}
+\longrightarrow
+\text{local behavior}.
+$$
+
+The Jacobian does not replace the nonlinear model. It explains behavior near one operating state and provides the mathematical foundation for later estimation and control design.
+
+The instability here belongs to a deliberately simplified open-loop plant. Real divers actively regulate buoyancy and motion through breathing, BCD or drysuit operation, posture, finning, perception, and learned procedures. Equipment geometry, gas migration, depth-dependent exposure-suit compression, added mass, and actuator limits also matter. The model isolates one reinforcing mechanism; it does not predict a real diver's safe response or prescribe diving practice.
 
 ## Summary
 
-State the central insight and motivate the next chapter.
+- An equilibrium requires $\dot{z}=0$ and $\dot{v}=0$, hence $v^{\ast}=0$ and $F_B(z^{\ast})=mg$.
+- Stability concerns the response to nearby initial conditions, not behavior exactly at equilibrium.
+- Flexible-gas buoyancy has negative depth sensitivity: $k_B<0$.
+- Linearization produces the Jacobian $A=\begin{bmatrix}0&-1\\k_B/m&0\end{bmatrix}$.
+- The eigenvalues are real and opposite in sign, so the equilibrium is an unstable saddle.
+- Stable and unstable eigendirections organize the local phase portrait.
+- Quadratic drag changes nonlinear trajectories but contributes no first-order damping at $v=0$.
+- The phase portrait complements time histories by exposing state-space geometry and trajectory direction.
+
+## Key Equations
+
+| Equation | Meaning |
+|:---------|:--------|
+| $\mathbf{f}(\mathbf{x}^{\ast})=\mathbf{0}$ | Equilibrium condition |
+| $v^{\ast}=0$, $F_B(z^{\ast})=mg$ | Vertical-model equilibrium conditions |
+| $k_B=-(\rho g)^2V_{g0}P_0/(P_0+\rho gz^{\ast})^2$ | Local buoyancy sensitivity |
+| $\boldsymbol{\xi}=[\delta z,\ \delta v]^{\mathsf T}$ | Perturbation state |
+| $\dot{\boldsymbol{\xi}}\approx A\boldsymbol{\xi}$ | Local linear model |
+| $A=\begin{bmatrix}0&-1\\k_B/m&0\end{bmatrix}$ | Jacobian at equilibrium |
+| $\lambda_{\pm}=\pm\sqrt{-k_B/m}$ | Saddle-point eigenvalues |
+| $e_v=-\lambda e_z$ | Eigenvector slope relation |
+
+## Exercises
+
+1. Explain why $F_B=mg$ does not by itself define an equilibrium state.
+2. Derive $dF_B/dz$ from the flexible-gas buoyancy model and determine its sign.
+3. Construct the Jacobian directly from the two nonlinear state equations.
+4. Verify the characteristic equation and derive $\lambda_{\pm}=\pm\sqrt{-k_B/m}$.
+5. Sketch the stable and unstable eigendirections in the $(\delta z,\delta v)$ plane and label the direction of motion on each branch.
+6. Explain why quadratic drag is absent from the Jacobian at $v=0$ but remains important in nonlinear simulations.
+7. Add a linear drag force $-bv$. Derive the new Jacobian and show that its determinant is still negative when $k_B<0$.
+8. Predict how increasing $V_{g0}$ changes $|k_B|$ and the magnitude of the eigenvalues.
+9. Predict how increasing mass while holding the same operating depth and $k_B$ changes the local growth timescale.
+10. Explain what can and cannot be concluded when a linearization has an eigenvalue with zero real part.
+
+## Companion Notebook
+
+Use **Notebook 06 — Equilibria and Stability** to calculate the Jacobian, classify the neutral operating state, plot the nonlinear vector field, identify stable and unstable directions, and compare linear and nonlinear phase portraits.
+
+- [Open the notebook on GitHub](https://github.com/fcivardi/divelab/blob/editorial-v2/notebooks/06_Equilibria_and_Stability.ipynb)
+- [Run the notebook in Google Colab](https://colab.research.google.com/github/fcivardi/divelab/blob/editorial-v2/notebooks/06_Equilibria_and_Stability.ipynb)
+
+## Looking Ahead
+
+The state-space model assumes that depth and velocity are available. In practice, sensors provide imperfect measurements and some states must be reconstructed. Chapter 7 introduces observability and state estimation: what can be inferred about the internal state from the available outputs?
