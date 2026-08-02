@@ -1,4 +1,4 @@
-# Dive Computers
+# Breathing Dynamics
 
 ## Guiding question
 
@@ -23,9 +23,7 @@ The equations will follow the conventions in `STYLE_GUIDE.md`.
 
 ## Computational laboratory
 
-[Open `20_Dive_Computers.ipynb` on GitHub](https://github.com/fcivardi/divelab/blob/main/notebooks/20_Dive_Computers.ipynb)
-
-[Open in Colab](https://colab.research.google.com/github/fcivardi/divelab/blob/main/notebooks/20_Dive_Computers.ipynb)
+The chapter-aligned companion notebook will be developed with this chapter.
 
 ## Interpretation
 

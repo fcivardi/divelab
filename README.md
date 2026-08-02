@@ -125,18 +125,19 @@ Design feedback systems capable of controlling the dynamics.
 ### Module II — Dynamical Systems
 
 - State-space models
-- Equilibrium points
+- Equilibria and stability
 - Linearisation
-- Laplace transforms
-- Transfer functions
+- Observability and state estimation
+- Kalman filtering
 
 ### Module III — Control Engineering
 
-- Stability
+- Laplace transforms
+- Transfer functions
+- Feedback control
 - PID Control
 - Frequency response
-- State feedback
-- Optimal control
+- Human-in-the-loop control
 
 ### Module IV — Advanced Topics
 

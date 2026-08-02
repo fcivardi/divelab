@@ -1,4 +1,4 @@
-# Breathing Dynamics
+# Decompression Models
 
 ## Guiding question
 
@@ -23,9 +23,7 @@ The equations will follow the conventions in `STYLE_GUIDE.md`.
 
 ## Computational laboratory
 
-[Open `18_Breathing_Dynamics.ipynb` on GitHub](https://github.com/fcivardi/divelab/blob/main/notebooks/18_Breathing_Dynamics.ipynb)
-
-[Open in Colab](https://colab.research.google.com/github/fcivardi/divelab/blob/main/notebooks/18_Breathing_Dynamics.ipynb)
+The chapter-aligned companion notebook will be developed with this chapter.
 
 ## Interpretation
 

@@ -1,0 +1,524 @@
+---
+title: "Kalman Filtering"
+subtitle: "From Deterministic Observers to Probabilistic Estimation"
+---
+
+## Companion Resources
+
+::: {.callout-tip title="Companion Resources"}
+
+**Chapter:** 8 — Kalman Filtering
+
+**Companion notebook:** Notebook 08 — Kalman Filtering
+
+**Estimated study time:** 180–210 minutes, including the notebook
+
+**Prerequisites:** Chapters 5–7, probability, covariance matrices, and linear algebra
+
+:::
+
+## Engineering Question
+
+How should an estimator combine a dynamic model with noisy depth measurements when neither is perfectly trustworthy?
+
+Chapter 7 introduced a deterministic observer with a gain selected through pole placement. Chapter 8 adds explicit uncertainty models. The Kalman filter propagates both a state estimate and its uncertainty, then calculates how strongly each new measurement should correct the prediction.
+
+## Learning Objectives
+
+After completing this chapter, you should be able to:
+
+- write a discrete stochastic state-space model;
+- distinguish process noise from measurement noise;
+- interpret the state-estimate covariance matrix;
+- implement the Kalman prediction and correction steps;
+- calculate and interpret innovation, innovation covariance, and Kalman gain;
+- explain how an unmeasured velocity state is corrected by depth measurements;
+- interpret the roles of $Q$, $R$, and the initial covariance $P_0$;
+- compare a Kalman filter with a fixed-gain Luenberger observer;
+- state the assumptions under which Kalman estimates are optimal;
+- identify limitations caused by bias, model mismatch, and nonlinear dynamics.
+
+## Theory
+
+### From a Fixed Gain to an Uncertainty-Dependent Gain
+
+The Luenberger observer from Chapter 7 has the structure
+
+$$
+\text{predict}
+\longrightarrow
+\text{compare}
+\longrightarrow
+\text{correct}.
+$$
+
+Its correction gain $L$ is selected to produce desired deterministic error dynamics. A Kalman filter retains the same conceptual cycle but asks a different design question:
+
+> Given assumptions about model uncertainty and sensor uncertainty, what correction gain minimizes estimation uncertainty?
+
+The resulting gain can change at every sample because confidence in the predicted state changes over time.
+
+### Discrete Stochastic State-Space Model
+
+Let
+
+$$
+\boldsymbol{\xi}_k
+=
+\begin{bmatrix}
+\delta z_k\\
+\delta v_k
+\end{bmatrix}
+$$
+
+be the perturbation state at sample $k$. The discrete model is
+
+$$
+\boxed{
+\boldsymbol{\xi}_{k+1}
+=
+F\boldsymbol{\xi}_k+\mathbf{w}_k
+},
+$$
+
+$$
+\boxed{
+y_k
+=
+C\boldsymbol{\xi}_k+\nu_k
+}.
+$$
+
+Here:
+
+- $F$ is the discrete state-transition matrix;
+- $C=[1\ 0]$ exposes depth deviation;
+- $\mathbf{w}_k$ is process noise;
+- $\nu_k$ is measurement noise.
+
+The standard assumptions are
+
+$$
+\mathbb{E}[\mathbf{w}_k]=\mathbf{0},
+\qquad
+\mathbb{E}[\nu_k]=0,
+$$
+
+$$
+\mathbb{E}[\mathbf{w}_k\mathbf{w}_k^{\mathsf T}]=Q,
+\qquad
+\mathbb{E}[\nu_k^2]=R,
+$$
+
+with process and measurement noise mutually independent and independent across samples.
+
+### Discretizing the Local Vertical Model
+
+Chapter 6 derived
+
+$$
+\dot{\boldsymbol{\xi}}=A\boldsymbol{\xi},
+\qquad
+A=
+\begin{bmatrix}
+0&-1\\
+a&0
+\end{bmatrix},
+$$
+
+where $a=k_B/m<0$. For sampling interval $\Delta t$, the exact zero-input transition matrix is
+
+$$
+\boxed{F=e^{A\Delta t}}.
+$$
+
+For sufficiently small $\Delta t$, the first-order approximation
+
+$$
+F\approx I+A\Delta t
+$$
+
+can aid interpretation, but the notebook uses the matrix exponential.
+
+The discrete covariance $Q$ must correspond to the chosen sampling interval and process-noise model. It is not simply a unit-free tuning matrix.
+
+### Process Noise and Measurement Noise
+
+Process noise $\mathbf{w}_k$ represents uncertainty in state evolution. In the simplified vertical model it can stand in for effects such as:
+
+- unmodeled breathing-induced buoyancy variation;
+- small fin or posture disturbances;
+- current-induced vertical forces;
+- errors in drag or flexible-gas parameters;
+- inadequacy of the local linear model.
+
+Measurement noise $\nu_k$ represents uncertainty in the available output, including pressure-sensor noise, finite resolution, and error introduced when pressure is converted to depth.
+
+These noises play different roles. Process noise broadens uncertainty during prediction. Measurement noise limits how much the filter should trust a new measurement.
+
+### State Estimate and Covariance
+
+The notation
+
+$$
+\hat{\boldsymbol{\xi}}_{k|j}
+$$
+
+means the estimate of state $k$ using measurements through sample $j$.
+
+- $\hat{\boldsymbol{\xi}}_{k|k-1}$ is the **prior** or predicted estimate.
+- $\hat{\boldsymbol{\xi}}_{k|k}$ is the **posterior** or corrected estimate.
+
+The estimation error is
+
+$$
+\mathbf{e}_{k|j}
+=
+\boldsymbol{\xi}_k-\hat{\boldsymbol{\xi}}_{k|j}.
+$$
+
+Its covariance is
+
+$$
+P_{k|j}
+=
+\mathbb{E}
+\left[
+\mathbf{e}_{k|j}\mathbf{e}_{k|j}^{\mathsf T}
+\right].
+$$
+
+For the two-state model,
+
+$$
+P
+=
+\begin{bmatrix}
+\sigma_z^2 & \sigma_{zv}\\
+\sigma_{zv} & \sigma_v^2
+\end{bmatrix}.
+$$
+
+The diagonal entries are error variances. The off-diagonal entry describes correlated depth and velocity errors. This correlation allows a depth measurement to correct the unmeasured velocity estimate.
+
+### Prediction Step
+
+Starting from the previous posterior estimate,
+
+$$
+\boxed{
+\hat{\boldsymbol{\xi}}_{k|k-1}
+=
+F\hat{\boldsymbol{\xi}}_{k-1|k-1}
+},
+$$
+
+$$
+\boxed{
+P_{k|k-1}
+=
+FP_{k-1|k-1}F^{\mathsf T}+Q
+}.
+$$
+
+The state equation predicts the mean. The covariance equation propagates existing uncertainty through the dynamics and adds new process uncertainty.
+
+### Innovation and Innovation Covariance
+
+When measurement $y_k$ arrives, compare it with the predicted output:
+
+$$
+\boxed{
+\mathbf{r}_k
+=
+y_k-C\hat{\boldsymbol{\xi}}_{k|k-1}
+}.
+$$
+
+For the scalar depth output, $\mathbf{r}_k$ is a scalar depth innovation. Its predicted variance is
+
+$$
+\boxed{
+S_k
+=
+CP_{k|k-1}C^{\mathsf T}+R
+}.
+$$
+
+The innovation should be interpreted relative to $S_k$. A residual of $0.05\ \mathrm{m}$ may be surprising for one uncertainty model and ordinary for another.
+
+### Kalman Gain
+
+The gain is
+
+$$
+\boxed{
+K_k
+=
+P_{k|k-1}C^{\mathsf T}S_k^{-1}
+}.
+$$
+
+For the two-state, one-output model,
+
+$$
+K_k
+=
+\begin{bmatrix}
+K_{z,k}\\
+K_{v,k}
+\end{bmatrix}.
+$$
+
+$K_{z,k}$ corrects the depth estimate. $K_{v,k}$ corrects velocity even though velocity is not measured directly. The cross-covariance in $P_{k|k-1}$ and the model coupling create this second correction channel.
+
+Qualitatively:
+
+- larger predicted uncertainty produces stronger correction;
+- larger assumed measurement noise produces weaker correction;
+- smaller predicted uncertainty makes the filter rely more on the model.
+
+### Correction Step
+
+Update the state estimate:
+
+$$
+\boxed{
+\hat{\boldsymbol{\xi}}_{k|k}
+=
+\hat{\boldsymbol{\xi}}_{k|k-1}
++K_k\mathbf{r}_k
+}.
+$$
+
+The basic covariance update is
+
+$$
+P_{k|k}
+=(I-K_kC)P_{k|k-1}.
+$$
+
+For numerical work, the notebook uses the Joseph form:
+
+$$
+\boxed{
+P_{k|k}
+=(I-K_kC)P_{k|k-1}(I-K_kC)^{\mathsf T}
++K_kRK_k^{\mathsf T}
+}.
+$$
+
+In exact arithmetic the forms are equivalent. The Joseph form better preserves symmetry and positive semidefiniteness under finite-precision computation.
+
+### The Complete Cycle
+
+At every sample:
+
+$$
+\text{posterior}_{k-1}
+\longrightarrow
+\text{predict state and covariance}
+\longrightarrow
+\text{compute innovation}
+\longrightarrow
+\text{calculate gain}
+\longrightarrow
+\text{correct state and covariance}.
+$$
+
+The filter is recursive. It stores the current estimate and covariance rather than the entire measurement history.
+
+### Interpreting $Q$, $R$, and $P_0$
+
+$Q$ describes assumed uncertainty added by the process model during one sample interval. Increasing $Q$ generally makes predicted covariance grow faster and causes measurements to receive more weight.
+
+$R$ describes assumed measurement-error variance. Increasing $R$ generally reduces the Kalman gain and makes the estimate smoother but more dependent on the model.
+
+$P_0$ describes initial uncertainty. A large $P_0$ tells the filter that its initial state estimate is unreliable, often producing large early gains. A small $P_0$ expresses initial confidence and makes early corrections weaker.
+
+These matrices should represent defensible uncertainty assumptions when possible. Treating them only as arbitrary smoothing controls can hide model errors and produce misleading uncertainty bands.
+
+### Kalman Filter and Luenberger Observer
+
+Both estimators combine prediction and innovation correction:
+
+| Feature | Luenberger observer | Kalman filter |
+|:--------|:--------------------|:--------------|
+| Model | Usually continuous deterministic form | Commonly discrete stochastic form |
+| Gain | Selected through pole placement | Calculated from $P$, $Q$, and $R$ |
+| Gain variation | Often fixed | Generally time-varying |
+| Uncertainty state | Not explicitly propagated | Covariance $P$ propagated |
+| Design objective | Desired error dynamics | Minimum estimation-error covariance under assumptions |
+
+For time-invariant detectable systems under suitable assumptions, the Kalman gain may converge toward a steady value. This provides a connection between covariance-based filtering and fixed-gain observers.
+
+### What “Optimal” Means
+
+For a correctly specified linear model with zero-mean Gaussian noise and correct covariances, the Kalman filter produces the conditional mean and minimizes mean-square estimation error.
+
+Under weaker linear unbiased assumptions, it is the best linear unbiased estimator in the relevant minimum-variance sense. “Optimal” does not mean:
+
+- immune to sensor bias;
+- correct under arbitrary model mismatch;
+- appropriate far from the linearization point;
+- able to detect every sensor failure;
+- physically realistic merely because the covariance is small.
+
+A confident estimate can still be wrong when its assumptions are wrong.
+
+## Worked Examples
+
+### Example 1: First-Order Discretization
+
+For sampling interval $\Delta t$, the first-order transition approximation is
+
+$$
+F
+\approx
+I+A\Delta t
+=
+\begin{bmatrix}
+1&-\Delta t\\
+a\Delta t&1
+\end{bmatrix}.
+$$
+
+The upper-right term says upward velocity reduces depth over one interval. The lower-left term transfers depth error into velocity through buoyancy sensitivity.
+
+### Example 2: Scalar Depth Correction
+
+Suppose the predicted depth deviation is $0.10\ \mathrm{m}$ with variance $0.0400\ \mathrm{m^2}$. A new depth measurement is $0.04\ \mathrm{m}$ with measurement variance $R=0.0009\ \mathrm{m^2}$.
+
+Ignoring cross-covariance for this scalar illustration,
+
+$$
+K_z
+=
+\frac{0.0400}{0.0400+0.0009}
+=0.978.
+$$
+
+The innovation is
+
+$$
+r=0.04-0.10=-0.06\ \mathrm{m},
+$$
+
+so the corrected estimate is
+
+$$
+\hat z^+
+=0.10+(0.978)(-0.06)
+=0.0413\ \mathrm{m}.
+$$
+
+Because predicted uncertainty is much larger than measurement uncertainty, the correction moves close to the measurement.
+
+### Example 3: Correcting an Unmeasured State
+
+Let the predicted covariance be
+
+$$
+P^-
+=
+\begin{bmatrix}
+0.040&-0.006\\
+-0.006&0.010
+\end{bmatrix},
+$$
+
+with $C=[1\ 0]$ and $R=0.0009$. Then
+
+$$
+K
+=
+\frac{1}{0.0409}
+\begin{bmatrix}
+0.040\\
+-0.006
+\end{bmatrix}.
+$$
+
+The nonzero second component means the depth innovation changes the velocity estimate. This is covariance-based state reconstruction, not a direct velocity measurement.
+
+## DiveLab Insight
+
+::: {.callout-important title="DiveLab Insight"}
+
+The Kalman filter does not simply average a model and a measurement.
+
+It propagates how uncertain the state estimate is, predicts how that uncertainty changes, and uses state-error correlations to correct variables that are not measured directly.
+
+:::
+
+## Engineering Perspective
+
+The Kalman filter makes uncertainty part of the system state carried by the algorithm:
+
+$$
+(\hat{\boldsymbol{\xi}},P)
+\longrightarrow
+\text{predict}
+\longrightarrow
+(\hat{\boldsymbol{\xi}}^-,P^-)
+\longrightarrow
+\text{correct with }y
+\longrightarrow
+(\hat{\boldsymbol{\xi}}^+,P^+).
+$$
+
+This architecture underlies navigation, tracking, robotics, process monitoring, and sensor fusion. In every application, covariance interpretation is only as credible as the model, calibration, timing, and noise assumptions behind it.
+
+The DiveLab filter uses a local linear plant, synthetic zero-mean Gaussian noise, known sampling time, known parameters, and an ideal depth-output model. It omits pressure bias, density variation, asynchronous sampling, nonlinear gas behavior away from equilibrium, equipment effects, and human control. Its uncertainty bands illustrate the algorithm's internal assumptions; they are not certified performance limits.
+
+## Summary
+
+- A Kalman filter combines a discrete dynamic model with noisy measurements.
+- Process noise and measurement noise represent different uncertainty sources.
+- The filter propagates both a state estimate and its covariance.
+- Prediction uses $F$ and adds process covariance $Q$.
+- Innovation compares the measurement with the predicted output.
+- Innovation covariance $S$ determines how surprising that residual is expected to be.
+- The Kalman gain balances predicted state uncertainty against measurement uncertainty.
+- Cross-covariance allows depth measurements to correct unmeasured velocity.
+- $Q$, $R$, and $P_0$ express uncertainty assumptions rather than merely smoothing preferences.
+- Kalman optimality depends on linearity, noise, covariance, and model assumptions.
+
+## Key Equations
+
+| Equation | Meaning |
+|:---------|:--------|
+| $\boldsymbol{\xi}_{k+1}=F\boldsymbol{\xi}_k+\mathbf{w}_k$ | Discrete process model |
+| $y_k=C\boldsymbol{\xi}_k+\nu_k$ | Measurement model |
+| $F=e^{A\Delta t}$ | Exact transition for the linear continuous model |
+| $\hat{\boldsymbol{\xi}}^-_k=F\hat{\boldsymbol{\xi}}^+_{k-1}$ | State prediction |
+| $P^-_k=FP^+_{k-1}F^{\mathsf T}+Q$ | Covariance prediction |
+| $\mathbf{r}_k=y_k-C\hat{\boldsymbol{\xi}}^-_k$ | Innovation |
+| $S_k=CP^-_kC^{\mathsf T}+R$ | Innovation covariance |
+| $K_k=P^-_kC^{\mathsf T}S_k^{-1}$ | Kalman gain |
+| $\hat{\boldsymbol{\xi}}^+_k=\hat{\boldsymbol{\xi}}^-_k+K_k\mathbf{r}_k$ | State correction |
+| $P^+_k=(I-K_kC)P^-_k(I-K_kC)^{\mathsf T}+K_kRK_k^{\mathsf T}$ | Joseph covariance update |
+
+## Exercises
+
+1. Distinguish process noise from measurement noise and give two DiveLab examples of each.
+2. Starting from $F$, $P^+_{k-1}$, and $Q$, calculate one covariance prediction.
+3. Calculate $S_k$ and $K_k$ for a given two-state prior covariance and scalar $R$.
+4. Explain how a scalar depth innovation can correct a two-component state estimate.
+5. Show that increasing $R$ while holding $P^-$ fixed reduces the magnitude of the Kalman gain.
+6. Explain why increasing $Q$ often makes the filter respond more strongly to later measurements.
+7. Compare the meanings of $P_0$, $Q$, and $R$.
+8. Explain why a small posterior covariance does not prove that the estimate is physically accurate.
+9. Identify which standard Kalman assumptions are violated by a constant pressure-sensor bias.
+10. Compare the roles of the Luenberger gain $L$ and the Kalman gain $K_k$.
+
+## Companion Notebook
+
+Use **Notebook 08 — Kalman Filtering** to simulate a stochastic vertical model, implement the predict–correct recursion, estimate unmeasured velocity, inspect covariance and gain evolution, and investigate the effects of changing $Q$ and $R$.
+
+- [Open the notebook on GitHub](https://github.com/fcivardi/divelab/blob/editorial-v2/notebooks/08_Kalman_Filter.ipynb)
+- [Run the notebook in Google Colab](https://colab.research.google.com/github/fcivardi/divelab/blob/editorial-v2/notebooks/08_Kalman_Filter.ipynb)
+
+## Looking Ahead
+
+Part III turns from state reconstruction to control-system representation and design. Chapter 9 introduces Laplace transforms and transfer functions, converting linear differential equations into algebraic input–output relations.

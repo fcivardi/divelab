@@ -1,4 +1,4 @@
-# Decompression Models
+# Frequency Response
 
 ## Guiding question
 
@@ -23,9 +23,7 @@ The equations will follow the conventions in `STYLE_GUIDE.md`.
 
 ## Computational laboratory
 
-[Open `21_Decompression_Models.ipynb` on GitHub](https://github.com/fcivardi/divelab/blob/main/notebooks/21_Decompression_Models.ipynb)
-
-[Open in Colab](https://colab.research.google.com/github/fcivardi/divelab/blob/main/notebooks/21_Decompression_Models.ipynb)
+The chapter-aligned companion notebook will be developed with this chapter.
 
 ## Interpretation
 

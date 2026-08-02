@@ -24,19 +24,20 @@ book:
         - part2/05_state_space.qmd
         - part2/06_stability.qmd
         - part2/07_estimation.qmd
-        - part2/08_laplace.qmd
+        - part2/08_kalman.qmd
     - part: "Part III — Control Engineering"
       chapters:
-        - part3/09_feedback.qmd
-        - part3/10_pid.qmd
-        - part3/11_frequency_response.qmd
-        - part3/12_human_in_the_loop.qmd
+        - part3/09_laplace.qmd
+        - part3/10_feedback.qmd
+        - part3/11_pid.qmd
+        - part3/12_frequency_response.qmd
+        - part3/13_human_in_the_loop.qmd
     - part: "Part IV — Integrated Diving Systems"
       chapters:
-        - part4/13_breathing.qmd
-        - part4/14_gas_consumption.qmd
-        - part4/15_dive_computers.qmd
-        - part4/16_decompression_models.qmd
+        - part4/14_breathing.qmd
+        - part4/15_gas_consumption.qmd
+        - part4/16_dive_computers.qmd
+        - part4/17_decompression_models.qmd
     - part: "Appendices"
       chapters:
         - appendices/python.qmd

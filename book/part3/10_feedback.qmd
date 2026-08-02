@@ -1,4 +1,4 @@
-# Frequency Response
+# Feedback Control
 
 ## Guiding question
 
@@ -23,9 +23,7 @@ The equations will follow the conventions in `STYLE_GUIDE.md`.
 
 ## Computational laboratory
 
-[Open `17_Frequency_Response.ipynb` on GitHub](https://github.com/fcivardi/divelab/blob/main/notebooks/17_Frequency_Response.ipynb)
-
-[Open in Colab](https://colab.research.google.com/github/fcivardi/divelab/blob/main/notebooks/17_Frequency_Response.ipynb)
+The chapter-aligned companion notebook will be developed with this chapter.
 
 ## Interpretation
 

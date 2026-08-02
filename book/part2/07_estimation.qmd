@@ -531,4 +531,4 @@ Use **Notebook 07 — Observability and State Estimation** to test observability
 
 ## Looking Ahead
 
-State-space analysis emphasizes internal state. Chapter 8 introduces a complementary input–output viewpoint using Laplace transforms and transfer functions, converting differential equations into algebraic relations in the complex-frequency domain.
+Chapter 8 replaces manually selected observer gains with a covariance-based correction. The Kalman filter will combine a discrete dynamic model, noisy depth measurements, and explicit uncertainty assumptions to estimate both depth and vertical velocity.
