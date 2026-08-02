@@ -41,8 +41,6 @@ book:
         - part4/17_decompression_models.qmd
         - part4/18_complete_dive.qmd
   appendices:
-    - appendices/python.qmd
-    - appendices/mathematics.qmd
     - appendices/notebook_map.qmd
 
 bibliography: references.bib
