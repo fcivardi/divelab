@@ -38,6 +38,7 @@ book:
         - part4/15_gas_consumption.qmd
         - part4/16_dive_computers.qmd
         - part4/17_decompression_models.qmd
+        - part4/18_complete_dive.qmd
     - part: "Appendices"
       chapters:
         - appendices/python.qmd
