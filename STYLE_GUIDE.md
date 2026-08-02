@@ -310,7 +310,8 @@ Use:
 
 ``` text
 01_Pressure.ipynb
-02_Archimedes.ipynb
+02_Compressible_Gases.ipynb
+03_Archimedes_Principle.ipynb
 ...
 21_Decompression_Models.ipynb
 ```

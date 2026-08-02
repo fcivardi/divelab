@@ -23,9 +23,7 @@ The equations will follow the conventions in `STYLE_GUIDE.md`.
 
 ## Computational laboratory
 
-[Open `03_Buoyancy_Feedback.ipynb` on GitHub](https://github.com/fcivardi/divelab/blob/main/notebooks/03_Buoyancy_Feedback.ipynb)
-
-[Open in Colab](https://colab.research.google.com/github/fcivardi/divelab/blob/main/notebooks/03_Buoyancy_Feedback.ipynb)
+A dedicated stability notebook will be developed during the editorial-v2 refactoring. Notebook 03 is reserved for Chapter 3 and Archimedes' principle.
 
 ## Interpretation
 
