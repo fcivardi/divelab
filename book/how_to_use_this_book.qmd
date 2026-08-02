@@ -2,7 +2,7 @@
 
 DiveLab combines a continuous book with executable Jupyter notebooks.
 
-## Recommended sequence
+## Recommended sequence {.unnumbered}
 
 1. Read the physical motivation.
 2. Study the model and assumptions.
@@ -11,6 +11,6 @@ DiveLab combines a continuous book with executable Jupyter notebooks.
 5. Change at least one parameter.
 6. Explain what changed and why.
 
-## Safety and scope
+## Safety and scope {.unnumbered}
 
 The models are simplified teaching models and must not be used for operational dive planning.

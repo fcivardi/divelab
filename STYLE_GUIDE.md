@@ -414,7 +414,10 @@ This continuity is the defining style of DiveLab.
 ## 22. Quarto book heading hierarchy
 
 In a book chapter, the YAML title is the chapter-level heading. Do not add
-another level-1 heading inside the same file.
+another level-1 heading inside the same file. In `index.qmd`, keep book-level
+title, subtitle, and author metadata in `_quarto.yml`; omit duplicate file-level
+YAML title metadata and use an unnumbered level-1 heading for the page.
+Mark subsections within unnumbered front matter as `{.unnumbered}` as well.
 
 Use the following hierarchy:
 
