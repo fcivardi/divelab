@@ -303,8 +303,8 @@ For diving practice, this physics reinforces the established rule to breathe con
 
 Use **Notebook 02 — Boyle's Law** to reuse the Chapter 1 pressure model, simulate gas volume over depth, compare equal ascent intervals, and explore local sensitivity numerically.
 
-- [Open the notebook on GitHub](https://github.com/fcivardi/divelab/blob/main/notebooks/02_Boyles_Law.ipynb)
-- [Run the notebook in Google Colab](https://colab.research.google.com/github/fcivardi/divelab/blob/main/notebooks/02_Boyles_Law.ipynb)
+- [Open the notebook on GitHub](https://github.com/fcivardi/divelab/blob/editorial-v2/notebooks/02_Boyles_Law.ipynb)
+- [Run the notebook in Google Colab](https://colab.research.google.com/github/fcivardi/divelab/blob/editorial-v2/notebooks/02_Boyles_Law.ipynb)
 
 ## Looking Ahead
 

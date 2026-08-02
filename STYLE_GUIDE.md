@@ -297,8 +297,10 @@ Before release, test:
 Use:
 
 ``` text
-https://colab.research.google.com/github/fcivardi/divelab/blob/main/notebooks/NN_Name.ipynb
+https://colab.research.google.com/github/fcivardi/divelab/blob/editorial-v2/notebooks/NN_Name.ipynb
 ```
+
+During editorial-v2 development, badge and companion links must target `editorial-v2` so new or revised notebooks are testable. Normalize the links to `main` immediately before merging the branch.
 
 Test the badge after the notebook has been committed to GitHub.
 

@@ -212,8 +212,8 @@ This distinction matters. Chapter 1 defines the environmental input. Subsequent 
 
 Use **Notebook 01 — Depth and Pressure** to implement the hydrostatic model, compare freshwater and seawater, and visualize the pressure–depth relationship.
 
-- [Open the notebook on GitHub](https://github.com/fcivardi/divelab/blob/main/notebooks/01_Pressure.ipynb)
-- [Run the notebook in Google Colab](https://colab.research.google.com/github/fcivardi/divelab/blob/main/notebooks/01_Pressure.ipynb)
+- [Open the notebook on GitHub](https://github.com/fcivardi/divelab/blob/editorial-v2/notebooks/01_Pressure.ipynb)
+- [Run the notebook in Google Colab](https://colab.research.google.com/github/fcivardi/divelab/blob/editorial-v2/notebooks/01_Pressure.ipynb)
 
 ## Looking Ahead
 

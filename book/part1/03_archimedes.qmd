@@ -362,8 +362,8 @@ These equations are teaching models rather than operational buoyancy or dive-pla
 
 Use **Notebook 03 — Archimedes' Principle: From Volume to Buoyant Force** to verify the pressure-force derivation numerically, compare freshwater and seawater, classify buoyancy, and connect Boyle's law to Archimedes' principle.
 
-- [Open the notebook on GitHub](https://github.com/fcivardi/divelab/blob/main/notebooks/03_Buoyancy_Feedback.ipynb)
-- [Run the notebook in Google Colab](https://colab.research.google.com/github/fcivardi/divelab/blob/main/notebooks/03_Buoyancy_Feedback.ipynb)
+- [Open the notebook on GitHub](https://github.com/fcivardi/divelab/blob/editorial-v2/notebooks/03_Buoyancy_Feedback.ipynb)
+- [Run the notebook in Google Colab](https://colab.research.google.com/github/fcivardi/divelab/blob/editorial-v2/notebooks/03_Buoyancy_Feedback.ipynb)
 
 ## Looking Ahead
 
