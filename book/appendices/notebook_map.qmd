@@ -1,6 +1,6 @@
 # Notebook Map
 
-The companion notebooks provide executable experiments for the models developed in the book. Part I uses chapter-aligned notebook numbers.
+The companion notebooks provide executable experiments for the models developed in the book. Canonical notebook numbers align with chapter numbers.
 
 ## Part I — Physics of Diving
 
@@ -11,4 +11,10 @@ The companion notebooks provide executable experiments for the models developed 
 | [Chapter 3 — Archimedes' Principle](../part1/03_archimedes.qmd) | Notebook 03 — Archimedes' Principle: From Volume to Buoyant Force | [GitHub](https://github.com/fcivardi/divelab/blob/editorial-v2/notebooks/03_Archimedes_Principle.ipynb) · [Colab](https://colab.research.google.com/github/fcivardi/divelab/blob/editorial-v2/notebooks/03_Archimedes_Principle.ipynb) |
 | [Chapter 4 — Buoyancy and Vertical Dynamics](../part1/04_buoyancy_dynamics.qmd) | Notebook 04 — Vertical Forces and Motion | [GitHub](https://github.com/fcivardi/divelab/blob/editorial-v2/notebooks/04_Vertical_Forces_and_Motion.ipynb) · [Colab](https://colab.research.google.com/github/fcivardi/divelab/blob/editorial-v2/notebooks/04_Vertical_Forces_and_Motion.ipynb) |
 
-Later parts will be added to this map as their canonical companion notebooks are completed during the editorial-v2 development cycle.
+## Part II — Dynamical Systems
+
+| Book chapter | Companion notebook | Access |
+|:-------------|:-------------------|:-------|
+| [Chapter 5 — State-Space Models](../part2/05_state_space.qmd) | Notebook 05 — State-Space Models | [GitHub](https://github.com/fcivardi/divelab/blob/editorial-v2/notebooks/05_State_Space_Models.ipynb) · [Colab](https://colab.research.google.com/github/fcivardi/divelab/blob/editorial-v2/notebooks/05_State_Space_Models.ipynb) |
+
+Additional rows will be added as their canonical companion notebooks are completed during the editorial-v2 development cycle.
