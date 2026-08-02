@@ -1,34 +1,261 @@
-# Frequency Response
+---
+title: "Frequency Response"
+subtitle: "From Time Histories to Dynamic Bandwidth"
+---
 
-## Guiding question
+## Companion Resources
 
-What physical or systems-engineering idea does this chapter introduce?
+::: {.callout-tip title="Companion Resources"}
 
-## Learning objectives
+**Chapter:** 12 — Frequency Response
 
-By the end of this chapter, the reader will be able to:
+**Companion notebook:** Notebook 12 — Frequency Response
 
-- explain the central concept;
-- identify the relevant variables;
-- interpret the main equations;
-- connect theory to simulation.
+**Estimated study time:** 150–180 minutes, including the notebook
 
-## Physical motivation
+**Prerequisites:** Chapters 9–11, complex numbers, transfer functions, and sinusoidal signals
 
-This section will be developed during the DiveLab v2 refactoring.
+:::
 
-## Mathematical model
+## Engineering Question
 
-The equations will follow the conventions in `STYLE_GUIDE.md`.
+Which oscillatory disturbances can the regulated vertical system follow, attenuate, or amplify—and how do delay and controller dynamics change that answer?
 
-## Computational laboratory
+Time-domain simulations show individual scenarios. Frequency response summarizes the steady sinusoidal behavior of a linear system across a continuum of frequencies.
 
-The chapter-aligned companion notebook will be developed with this chapter.
+## Learning Objectives
 
-## Interpretation
+After completing this chapter, you should be able to:
 
-Explain what the simulation shows and why it matters.
+- evaluate a transfer function at $s=j\omega$;
+- interpret magnitude ratio and phase shift;
+- convert magnitude to decibels;
+- construct and read Bode plots;
+- identify natural frequency, damping ratio, resonance, and bandwidth;
+- relate sinusoidal time histories to frequency-response predictions;
+- explain why pure delay adds phase without changing magnitude;
+- interpret breathing-like forcing as a disturbance-frequency example.
+
+## Theory
+
+### Sinusoidal Steady State
+
+For a stable linear time-invariant system with input
+
+$$
+u(t)=A_u\sin\omega t,
+$$
+
+the steady output has the form
+
+$$
+y_{\mathrm{ss}}(t)
+=A_u|G(j\omega)|
+\sin\left(\omega t+\angle G(j\omega)\right).
+$$
+
+$|G(j\omega)|$ is the amplitude ratio and $\angle G(j\omega)$ is the phase shift.
+
+### Closed-Loop Disturbance Model
+
+For the PD-regulated local plant from Chapter 10,
+
+$$
+G_d(s)
+=\frac{Z(s)}{D(s)}
+=-\frac{1}{ms^2+K_ds+(ma+K_p)}.
+$$
+
+Write the denominator in standard second-order form:
+
+$$
+s^2+2\zeta\omega_ns+\omega_n^2,
+$$
+
+where
+
+$$
+\boxed{
+\omega_n=\sqrt{a+K_p/m}
+},
+$$
+
+$$
+\boxed{
+\zeta=\frac{K_d}{2m\omega_n}
+}.
+$$
+
+These parameters organize the time- and frequency-domain behavior.
+
+### Magnitude and Decibels
+
+Magnitude in decibels is
+
+$$
+\boxed{
+M_{\mathrm{dB}}(\omega)
+=20\log_{10}|G(j\omega)|
+}.
+$$
+
+A magnitude ratio of $1$ is $0\ \mathrm{dB}$, $0.1$ is $-20\ \mathrm{dB}$, and $10$ is $20\ \mathrm{dB}$.
+
+Because $G_d$ maps force to depth, its magnitude has units $\mathrm{m/N}$. Decibels report a ratio relative to the numerical SI unit and should not be mistaken for a dimensionless physical gain unless a reference normalization is specified.
+
+### Bode Plots
+
+A Bode plot shows:
+
+- magnitude versus logarithmic frequency;
+- phase versus logarithmic frequency.
+
+Low-frequency disturbance response approaches the static compliance
+
+$$
+G_d(0)=-\frac{1}{ma+K_p}.
+$$
+
+At high frequency, inertia dominates and magnitude decreases approximately as $1/(m\omega^2)$.
+
+### Resonance and Damping
+
+When damping is low, a second-order system can amplify forcing near its natural frequency. Increasing $K_d$ increases $\zeta$ and suppresses the resonance peak, but excessive derivative action can increase sensitivity to high-frequency measurement noise in the control channel.
+
+### Bandwidth
+
+For a low-pass response, bandwidth is often defined by the frequency where magnitude falls to $1/\sqrt{2}$ of its low-frequency value, or $-3\ \mathrm{dB}$ relative to that value.
+
+Bandwidth indicates response speed, not quality by itself. Higher bandwidth can improve tracking and disturbance response over a wider range but increases sensitivity to noise, delay, and unmodeled dynamics.
+
+### Delay as Phase Lag
+
+A pure delay $\tau$ has transfer function
+
+$$
+G_{\tau}(s)=e^{-s\tau}.
+$$
+
+At $s=j\omega$,
+
+$$
+|G_{\tau}(j\omega)|=1,
+$$
+
+$$
+\angle G_{\tau}(j\omega)=-\omega\tau.
+$$
+
+Delay does not change magnitude but adds phase lag that grows with frequency. A controller that is safe without delay can lose robustness when sensing, decision, or actuation delay is introduced.
+
+### Breathing-Like Disturbance
+
+A periodic buoyancy variation can be represented locally as
+
+$$
+d_b(t)=A_b\sin(2\pi f_b t).
+$$
+
+The predicted depth amplitude is
+
+$$
+A_z
+=A_b|G_d(j2\pi f_b)|.
+$$
+
+This simplified forcing illustrates how physiology and equipment can enter a control model as frequency-structured disturbances. It is not a physiological breathing model.
+
+### Frequency Response and Stability
+
+Frequency response is directly meaningful for stable systems. An unstable plant does not settle to a bounded sinusoidal steady state. We therefore analyze the stabilized closed loop here. Chapter 10's pole analysis remains the prerequisite stability check.
+
+## Worked Examples
+
+### Example 1: Natural Frequency and Damping
+
+With $m=85\ \mathrm{kg}$, $a=-0.01054\ \mathrm{s^{-2}}$, $K_p=46.8\ \mathrm{N/m}$, and $K_d=127.5\ \mathrm{N,s/m}$,
+
+$$
+\omega_n\approx\sqrt{-0.01054+46.8/85}=0.735\ \mathrm{rad/s},
+$$
+
+$$
+\zeta\approx\frac{127.5}{2(85)(0.735)}=1.02.
+$$
+
+The chosen poles are real and the response is slightly overdamped.
+
+### Example 2: Delay Phase
+
+For $\tau=0.8\ \mathrm{s}$ at $\omega=1.0\ \mathrm{rad/s}$,
+
+$$
+\phi=-0.8\ \mathrm{rad}\approx-45.8^\circ.
+$$
+
+At twice the frequency, the delay contributes twice the phase lag.
+
+### Example 3: Breathing Frequency
+
+For $f_b=0.25\ \mathrm{Hz}$,
+
+$$
+\omega_b=2\pi f_b\approx1.57\ \mathrm{rad/s}.
+$$
+
+Evaluating $|G_d(j\omega_b)|$ predicts the local steady depth amplitude per newton of periodic buoyancy forcing.
+
+## DiveLab Insight
+
+::: {.callout-important title="DiveLab Insight"}
+
+A controller does not respond equally at every timescale. Frequency response reveals which variations appear slow, which excite the system, and which are attenuated by inertia and damping.
+
+:::
+
+## Engineering Perspective
+
+Frequency-domain analysis compresses many sinusoidal experiments into one pair of curves. It supports bandwidth selection, disturbance analysis, robustness reasoning, and controller filtering. Its conclusions remain local to the linear model and depend on stable operation.
 
 ## Summary
 
-State the central insight and motivate the next chapter.
+- $G(j\omega)$ determines sinusoidal amplitude ratio and phase shift.
+- Bode plots display magnitude and phase over logarithmic frequency.
+- $\omega_n$ and $\zeta$ connect poles, transients, and resonance.
+- Bandwidth describes the useful dynamic range but trades against noise and delay robustness.
+- Pure delay adds frequency-dependent phase lag without changing magnitude.
+- Periodic buoyancy variation can be studied as a disturbance frequency.
+- Stable closed-loop operation is required for steady sinusoidal interpretation.
+
+## Key Equations
+
+| Equation | Meaning |
+|:---------|:--------|
+| $G(j\omega)$ | Frequency response |
+| $20\log_{10}|G(j\omega)|$ | Magnitude in decibels |
+| $\omega_n=\sqrt{a+K_p/m}$ | Closed-loop natural frequency |
+| $\zeta=K_d/(2m\omega_n)$ | Damping ratio |
+| $G_d(s)=-1/[ms^2+K_ds+(ma+K_p)]$ | Disturbance-to-depth response |
+| $e^{-j\omega\tau}$ | Pure-delay frequency response |
+
+## Exercises
+
+1. Evaluate magnitude and phase of a first-order transfer function.
+2. Convert several magnitude ratios to decibels.
+3. Calculate $\omega_n$ and $\zeta$ for new gains.
+4. Predict whether a gain set can produce resonance.
+5. Estimate a $-3\ \mathrm{dB}$ bandwidth numerically.
+6. Calculate delay phase at three frequencies.
+7. Predict depth amplitude for a periodic disturbance.
+8. Explain why an unstable system lacks bounded sinusoidal steady state.
+
+## Companion Notebook
+
+Use **Notebook 12 — Frequency Response** to construct Bode plots, verify sinusoidal predictions in time simulations, explore damping and bandwidth, and quantify delay phase and periodic disturbance response.
+
+- [Open the notebook on GitHub](https://github.com/fcivardi/divelab/blob/editorial-v2/notebooks/12_Frequency_Response.ipynb)
+- [Run the notebook in Google Colab](https://colab.research.google.com/github/fcivardi/divelab/blob/editorial-v2/notebooks/12_Frequency_Response.ipynb)
+
+## Looking Ahead
+
+Chapter 13 replaces the ideal continuously acting controller with a delayed, intermittent, limited human decision process: the diver in the loop.

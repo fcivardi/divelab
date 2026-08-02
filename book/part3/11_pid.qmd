@@ -1,34 +1,252 @@
-# PID Control
+---
+title: "PID Control"
+subtitle: "From Regulation to Offset-Free Disturbance Rejection"
+---
 
-## Guiding question
+## Companion Resources
 
-What physical or systems-engineering idea does this chapter introduce?
+::: {.callout-tip title="Companion Resources"}
 
-## Learning objectives
+**Chapter:** 11 — PID Control
 
-By the end of this chapter, the reader will be able to:
+**Companion notebook:** Notebook 11 — PID Control
 
-- explain the central concept;
-- identify the relevant variables;
-- interpret the main equations;
-- connect theory to simulation.
+**Estimated study time:** 150–180 minutes, including the notebook
 
-## Physical motivation
+**Prerequisites:** Chapters 9–10, feedback poles, and numerical simulation
 
-This section will be developed during the DiveLab v2 refactoring.
+:::
 
-## Mathematical model
+## Engineering Question
 
-The equations will follow the conventions in `STYLE_GUIDE.md`.
+How can a controller stabilize depth, remove persistent offset, and remain usable when force is limited and measurements are noisy?
 
-## Computational laboratory
+Chapter 10 used proportional depth and velocity feedback. Chapter 11 adds integral memory and examines the practical mechanisms that make PID control more than three algebraic terms.
 
-The chapter-aligned companion notebook will be developed with this chapter.
+## Learning Objectives
 
-## Interpretation
+After completing this chapter, you should be able to:
 
-Explain what the simulation shows and why it matters.
+- interpret proportional, integral, and derivative actions physically;
+- construct a PID controller consistent with DiveLab signs;
+- derive the augmented closed-loop model and characteristic polynomial;
+- explain why integral action removes constant-disturbance offset;
+- identify integral windup and implement anti-windup;
+- explain why derivative action amplifies measurement noise;
+- compare P, PD, PI, and PID behavior using appropriate metrics;
+- recognize tuning as a multi-objective engineering trade-off.
+
+## Theory
+
+### PID Law with DiveLab Signs
+
+For a constant reference depth, define
+
+$$
+e=z-z_r,
+\qquad
+\eta(t)=\int_0^t e(\tau)\,d\tau.
+$$
+
+Because $\dot e=\dot z=-v$, the ideal PID force law can be written
+
+$$
+\boxed{
+u=K_pe+K_i\eta-K_dv
+}.
+$$
+
+- **Proportional:** reacts to present depth error.
+- **Integral:** accumulates persistent depth error.
+- **Derivative:** opposes vertical motion and anticipates error change.
+
+### Augmented Closed-Loop Model
+
+With disturbance force $d$,
+
+$$
+\dot z=-v,
+$$
+
+$$
+\dot v=az+\frac{1}{m}(u+d),
+$$
+
+$$
+\dot\eta=z-z_r.
+$$
+
+For regulation about zero reference, the augmented state $[z,v,\eta]^{\mathsf T}$ has closed-loop matrix
+
+$$
+A_{\mathrm{PID}}
+=
+\begin{bmatrix}
+0&-1&0\\
+a+K_p/m&-K_d/m&K_i/m\\
+1&0&0
+\end{bmatrix}.
+$$
+
+Its characteristic polynomial is
+
+$$
+\boxed{
+s^3+\frac{K_d}{m}s^2
++\left(a+\frac{K_p}{m}\right)s
++\frac{K_i}{m}
+}.
+$$
+
+For positive coefficients, the cubic Routh condition additionally requires
+
+$$
+\frac{K_d}{m}
+\left(a+\frac{K_p}{m}\right)
+>\frac{K_i}{m}.
+$$
+
+Integral gain cannot be increased independently without affecting stability.
+
+### Why Integral Action Removes Offset
+
+If the closed loop reaches a bounded steady state with constant reference and disturbance, then
+
+$$
+\dot\eta=e_{\mathrm{ss}}=0.
+$$
+
+Thus a stable unsaturated loop with an internal integrator drives constant depth error to zero. The integral term supplies the steady control force required to balance a persistent disturbance.
+
+### Derivative on Measurement
+
+Directly differentiating a noisy error signal can create large control fluctuations. For constant reference, using measured or estimated velocity gives
+
+$$
+u_D=-K_d\hat v,
+$$
+
+avoiding derivative kick when the reference changes abruptly. Velocity must still be filtered or estimated with suitable bandwidth.
+
+### Saturation and Windup
+
+Let the actuator satisfy
+
+$$
+|u|\leq u_{\max}.
+$$
+
+When the unsaturated PID command exceeds this limit, the plant receives $u_{\mathrm{sat}}$ while the integral state may continue accumulating error. This **windup** can cause overshoot and slow recovery after the controller leaves saturation.
+
+One back-calculation anti-windup law is
+
+$$
+\boxed{
+\dot\eta
+=e+K_{aw}(u_{\mathrm{sat}}-u_{\mathrm{raw}})
+}.
+$$
+
+The correction reduces integral accumulation when the requested and applied forces differ. $K_{aw}$ has units that must be consistent with the chosen integral state and controller gains.
+
+### Performance Metrics
+
+Useful simulation metrics include:
+
+- peak depth error;
+- settling time within a stated band;
+- steady-state error;
+- integrated absolute error $\int|e|dt$;
+- root-mean-square control force;
+- time spent in saturation.
+
+No single metric captures safety, comfort, energy, robustness, and actuator usage simultaneously.
+
+### Tuning as a Trade-Off
+
+Increasing $K_p$ usually strengthens correction but may increase overshoot and force demand. Increasing $K_i$ removes offset faster but reduces stability margin and increases windup risk. Increasing $K_d$ adds damping but increases sensitivity to velocity-estimation noise.
+
+Tuning must be evaluated against model uncertainty, delay, sampling, saturation, and measurement quality—not only nominal response speed.
+
+## Worked Examples
+
+### Example 1: Constant-Disturbance Rejection
+
+Under PD control, a constant $5\ \mathrm{N}$ upward disturbance produces a nonzero steady depth offset. In a stable unsaturated PID loop, the integral term evolves until it supplies an equal opposing force and $e_{\mathrm{ss}}=0$.
+
+### Example 2: Cubic Stability Check
+
+Let $m=85\ \mathrm{kg}$, $a=-0.01054\ \mathrm{s^{-2}}$, $K_p=150\ \mathrm{N,m^{-1}}$, $K_d=180\ \mathrm{N,s,m^{-1}}$, and $K_i=60\ \mathrm{N,m^{-1}s^{-1}}$.
+
+Then
+
+$$
+\frac{K_d}{m}=2.118,
+\quad
+a+\frac{K_p}{m}=1.754,
+\quad
+\frac{K_i}{m}=0.706.
+$$
+
+Because $(2.118)(1.754)>0.706$, the cubic Routh inequality is satisfied.
+
+### Example 3: Windup Mechanism
+
+If $u_{\mathrm{raw}}=140\ \mathrm{N}$ but $u_{\max}=80\ \mathrm{N}$, the actuator applies only $80\ \mathrm{N}$. Without anti-windup, the integrator behaves as though the full command were applied and may continue growing. Back-calculation responds to the discrepancy $-60\ \mathrm{N}$.
+
+## DiveLab Insight
+
+::: {.callout-important title="DiveLab Insight"}
+
+Integral action remembers unresolved error. That memory is what removes constant offset—and what creates windup when the requested action cannot be delivered.
+
+:::
+
+## Engineering Perspective
+
+PID is best understood as a dynamic controller with its own state, limits, and signal-conditioning requirements. A realistic implementation includes reference shaping, velocity estimation, derivative filtering, saturation, anti-windup, sampling, and fail-safe behavior.
+
+The force controller remains an educational abstraction. It does not prescribe BCD, breathing, or fin actions.
 
 ## Summary
 
-State the central insight and motivate the next chapter.
+- DiveLab PID uses $u=K_pe+K_i\eta-K_dv$.
+- Proportional action reacts, integral action remembers, and derivative action damps.
+- Integral action adds a third closed-loop state and changes the characteristic polynomial.
+- A stable unsaturated integrator eliminates constant-disturbance offset.
+- Saturation can cause integral windup.
+- Back-calculation uses the difference between requested and applied force.
+- Derivative action requires attention to measurement noise.
+- Tuning balances error, speed, robustness, noise, and actuator use.
+
+## Key Equations
+
+| Equation | Meaning |
+|:---------|:--------|
+| $e=z-z_r$ | Depth error |
+| $\dot\eta=e$ | Integral state |
+| $u=K_pe+K_i\eta-K_dv$ | PID force law |
+| $s^3+(K_d/m)s^2+(a+K_p/m)s+K_i/m$ | Closed-loop characteristic polynomial |
+| $\dot\eta=e+K_{aw}(u_{\mathrm{sat}}-u_{\mathrm{raw}})$ | Back-calculation anti-windup |
+
+## Exercises
+
+1. Interpret each PID term using the DiveLab sign convention.
+2. Derive the augmented state matrix and cubic polynomial.
+3. Apply the cubic Routh condition to a proposed gain set.
+4. Explain mathematically why stable integral action removes constant offset.
+5. Simulate windup under a large initial error.
+6. Compare clamping and back-calculation anti-windup.
+7. Explain derivative kick and derivative-on-measurement.
+8. Define three performance metrics and discuss their conflicts.
+
+## Companion Notebook
+
+Use **Notebook 11 — PID Control** to compare PD and PID disturbance rejection, inspect controller components, reproduce windup, apply anti-windup, and quantify performance.
+
+- [Open the notebook on GitHub](https://github.com/fcivardi/divelab/blob/editorial-v2/notebooks/11_PID_Control.ipynb)
+- [Run the notebook in Google Colab](https://colab.research.google.com/github/fcivardi/divelab/blob/editorial-v2/notebooks/11_PID_Control.ipynb)
+
+## Looking Ahead
+
+Chapter 12 asks how the closed loop responds to oscillatory inputs and disturbances. Frequency response will expose bandwidth, phase lag, resonance, and the effect of delay.

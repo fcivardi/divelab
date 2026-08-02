@@ -1,34 +1,262 @@
-# The Diver in the Loop
+---
+title: "The Diver in the Loop"
+subtitle: "Human Perception, Delay, and Intermittent Control"
+---
 
-## Guiding question
+## Companion Resources
 
-What physical or systems-engineering idea does this chapter introduce?
+::: {.callout-tip title="Companion Resources"}
 
-## Learning objectives
+**Chapter:** 13 — The Diver in the Loop
 
-By the end of this chapter, the reader will be able to:
+**Companion notebook:** Notebook 13 — Human-in-the-Loop Control
 
-- explain the central concept;
-- identify the relevant variables;
-- interpret the main equations;
-- connect theory to simulation.
+**Estimated study time:** 150–180 minutes, including the notebook
 
-## Physical motivation
+**Prerequisites:** Chapters 10–12, feedback, delay, sampling, and nonlinear simulation
 
-This section will be developed during the DiveLab v2 refactoring.
+:::
 
-## Mathematical model
+## Engineering Question
 
-The equations will follow the conventions in `STYLE_GUIDE.md`.
+How does vertical regulation change when the controller perceives imperfectly, reacts after a delay, decides intermittently, and has limited actuation?
 
-## Computational laboratory
+An ideal controller evaluates signals continuously and applies an exact law. A human diver observes, interprets, decides, acts, and waits for consequences. The resulting loop is delayed, sampled, nonlinear, and adaptive.
 
-The chapter-aligned companion notebook will be developed with this chapter.
+## Learning Objectives
 
-## Interpretation
+After completing this chapter, you should be able to:
 
-Explain what the simulation shows and why it matters.
+- identify the diver as controller within a feedback loop;
+- distinguish plant, sensor, estimator, decision process, and actuator;
+- model perception threshold, reaction delay, intermittent decisions, and saturation;
+- explain why delay and overcorrection can create oscillation;
+- interpret human control as a hybrid dynamical system;
+- compare reactive and simple predictive decision rules;
+- define performance metrics without equating them with real-world skill;
+- state the limitations and ethical boundaries of a simplified human model.
+
+## Theory
+
+### The Human Feedback Architecture
+
+The loop contains
+
+$$
+\text{target depth}
+\rightarrow
+\text{perception}
+\rightarrow
+\text{state interpretation}
+\rightarrow
+\text{decision}
+\rightarrow
+\text{action}
+\rightarrow
+\text{diver dynamics}
+\rightarrow
+\text{new sensory information}.
+$$
+
+The **plant** is the diver, equipment, and surrounding-fluid dynamics. Sensors include vision, pressure/depth instruments, proprioception, and vestibular cues. Actuation may involve breathing, BCD or drysuit operation, posture, and finning. This chapter represents their combined vertical effect as a bounded force; it does not model operational technique.
+
+### Ideal Continuous Benchmark
+
+The Chapter 10 benchmark is
+
+$$
+u_{\mathrm{ideal}}(t)=K_pe(t)-K_dv(t).
+$$
+
+It acts continuously with exact state information and no delay. Human behavior should not be judged by whether it reproduces this mathematical ideal; the benchmark isolates the effects introduced by a decision architecture.
+
+### Perception Threshold
+
+Small errors may be unnoticed or intentionally ignored. A deadband model is
+
+$$
+e_{db}
+=
+\begin{cases}
+0,&|e|\leq\varepsilon,\\
+e-\operatorname{sgn}(e)\varepsilon,&|e|>\varepsilon.
+\end{cases}
+$$
+
+Deadband reduces unnecessary action and noise response but permits bounded residual error.
+
+### Reaction Delay
+
+The decision at time $t$ may use information from $t-\tau_h$:
+
+$$
+u_h(t)
+=\mathcal{K}\left[hat e(t-\tau_h),\hat v(t-\tau_h)\right].
+$$
+
+During the delay, the state continues evolving. As Chapter 12 showed, delay contributes phase lag that grows with frequency and can reduce stability margins.
+
+### Intermittent Decision Making
+
+Humans do not necessarily revise action continuously. Let decision times be
+
+$$
+t_k=kT_h.
+$$
+
+At each decision, calculate a new command $u_k$ and hold it until the next decision:
+
+$$
+u_h(t)=u_k,
+\qquad t_k\leq t<t_{k+1}.
+$$
+
+This sample-and-hold structure makes the closed loop hybrid: plant state evolves continuously while commands change at discrete events.
+
+### Bounded and Quantized Action
+
+Human and equipment actions have finite range:
+
+$$
+u_h=\operatorname{clip}(u_{raw},-u_{\max},u_{\max}).
+$$
+
+Actions may also occur in increments rather than arbitrary continuous values. Saturation and quantization can produce limit cycles or persistent small oscillations when combined with delay and deadband.
+
+### Reactive Decision Rule
+
+A simple educational rule is
+
+$$
+u_k
+=\operatorname{sat}
+\left[
+K_pe_{db}(t_k-\tau_h)
+-K_d\hat v(t_k-\tau_h)
+\right].
+$$
+
+Large gains are not automatically better. With delayed information they can cause action based on a state that has already changed, producing overcorrection.
+
+### A Predictive Extension
+
+A simple short-horizon prediction uses
+
+$$
+z_{pred}
+\approx z(t-\tau_h)-\hat v(t-\tau_h)T_p.
+$$
+
+The predicted depth error replaces the delayed current error in the decision law. This is not a cognitive theory; it demonstrates how anticipation can compensate partly for delay when the model and velocity estimate are useful.
+
+### Performance Measures
+
+Possible simulation measures include:
+
+- root-mean-square depth error;
+- maximum depth deviation;
+- settling time;
+- action count;
+- root-mean-square force;
+- time in saturation;
+- oscillation amplitude.
+
+These metrics describe a specified model and scenario. They must not be interpreted as clinical, training, or competence assessments of real individuals.
+
+### Human Control as a Hybrid System
+
+The complete model contains:
+
+- continuous plant dynamics;
+- delayed information;
+- discrete decision events;
+- held commands;
+- deadband and saturation nonlinearities;
+- possibly changing strategy and parameters.
+
+This is richer than a fixed transfer function. Simulation becomes an essential companion to local linear analysis.
+
+### Limitations
+
+A real diver learns, adapts, allocates attention, anticipates, changes posture, coordinates multiple actuators, and responds to context. Fatigue, stress, task loading, training, equipment, visibility, and physiology can matter. The simple parameterized controller is not a validated model of human performance and must not be used to rank people or prescribe diving behavior.
+
+## Worked Examples
+
+### Example 1: Delay in Samples
+
+With simulation step $\Delta t=0.01\ \mathrm{s}$ and reaction delay $\tau_h=0.60\ \mathrm{s}$, the controller uses information
+
+$$
+N_d=\frac{0.60}{0.01}=60
+$$
+
+samples old.
+
+### Example 2: Intermittent Decisions
+
+For decision interval $T_h=0.50\ \mathrm{s}$ and a $30\ \mathrm{s}$ experiment, at most 61 decision events occur, compared with 3001 numerical plant updates at $\Delta t=0.01\ \mathrm{s}$.
+
+### Example 3: Predicting Depth
+
+Suppose delayed estimates are $e=0.20\ \mathrm{m}$ and $v=0.10\ \mathrm{m/s}$ upward. For $T_p=0.8\ \mathrm{s}$,
+
+$$
+e_{pred}\approx0.20-(0.10)(0.8)=0.12\ \mathrm{m}.
+$$
+
+The prediction recognizes that existing upward motion is already reducing the depth error.
+
+## DiveLab Insight
+
+::: {.callout-important title="DiveLab Insight"}
+
+The diver is not merely an external disturbance or an ideal gain. Perception, estimation, decision timing, anticipation, and actuator limits are part of the closed-loop dynamics.
+
+:::
+
+## Engineering Perspective
+
+Human-in-the-loop analysis connects control engineering with human factors. The goal is not to reduce a person to one transfer function, but to identify interaction mechanisms that matter: delay, information quality, intermittent decisions, workload, authority, and adaptation.
 
 ## Summary
 
-State the central insight and motivate the next chapter.
+- A human feedback loop includes perception, estimation, decision, action, and plant response.
+- Deadband reduces small actions but permits residual error.
+- Reaction delay adds phase lag and can promote oscillation.
+- Intermittent decisions create sample-and-hold control.
+- Saturation and quantization add nonlinear behavior.
+- Prediction can partly compensate for delay under suitable assumptions.
+- Human-in-the-loop models are hybrid systems.
+- Simulation metrics describe the model, not real-world competence.
+
+## Key Equations
+
+| Equation | Meaning |
+|:---------|:--------|
+| $e=z-z_r$ | Depth error |
+| $e_{db}$ | Deadband-adjusted error |
+| $u_h(t)=u_k$ for $t_k\leq t<t_{k+1}$ | Held intermittent command |
+| $u_k=\operatorname{sat}[K_pe_{db}-K_d\hat v]$ | Reactive decision rule |
+| $z_{pred}\approx z-\hat vT_p$ | Short-horizon prediction |
+
+## Exercises
+
+1. Draw the complete human feedback architecture and label every role.
+2. Implement a deadband and explain its trade-off.
+3. Convert reaction delay and decision interval into simulation samples.
+4. Predict how delay and gain interact.
+5. Compare continuous and intermittent commands.
+6. Add command quantization and inspect any limit cycle.
+7. Compare reactive and predictive decision rules.
+8. Explain why model metrics cannot be treated as measures of real diver competence.
+
+## Companion Notebook
+
+Use **Notebook 13 — Human-in-the-Loop Control** to compare an ideal continuous benchmark with delayed intermittent control, explore deadband and overcorrection, and test a simple predictive decision rule.
+
+- [Open the notebook on GitHub](https://github.com/fcivardi/divelab/blob/editorial-v2/notebooks/13_Human_in_the_Loop.ipynb)
+- [Run the notebook in Google Colab](https://colab.research.google.com/github/fcivardi/divelab/blob/editorial-v2/notebooks/13_Human_in_the_Loop.ipynb)
+
+## Looking Ahead
+
+Part IV integrates additional diving subsystems. Chapter 14 begins with breathing dynamics, where periodic physiology, gas exchange, and buoyancy variation introduce a new timescale into the model.

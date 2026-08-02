@@ -20,4 +20,12 @@ The companion notebooks provide executable experiments for the models developed 
 | [Chapter 7 — Observability and State Estimation](../part2/07_estimation.qmd) | Notebook 07 — Observability and State Estimation | [GitHub](https://github.com/fcivardi/divelab/blob/editorial-v2/notebooks/07_Observability_and_State_Estimation.ipynb) · [Colab](https://colab.research.google.com/github/fcivardi/divelab/blob/editorial-v2/notebooks/07_Observability_and_State_Estimation.ipynb) |
 | [Chapter 8 — Kalman Filtering](../part2/08_kalman.qmd) | Notebook 08 — Kalman Filtering | [GitHub](https://github.com/fcivardi/divelab/blob/editorial-v2/notebooks/08_Kalman_Filter.ipynb) · [Colab](https://colab.research.google.com/github/fcivardi/divelab/blob/editorial-v2/notebooks/08_Kalman_Filter.ipynb) |
 
-Additional rows will be added as their canonical companion notebooks are completed during the editorial-v2 development cycle.
+## Part III — Control Systems
+
+| Book chapter | Companion notebook | Access |
+|:-------------|:-------------------|:-------|
+| [Chapter 9 — Laplace Transforms and Transfer Functions](../part3/09_laplace.qmd) | Notebook 09 — Laplace Transforms and Transfer Functions | [GitHub](https://github.com/fcivardi/divelab/blob/editorial-v2/notebooks/09_Laplace_and_Transfer_Functions.ipynb) · [Colab](https://colab.research.google.com/github/fcivardi/divelab/blob/editorial-v2/notebooks/09_Laplace_and_Transfer_Functions.ipynb) |
+| [Chapter 10 — Feedback Control](../part3/10_feedback.qmd) | Notebook 10 — Feedback Control | [GitHub](https://github.com/fcivardi/divelab/blob/editorial-v2/notebooks/10_Feedback_Control.ipynb) · [Colab](https://colab.research.google.com/github/fcivardi/divelab/blob/editorial-v2/notebooks/10_Feedback_Control.ipynb) |
+| [Chapter 11 — PID Control](../part3/11_pid.qmd) | Notebook 11 — PID Control | [GitHub](https://github.com/fcivardi/divelab/blob/editorial-v2/notebooks/11_PID_Control.ipynb) · [Colab](https://colab.research.google.com/github/fcivardi/divelab/blob/editorial-v2/notebooks/11_PID_Control.ipynb) |
+| [Chapter 12 — Frequency Response](../part3/12_frequency_response.qmd) | Notebook 12 — Frequency Response | [GitHub](https://github.com/fcivardi/divelab/blob/editorial-v2/notebooks/12_Frequency_Response.ipynb) · [Colab](https://colab.research.google.com/github/fcivardi/divelab/blob/editorial-v2/notebooks/12_Frequency_Response.ipynb) |
+| [Chapter 13 — The Diver in the Loop](../part3/13_human_in_the_loop.qmd) | Notebook 13 — The Diver in the Loop | [GitHub](https://github.com/fcivardi/divelab/blob/editorial-v2/notebooks/13_Human_in_the_Loop.ipynb) · [Colab](https://colab.research.google.com/github/fcivardi/divelab/blob/editorial-v2/notebooks/13_Human_in_the_Loop.ipynb) |

@@ -1,34 +1,299 @@
-# Laplace Transforms and Transfer Functions
+---
+title: "Laplace Transforms and Transfer Functions"
+subtitle: "From Differential Equations to Input–Output Models"
+---
 
-## Guiding question
+## Companion Resources
 
-What physical or systems-engineering idea does this chapter introduce?
+::: {.callout-tip title="Companion Resources"}
 
-## Learning objectives
+**Chapter:** 9 — Laplace Transforms and Transfer Functions
 
-By the end of this chapter, the reader will be able to:
+**Companion notebook:** Notebook 09 — Laplace Transforms and Transfer Functions
 
-- explain the central concept;
-- identify the relevant variables;
-- interpret the main equations;
-- connect theory to simulation.
+**Estimated study time:** 150–180 minutes, including the notebook
 
-## Physical motivation
+**Prerequisites:** Chapters 5–8, linear differential equations, complex numbers, and basic algebra
 
-This section will be developed during the DiveLab v2 refactoring.
+:::
 
-## Mathematical model
+## Engineering Question
 
-The equations will follow the conventions in `STYLE_GUIDE.md`.
+How can a differential-equation model be converted into an input–output representation that exposes its modes, poles, and response to forcing?
 
-## Computational laboratory
+Part II emphasized internal state. Part III begins with a complementary view: transform time-domain differential equations into algebraic relations in the complex-frequency variable $s$.
 
-The chapter-aligned companion notebook will be developed with this chapter.
+## Learning Objectives
 
-## Interpretation
+After completing this chapter, you should be able to:
 
-Explain what the simulation shows and why it matters.
+- explain the purpose of the unilateral Laplace transform;
+- transform derivatives while retaining initial-condition terms;
+- derive a transfer function under zero initial conditions;
+- interpret poles, zeros, gain, and characteristic equations;
+- derive the depth response to an applied vertical force;
+- connect transfer-function poles with state-space eigenvalues;
+- distinguish a transfer function from a complete state-space model;
+- interpret step and impulse responses as model experiments.
+
+## Theory
+
+### Why Change Representation?
+
+A differential equation describes local evolution in time. The Laplace transform maps a time signal $f(t)$ to
+
+$$
+F(s)=\mathcal{L}\{f(t)\}
+=\int_0^{\infty} f(t)e^{-st}\,dt,
+$$
+
+where $s=\sigma+j\omega$. The transform converts differentiation into multiplication by $s$, turning linear differential equations into algebraic equations.
+
+### Derivatives and Initial Conditions
+
+For the unilateral transform,
+
+$$
+\mathcal{L}\{\dot f(t)\}=sF(s)-f(0^-),
+$$
+
+and
+
+$$
+\mathcal{L}\{\ddot f(t)\}
+=s^2F(s)-sf(0^-)-\dot f(0^-).
+$$
+
+Initial conditions do not disappear. They appear as additional algebraic terms. Transfer functions are defined with zero initial conditions so that input-induced response is separated from stored initial energy.
+
+### A Small Transform Table
+
+| Time signal | Laplace transform |
+|:------------|:------------------|
+| $1$ | $1/s$ |
+| $e^{-at}$ | $1/(s+a)$ |
+| $t$ | $1/s^2$ |
+| $\sin\omega t$ | $\omega/(s^2+\omega^2)$ |
+| $\cos\omega t$ | $s/(s^2+\omega^2)$ |
+
+### Transfer Functions
+
+For a linear time-invariant system with input $u(t)$ and output $y(t)$, the transfer function is
+
+$$
+\boxed{
+G(s)=\frac{Y(s)}{U(s)}
+\bigg|_{\text{zero initial conditions}}
+}.
+$$
+
+For a rational model,
+
+$$
+G(s)=K\frac{(s-z_1)\cdots(s-z_m)}{(s-p_1)\cdots(s-p_n)}.
+$$
+
+The roots $z_i$ of the numerator are zeros. The roots $p_i$ of the denominator are poles. Poles are the natural modes visible at the input–output interface and determine stability for a minimal realization.
+
+### The Linearized DiveLab Plant
+
+Add an upward-positive control force $u(t)$ to the local model:
+
+$$
+\delta\dot z=-\delta v,
+$$
+
+$$
+\delta\dot v=a\,\delta z+\frac{1}{m}u,
+\qquad a=\frac{k_B}{m}<0.
+$$
+
+Differentiate the first equation and substitute the second:
+
+$$
+\delta\ddot z
+=-\delta\dot v
+=-a\,\delta z-\frac{1}{m}u.
+$$
+
+Therefore
+
+$$
+\boxed{
+\delta\ddot z+a\,\delta z=-\frac{1}{m}u
+}.
+$$
+
+With zero initial conditions,
+
+$$
+(s^2+a)Z(s)=-\frac{1}{m}U(s),
+$$
+
+so the force-to-depth transfer function is
+
+$$
+\boxed{
+G_{zu}(s)=\frac{Z(s)}{U(s)}
+=-\frac{1}{m(s^2+a)}
+}.
+$$
+
+The negative sign is physical: a positive upward force reduces depth.
+
+### Poles and the Chapter 6 Eigenvalues
+
+Because $a<0$, write $a=-\alpha^2$ with
+
+$$
+\alpha=\sqrt{-a}.
+$$
+
+Then
+
+$$
+s^2+a=(s-\alpha)(s+\alpha).
+$$
+
+The poles are
+
+$$
+p_{1,2}=\pm\sqrt{-a},
+$$
+
+exactly the eigenvalues of the Chapter 6 Jacobian. The right-half-plane pole proves that the open-loop plant is unstable.
+
+### Step and Impulse Experiments
+
+A unit step has transform $1/s$. The step response is
+
+$$
+Y(s)=G(s)\frac{1}{s}.
+$$
+
+It answers: what happens when an input changes and remains changed?
+
+An ideal unit impulse has transform $1$. The impulse response is
+
+$$
+Y(s)=G(s).
+$$
+
+It characterizes the system's response to an idealized instantaneous input. These are model probes, not recommended physical commands to a diver.
+
+### State Space and Transfer Functions
+
+For
+
+$$
+\dot x=Ax+Bu,
+\qquad y=Cx+Du,
+$$
+
+the transfer function is
+
+$$
+\boxed{
+G(s)=C(sI-A)^{-1}B+D
+}.
+$$
+
+State space retains internal variables, initial conditions, and multiple inputs and outputs naturally. A transfer function emphasizes one selected input–output relation and assumes zero initial conditions. The representations are complementary, not competing.
+
+### Scope and Limitations
+
+Transfer functions apply directly to linear time-invariant models. The DiveLab plant is a local linearization; its transfer function is valid near the operating state. Nonlinear gas compression, quadratic drag, actuator saturation, time variation, and human decisions require additional modeling.
+
+## Worked Examples
+
+### Example 1: First-Order Transfer Function
+
+For
+
+$$
+\tau\dot y+y=Ku,
+$$
+
+zero initial conditions give
+
+$$
+G(s)=\frac{K}{\tau s+1}.
+$$
+
+The pole $-1/\tau$ is stable when $\tau>0$ and sets the response timescale.
+
+### Example 2: DiveLab Open-Loop Poles
+
+Using $a=-0.01054\ \mathrm{s^{-2}}$,
+
+$$
+p_{1,2}=\pm\sqrt{0.01054}
+\approx\pm0.103\ \mathrm{s^{-1}}.
+$$
+
+One pole lies in the right half-plane, matching the saddle instability found in state space.
+
+### Example 3: Nonzero Initial Conditions
+
+For $\ddot z+a z=0$ with $z(0)=z_0$ and $\dot z(0)=\dot z_0$,
+
+$$
+(s^2+a)Z(s)=sz_0+\dot z_0.
+$$
+
+This response exists even with no input. It is not represented by the transfer function alone.
+
+## DiveLab Insight
+
+::: {.callout-important title="DiveLab Insight"}
+
+The unstable pole in $G_{zu}(s)$ is the same physical mode as the positive eigenvalue in Chapter 6. Laplace and state-space analysis reveal the same instability from different viewpoints.
+
+:::
+
+## Engineering Perspective
+
+Transfer functions make interconnection algebra possible. Blocks can represent plants, sensors, actuators, and controllers, while poles and zeros expose dynamic structure. This representation will let Chapter 10 express feedback as a closed-loop denominator rather than only as coupled differential equations.
 
 ## Summary
 
-State the central insight and motivate the next chapter.
+- The Laplace transform converts differentiation into algebra while retaining initial-condition terms.
+- Transfer functions describe zero-initial-condition input–output behavior.
+- Poles are denominator roots; zeros are numerator roots.
+- The DiveLab force-to-depth transfer function is $-1/[m(s^2+a)]$.
+- Its poles equal the state-space eigenvalues and include one unstable mode.
+- Step and impulse responses are standard model experiments.
+- State space retains internal-state information that a transfer function suppresses.
+
+## Key Equations
+
+| Equation | Meaning |
+|:---------|:--------|
+| $F(s)=\int_0^\infty f(t)e^{-st}\,dt$ | Laplace transform |
+| $\mathcal{L}\{\dot f\}=sF-f(0^-)$ | Derivative property |
+| $G(s)=Y(s)/U(s)$ | Transfer function under zero initial conditions |
+| $G_{zu}(s)=-1/[m(s^2+a)]$ | Local force-to-depth plant |
+| $p_{1,2}=\pm\sqrt{-a}$ | Open-loop poles |
+| $G(s)=C(sI-A)^{-1}B+D$ | State-space to transfer-function relation |
+
+## Exercises
+
+1. Transform a first- and second-order derivative with nonzero initial conditions.
+2. Derive the transfer function of $\tau\dot y+y=Ku$.
+3. Identify poles, zeros, and static gain for three rational transfer functions.
+4. Derive $G_{zu}(s)$ directly from the two first-order state equations.
+5. Explain the negative sign of $G_{zu}(s)$ physically.
+6. Verify that its poles equal the eigenvalues of $A$.
+7. Compare the information contained in a transfer function and a state-space realization.
+8. Explain why a transfer function cannot encode an arbitrary initial state.
+
+## Companion Notebook
+
+Use **Notebook 09 — Laplace Transforms and Transfer Functions** to explore transform properties, compute poles and zeros, compare state-space and transfer-function responses, and examine the unstable DiveLab plant.
+
+- [Open the notebook on GitHub](https://github.com/fcivardi/divelab/blob/editorial-v2/notebooks/09_Laplace_and_Transfer_Functions.ipynb)
+- [Run the notebook in Google Colab](https://colab.research.google.com/github/fcivardi/divelab/blob/editorial-v2/notebooks/09_Laplace_and_Transfer_Functions.ipynb)
+
+## Looking Ahead
+
+Chapter 10 closes the loop. Feedback will move the poles of the input–output model and convert the unstable open-loop plant into a regulated system.
