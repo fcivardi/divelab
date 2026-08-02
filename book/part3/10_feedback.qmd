@@ -38,6 +38,8 @@ After completing this chapter, you should be able to:
 
 ## Theory
 
+The feedback architecture, pole-placement interpretation, and stability design follow classical control-system formulations [@astrom2008; @franklin2015].
+
 ### Control Objective and Sign Convention
 
 Let $z_r$ be a local reference depth and define

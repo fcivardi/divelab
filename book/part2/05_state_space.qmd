@@ -37,6 +37,8 @@ After completing this chapter, you should be able to:
 
 ## Theory
 
+The state-space language used throughout Part II follows standard linear- and nonlinear-systems formulations [@chen1999; @khalil2002].
+
 ### From a Snapshot to a Prediction
 
 A static model answers a question about one operating condition. For example, Archimedes' principle calculates buoyant force from displaced volume. A dynamic model asks how the condition changes with time.

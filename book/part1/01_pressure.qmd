@@ -35,6 +35,8 @@ After completing this chapter, you should be able to:
 
 ## Theory
 
+The hydrostatic model and diving-pressure conventions used here follow standard treatments in fluid mechanics and scientific diving [@white2016; @noaa2017].
+
 ### Pressure in a Fluid at Rest
 
 Pressure is normal force per unit area:

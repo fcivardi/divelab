@@ -43,6 +43,8 @@ After completing this chapter, you should be able to:
 
 ## Theory
 
+The gas-law treatment follows the equilibrium thermodynamics of an ideal gas, specialized to the pressure ranges and flexible gas spaces encountered in introductory diving physics [@young2016; @noaa2017].
+
 ### From the Ideal-Gas Model to Boyle's Law
 
 For an ideal gas in equilibrium,

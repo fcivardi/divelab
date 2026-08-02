@@ -38,6 +38,8 @@ After completing this chapter, you should be able to:
 
 ## Theory
 
+The sinusoidal steady-state, Bode, bandwidth, and phase-delay concepts follow standard signals-and-systems and feedback-control theory [@oppenheim1997; @astrom2008].
+
 ### Sinusoidal Steady State
 
 For a stable linear time-invariant system with input

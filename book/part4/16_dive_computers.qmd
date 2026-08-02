@@ -31,6 +31,8 @@ After completing this chapter, you should be able to:
 
 ## Theory
 
+The chapter combines the estimation foundations of Part II with the measurement, algorithm, and validation concerns documented for real dive computers [@kalman1960; @fraedrich2018].
+
 ### Measurement hierarchy
 
 A pressure sensor produces an electrical measurement related to ambient pressure. After calibration, the device derives depth from

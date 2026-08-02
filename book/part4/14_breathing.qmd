@@ -33,6 +33,8 @@ After completing this chapter, you should be able to:
 
 ## Theory
 
+The physiological terminology is grounded in respiratory physiology, while the buoyancy coupling uses the scientific-diving pressure and volume framework [@west2021; @noaa2017].
+
 ### Volume decomposition
 
 Represent the lung-volume contribution relative to a chosen operating point as

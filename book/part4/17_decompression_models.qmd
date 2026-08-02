@@ -31,6 +31,8 @@ After completing this chapter, you should be able to:
 
 ## Theory
 
+Compartment decompression models developed from early staged-decompression work into multi-compartment computational formulations [@boycott1908; @buhlmann1984].
+
 ### Inspired inert-gas pressure
 
 For a simplified air model, the inspired nitrogen pressure is

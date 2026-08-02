@@ -38,6 +38,8 @@ After completing this chapter, you should be able to:
 
 ## Theory
 
+The PID structure, integral-action tradeoffs, saturation, and anti-windup discussion follow established PID-control practice [@astrom2006; @franklin2015].
+
 ### PID Law with DiveLab Signs
 
 For a constant reference depth, define

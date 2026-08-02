@@ -38,6 +38,8 @@ After completing this chapter, you should be able to:
 
 ## Theory
 
+The transform and transfer-function conventions follow standard continuous-time signals-and-systems and feedback-control treatments [@oppenheim1997; @franklin2015].
+
 ### Why Change Representation?
 
 A differential equation describes local evolution in time. The Laplace transform maps a time signal $f(t)$ to

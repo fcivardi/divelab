@@ -39,6 +39,8 @@ After completing this chapter, you should be able to:
 
 ## Theory
 
+The distinction between internal state, measured output, observability, and observer reconstruction follows classical state-estimation theory [@luenberger1964; @chen1999].
+
 ### State and Measurement Are Different Objects
 
 Chapter 6 used the perturbation state

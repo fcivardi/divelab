@@ -40,6 +40,8 @@ After completing this chapter, you should be able to:
 
 ## Theory
 
+The recursive estimator developed here originates with Kalman's linear filtering formulation and its subsequent optimal-filtering treatment [@kalman1960; @anderson1979].
+
 ### From a Fixed Gain to an Uncertainty-Dependent Gain
 
 The Luenberger observer from Chapter 7 has the structure

@@ -44,6 +44,8 @@ After completing this chapter, you should be able to:
 
 ## Theory
 
+The force balance is based on the standard hydrostatic derivation of Archimedes' principle [@cengel2014; @white2016].
+
 ### Pressure Forces on a Submerged Body
 
 Pressure acts normal to every surface in a fluid at rest. Using the DiveLab convention that depth $z$ is positive downward,

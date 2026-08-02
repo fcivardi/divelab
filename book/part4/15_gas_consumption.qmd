@@ -31,6 +31,8 @@ After completing this chapter, you should be able to:
 
 ## Theory
 
+The pressure-scaled resource model uses standard open-circuit diving gas accounting; operational reserve procedures remain deliberately outside its scope [@noaa2017; @usnavy2016].
+
 ### Surface-equivalent rate
 
 Let $q_S(t)$ denote a surface-equivalent volumetric rate, often called RMV or SAC depending on convention. DiveLab uses $q_S$ in litres per minute measured at a reference surface pressure $P_0$. The equivalent surface-volume withdrawal rate at depth is

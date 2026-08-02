@@ -35,6 +35,8 @@ After completing this chapter, you should be able to:
 
 ## Theory
 
+The integrated viewpoint follows the systems-engineering practice of making boundaries, states, interfaces, assumptions, constraints, and verification evidence explicit [@nasa2016].
+
 ### The complete causal architecture
 
 The principal relationships developed in the book can be summarized as

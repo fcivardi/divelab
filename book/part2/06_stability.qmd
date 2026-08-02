@@ -38,6 +38,8 @@ After completing this chapter, you should be able to:
 
 ## Theory
 
+The equilibrium, linearization, eigenvalue, and local-stability concepts in this chapter follow standard nonlinear-systems analysis [@khalil2002].
+
 ### Equilibrium Is a State, Not Only a Force Balance
 
 For the unforced model,

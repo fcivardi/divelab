@@ -38,6 +38,8 @@ After completing this chapter, you should be able to:
 
 ## Theory
 
+The treatment of delay, intermittent decisions, limited human response, and human--automation interaction draws on classical manual-control and engineering-psychology models [@sheridan1974; @wickens2015].
+
 ### The Human Feedback Architecture
 
 The loop contains

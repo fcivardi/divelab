@@ -50,6 +50,8 @@ After completing this chapter, you should be able to:
 
 ## Theory
 
+The vertical plant combines classical rigid-body force balance with a simplified hydrodynamic drag law; both the form and its limits should be read as an engineering model [@white2016; @noaa2017].
+
 ### Coordinate and Force Conventions
 
 DiveLab measures depth $z\geq0$ positively downward. Vertical velocity $v$ is defined positively upward. The kinematic relation is therefore
