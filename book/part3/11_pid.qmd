@@ -244,7 +244,7 @@ The force controller remains an educational abstraction. It does not prescribe B
 
 ## Companion Notebook
 
-Use **Notebook 11 — PID Control** to compare PD and PID disturbance rejection, inspect controller components, reproduce windup, apply anti-windup, and quantify performance.
+Use **Notebook 11 — PID Control** to verify the augmented closed-loop poles, compare PD and PID disturbance rejection, reproduce windup, apply back-calculation anti-windup, and quantify performance.
 
 - [Open the notebook on GitHub](https://github.com/fcivardi/divelab/blob/editorial-v2/notebooks/11_PID_Control.ipynb)
 - [Run the notebook in Google Colab](https://colab.research.google.com/github/fcivardi/divelab/blob/editorial-v2/notebooks/11_PID_Control.ipynb)

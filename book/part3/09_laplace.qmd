@@ -291,7 +291,7 @@ Transfer functions make interconnection algebra possible. Blocks can represent p
 
 ## Companion Notebook
 
-Use **Notebook 09 — Laplace Transforms and Transfer Functions** to explore transform properties, compute poles and zeros, compare state-space and transfer-function responses, and examine the unstable DiveLab plant.
+Use **Notebook 09 — Laplace Transforms and Transfer Functions** to derive the local plant transfer function, compute its poles, compare state-space and transfer-function responses, and separate input response from initial-condition response.
 
 - [Open the notebook on GitHub](https://github.com/fcivardi/divelab/blob/editorial-v2/notebooks/09_Laplace_and_Transfer_Functions.ipynb)
 - [Run the notebook in Google Colab](https://colab.research.google.com/github/fcivardi/divelab/blob/editorial-v2/notebooks/09_Laplace_and_Transfer_Functions.ipynb)

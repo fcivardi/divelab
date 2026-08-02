@@ -253,7 +253,7 @@ Frequency-domain analysis compresses many sinusoidal experiments into one pair o
 
 ## Companion Notebook
 
-Use **Notebook 12 — Frequency Response** to construct Bode plots, verify sinusoidal predictions in time simulations, explore damping and bandwidth, and quantify delay phase and periodic disturbance response.
+Use **Notebook 12 — Frequency Response** to construct Bode plots, estimate bandwidth, verify sinusoidal predictions in time simulations, and quantify delay phase and periodic disturbance response.
 
 - [Open the notebook on GitHub](https://github.com/fcivardi/divelab/blob/editorial-v2/notebooks/12_Frequency_Response.ipynb)
 - [Run the notebook in Google Colab](https://colab.research.google.com/github/fcivardi/divelab/blob/editorial-v2/notebooks/12_Frequency_Response.ipynb)
