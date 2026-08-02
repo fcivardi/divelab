@@ -1,34 +1,151 @@
 # Gas Consumption
 
-## Guiding question
+## Companion Resources
 
-What physical or systems-engineering idea does this chapter introduce?
+::: {.callout-tip title="Companion Resources"}
+**Chapter:** 15 — Gas Consumption
 
-## Learning objectives
+**Companion notebook:** Notebook 15 — Gas Consumption
 
-By the end of this chapter, the reader will be able to:
+**Estimated study time:** 120–150 minutes, including the notebook
 
-- explain the central concept;
-- identify the relevant variables;
-- interpret the main equations;
-- connect theory to simulation.
+**Prerequisites:** Chapters 1, 2, and 14
+:::
 
-## Physical motivation
+## Engineering Question
 
-This section will be developed during the DiveLab v2 refactoring.
+How do depth, time, and breathing demand deplete a finite cylinder resource?
 
-## Mathematical model
+## Learning Objectives
 
-The equations will follow the conventions in `STYLE_GUIDE.md`.
+After completing this chapter, you should be able to:
 
-## Computational laboratory
+- distinguish surface-equivalent breathing rate from ambient gas flow;
+- compute depth-dependent gas demand from absolute pressure;
+- formulate remaining gas as a dynamic state;
+- integrate gas use over a variable depth and workload profile;
+- explain why a gas forecast is conditional rather than guaranteed.
 
-The chapter-aligned companion notebook will be developed with this chapter.
+## Theory
 
-## Interpretation
+### Surface-equivalent rate
 
-Explain what the simulation shows and why it matters.
+Let $q_S(t)$ denote a surface-equivalent volumetric rate, often called RMV or SAC depending on convention. DiveLab uses $q_S$ in litres per minute measured at a reference surface pressure $P_0$. The equivalent surface-volume withdrawal rate at depth is
+
+$$
+q(t)=q_S(t)\frac{P_{\mathrm{amb}}(z)}{P_0}.
+$$
+
+Using the hydrostatic relation,
+
+$$
+P_{\mathrm{amb}}(z)=P_0+\rho gz.
+$$
+
+The familiar approximation $P_{\mathrm{amb}}/P_0\approx1+z/10$ is useful in seawater, but the exact pressure ratio keeps the assumptions visible.
+
+### Gas remaining as a state
+
+Let $G(t)$ be the remaining surface-equivalent free-gas volume. Then
+
+$$
+\dot G(t)=-q_S(t)\frac{P_{\mathrm{amb}}(z(t))}{P_0}.
+$$
+
+For a cylinder with internal volume $V_{\mathrm{cyl}}$, an idealized pressure estimate is
+
+$$
+P_{\mathrm{cyl}}(t)=\frac{G(t)}{V_{\mathrm{cyl}}}.
+$$
+
+This approximation omits non-ideal gas behavior, temperature transients, gauge error, regulator limits, and unusable residual gas.
+
+### Workload and uncertainty
+
+Write
+
+$$
+q_S(t)=q_{S,0}w(t),
+$$
+
+where $w(t)$ is a dimensionless workload multiplier. It may represent swimming effort, stress, current, thermal strain, or other demand. Because future $w(t)$ and $z(t)$ are unknown, time-to-reserve is a scenario-dependent prediction.
+
+::: {.callout-warning title="Not a gas-planning tool"}
+The equations and examples teach resource dynamics. They do not include team reserves, contingencies, gas-switch rules, regulator performance, local standards, or instructor procedures and must not be used to plan a real dive.
+:::
+
+## Worked Examples
+
+### Example 1: rate at 20 m
+
+With $q_S=18~\mathrm{L/min}$ and the $10~\mathrm{m/bar}$ approximation,
+
+$$
+q(20)=18(1+20/10)=54~\mathrm{L/min}.
+$$
+
+### Example 2: a constant-depth exposure
+
+Thirty minutes at $20~\mathrm{m}$ with the same surface-equivalent rate consumes
+
+$$
+G_{\mathrm{used}}=54\times30=1620~\mathrm{L}
+$$
+
+in the idealized model.
+
+### Example 3: why maximum depth is insufficient
+
+Two profiles may both reach $20~\mathrm{m}$ yet consume different gas because
+
+$$
+G_{\mathrm{used}}=\int_0^Tq_S(t)\frac{P_{\mathrm{amb}}(z(t))}{P_0}\,dt
+$$
+
+depends on the full depth and demand histories.
+
+## DiveLab Insight
+
+Gas is not merely a displayed pressure. It is a monotonically decreasing resource state coupled to depth and human demand. The system is therefore dynamic even when cylinder pressure appears nearly linear over a short interval.
+
+## Engineering Perspective
+
+Gas management resembles energy management in a battery-powered system: remaining resource is estimated, future load is uncertain, and a constraint must be respected under disturbances. A useful forecast always states its assumed future profile.
 
 ## Summary
 
-State the central insight and motivate the next chapter.
+- Ambient demand scales with absolute-pressure ratio.
+- Surface-equivalent rate and ambient volumetric flow are different quantities.
+- Remaining gas obeys a first-order balance law.
+- Workload and depth histories jointly determine depletion.
+- Operational reserve rules lie outside this educational model.
+
+## Key Equations
+
+$$
+q=q_S\frac{P_{\mathrm{amb}}}{P_0},
+\qquad
+\dot G=-q_S\frac{P_{\mathrm{amb}}}{P_0},
+$$
+
+$$
+G(T)=G(0)-\int_0^Tq_S(t)\frac{P_{\mathrm{amb}}(z(t))}{P_0}\,dt,
+\qquad
+P_{\mathrm{cyl}}\approx\frac{G}{V_{\mathrm{cyl}}}.
+$$
+
+## Exercises
+
+1. Compare the exact pressure ratio with $1+z/10$ from 0 to $40~\mathrm{m}$.
+2. Derive the constant-depth solution for $G(t)$.
+3. Construct two profiles with equal duration and maximum depth but different gas use.
+4. Add an uncertain workload interval and report a range rather than one forecast.
+5. List the assumptions required to infer free-gas volume from cylinder pressure.
+
+## Companion Notebook
+
+Open [Notebook 15 — Gas Consumption](https://colab.research.google.com/github/fcivardi/divelab/blob/editorial-v2/notebooks/15_Gas_Consumption.ipynb) to integrate gas use over depth and workload profiles and test forecast sensitivity.
+
+## Looking Ahead
+
+Chapter 16 asks how a dive computer turns pressure samples into depth, vertical speed, exposure histories, alarms, and hidden-state estimates.

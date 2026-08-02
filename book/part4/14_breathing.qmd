@@ -1,34 +1,175 @@
 # Breathing Dynamics
 
-## Guiding question
+## Companion Resources
 
-What physical or systems-engineering idea does this chapter introduce?
+::: {.callout-tip title="Companion Resources"}
+**Chapter:** 14 — Breathing Dynamics
 
-## Learning objectives
+**Companion notebook:** Notebook 14 — Breathing Dynamics
 
-By the end of this chapter, the reader will be able to:
+**Estimated study time:** 120–150 minutes, including the notebook
 
-- explain the central concept;
-- identify the relevant variables;
-- interpret the main equations;
-- connect theory to simulation.
+**Prerequisites:** Chapters 4, 6, 10, and 12
+:::
 
-## Physical motivation
+## Engineering Question
 
-This section will be developed during the DiveLab v2 refactoring.
+How does breathing act simultaneously as a periodic disturbance, a limited buoyancy actuator, and a physiological demand?
 
-## Mathematical model
+Part III treated force as a commanded input. A diver does not possess an ideal force actuator: lung volume changes cyclically, responds with delay, and has strict physiological limits. This chapter adds that actuator to the vertical-motion model.
 
-The equations will follow the conventions in `STYLE_GUIDE.md`.
+## Learning Objectives
 
-## Computational laboratory
+After completing this chapter, you should be able to:
 
-The chapter-aligned companion notebook will be developed with this chapter.
+- separate mean lung volume from tidal variation and deliberate control;
+- convert a gas-volume change into buoyant-force variation;
+- model lung-volume response as a bounded first-order actuator;
+- explain the phase lag between a breathing command and vertical motion;
+- distinguish a teaching model from safe breathing practice.
 
-## Interpretation
+## Theory
 
-Explain what the simulation shows and why it matters.
+### Volume decomposition
+
+Represent the lung-volume contribution relative to a chosen operating point as
+
+$$
+\Delta V_L(t)=\bar V_L+V_T(t)+V_C(t),
+$$
+
+where $\bar V_L$ is a mean offset, $V_T$ is the unavoidable tidal component, and $V_C$ is a deliberate low-frequency adjustment. A first approximation to tidal breathing is
+
+$$
+V_T(t)=A_T\sin(\omega_b t).
+$$
+
+The corresponding buoyancy perturbation is
+
+$$
+\Delta F_{B,L}(t)=\rho g\Delta V_L(t).
+$$
+
+Thus a volume change of $0.5~\mathrm{L}$ in seawater changes buoyancy by approximately $5.0~\mathrm{N}$, or about $0.51~\mathrm{kgf}$.
+
+### A bounded actuator
+
+Deliberate volume change is not instantaneous. A useful control-oriented model is
+
+$$
+\tau_L\dot V_C+V_C=\operatorname{sat}(V_{\mathrm{cmd}},-V_{C,\max},V_{C,\max}),
+$$
+
+where $\tau_L$ represents response time and the saturation represents limited comfortable excursion. These parameters are illustrative and person-dependent; they are not prescriptions.
+
+### Coupling to vertical motion
+
+Using the upward-positive velocity convention from Part I,
+
+$$
+\dot z=-v,
+$$
+
+and a local vertical model becomes
+
+$$
+m\dot v=k_B\delta z-cv+\rho g\left[V_T(t)+V_C(t)\right]+d(t).
+$$
+
+The state can be augmented to $x=[\delta z,\delta v,V_C]^T$. Breathing therefore adds a dynamic state, not merely an algebraic input.
+
+### Frequency-domain interpretation
+
+The actuator transfer function is
+
+$$
+G_L(s)=\frac{1}{\tau_Ls+1}.
+$$
+
+It attenuates and delays fast commands. The mechanical plant adds further phase lag. Consequently, a breathing correction based only on current depth can arrive after the motion it was intended to oppose.
+
+::: {.callout-warning title="Safety and scope"}
+The model is for systems analysis. It does not recommend breath-holding or altered breathing patterns. Divers should breathe continuously and follow their training, medical guidance, and equipment procedures.
+:::
+
+## Worked Examples
+
+### Example 1: tidal buoyancy amplitude
+
+For $A_T=0.35~\mathrm{L}$ in seawater,
+
+$$
+\widehat F_T=\rho gA_T
+=(1025)(9.80665)(0.35\times10^{-3})
+\approx3.52~\mathrm{N}.
+$$
+
+This is small compared with body weight but large enough to produce visible low-frequency motion near neutral buoyancy.
+
+### Example 2: actuator phase lag
+
+Let $\tau_L=0.7~\mathrm{s}$ and the breathing frequency be $0.25~\mathrm{Hz}$, so $\omega_b=1.57~\mathrm{rad/s}$. Then
+
+$$
+|G_L(j\omega_b)|=\frac{1}{\sqrt{1+(\omega_b\tau_L)^2}}\approx0.67,
+$$
+
+and
+
+$$
+\angle G_L(j\omega_b)=-\tan^{-1}(\omega_b\tau_L)\approx-48^\circ.
+$$
+
+### Example 3: slow and fast buoyancy allocation
+
+Breathing can make small, reversible corrections, whereas the BCD changes the operating point over a wider range. A coherent architecture assigns fast, bounded correction to breathing and slow trim to the BCD; neither is modelled as unlimited.
+
+## DiveLab Insight
+
+Breathing is the first input in the book that is simultaneously an actuator and a disturbance. Its mean component can shift equilibrium, its tidal component excites the plant periodically, and its deliberate component can participate in feedback.
+
+## Engineering Perspective
+
+This is a control-allocation problem. Two actuators influence the same buoyancy channel but have different bandwidth, authority, cost, and constraints. Good allocation respects those differences instead of commanding both actuators identically.
 
 ## Summary
 
-State the central insight and motivate the next chapter.
+- Lung-volume change produces buoyancy change through $\rho g\Delta V_L$.
+- Tidal breathing is approximately periodic around a mean volume.
+- Deliberate volume adjustment is delayed and bounded.
+- Coupling the lung state to the vertical plant exposes phase lag and control limits.
+- The model is explanatory, not operational guidance.
+
+## Key Equations
+
+$$
+\Delta V_L=\bar V_L+V_T+V_C,
+\qquad
+\Delta F_{B,L}=\rho g\Delta V_L,
+$$
+
+$$
+V_T=A_T\sin(\omega_bt),
+\qquad
+\tau_L\dot V_C+V_C=\operatorname{sat}(V_{\mathrm{cmd}}),
+$$
+
+$$
+m\dot v=k_B\delta z-cv+\rho g(V_T+V_C)+d.
+$$
+
+## Exercises
+
+1. Compute the buoyancy amplitude for tidal volumes of $0.25$, $0.50$, and $0.75~\mathrm{L}$.
+2. Derive the magnitude and phase of $G_L(j\omega)$.
+3. Explain why increasing breathing frequency does not necessarily increase useful control bandwidth.
+4. Propose a rule that transfers sustained correction from breathing to the BCD.
+5. Identify three physiological effects omitted by the model.
+
+## Companion Notebook
+
+Open [Notebook 14 — Breathing Dynamics](https://colab.research.google.com/github/fcivardi/divelab/blob/editorial-v2/notebooks/14_Breathing_Dynamics.ipynb) to simulate tidal forcing, actuator lag, saturation, and two-timescale control allocation.
+
+## Looking Ahead
+
+Breathing also determines how rapidly the cylinder resource is consumed. Chapter 15 turns ambient pressure and respiratory demand into a gas-balance state equation.

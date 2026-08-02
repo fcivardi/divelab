@@ -1,34 +1,166 @@
 # Decompression Models
 
-## Guiding question
+## Companion Resources
 
-What physical or systems-engineering idea does this chapter introduce?
+::: {.callout-tip title="Companion Resources"}
+**Chapter:** 17 — Decompression Models
 
-## Learning objectives
+**Companion notebook:** Notebook 17 — Inert-Gas Compartment Models
 
-By the end of this chapter, the reader will be able to:
+**Estimated study time:** 150–180 minutes, including the notebook
 
-- explain the central concept;
-- identify the relevant variables;
-- interpret the main equations;
-- connect theory to simulation.
+**Prerequisites:** Chapters 2, 5, 6, and 16
+:::
 
-## Physical motivation
+## Engineering Question
 
-This section will be developed during the DiveLab v2 refactoring.
+How can a bank of simple dynamic states summarize a diver's pressure-exposure history—and what can it not tell us?
 
-## Mathematical model
+## Learning Objectives
 
-The equations will follow the conventions in `STYLE_GUIDE.md`.
+After completing this chapter, you should be able to:
 
-## Computational laboratory
+- derive the first-order inert-gas compartment equation;
+- interpret half-time, equilibrium, and exponential response;
+- simulate multiple compartments along a variable depth profile;
+- explain why compartments are mathematical constructs rather than anatomical tissues;
+- distinguish state propagation from decompression-limit policy and physiological risk.
 
-The chapter-aligned companion notebook will be developed with this chapter.
+## Theory
 
-## Interpretation
+### Inspired inert-gas pressure
 
-Explain what the simulation shows and why it matters.
+For a simplified air model, the inspired nitrogen pressure is
+
+$$
+P_I(t)=f_{N_2}\left[P_{\mathrm{amb}}(t)-P_{H_2O}\right],
+$$
+
+where $f_{N_2}\approx0.79$ and $P_{H_2O}\approx0.0627~\mathrm{bar}$ at body temperature. The water-vapour correction is explicit so that dry ambient pressure is not silently substituted for inspired pressure.
+
+### One perfusion-limited compartment
+
+A hypothetical compartment with inert-gas tension $P_t$ is modelled as
+
+$$
+\dot P_t=k(P_I-P_t),
+\qquad
+k=\frac{\ln2}{T_{1/2}}.
+$$
+
+For constant $P_I$,
+
+$$
+P_t(t)=P_I+[P_t(0)-P_I]e^{-kt}.
+$$
+
+After one half-time, half the initial difference remains. Uptake and elimination use the same linear equation in this simplified model.
+
+### Multiple time scales
+
+For $n$ independent compartments,
+
+$$
+\dot{\boldsymbol P}_t
+=-K\boldsymbol P_t+K\boldsymbol1P_I,
+$$
+
+where $K=\operatorname{diag}(k_1,\ldots,k_n)$. The eigenvalues are $-k_i$: fast compartments follow pressure changes rapidly, while slow compartments preserve longer exposure history.
+
+### Variable pressure
+
+During descent or ascent, $P_I(t)$ changes continuously. The state engine advances every compartment at every sample. A piecewise-constant exact update is
+
+$$
+P_{t,i,k+1}=P_{I,k}+[P_{t,i,k}-P_{I,k}]e^{-k_i\Delta t}.
+$$
+
+This update is numerically stable for any positive step, although its accuracy still depends on how well $P_{I,k}$ represents the pressure over the interval.
+
+### From tissue state to limits
+
+Propagating $P_{t,i}$ is only the kinetic part of a decompression algorithm. A complete operational algorithm also defines tolerated supersaturation, ascent and stop logic, gas switching, conservatism settings, initialization, altitude handling, and many implementation details. Different validated products may make different choices. DAN emphasizes that compartment calculations summarize pressure–time exposure but do not capture many individual and environmental influences on decompression stress [@dan-dcs-introduction; @dan-computer-use].
+
+::: {.callout-danger title="Not for dive planning"}
+This chapter deliberately does **not** generate no-decompression limits, ceilings, or schedules. The compartments are educational state models, not anatomical predictions or guarantees of safety. Decompression sickness can occur after profiles that a model permits; use trained procedures and a suitable, validated dive computer for real diving.
+:::
+
+## Worked Examples
+
+### Example 1: the half-time rule
+
+For $T_{1/2}=20~\mathrm{min}$ and a step from $P_t(0)=0.75~\mathrm{bar}$ to $P_I=2.25~\mathrm{bar}$,
+
+$$
+P_t(20)=2.25+(0.75-2.25)2^{-1}=1.50~\mathrm{bar}.
+$$
+
+### Example 2: fast and slow compartments
+
+After $20~\mathrm{min}$ at constant inspired pressure, a $5$-minute compartment completes four half-times and closes $93.75\%$ of its initial gap. An $80$-minute compartment closes only
+
+$$
+1-2^{-20/80}\approx15.9\%.
+$$
+
+### Example 3: history dependence
+
+Two divers at the same current depth can have different $\boldsymbol P_t$ because the state depends on the entire preceding pressure history. Current depth is therefore insufficient to reconstruct decompression state without memory or an initialized model.
+
+## DiveLab Insight
+
+The compartment bank is a diagonal linear system with many time scales. It is mathematically similar to thermal storage, pharmacokinetics, and distributed relaxation processes: a complex history is compressed into a finite state vector.
+
+## Engineering Perspective
+
+The model separates three questions that should never be conflated:
+
+1. **state propagation:** what does the mathematical compartment contain?
+2. **decision rule:** what limit or warning does an algorithm compute?
+3. **validation:** what evidence supports acceptable use of the complete system?
+
+Correct integration answers only the first question.
 
 ## Summary
 
-State the central insight and motivate the next chapter.
+- Inspired inert-gas pressure drives first-order compartment states.
+- Half-time determines the eigenvalue and response speed.
+- A bank of compartments stores multiple time scales of exposure history.
+- Compartments are mathematical constructs, not literal tissues.
+- Kinetics alone do not constitute an operational decompression algorithm.
+
+## Key Equations
+
+$$
+P_I=f_{N_2}(P_{\mathrm{amb}}-P_{H_2O}),
+\qquad
+k=\frac{\ln2}{T_{1/2}},
+$$
+
+$$
+\dot P_t=k(P_I-P_t),
+$$
+
+$$
+P_t(t)=P_I+[P_t(0)-P_I]e^{-kt},
+$$
+
+$$
+P_{t,i,k+1}=P_{I,k}+[P_{t,i,k}-P_{I,k}]e^{-k_i\Delta t}.
+$$
+
+## Exercises
+
+1. Verify analytically that the remaining gap halves after $T_{1/2}$.
+2. Compute the eigenvalues for compartments with half-times $5$, $20$, and $80~\mathrm{min}$.
+3. Compare Euler integration with the exact discrete update at several step sizes.
+4. Construct two profiles ending at the same depth with different compartment states.
+5. Explain why a compartment model cannot represent hydration, temperature, exertion, or individual susceptibility without additional states and evidence.
+
+## Companion Notebook
+
+Open [Notebook 17 — Inert-Gas Compartment Models](https://colab.research.google.com/github/fcivardi/divelab/blob/editorial-v2/notebooks/17_Inert_Gas_Compartments.ipynb) to simulate one and multiple time scales, compare numerical updates, and demonstrate history dependence without generating operational limits.
+
+## Looking Ahead
+
+Part IV has assembled an integrated system: human breathing, a finite gas resource, a sampled estimator, and model-based hidden physiological states. The appendices provide the Python and mathematical tools used throughout the book.

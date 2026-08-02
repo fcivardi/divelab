@@ -1,34 +1,151 @@
-# Dive Computers
+# Dive Computers as Real-Time Estimators
 
-## Guiding question
+## Companion Resources
 
-What physical or systems-engineering idea does this chapter introduce?
+::: {.callout-tip title="Companion Resources"}
+**Chapter:** 16 — Dive Computers as Real-Time Estimators
 
-## Learning objectives
+**Companion notebook:** Notebook 16 — Dive-Computer Estimation Pipeline
 
-By the end of this chapter, the reader will be able to:
+**Estimated study time:** 120–150 minutes, including the notebook
 
-- explain the central concept;
-- identify the relevant variables;
-- interpret the main equations;
-- connect theory to simulation.
+**Prerequisites:** Chapters 7, 8, 15, and basic numerical differentiation
+:::
 
-## Physical motivation
+## Engineering Question
 
-This section will be developed during the DiveLab v2 refactoring.
+What does a dive computer measure, what does it estimate, and what does it merely predict from a model?
 
-## Mathematical model
+## Learning Objectives
 
-The equations will follow the conventions in `STYLE_GUIDE.md`.
+After completing this chapter, you should be able to:
 
-## Computational laboratory
+- distinguish measured, derived, estimated, and predicted quantities;
+- convert sampled pressure into depth and vertical speed;
+- explain the noise amplification caused by differentiation;
+- describe a real-time processing pipeline with explicit state and uncertainty;
+- design basic plausibility and threshold logic without confusing it with safety certification.
 
-The chapter-aligned companion notebook will be developed with this chapter.
+## Theory
 
-## Interpretation
+### Measurement hierarchy
 
-Explain what the simulation shows and why it matters.
+A pressure sensor produces an electrical measurement related to ambient pressure. After calibration, the device derives depth from
+
+$$
+\hat z_k=\frac{P_{m,k}-\hat P_0}{\hat\rho g}.
+$$
+
+The hats matter: surface pressure, water density, and sensor calibration are estimates. Vertical speed is not directly measured in the minimal architecture; a finite-difference estimate is
+
+$$
+\hat{\dot z}_k=\frac{\hat z_k-\hat z_{k-1}}{\Delta t}.
+$$
+
+If depth-noise variance is $\sigma_z^2$ and consecutive errors are independent, the difference has variance $2\sigma_z^2/\Delta t^2$. Faster sampling alone therefore does not guarantee a cleaner derivative.
+
+### Filtering and latency
+
+A first-order discrete low-pass filter is
+
+$$
+\bar z_k=\alpha\hat z_k+(1-\alpha)\bar z_{k-1},
+\qquad0<\alpha\le1.
+$$
+
+Smaller $\alpha$ suppresses more noise but adds lag. Chapter 8 provides a model-based alternative: a Kalman filter combines plant dynamics, measurement noise, and process uncertainty to estimate depth and velocity together.
+
+### State engine
+
+A compact processing pipeline is
+
+$$
+P_m\rightarrow\hat z\rightarrow\hat v\rightarrow
+\begin{cases}
+\hat G & \text{gas model},\\
+\hat P_{t,i} & \text{decompression model},\\
+\text{alarms} & \text{threshold and plausibility logic}.
+\end{cases}
+$$
+
+Depth is derived from a sensor; velocity and gas state are estimated; future gas or decompression status is predicted conditionally on a model.
+
+### Fault-aware computation
+
+Useful checks include range limits, rate-of-change limits, stuck-sensor detection, missing samples, and disagreement between redundant channels. An alarm is the output of specified logic, not proof that all unsafe conditions have been detected.
+
+::: {.callout-warning title="Educational implementation only"}
+The pipeline in this chapter is neither certified nor validated for life-support decisions. Real dive computers require qualified hardware, environmental testing, verified algorithms, human-factors engineering, fault analysis, and regulatory or standards compliance.
+:::
+
+## Worked Examples
+
+### Example 1: pressure bias
+
+A constant pressure bias $b_P$ produces depth bias
+
+$$
+b_z=\frac{b_P}{\rho g}.
+$$
+
+For $b_P=1~\mathrm{kPa}$ in seawater, $b_z\approx0.10~\mathrm{m}$.
+
+### Example 2: derivative noise
+
+If $sigma_z=0.03~\mathrm{m}$ and $\Delta t=1~\mathrm{s}$, then
+
+$$
+\sigma_{\dot z}\approx\frac{\sqrt{2}\sigma_z}{\Delta t}=0.042~\mathrm{m/s}.
+$$
+
+At $\Delta t=0.1~\mathrm{s}$ the same calculation gives $0.42~\mathrm{m/s}$.
+
+### Example 3: conditional gas forecast
+
+If the current model estimates $G=900~\mathrm{L}$ and assumes a future withdrawal of $45~\mathrm{L/min}$, its constant-condition horizon is $20~\mathrm{min}$. This number is a scenario output, not a guaranteed remaining time.
+
+## DiveLab Insight
+
+A dive computer is an observer with memory. The screen displays a mixture of sensor-derived variables, filtered states, integrated histories, threshold logic, and predictions. Treating all displayed numbers as measurements conceals the model dependence.
+
+## Engineering Perspective
+
+This architecture is a small cyber-physical system. Sensor calibration, sampling, estimation, model validity, software timing, interface design, power, and fault handling all contribute to system performance.
 
 ## Summary
 
-State the central insight and motivate the next chapter.
+- Ambient pressure is measured; depth is derived.
+- Vertical speed is estimated and differentiation amplifies noise.
+- Filtering trades noise suppression against latency.
+- Gas and tissue loading are hidden states propagated by models.
+- A teaching pipeline is not a validated dive computer.
+
+## Key Equations
+
+$$
+\hat z_k=\frac{P_{m,k}-\hat P_0}{\hat\rho g},
+\qquad
+\hat{\dot z}_k=\frac{\hat z_k-\hat z_{k-1}}{\Delta t},
+$$
+
+$$
+\bar z_k=\alpha\hat z_k+(1-\alpha)\bar z_{k-1},
+\qquad
+\operatorname{Var}(\hat{\dot z})\approx\frac{2\sigma_z^2}{\Delta t^2}.
+$$
+
+## Exercises
+
+1. Propagate uncertainty in $P_m$, $P_0$, and $\rho$ into depth uncertainty.
+2. Compare backward difference with a smoothed derivative.
+3. Design tests for a frozen pressure sample and an impossible pressure jump.
+4. Classify each display item as measured, derived, estimated, or predicted.
+5. Explain why an alarm threshold and its verification evidence must be specified together.
+
+## Companion Notebook
+
+Open [Notebook 16 — Dive-Computer Estimation Pipeline](https://colab.research.google.com/github/fcivardi/divelab/blob/editorial-v2/notebooks/16_Dive_Computer_Estimation.ipynb) to inject sensor noise and bias, compare estimators, and implement fault checks.
+
+## Looking Ahead
+
+Chapter 17 develops the hidden-state model behind decompression information: a bank of first-order inert-gas compartments driven by the pressure history.
