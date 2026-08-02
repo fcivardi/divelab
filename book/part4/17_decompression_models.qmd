@@ -33,7 +33,7 @@ After completing this chapter, you should be able to:
 
 Compartment decompression models developed from early staged-decompression work into multi-compartment computational formulations [@boycott1908; @buhlmann1984].
 
-### Inspired inert-gas pressure
+### Inspired Inert-Gas Pressure
 
 For a simplified air model, the inspired nitrogen pressure is
 
@@ -43,9 +43,15 @@ $$
 
 where $f_{N_2}\approx0.79$ and $P_{H_2O}\approx0.0627~\mathrm{bar}$ at body temperature. The water-vapour correction is explicit so that dry ambient pressure is not silently substituted for inspired pressure.
 
-### One perfusion-limited compartment
+### One Perfusion-Limited Compartment
 
-A hypothetical compartment with inert-gas tension $P_t$ is modelled as
+Assume that the rate of change of a hypothetical compartment tension is proportional to its driving-pressure difference. Over a short interval $\Delta t$,
+
+$$
+\Delta P_t\approx k(P_I-P_t)\Delta t.
+$$
+
+Dividing by $\Delta t$ and taking the continuous-time limit gives
 
 $$
 \dot P_t=k(P_I-P_t),
@@ -61,7 +67,7 @@ $$
 
 After one half-time, half the initial difference remains. Uptake and elimination use the same linear equation in this simplified model.
 
-### Multiple time scales
+### Multiple Time Scales
 
 For $n$ independent compartments,
 
@@ -72,7 +78,7 @@ $$
 
 where $K=\operatorname{diag}(k_1,\ldots,k_n)$. The eigenvalues are $-k_i$: fast compartments follow pressure changes rapidly, while slow compartments preserve longer exposure history.
 
-### Variable pressure
+### Variable Pressure
 
 During descent or ascent, $P_I(t)$ changes continuously. The state engine advances every compartment at every sample. A piecewise-constant exact update is
 
@@ -82,7 +88,7 @@ $$
 
 This update is numerically stable for any positive step, although its accuracy still depends on how well $P_{I,k}$ represents the pressure over the interval.
 
-### From tissue state to limits
+### From Tissue State to Limits
 
 Propagating $P_{t,i}$ is only the kinetic part of a decompression algorithm. A complete operational algorithm also defines tolerated supersaturation, ascent and stop logic, gas switching, conservatism settings, initialization, altitude handling, and many implementation details. Different validated products may make different choices. DAN emphasizes that compartment calculations summarize pressure–time exposure but do not capture many individual and environmental influences on decompression stress [@dan-dcs-introduction; @dan-computer-use].
 
@@ -92,7 +98,7 @@ This chapter deliberately does **not** generate no-decompression limits, ceiling
 
 ## Worked Examples
 
-### Example 1: the half-time rule
+### Example 1: The Half-Time Rule
 
 For $T_{1/2}=20~\mathrm{min}$ and a step from $P_t(0)=0.75~\mathrm{bar}$ to $P_I=2.25~\mathrm{bar}$,
 
@@ -100,7 +106,7 @@ $$
 P_t(20)=2.25+(0.75-2.25)2^{-1}=1.50~\mathrm{bar}.
 $$
 
-### Example 2: fast and slow compartments
+### Example 2: Fast and Slow Compartments
 
 After $20~\mathrm{min}$ at constant inspired pressure, a $5$-minute compartment completes four half-times and closes $93.75\%$ of its initial gap. An $80$-minute compartment closes only
 
@@ -108,13 +114,17 @@ $$
 1-2^{-20/80}\approx15.9\%.
 $$
 
-### Example 3: history dependence
+### Example 3: History Dependence
 
 Two divers at the same current depth can have different $\boldsymbol P_t$ because the state depends on the entire preceding pressure history. Current depth is therefore insufficient to reconstruct decompression state without memory or an initialized model.
 
 ## DiveLab Insight
 
+::: {.callout-important title="DiveLab Insight"}
+
 The compartment bank is a diagonal linear system with many time scales. It is mathematically similar to thermal storage, pharmacokinetics, and distributed relaxation processes: a complex history is compressed into a finite state vector.
+
+:::
 
 ## Engineering Perspective
 
@@ -136,23 +146,13 @@ Correct integration answers only the first question.
 
 ## Key Equations
 
-$$
-P_I=f_{N_2}(P_{\mathrm{amb}}-P_{H_2O}),
-\qquad
-k=\frac{\ln2}{T_{1/2}},
-$$
-
-$$
-\dot P_t=k(P_I-P_t),
-$$
-
-$$
-P_t(t)=P_I+[P_t(0)-P_I]e^{-kt},
-$$
-
-$$
-P_{t,i,k+1}=P_{I,k}+[P_{t,i,k}-P_{I,k}]e^{-k_i\Delta t}.
-$$
+| Equation | Meaning |
+|:--|:--|
+| $P_I=f_{N_2}(P_{\mathrm{amb}}-P_{H_2O})$ | Inspired nitrogen pressure in the simplified air model |
+| $k=\ln2/T_{1/2}$ | Rate constant from compartment half-time |
+| $\dot P_t=k(P_I-P_t)$ | First-order compartment state equation |
+| $P_t(t)=P_I+[P_t(0)-P_I]e^{-kt}$ | Constant-inspired-pressure solution |
+| $P_{t,i,k+1}=P_{I,k}+[P_{t,i,k}-P_{I,k}]e^{-k_i\Delta t}$ | Exact piecewise-constant discrete update |
 
 ## Exercises
 

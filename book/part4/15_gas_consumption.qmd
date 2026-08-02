@@ -33,9 +33,9 @@ After completing this chapter, you should be able to:
 
 The pressure-scaled resource model uses standard open-circuit diving gas accounting; operational reserve procedures remain deliberately outside its scope [@noaa2017; @usnavy2016].
 
-### Surface-equivalent rate
+### Surface-Equivalent Rate
 
-Let $q_S(t)$ denote a surface-equivalent volumetric rate, often called RMV or SAC depending on convention. DiveLab uses $q_S$ in litres per minute measured at a reference surface pressure $P_0$. The equivalent surface-volume withdrawal rate at depth is
+Let $q_S(t)$ denote a surface-equivalent volumetric rate, often called RMV or SAC depending on convention. DiveLab uses $q_S$ in liters per minute measured at a reference surface pressure $P_0$. The equivalent surface-volume withdrawal rate at depth is
 
 $$
 q(t)=q_S(t)\frac{P_{\mathrm{amb}}(z)}{P_0}.
@@ -47,9 +47,11 @@ $$
 P_{\mathrm{amb}}(z)=P_0+\rho gz.
 $$
 
+Here $P_{\mathrm{amb}}$ means ambient **absolute** pressure; it is the same physical quantity denoted by $P_{\mathrm{abs}}$ in Part I. The ambient notation is retained in Part IV to emphasize that this pressure drives respiratory and inert-gas models.
+
 The familiar approximation $P_{\mathrm{amb}}/P_0\approx1+z/10$ is useful in seawater, but the exact pressure ratio keeps the assumptions visible.
 
-### Gas remaining as a state
+### Gas Remaining as a State
 
 Let $G(t)$ be the remaining surface-equivalent free-gas volume. Then
 
@@ -66,7 +68,7 @@ $$
 
 Here $P_{\mathrm{cyl,abs}}$ is absolute cylinder pressure. Gauge pressure would be $P_{\mathrm{cyl,g}}=P_{\mathrm{cyl,abs}}-P_0$ when the cylinder and gauge are at the same atmospheric reference. This approximation omits non-ideal gas behavior, temperature transients, gauge error, regulator limits, and unusable residual gas.
 
-### Workload and uncertainty
+### Workload and Uncertainty
 
 Write
 
@@ -82,7 +84,7 @@ The equations and examples teach resource dynamics. They do not include team res
 
 ## Worked Examples
 
-### Example 1: rate at 20 m
+### Example 1: Rate at 20 m
 
 With $q_S=18~\mathrm{L/min}$ and the $10~\mathrm{m/bar}$ approximation,
 
@@ -90,7 +92,7 @@ $$
 q(20)=18(1+20/10)=54~\mathrm{L/min}.
 $$
 
-### Example 2: a constant-depth exposure
+### Example 2: A Constant-Depth Exposure
 
 Thirty minutes at $20~\mathrm{m}$ with the same surface-equivalent rate consumes
 
@@ -100,9 +102,17 @@ $$
 
 in the idealized model.
 
-### Example 3: why maximum depth is insufficient
+### Example 3: Why Maximum Depth Is Insufficient
 
-Two profiles may both reach $20~\mathrm{m}$ yet consume different gas because
+Consider two idealized ten-minute segments that both include a visit to $20~\mathrm{m}$. Profile A remains at $20~\mathrm{m}$; Profile B reaches $20~\mathrm{m}$ momentarily but spends the segment at $10~\mathrm{m}$. With $q_S=18~\mathrm{L/min}$ and the one-bar-per-ten-meters approximation,
+
+$$
+G_A=18(3)(10)=540~\mathrm{L},
+\qquad
+G_B\approx18(2)(10)=360~\mathrm{L}.
+$$
+
+The equal maximum depth does not imply equal resource use. In general,
 
 $$
 G_{\mathrm{used}}=\int_0^Tq_S(t)\frac{P_{\mathrm{amb}}(z(t))}{P_0}\,dt
@@ -112,7 +122,11 @@ depends on the full depth and demand histories.
 
 ## DiveLab Insight
 
+::: {.callout-important title="DiveLab Insight"}
+
 Gas is not merely a displayed pressure. It is a monotonically decreasing resource state coupled to depth and human demand. The system is therefore dynamic even when cylinder pressure appears nearly linear over a short interval.
+
+:::
 
 ## Engineering Perspective
 
@@ -128,17 +142,12 @@ Gas management resembles energy management in a battery-powered system: remainin
 
 ## Key Equations
 
-$$
-q=q_S\frac{P_{\mathrm{amb}}}{P_0},
-\qquad
-\dot G=-q_S\frac{P_{\mathrm{amb}}}{P_0},
-$$
-
-$$
-G(T)=G(0)-\int_0^Tq_S(t)\frac{P_{\mathrm{amb}}(z(t))}{P_0}\,dt,
-\qquad
-P_{\mathrm{cyl,abs}}\approx P_0\frac{G}{V_{\mathrm{cyl}}}.
-$$
+| Equation | Meaning |
+|:--|:--|
+| $q=q_S P_{\mathrm{amb}}/P_0$ | Depth-dependent surface-equivalent withdrawal rate |
+| $\dot G=-q_S P_{\mathrm{amb}}/P_0$ | Remaining-gas state equation |
+| $G(T)=G(0)-\int_0^T q_S(t)P_{\mathrm{amb}}(z(t))/P_0\,dt$ | Gas balance over a variable profile |
+| $P_{\mathrm{cyl,abs}}\approx P_0G/V_{\mathrm{cyl}}$ | Idealized absolute cylinder pressure at the reference temperature |
 
 ## Exercises
 

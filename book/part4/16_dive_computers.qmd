@@ -31,9 +31,9 @@ After completing this chapter, you should be able to:
 
 ## Theory
 
-The chapter combines the estimation foundations of Part II with the measurement, algorithm, and validation concerns documented for real dive computers [@kalman1960; @fraedrich2018].
+Chapter 7 established the distinction between state and measurement, and Chapter 8 introduced model-based estimation. This chapter does not repeat those derivations. It focuses on what changes in an embedded implementation: sampling, calibration bias, derivative noise, filtering latency, state propagation, and fault logic [@kalman1960; @fraedrich2018].
 
-### Measurement hierarchy
+### Measurement Hierarchy
 
 A pressure sensor produces an electrical measurement related to ambient pressure. After calibration, the device derives depth from
 
@@ -55,7 +55,7 @@ $$
 
 If depth-noise variance is $\sigma_z^2$ and consecutive errors are independent, either signed velocity estimate has variance $2\sigma_z^2/\Delta t^2$. Faster sampling alone therefore does not guarantee a cleaner derivative.
 
-### Filtering and latency
+### Filtering and Latency
 
 A first-order discrete low-pass filter is
 
@@ -66,22 +66,21 @@ $$
 
 Smaller $\alpha$ suppresses more noise but adds lag. Chapter 8 provides a model-based alternative: a Kalman filter combines plant dynamics, measurement noise, and process uncertainty to estimate depth and velocity together.
 
-### State engine
+### State Engine
 
-A compact processing pipeline is
+A compact processing pipeline separates each output from the additional information it requires:
 
-$$
-P_m\rightarrow\hat z\rightarrow\hat{\dot z},\hat v\rightarrow
-\begin{cases}
-\hat G & \text{gas model},\\
-\hat P_{t,i} & \text{decompression model},\\
-\text{alarms} & \text{threshold and plausibility logic}.
-\end{cases}
-$$
+| Output | Required inputs |
+|:--|:--|
+| Derived depth $\hat z$ | measured pressure $P_m$, surface reference $\hat P_0$, water-density model $\hat\rho$ |
+| Depth rate $\hat{\dot z}$ and velocity $\hat v$ | depth history, sampling interval, filter or estimator |
+| Remaining gas $\hat G$ | initialized inventory, depth, assumed or measured respiratory demand |
+| Compartment state $\hat P_{t,i}$ | initialized state, pressure history, breathing-gas model |
+| Alarms | estimated variables, thresholds, timing and plausibility logic |
 
-Depth is derived from a sensor; depth rate and upward-positive velocity are estimated with opposite signs. Gas state is propagated from an initialized inventory and an assumed or measured respiratory demand. Future gas or decompression status is predicted conditionally on a model.
+Depth rate and upward-positive velocity have opposite signs. Future gas or decompression status is predicted conditionally on the corresponding model and initialization; neither follows from ambient pressure alone.
 
-### Fault-aware computation
+### Fault-Aware Computation
 
 Useful checks include range limits, rate-of-change limits, stuck-sensor detection, missing samples, and disagreement between redundant channels. An alarm is the output of specified logic, not proof that all unsafe conditions have been detected.
 
@@ -91,7 +90,7 @@ The pipeline in this chapter is neither certified nor validated for life-support
 
 ## Worked Examples
 
-### Example 1: pressure bias
+### Example 1: Pressure Bias
 
 A constant pressure bias $b_P$ produces depth bias
 
@@ -101,7 +100,7 @@ $$
 
 For $b_P=1~\mathrm{kPa}$ in seawater, $b_z\approx0.10~\mathrm{m}$.
 
-### Example 2: derivative noise
+### Example 2: Derivative Noise
 
 If $\sigma_z=0.03~\mathrm{m}$ and $\Delta t=1~\mathrm{s}$, then
 
@@ -111,13 +110,19 @@ $$
 
 At $\Delta t=0.1~\mathrm{s}$ the same calculation gives $0.42~\mathrm{m/s}$.
 
-### Example 3: conditional gas forecast
+### Example 3: Conditional Gas Forecast
 
 If the current model estimates $G=900~\mathrm{L}$ and assumes a future withdrawal of $45~\mathrm{L/min}$, its constant-condition horizon is $20~\mathrm{min}$. This number is a scenario output, not a guaranteed remaining time.
 
+If the assumed withdrawal changes to $60~\mathrm{L/min}$, the same initialized gas state gives only $15~\mathrm{min}$. Pressure-derived depth is unchanged; the prediction changes because respiratory demand is an independent model input.
+
 ## DiveLab Insight
 
+::: {.callout-important title="DiveLab Insight"}
+
 A dive computer is an observer with memory. The screen displays a mixture of sensor-derived variables, filtered states, integrated histories, threshold logic, and predictions. Treating all displayed numbers as measurements conceals the model dependence.
+
+:::
 
 ## Engineering Perspective
 
@@ -133,19 +138,13 @@ This architecture is a small cyber-physical system. Sensor calibration, sampling
 
 ## Key Equations
 
-$$
-\hat z_k=\frac{P_{m,k}-\hat P_0}{\hat\rho g},
-\qquad
-\hat{\dot z}_k=\frac{\hat z_k-\hat z_{k-1}}{\Delta t},
-\qquad
-\hat v_k=-\hat{\dot z}_k,
-$$
-
-$$
-\bar z_k=\alpha\hat z_k+(1-\alpha)\bar z_{k-1},
-\qquad
-\operatorname{Var}(\hat{\dot z})\approx\frac{2\sigma_z^2}{\Delta t^2}.
-$$
+| Equation | Meaning |
+|:--|:--|
+| $\hat z_k=(P_{m,k}-\hat P_0)/(\hat\rho g)$ | Depth derived from calibrated pressure |
+| $\hat{\dot z}_k=(\hat z_k-\hat z_{k-1})/\Delta t$ | Downward-positive finite-difference depth rate |
+| $\hat v_k=-\hat{\dot z}_k$ | Conversion to upward-positive DiveLab velocity |
+| $\bar z_k=\alpha\hat z_k+(1-\alpha)\bar z_{k-1}$ | First-order discrete low-pass filter |
+| $\operatorname{Var}(\hat{\dot z})\approx2\sigma_z^2/\Delta t^2$ | Derivative-noise variance for independent depth errors |
 
 ## Exercises
 

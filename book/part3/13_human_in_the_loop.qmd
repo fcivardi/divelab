@@ -261,4 +261,4 @@ Use **Notebook 13 — Human-in-the-Loop Control** to compare an ideal continuous
 
 ## Looking Ahead
 
-Part IV integrates additional diving subsystems. Chapter 14 begins with breathing dynamics, where periodic physiology, gas exchange, and buoyancy variation introduce a new timescale into the model.
+Part IV integrates additional diving subsystems. Chapter 14 begins with breathing dynamics, where periodic lung-volume change and buoyancy variation introduce a new timescale into the model.

@@ -85,7 +85,7 @@ The form used in this chapter assumes:
 - approximately constant temperature;
 - a flexible boundary that permits volume change;
 - mechanical equilibrium between the gas and ambient pressure;
-- ideal-gas behaviour.
+- ideal-gas behavior.
 
 These assumptions are useful for BCD and dry-suit gas between valve operations, a sealed flexible container, and an isolated bubble over a limited depth change. They do not describe gas spaces with active inflow or outflow unless the analysis is restricted to an interval during which the amount of gas remains constant.
 
@@ -125,7 +125,7 @@ $$
 
 The input $P_{\mathrm{abs}}(z)$ is affine in depth, but its reciprocal is not. Volume therefore follows a hyperbola rather than a straight line.
 
-Using the one-bar-per-ten-metres approximation:
+Using the one-bar-per-ten-meters approximation:
 
 | Depth $z$ | Absolute pressure | Volume relative to $V_0$ |
 |----------:|------------------:|-------------------------:|

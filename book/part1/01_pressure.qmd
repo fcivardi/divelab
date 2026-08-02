@@ -30,7 +30,7 @@ After completing this chapter, you should be able to:
 - distinguish atmospheric, hydrostatic, gauge, and absolute pressure;
 - derive the pressure–depth relationship for a fluid at rest;
 - calculate absolute pressure at a specified depth;
-- assess the assumptions behind the common one-bar-per-ten-metres rule;
+- assess the assumptions behind the common one-bar-per-ten-meters rule;
 - interpret pressure as the first transformation in the DiveLab model.
 
 ## Theory

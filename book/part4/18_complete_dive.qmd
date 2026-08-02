@@ -5,7 +5,7 @@ subtitle: "From Components to Engineering Understanding"
 
 ## Companion Resources
 
-::: {.callout-tip title="Capstone Resources"}
+::: {.callout-tip title="Companion Resources"}
 **Chapter:** 18 — The Complete Dive as a Dynamic System
 
 **Companion notebook:** Notebook 18 — Integrated DiveLab Capstone
@@ -37,7 +37,7 @@ After completing this chapter, you should be able to:
 
 The integrated viewpoint follows the systems-engineering practice of making boundaries, states, interfaces, assumptions, constraints, and verification evidence explicit [@nasa2016].
 
-### The complete causal architecture
+### The Complete Causal Architecture
 
 The principal relationships developed in the book can be summarized as
 
@@ -63,7 +63,7 @@ $$
 
 The first diagram contains the physical and physiological dynamics. The second contains sensing, estimation, decision, and actuation. Neither loop is complete without the other.
 
-### A unified state description
+### A Unified State Description
 
 A deliberately simplified integrated state might be
 
@@ -86,7 +86,7 @@ where $u$ contains deliberate inputs, $d$ contains disturbances and changing dem
 
 Not every state is observable from every sensor. Not every model parameter is known. Not every input is continuous or unlimited. These are not imperfections added after the mathematics; they are defining properties of the real system.
 
-### Four kinds of knowledge
+### Four Kinds of Knowledge
 
 The book has built four complementary kinds of understanding:
 
@@ -95,7 +95,7 @@ The book has built four complementary kinds of understanding:
 3. **computational understanding** — how measurements, estimators, and numerical models reconstruct hidden quantities;
 4. **engineering judgment** — how uncertainty, delay, constraints, human action, and validation limit conclusions.
 
-### Models are purpose-dependent
+### Models Are Purpose-Dependent
 
 A model is not simply true or false. It is adequate or inadequate for a stated purpose. Boyle's law may be sufficient for understanding gas-volume change; a local linear model may be sufficient for analysing stability; a compartment bank may be sufficient for teaching state propagation. None of these models automatically becomes an operational decision system.
 
@@ -109,7 +109,7 @@ Completing DiveLab can deepen your understanding of what happens during a dive, 
 
 ## Worked Examples
 
-### Example 1: one depth change, several consequences
+### Example 1: One Depth Change, Several Consequences
 
 Suppose depth increases from $10$ to $20~\mathrm{m}$. The pressure ratio rises from approximately $2$ to $3$ atmospheres absolute. That one change:
 
@@ -121,7 +121,7 @@ Suppose depth increases from $10$ to $20~\mathrm{m}$. The pressure ratio rises f
 
 The consequences occur on different time scales. Pressure changes immediately with depth; motion responds dynamically; fast and slow inert-gas compartments respond over minutes to hours.
 
-### Example 2: the same display, different hidden states
+### Example 2: The Same Display, Different Hidden States
 
 Two divers can be at the same depth with the same indicated vertical speed yet have different:
 
@@ -133,13 +133,17 @@ Two divers can be at the same depth with the same indicated vertical speed yet h
 
 The displayed depth is therefore not the complete system state.
 
-### Example 3: a correction that propagates
+### Example 3: A Correction That Propagates
 
 An upward buoyancy correction changes acceleration, then velocity, then depth. The new depth changes ambient pressure, gas volume, respiratory demand, and inspired inert-gas pressure. A local corrective action can therefore propagate through several subsystems. Systems thinking means anticipating those downstream effects.
 
 ## DiveLab Insight
 
+::: {.callout-important title="DiveLab Insight"}
+
 The most important state in DiveLab is not depth, velocity, or pressure. It is the learner's internal model of how the variables influence one another. Once that causal model is coherent, equations and simulations become tools for testing reasoning rather than isolated results to memorize.
+
+:::
 
 ## Engineering Perspective
 
@@ -166,23 +170,12 @@ This framework applies far beyond diving—to aircraft, robots, medical devices,
 
 ## Key Equations
 
-$$
-\dot x=f(x,u,d,t),
-\qquad
-y=h(x)+\nu,
-$$
-
-$$
-x=
-\begin{bmatrix}
-z & v & V_L & V_{BCD} & G & \boldsymbol P_t^{T}
-\end{bmatrix}^{T},
-$$
-
-$$
-z\rightarrow P_{\mathrm{amb}}
-\rightarrow\{V_g,F_B,q,G,P_I,\boldsymbol P_t\}.
-$$
+| Equation | Meaning |
+|:--|:--|
+| $\dot x=f(x,u,d,t)$ | Integrated nonlinear state evolution |
+| $y=h(x)+\nu$ | Measurement model with error |
+| $x=[z,v,V_L,V_{BCD},G,\boldsymbol P_t^T]^T$ | Illustrative integrated state vector |
+| $z\rightarrow P_{\mathrm{amb}}\rightarrow\{V_g,F_B,q,G,P_I,\boldsymbol P_t\}$ | Principal pressure-mediated causal connections |
 
 ## Exercises
 
