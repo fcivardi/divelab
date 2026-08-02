@@ -410,3 +410,40 @@ $$
 $$
 
 This continuity is the defining style of DiveLab.
+
+## 22. Quarto book heading hierarchy
+
+In a book chapter, the YAML title is the chapter-level heading. Do not add
+another level-1 heading inside the same file.
+
+Use the following hierarchy:
+
+- front matter such as Welcome, Preface, and How to Use This Book:
+  level-1 heading with the \`{.unnumbered}\` class;
+- chapter title: YAML \`title\` field, rendered as level 1;
+- standard chapter sections: level 2 (\`##\`);
+- subsections within Theory or Worked Examples: level 3 (\`###\`).
+
+For example:
+
+\`\`\` markdown
+---
+title: "Pressure and Depth"
+---
+
+## Companion Resources
+
+## Engineering Question
+
+## Theory
+
+### Pressure in a Fluid at Rest
+
+## Worked Examples
+
+### Example 1: Absolute Pressure at 18 m
+\`\`\`
+
+With numbered sections enabled, this produces chapter numbering such as
+\`4\`, \`4.1\`, and \`4.4.1\`, rather than treating every chapter section
+as a new chapter.

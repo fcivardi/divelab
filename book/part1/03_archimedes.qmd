@@ -3,7 +3,7 @@ title: "Archimedes' Principle"
 subtitle: "From Volume to Buoyant Force"
 ---
 
-# Companion Resources
+## Companion Resources
 
 ::: {.callout-tip title="Companion Resources"}
 
@@ -17,7 +17,7 @@ subtitle: "From Volume to Buoyant Force"
 
 :::
 
-# Engineering Question
+## Engineering Question
 
 How does a displaced volume of water generate an upward force?
 
@@ -29,7 +29,7 @@ $$
 
 The mechanism is the pressure difference between the upper and lower surfaces of a submerged body.
 
-# Learning Objectives
+## Learning Objectives
 
 After completing this chapter, you should be able to:
 
@@ -42,9 +42,9 @@ After completing this chapter, you should be able to:
 - explain why fixed and flexible volumes behave differently with depth;
 - interpret Archimedes' principle as a linear static model block.
 
-# Theory
+## Theory
 
-## Pressure Forces on a Submerged Body
+### Pressure Forces on a Submerged Body
 
 Pressure acts normal to every surface in a fluid at rest. Using the DiveLab convention that depth $z$ is positive downward,
 
@@ -59,7 +59,7 @@ Two consequences follow:
 
 The remaining hydrostatic resultant acts upward.
 
-## Rectangular-Body Derivation
+### Rectangular-Body Derivation
 
 Consider a completely submerged rectangular body with horizontal area $A$, height $\Delta z$, top depth $z_t$, and bottom depth
 
@@ -110,7 +110,7 @@ The product $\rho V$ is the mass of the displaced fluid. Buoyant force therefore
 
 Notice that $P_0$ cancels. Boyle's law requires absolute pressure, but buoyancy arises from a pressure difference and is unaffected by adding the same reference pressure to every surface.
 
-## Generalization to an Arbitrary Shape
+### Generalization to an Arbitrary Shape
 
 The rectangular derivation exposes the physical mechanism. For an arbitrary completely submerged body, let $\mathbf{n}$ be the outward unit normal and let $\mathbf{e}_z$ point downward. The pressure force on a surface element $\mathrm{d}A$ is
 
@@ -140,7 +140,7 @@ $$
 
 which is upward and has magnitude $F_B=\rho gV$. For a partially submerged body, $V$ is the volume of fluid actually displaced.
 
-## Weight, Net Force, and Static Classification
+### Weight, Net Force, and Static Classification
 
 For a diver-and-equipment system of mass $m$, weight has magnitude
 
@@ -172,7 +172,7 @@ $$
 
 Equivalently, the system is neutrally buoyant when its average density $m/V$ equals the surrounding-fluid density. This is a force-balance condition, not yet a model of motion or stability.
 
-## Fixed and Flexible Displaced Volume
+### Fixed and Flexible Displaced Volume
 
 For constant $\rho$, $g$, and displaced volume, $F_B=\rho gV$ contains no explicit depth term. A rigid incompressible body therefore has depth-independent buoyancy in this model, even though the absolute pressure on every surface increases with depth.
 
@@ -193,9 +193,9 @@ $$
 
 The depth dependence enters through Boyle's law, not through Archimedes' principle itself.
 
-# Worked Examples
+## Worked Examples
 
-## Example 1: Resultant from Surface Pressures
+### Example 1: Resultant from Surface Pressures
 
 A submerged rectangular body in seawater has horizontal area $A=0.020\ \mathrm{m^2}$ and height $\Delta z=0.50\ \mathrm{m}$. Its top surface is at $12.0\ \mathrm{m}$. Use $\rho=1025\ \mathrm{kg\,m^{-3}}$ and $g=9.80665\ \mathrm{m\,s^{-2}}$.
 
@@ -225,7 +225,7 @@ $$
 
 and $\rho gV$ gives the same $100.5\ \mathrm{N}$. Moving the body deeper would increase $P_t$ and $P_b$ equally but would not change their difference.
 
-## Example 2: Neutral Volume in Freshwater and Seawater
+### Example 2: Neutral Volume in Freshwater and Seawater
 
 Find the displaced volume required for neutral buoyancy for a system with mass $m=75.0\ \mathrm{kg}$.
 
@@ -249,7 +249,7 @@ $$
 
 Denser seawater produces more buoyant force per litre, so less displaced volume is required.
 
-## Example 3: Buoyancy of a Flexible Gas Space
+### Example 3: Buoyancy of a Flexible Gas Space
 
 A flexible gas space has surface volume $V_{g0}=5.00\ \mathrm{L}$. Estimate its idealized buoyant-force contribution at $20\ \mathrm{m}$ in seawater.
 
@@ -272,7 +272,7 @@ $$
 
 This is the buoyant contribution associated with the idealized flexible volume, not a complete diver or BCD model.
 
-# DiveLab Insight
+## DiveLab Insight
 
 ::: {.callout-important title="DiveLab Insight"}
 
@@ -292,7 +292,7 @@ $$
 
 :::
 
-# Engineering Perspective
+## Engineering Perspective
 
 For fixed $\rho$ and $g$, Archimedes' principle is a memoryless linear block:
 
@@ -323,7 +323,7 @@ At this point the model contains no time dependence, inertia, hydrodynamic drag,
 
 These equations are teaching models rather than operational buoyancy or dive-planning tools.
 
-# Summary
+## Summary
 
 - Hydrostatic pressure acts normal to a submerged surface.
 - Greater pressure on lower surfaces produces an upward resultant.
@@ -334,7 +334,7 @@ These equations are teaching models rather than operational buoyancy or dive-pla
 - A flexible gas volume introduces depth dependence through Boyle's law.
 - Archimedes' principle is the linear static transformation from displaced volume to buoyant force.
 
-# Key Equations
+## Key Equations
 
 | Equation | Meaning |
 |:---------|:--------|
@@ -346,7 +346,7 @@ These equations are teaching models rather than operational buoyancy or dive-pla
 | $V_{\mathrm{neutral}}=m/\rho$ | Displaced volume for neutral buoyancy |
 | $F_{B,g}(z)=\rho gV_{g0}P_0/(P_0+\rho gz)$ | Idealized flexible-gas buoyancy |
 
-# Exercises
+## Exercises
 
 1. Derive $F_B=\rho gV$ for a submerged rectangular body and show explicitly why $P_0$ cancels.
 2. A body displaces $15\ \mathrm{L}$ of seawater. Calculate its buoyant force in newtons and the mass of the displaced fluid in kilograms.
@@ -358,13 +358,13 @@ These equations are teaching models rather than operational buoyancy or dive-pla
 8. Differentiate $F_{B,g}(z)$ with respect to depth. Determine its sign and explain its physical meaning.
 9. Draw the cascade $z\rightarrow P_{\mathrm{abs}}\rightarrow V_g\rightarrow F_{B,g}$ and identify which blocks are affine, nonlinear, and linear.
 
-# Companion Notebook
+## Companion Notebook
 
 Use **Notebook 03 — Archimedes' Principle: From Volume to Buoyant Force** to verify the pressure-force derivation numerically, compare freshwater and seawater, classify buoyancy, and connect Boyle's law to Archimedes' principle.
 
 - [Open the notebook on GitHub](https://github.com/fcivardi/divelab/blob/main/notebooks/03_Buoyancy_Feedback.ipynb)
 - [Run the notebook in Google Colab](https://colab.research.google.com/github/fcivardi/divelab/blob/main/notebooks/03_Buoyancy_Feedback.ipynb)
 
-# Looking Ahead
+## Looking Ahead
 
 Chapter 4 takes net force as its input and introduces Newton's second law. That adds the next model block, $F_{\mathrm{net}}\longrightarrow$ motion, and turns the static DiveLab chain into a dynamical system.

@@ -4,7 +4,7 @@ subtitle: "Teaching Control Engineering Through Scuba Diving"
 author: "Francesco Civardi"
 ---
 
-# Welcome
+# Welcome {.unnumbered}
 
 DiveLab teaches dynamical systems and control engineering through one coherent physical system: a scuba diver underwater.
 
