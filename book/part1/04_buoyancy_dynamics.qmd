@@ -388,8 +388,8 @@ The model deliberately omits diver control actions, breathing cycles, BCD valve 
 
 Use **Notebook 04 — Vertical Forces and Motion** to calculate acceleration, explore signed quadratic drag, determine terminal velocities, and evaluate the depth-dependent buoyancy imbalance without yet performing numerical time integration.
 
-- [Open the notebook on GitHub](https://github.com/fcivardi/divelab/blob/main/notebooks/04_Vertical_Forces_and_Motion.ipynb)
-- [Run the notebook in Google Colab](https://colab.research.google.com/github/fcivardi/divelab/blob/main/notebooks/04_Vertical_Forces_and_Motion.ipynb)
+- [Open the notebook on GitHub](https://github.com/fcivardi/divelab/blob/editorial-v2/notebooks/04_Vertical_Forces_and_Motion.ipynb)
+- [Run the notebook in Google Colab](https://colab.research.google.com/github/fcivardi/divelab/blob/editorial-v2/notebooks/04_Vertical_Forces_and_Motion.ipynb)
 
 # Looking Ahead
 
