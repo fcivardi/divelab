@@ -291,15 +291,17 @@ For diving practice, this physics reinforces the established rule to breathe con
 
 ## Exercises
 
-1. State each assumption required to derive Boyle's law from $PV=nRT$. Give one diving situation in which each assumption may fail.
-2. A flexible sealed container occupies $3.0\ \mathrm{L}$ at the surface. Calculate its volume at $10$, $20$, and $30\ \mathrm{m}$ using the diving approximation.
-3. A dry-suit gas space occupies $4.0\ \mathrm{L}$ at $20\ \mathrm{m}$. Assuming no gas enters or leaves, calculate its volume at $10\ \mathrm{m}$.
-4. Compare the percentage volume increase for an ascent from $30$ to $20\ \mathrm{m}$ with that from $10\ \mathrm{m}$ to the surface. Explain the difference.
-5. Starting from $V(z)=V_0P_0/(P_0+\rho gz)$, derive $\mathrm{d}V/\mathrm{d}z$ and determine its sign.
-6. Find the depth at which a gas space occupies one-third of its surface volume, using both the diving approximation and the full seawater model.
-7. Explain why gauge pressure gives an impossible result when applied to a gas at the surface.
-8. For each system in the Engineering Perspective table, identify the physical mechanism that can invalidate the fixed-gas assumption.
-9. Sketch $V=K/P$ and draw tangent lines at $P=1\ \mathrm{bar}$ and $P=4\ \mathrm{bar}$. Which operating point has the larger gain magnitude?
+1. **C02-E01 · Core.** State each assumption required to derive Boyle's law from $PV=nRT$. Give one diving situation in which each assumption may fail.
+2. **C02-E02 · Notebook Challenge.** A flexible sealed container occupies $3.0\ \mathrm{L}$ at the surface. Calculate its volume at $10$, $20$, and $30\ \mathrm{m}$ using the diving approximation.
+3. **C02-E03 · Recommended.** A dry-suit gas space occupies $4.0\ \mathrm{L}$ at $20\ \mathrm{m}$. Assuming no gas enters or leaves, calculate its volume at $10\ \mathrm{m}$.
+4. **C02-E04 · Core.** Compare the percentage volume increase for an ascent from $30$ to $20\ \mathrm{m}$ with that from $10\ \mathrm{m}$ to the surface. Explain the difference.
+5. **C02-E05 · Core.** Starting from $V(z)=V_0P_0/(P_0+\rho gz)$, derive $\mathrm{d}V/\mathrm{d}z$ and determine its sign.
+6. **C02-E06 · Extension.** Find the depth at which a gas space occupies one-third of its surface volume, using both the diving approximation and the full seawater model.
+7. **C02-E07 · Core.** Explain why gauge pressure gives an impossible result when applied to a gas at the surface.
+8. **C02-E08 · Extension.** For each system in the Engineering Perspective table, identify the physical mechanism that can invalidate the fixed-gas assumption.
+9. **C02-E09 · Recommended.** Sketch $V=K/P$ and draw tangent lines at $P=1\ \mathrm{bar}$ and $P=4\ \mathrm{bar}$. Which operating point has the larger gain magnitude?
+
+**Notebook alignment.** Notebook 02 directly supports C02-E02; its numerical-derivative challenge implements C02-E05.
 
 ## Companion Notebook
 

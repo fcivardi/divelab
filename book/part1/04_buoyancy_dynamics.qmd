@@ -368,16 +368,18 @@ The model deliberately omits diver control actions, breathing cycles, BCD valve 
 
 ## Exercises
 
-1. Draw the vertical free-body model and explain the sign of every term in $m\dot{v}=F_B-mg-c\,v|v|$.
-2. A $90\ \mathrm{kg}$ system has an upward buoyancy imbalance of $15\ \mathrm{N}$ and is initially at rest. Calculate its initial acceleration.
-3. Calculate the drag force for $v=+0.30\ \mathrm{m\,s^{-1}}$ and $v=-0.30\ \mathrm{m\,s^{-1}}$ using $\rho=1025\ \mathrm{kg\,m^{-3}}$, $C_D=0.80$, and $A=0.70\ \mathrm{m^2}$. Interpret the signs.
-4. Derive the terminal-velocity expression for both positive and negative buoyancy imbalance.
-5. Explain why a neutrally buoyant diver moving upward does not stop instantaneously.
-6. Choose a mass and flexible surface-gas volume. Determine the fixed displaced volume required for neutral buoyancy at $15\ \mathrm{m}$.
-7. For the system in Exercise 6, calculate the net force one metre above and one metre below the neutral depth while $v=0$.
-8. Identify the two nonlinear terms in the coupled depth–velocity model.
-9. Trace the reinforcing causal sequence following a small downward displacement from neutral depth.
-10. List three omitted physical effects and explain how each could alter the predicted motion.
+1. **C04-E01 · Core.** Draw the vertical free-body model and explain the sign of every term in $m\dot{v}=F_B-mg-c\,v|v|$.
+2. **C04-E02 · Notebook Challenge.** A $90\ \mathrm{kg}$ system has an upward buoyancy imbalance of $15\ \mathrm{N}$ and is initially at rest. Calculate its initial acceleration.
+3. **C04-E03 · Recommended.** Calculate the drag force for $v=+0.30\ \mathrm{m\,s^{-1}}$ and $v=-0.30\ \mathrm{m\,s^{-1}}$ using $\rho=1025\ \mathrm{kg\,m^{-3}}$, $C_D=0.80$, and $A=0.70\ \mathrm{m^2}$. Interpret the signs.
+4. **C04-E04 · Extension.** Derive the terminal-velocity expression for both positive and negative buoyancy imbalance.
+5. **C04-E05 · Core.** Explain why a neutrally buoyant diver moving upward does not stop instantaneously.
+6. **C04-E06 · Recommended.** Choose a mass and flexible surface-gas volume. Determine the fixed displaced volume required for neutral buoyancy at $15\ \mathrm{m}$.
+7. **C04-E07 · Extension.** For the system in C04-E06, calculate the net force one metre above and one metre below the neutral depth while $v=0$.
+8. **C04-E08 · Core.** Identify the two nonlinear terms in the coupled depth–velocity model.
+9. **C04-E09 · Core.** Trace the reinforcing causal sequence following a small downward displacement from neutral depth.
+10. **C04-E10 · Extension.** List three omitted physical effects and explain how each could alter the predicted motion.
+
+**Notebook alignment.** Notebook 04 directly supports C04-E02; its `vertical_rhs` challenge prepares the implementation of C04-E01 and C04-E08.
 
 ## Companion Notebook
 

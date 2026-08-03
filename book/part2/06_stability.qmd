@@ -447,16 +447,18 @@ The instability here belongs to a deliberately simplified open-loop plant. Real 
 
 ## Exercises
 
-1. Explain why $F_B=mg$ does not by itself define an equilibrium state.
-2. Derive $dF_B/dz$ from the flexible-gas buoyancy model and determine its sign.
-3. Construct the Jacobian directly from the two nonlinear state equations.
-4. Verify the characteristic equation and derive $\lambda_{\pm}=\pm\sqrt{-k_B/m}$.
-5. Sketch the stable and unstable eigendirections in the $(\delta z,\delta v)$ plane and label the direction of motion on each branch.
-6. Explain why quadratic drag is absent from the Jacobian at $v=0$ but remains important in nonlinear simulations.
-7. Add a linear drag force $-bv$. Derive the new Jacobian and show that its determinant is still negative when $k_B<0$.
-8. Predict how increasing $V_{g0}$ changes $|k_B|$ and the magnitude of the eigenvalues.
-9. Predict how increasing mass while holding the same operating depth and $k_B$ changes the local growth timescale.
-10. Explain what can and cannot be concluded when a linearization has an eigenvalue with zero real part.
+1. **C06-E01 · Core.** Explain why $F_B=mg$ does not by itself define an equilibrium state.
+2. **C06-E02 · Recommended.** Reuse the flexible-gas buoyancy derivative from C03-E08 and explain why its sign matters for local stability.
+3. **C06-E03 · Core.** Construct the Jacobian directly from the two nonlinear state equations.
+4. **C06-E04 · Core.** Verify the characteristic equation and derive $\lambda_{\pm}=\pm\sqrt{-k_B/m}$.
+5. **C06-E05 · Core.** Sketch the stable and unstable eigendirections in the $(\delta z,\delta v)$ plane and label the direction of motion on each branch.
+6. **C06-E06 · Recommended.** Explain why quadratic drag is absent from the Jacobian at $v=0$ but remains important in nonlinear simulations.
+7. **C06-E07 · Extension.** Add a linear drag force $-bv$. Derive the new Jacobian and show that its determinant is still negative when $k_B<0$.
+8. **C06-E08 · Recommended.** Predict how increasing $V_{g0}$ changes $|k_B|$ and the magnitude of the eigenvalues.
+9. **C06-E09 · Recommended.** Predict how increasing mass while holding the same operating depth and $k_B$ changes the local growth timescale.
+10. **C06-E10 · Notebook Challenge.** Explain what can and cannot be concluded when a linearization has an eigenvalue with zero real part, then test the limits of one local linearization over an explicitly chosen interval and tolerance.
+
+**Notebook alignment.** Notebook 06 supports C06-E03–C06-E06; its linear-model-validity challenge provides the computational experiment for C06-E10.
 
 ## Companion Notebook
 

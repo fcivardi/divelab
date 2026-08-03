@@ -203,12 +203,14 @@ This distinction matters. Chapter 1 defines the environmental input. Subsequent 
 
 ## Exercises
 
-1. Starting from a force balance on a thin water layer, derive $\mathrm{d}P/\mathrm{d}z=\rho g$.
-2. Calculate gauge and absolute pressure at $15\ \mathrm{m}$ in seawater. State every assumption and report the result in pascals and bar.
-3. Repeat the calculation at $15\ \mathrm{m}$ for freshwater with $\rho=1000\ \mathrm{kg\,m^{-3}}$. Explain the difference.
-4. Determine the seawater depth at which the absolute pressure is $2.50\ \mathrm{bar}$.
-5. The surface pressure falls while a diver remains at fixed depth. Use the model to explain which terms change and which remain constant.
-6. Sketch the block $z\rightarrow P_{\mathrm{abs}}$ and label its offset, gain, input, and output.
+1. **C01-E01 · Core.** Starting from a force balance on a thin water layer, derive $\mathrm{d}P/\mathrm{d}z=\rho g$.
+2. **C01-E02 · Core.** Calculate gauge and absolute pressure at $15\ \mathrm{m}$ in seawater. State every assumption and report the result in pascals and bar.
+3. **C01-E03 · Notebook Challenge.** Repeat the calculation at $15\ \mathrm{m}$ for freshwater with $\rho=1000\ \mathrm{kg\,m^{-3}}$. Explain the difference.
+4. **C01-E04 · Recommended.** Determine the seawater depth at which the absolute pressure is $2.50\ \mathrm{bar}$.
+5. **C01-E05 · Extension.** The surface pressure falls while a diver remains at fixed depth. Use the model to explain which terms change and which remain constant.
+6. **C01-E06 · Core.** Sketch the block $z\rightarrow P_{\mathrm{abs}}$ and label its offset, gain, input, and output.
+
+**Notebook alignment.** Notebook 01 directly supports C01-E03 and C01-E04; its numerical-gradient challenge extends C01-E01.
 
 ## Companion Notebook
 

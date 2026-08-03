@@ -179,11 +179,13 @@ This is a control-allocation problem. Two actuators influence the same buoyancy 
 
 ## Exercises
 
-1. Compute the buoyancy amplitude for tidal volumes of $0.25$, $0.50$, and $0.75~\mathrm{L}$.
-2. Derive the magnitude and phase of $G_L(j\omega)$.
-3. Explain why increasing breathing frequency does not necessarily increase useful control bandwidth.
-4. Propose a rule that transfers sustained correction from breathing to the BCD.
-5. Identify three physiological effects omitted by the model.
+1. **C14-E01 · Core.** Compute the buoyancy amplitude for tidal volumes of $0.25$, $0.50$, and $0.75~\mathrm{L}$.
+2. **C14-E02 · Core.** Derive the magnitude and phase of $G_L(j\omega)$.
+3. **C14-E03 · Core.** Explain why increasing breathing frequency does not necessarily increase useful control bandwidth.
+4. **C14-E04 · Notebook Challenge.** Propose and test a rule that transfers sustained correction from breathing to the BCD.
+5. **C14-E05 · Extension.** Identify three physiological effects omitted by the model and state what evidence would be needed before representing one of them.
+
+**Notebook alignment.** Notebook 14 supports C14-E01–C14-E03 and directly implements C14-E04 through its sustained-correction transfer experiment.
 
 ## Companion Notebook
 

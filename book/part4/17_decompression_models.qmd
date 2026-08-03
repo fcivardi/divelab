@@ -156,11 +156,13 @@ Correct integration answers only the first question.
 
 ## Exercises
 
-1. Verify analytically that the remaining gap halves after $T_{1/2}$.
-2. Compute the eigenvalues for compartments with half-times $5$, $20$, and $80~\mathrm{min}$.
-3. Compare Euler integration with the exact discrete update at several step sizes.
-4. Construct two profiles ending at the same depth with different compartment states.
-5. Explain why a compartment model cannot represent hydration, temperature, exertion, or individual susceptibility without additional states and evidence.
+1. **C17-E01 · Core.** Verify analytically that the remaining gap halves after $T_{1/2}$.
+2. **C17-E02 · Recommended.** Compute the eigenvalues for compartments with half-times $5$, $20$, and $80~\mathrm{min}$.
+3. **C17-E03 · Notebook Challenge.** Compare Euler integration with the exact discrete update at several step sizes.
+4. **C17-E04 · Core.** Construct two profiles ending at the same depth with different compartment states.
+5. **C17-E05 · Core.** Explain why a compartment model cannot represent hydration, temperature, exertion, or individual susceptibility without additional states and evidence.
+
+**Notebook alignment.** Notebook 17 directly supports C17-E02–C17-E04; its evidence exercise extends the model boundary examined in C17-E05.
 
 ## Companion Notebook
 

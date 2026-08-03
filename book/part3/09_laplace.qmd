@@ -280,14 +280,16 @@ Transfer functions make interconnection algebra possible. Blocks can represent p
 
 ## Exercises
 
-1. Transform a first- and second-order derivative with nonzero initial conditions.
-2. Derive the transfer function of $\tau\dot y+y=Ku$.
-3. Identify poles, zeros, and static gain for three rational transfer functions.
-4. Derive $G_{zu}(s)$ directly from the two first-order state equations.
-5. Explain the negative sign of $G_{zu}(s)$ physically.
-6. Verify that its poles equal the eigenvalues of $A$.
-7. Compare the information contained in a transfer function and a state-space realization.
-8. Explain why a transfer function cannot encode an arbitrary initial state.
+1. **C09-E01 · Recommended.** Transform a first- and second-order derivative with nonzero initial conditions.
+2. **C09-E02 · Core.** Derive the transfer function of $\tau\dot y+y=Ku$.
+3. **C09-E03 · Recommended.** Identify poles, zeros, and static gain for three rational transfer functions.
+4. **C09-E04 · Core.** Derive $G_{zu}(s)$ directly from the two first-order state equations.
+5. **C09-E05 · Core.** Explain the negative sign of $G_{zu}(s)$ physically.
+6. **C09-E06 · Notebook Challenge.** Verify that its poles equal the eigenvalues of $A$.
+7. **C09-E07 · Core.** Compare the information contained in a transfer function and a state-space realization.
+8. **C09-E08 · Extension.** Explain why a transfer function cannot encode an arbitrary initial state.
+
+**Notebook alignment.** Notebook 09 supports C09-E04–C09-E06. Its engineering exercises extend the input-sign interpretation in C09-E05 and the realization comparison in C09-E07.
 
 ## Companion Notebook
 

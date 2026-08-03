@@ -13,7 +13,7 @@ subtitle: "From Unstable Plant to Regulated Motion"
 
 **Estimated study time:** 150–180 minutes, including the notebook
 
-**Prerequisites:** Chapters 5–9, state feedback, poles, and second-order systems
+**Prerequisites:** Chapters 5–9, poles, and second-order systems
 
 :::
 
@@ -282,14 +282,16 @@ The abstract force input does not map directly to a BCD command, breathing actio
 
 ## Exercises
 
-1. Verify the signs of both feedback terms physically.
-2. Derive the closed-loop characteristic polynomial.
-3. Prove the two stability inequalities.
-4. Calculate gains for a new stable pole pair.
-5. Compare overdamped and underdamped pole choices.
-6. Calculate constant-disturbance offset for several $K_p$ values.
-7. Explain how velocity-estimation noise can affect the control force.
-8. Identify which conclusions fail when the actuator saturates.
+1. **C10-E01 · Core.** Verify the signs of both feedback terms physically.
+2. **C10-E02 · Core.** Derive the closed-loop characteristic polynomial.
+3. **C10-E03 · Core.** Prove the two stability inequalities.
+4. **C10-E04 · Notebook Challenge.** Calculate gains for a new stable pole pair.
+5. **C10-E05 · Recommended.** Compare overdamped and underdamped pole choices.
+6. **C10-E06 · Recommended.** Calculate constant-disturbance offset for several $K_p$ values.
+7. **C10-E07 · Extension.** Explain how velocity-estimation noise can affect the control force and define a metric that would reveal the effect.
+8. **C10-E08 · Core.** Identify which conclusions fail when the actuator saturates.
+
+**Notebook alignment.** Notebook 10 directly supports C10-E04, C10-E06, and C10-E07; its force-limit experiment tests the boundary identified in C10-E08.
 
 ## Companion Notebook
 

@@ -29,7 +29,7 @@ After completing this chapter, you should be able to:
 
 - reconstruct the causal chain developed across the four parts of the book;
 - distinguish physical states, measured quantities, estimated states, control inputs, disturbances, and constraints;
-- explain how local models combine into an integrated simulation;
+- explain how local models combine into prescribed-profile and closed-loop simulations;
 - identify where uncertainty and model limitations enter the system;
 - use engineering understanding to ask better questions without confusing it with practical diving qualification.
 
@@ -62,6 +62,8 @@ P_m\longrightarrow\hat z,\hat v,\hat G,\hat{\boldsymbol P}_t
 $$
 
 The first diagram contains the physical and physiological dynamics. The second contains sensing, estimation, decision, and actuation. Neither loop is complete without the other.
+
+The companion notebook therefore uses two complementary experiments. A prescribed synthetic depth history exposes how one common signal propagates through several subsystem models. A separate local closed-loop experiment lets depth evolve from the vertical plant, state feedback, an applied disturbance, and actuator saturation. The first emphasizes subsystem coupling across a complete profile; the second closes the motion–sensing–control loop developed in Parts II and III.
 
 ### A Unified State Description
 
@@ -137,6 +139,32 @@ The displayed depth is therefore not the complete system state.
 
 An upward buoyancy correction changes acceleration, then velocity, then depth. The new depth changes ambient pressure, gas volume, respiratory demand, and inspired inert-gas pressure. A local corrective action can therefore propagate through several subsystems. Systems thinking means anticipating those downstream effects.
 
+### Example 4: Closing the Vertical Loop
+
+Near a reference depth $z^*$, let the local state be
+
+$$
+\boldsymbol\xi=
+\begin{bmatrix}
+\delta z & \delta v
+\end{bmatrix}^{T},
+$$
+
+where $\delta v$ is positive upward and $\delta\dot z=-\delta v$. With the PD law from Chapter 10,
+
+$$
+u=K_p\delta z-K_d\delta v,
+$$
+
+the plant evolves as
+
+$$
+\delta\dot v
+=a\delta z+\frac{u+d}{m}.
+$$
+
+This compact loop connects the physical plant, dynamic state, disturbance, and controller. Its resulting depth perturbs ambient pressure and flexible-gas buoyancy, so the controller does not act outside the integrated system. The experiment remains a local educational abstraction: it is not a depth-following algorithm or a prescription for real diver action.
+
 ## DiveLab Insight
 
 ::: {.callout-important title="DiveLab Insight"}
@@ -165,6 +193,8 @@ This framework applies far beyond diving—to aircraft, robots, medical devices,
 - Depth couples pressure to buoyancy, gas demand, sensing, and inert-gas state.
 - The complete state contains more information than any single display.
 - Models must be judged against a declared purpose and validation boundary.
+- Prescribed-profile propagation and closed-loop simulation answer different engineering questions.
+- A local feedback experiment connects the plant, state, disturbance, actuator constraint, and downstream physical variables.
 - DiveLab provides engineering understanding, not practical certification.
 - You can now look at a dive and see the system beneath it.
 
@@ -176,18 +206,21 @@ This framework applies far beyond diving—to aircraft, robots, medical devices,
 | $y=h(x)+\nu$ | Measurement model with error |
 | $x=[z,v,V_L,V_{BCD},G,\boldsymbol P_t^T]^T$ | Illustrative integrated state vector |
 | $z\rightarrow P_{\mathrm{amb}}\rightarrow\{V_g,F_B,q,G,P_I,\boldsymbol P_t\}$ | Principal pressure-mediated causal connections |
+| $u=K_p\delta z-K_d\delta v$ | Local closed-loop force command |
 
 ## Exercises
 
-1. Draw the complete causal graph from memory, then compare it with this chapter.
-2. Classify every variable in the capstone notebook as state, input, disturbance, parameter, measurement, or derived output.
-3. Choose one omitted phenomenon and explain which state equation or measurement equation it would modify.
-4. Identify three conclusions that the integrated model can support and three that it cannot.
-5. Write a validation plan for one subsystem without claiming validation of the complete system.
+1. **C18-E01 · Core.** Draw the complete causal graph from memory, then compare it with this chapter.
+2. **C18-E02 · Notebook Challenge.** Classify every variable in the capstone notebook as state, input, disturbance, parameter, measurement, or derived output.
+3. **C18-E03 · Extension.** Choose one omitted phenomenon and explain which state equation or measurement equation it would modify.
+4. **C18-E04 · Core.** Identify three conclusions that the integrated model can support and three that it cannot.
+5. **C18-E05 · Core.** Write a validation plan for one subsystem without claiming validation of the complete system.
+
+**Notebook alignment.** Notebook 18 directly supports C18-E02–C18-E05. Its profile-comparison and uncertainty-band activities provide evidence for C18-E04; its validation matrix operationalizes C18-E05.
 
 ## Companion Notebook
 
-Open Notebook 18 — Integrated DiveLab Capstone on [GitHub](https://github.com/fcivardi/divelab/blob/editorial-v2/notebooks/18_Integrated_DiveLab_Capstone.ipynb) or [Google Colab](https://colab.research.google.com/github/fcivardi/divelab/blob/editorial-v2/notebooks/18_Integrated_DiveLab_Capstone.ipynb) to propagate one synthetic pressure history through the book's pressure, buoyancy, gas-resource, sensing, and inert-gas models.
+Open Notebook 18 — Integrated DiveLab Capstone on [GitHub](https://github.com/fcivardi/divelab/blob/editorial-v2/notebooks/18_Integrated_DiveLab_Capstone.ipynb) or [Google Colab](https://colab.research.google.com/github/fcivardi/divelab/blob/editorial-v2/notebooks/18_Integrated_DiveLab_Capstone.ipynb) to propagate one synthetic pressure history through the book's pressure, buoyancy, gas-resource, sensing, and inert-gas models, then close a compact local loop around the vertical-motion plant.
 
 ## Looking Ahead
 

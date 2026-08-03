@@ -235,14 +235,16 @@ Human-in-the-loop analysis connects control engineering with human factors. The 
 
 ## Exercises
 
-1. Draw the complete human feedback architecture and label every role.
-2. Implement a deadband and explain its trade-off.
-3. Convert reaction delay and decision interval into simulation samples.
-4. Predict how delay and gain interact.
-5. Compare continuous and intermittent commands.
-6. Add command quantization and inspect any limit cycle.
-7. Compare reactive and predictive decision rules.
-8. Explain why model metrics cannot be treated as measures of real diver competence.
+1. **C13-E01 · Core.** Draw the complete human feedback architecture and label every role.
+2. **C13-E02 · Notebook Challenge.** Implement a deadband and explain its trade-off.
+3. **C13-E03 · Core.** Convert reaction delay and decision interval into simulation samples.
+4. **C13-E04 · Core.** Predict how delay and gain interact.
+5. **C13-E05 · Recommended.** Compare continuous and intermittent commands.
+6. **C13-E06 · Extension.** Add command quantization and inspect any limit cycle.
+7. **C13-E07 · Notebook Challenge.** Compare reactive and predictive decision rules.
+8. **C13-E08 · Core.** Explain why model metrics cannot be treated as measures of real diver competence.
+
+**Notebook alignment.** Notebook 13 directly supports C13-E02–C13-E07. Its final nonlinear-plant experiment extends the architecture in C13-E01 without changing the safety boundary in C13-E08.
 
 ## Companion Notebook
 

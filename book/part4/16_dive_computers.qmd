@@ -148,11 +148,13 @@ This architecture is a small cyber-physical system. Sensor calibration, sampling
 
 ## Exercises
 
-1. Propagate uncertainty in $P_m$, $P_0$, and $\rho$ into depth uncertainty.
-2. Compare backward difference with a smoothed derivative.
-3. Design tests for a frozen pressure sample and an impossible pressure jump.
-4. Classify each display item as measured, derived, estimated, or predicted.
-5. Explain why an alarm threshold and its verification evidence must be specified together.
+1. **C16-E01 · Core.** Propagate uncertainty in $P_m$, $P_0$, and $\rho$ into depth uncertainty.
+2. **C16-E02 · Notebook Challenge.** Compare backward difference with a smoothed derivative using both error and lag metrics.
+3. **C16-E03 · Core.** Design tests for a frozen pressure sample and an impossible pressure jump.
+4. **C16-E04 · Recommended.** Classify each display item as measured, derived, estimated, or predicted; for each estimate or prediction, also identify its source data, update latency, and principal uncertainty.
+5. **C16-E05 · Core.** Explain why an alarm threshold and its verification evidence must be specified together.
+
+**Notebook alignment.** Notebook 16 directly supports C16-E02 and C16-E03. Its surface-bias and Kalman-filter experiments extend C16-E01 and connect the pipeline to Chapter 8.
 
 ## Companion Notebook
 

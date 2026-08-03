@@ -242,14 +242,16 @@ Frequency-domain analysis compresses many sinusoidal experiments into one pair o
 
 ## Exercises
 
-1. Evaluate magnitude and phase of a first-order transfer function.
-2. Convert several magnitude ratios to decibels.
-3. Calculate $\omega_n$ and $\zeta$ for new gains.
-4. Predict whether a gain set can produce resonance.
-5. Estimate a $-3\ \mathrm{dB}$ bandwidth numerically.
-6. Calculate delay phase at three frequencies.
-7. Predict depth amplitude for a periodic disturbance.
-8. Explain why an unstable system lacks bounded sinusoidal steady state.
+1. **C12-E01 · Core.** Evaluate magnitude and phase of a first-order transfer function.
+2. **C12-E02 · Recommended.** Convert several magnitude ratios to decibels.
+3. **C12-E03 · Core.** Calculate $\omega_n$ and $\zeta$ for new gains.
+4. **C12-E04 · Core.** Predict whether a gain set can produce resonance.
+5. **C12-E05 · Notebook Challenge.** Estimate a $-3\ \mathrm{dB}$ bandwidth numerically.
+6. **C12-E06 · Recommended.** Calculate delay phase at three frequencies.
+7. **C12-E07 · Core.** Predict depth amplitude for a periodic disturbance.
+8. **C12-E08 · Extension.** Explain why an unstable system lacks bounded sinusoidal steady state.
+
+**Notebook alignment.** Notebook 12 directly supports C12-E03–C12-E06; its breathing-frequency calculation reinforces C12-E01 and its delay experiment extends C12-E06.
 
 ## Companion Notebook
 

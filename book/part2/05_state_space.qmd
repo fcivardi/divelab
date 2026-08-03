@@ -407,16 +407,18 @@ The simulations are educational models and are not operational guidance for asce
 
 ## Exercises
 
-1. Explain why two divers at the same depth can require different state descriptions if their vertical velocities differ.
-2. Classify each quantity in the vertical model as a state, input, disturbance, parameter, algebraic variable, or output: $z$, $v$, $m$, $P_{\mathrm{abs}}$, $V_g$, $F_B$, $u$, and $d$.
-3. Write the state derivative for $\mathbf{x}=[12.0\ \mathrm{m},\ 0.30\ \mathrm{m\,s^{-1}}]^{\mathsf T}$, leaving the acceleration in symbolic form.
-4. At neutral buoyancy, compare $\dot{\mathbf{x}}$ for $v=0$, $v=+0.20\ \mathrm{m\,s^{-1}}$, and $v=-0.20\ \mathrm{m\,s^{-1}}$.
-5. Explain why $V_g(z)$ is not an independent state under the instantaneous Boyle-law assumption.
-6. Describe one more realistic gas or actuator model in which an additional state would be required.
-7. Starting from a specified $\mathbf{x}_k$, $\dot{\mathbf{x}}_k$, and $\Delta t$, perform two explicit Euler steps.
-8. Give one example each of a commanded input and an uncommanded disturbance for vertical motion.
-9. Define an output equation for a model that exposes depth only. Then define one that exposes both depth and velocity.
-10. Explain why writing a nonlinear model in state-space form does not make it linear.
+1. **C05-E01 · Core.** Explain why two divers at the same depth can require different state descriptions if their vertical velocities differ.
+2. **C05-E02 · Core.** Classify each quantity in the vertical model as a state, input, disturbance, parameter, algebraic variable, or output: $z$, $v$, $m$, $P_{\mathrm{abs}}$, $V_g$, $F_B$, $u$, and $d$.
+3. **C05-E03 · Recommended.** Write the state derivative for $\mathbf{x}=[12.0\ \mathrm{m},\ 0.30\ \mathrm{m\,s^{-1}}]^{\mathsf T}$, leaving the acceleration in symbolic form.
+4. **C05-E04 · Recommended.** At neutral buoyancy, compare $\dot{\mathbf{x}}$ for $v=0$, $v=+0.20\ \mathrm{m\,s^{-1}}$, and $v=-0.20\ \mathrm{m\,s^{-1}}$.
+5. **C05-E05 · Core.** Explain why $V_g(z)$ is not an independent state under the instantaneous Boyle-law assumption.
+6. **C05-E06 · Notebook Challenge.** Describe one more realistic gas or actuator model in which an additional state would be required.
+7. **C05-E07 · Notebook Challenge.** Starting from a specified $\mathbf{x}_k$, $\dot{\mathbf{x}}_k$, and $\Delta t$, perform two explicit Euler steps.
+8. **C05-E08 · Recommended.** Give one example each of a commanded input and an uncommanded disturbance for vertical motion.
+9. **C05-E09 · Core.** Define an output equation for a model that exposes depth only. Then define one that exposes both depth and velocity.
+10. **C05-E10 · Extension.** Explain why writing a nonlinear model in state-space form does not make it linear.
+
+**Notebook alignment.** Notebook 05 implements C05-E07; its actuator-memory challenge is the computational continuation of C05-E06.
 
 ## Companion Notebook
 

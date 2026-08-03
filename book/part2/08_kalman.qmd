@@ -497,16 +497,18 @@ The DiveLab filter uses a local linear plant, synthetic zero-mean Gaussian noise
 
 ## Exercises
 
-1. Distinguish process noise from measurement noise and give two DiveLab examples of each.
-2. Starting from $F$, $P^+_{k-1}$, and $Q$, calculate one covariance prediction.
-3. Calculate $S_k$ and $K_k$ for a given two-state prior covariance and scalar $R$.
-4. Explain how a scalar depth innovation can correct a two-component state estimate.
-5. Show that increasing $R$ while holding $P^-$ fixed reduces the magnitude of the Kalman gain.
-6. Explain why increasing $Q$ often makes the filter respond more strongly to later measurements.
-7. Compare the meanings of $P_0$, $Q$, and $R$.
-8. Explain why a small posterior covariance does not prove that the estimate is physically accurate.
-9. Identify which standard Kalman assumptions are violated by a constant pressure-sensor bias.
-10. Compare the roles of the Luenberger gain $L$ and the Kalman gain $K_k$.
+1. **C08-E01 · Core.** Distinguish process noise from measurement noise and give two DiveLab examples of each.
+2. **C08-E02 · Core.** Starting from $F$, $P^+_{k-1}$, and $Q$, calculate one covariance prediction.
+3. **C08-E03 · Core.** Calculate $S_k$ and $K_k$ for a given two-state prior covariance and scalar $R$.
+4. **C08-E04 · Core.** Explain how a scalar depth innovation can correct a two-component state estimate.
+5. **C08-E05 · Recommended.** Show that increasing $R$ while holding $P^-$ fixed reduces the magnitude of the Kalman gain.
+6. **C08-E06 · Recommended.** Explain why increasing $Q$ often makes the filter respond more strongly to later measurements.
+7. **C08-E07 · Recommended.** Compare the meanings of $P_0$, $Q$, and $R$.
+8. **C08-E08 · Extension.** Explain why a small posterior covariance does not prove that the estimate is physically accurate.
+9. **C08-E09 · Notebook Challenge.** Identify which standard Kalman assumptions are violated by a constant pressure-sensor bias.
+10. **C08-E10 · Extension.** Compare the roles of the Luenberger gain $L$ and the Kalman gain $K_k$.
+
+**Notebook alignment.** Notebook 08 supports C08-E02–C08-E06; its pressure-bias challenge implements C08-E09 and tests the warning in C08-E08.
 
 ## Companion Notebook
 

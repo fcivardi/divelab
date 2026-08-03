@@ -42,6 +42,7 @@ book:
         - part4/18_complete_dive.qmd
   appendices:
     - appendices/notebook_map.qmd
+    - appendices/core_answers.qmd
 
 bibliography: references.bib
 
@@ -57,6 +58,18 @@ format:
     documentclass: scrreprt
     toc: true
     number-sections: true
+    pdf-engine: xelatex
+    callout-icon: false
+    include-in-header:
+      text: |
+        \IfFileExists{fontawesome5.sty}{}{\input{latex/fontawesome5-fallback.sty}}
+        \usepackage{scrhack}
+        \makeatletter
+        \renewcommand{\@pnumwidth}{2.2em}
+        \makeatother
+        \DeclareTOCStyleEntry[numwidth=3.2em]{tocline}{section}
+        \DeclareTOCStyleEntry[numwidth=4.2em]{tocline}{subsection}
+        \AtBeginDocument{\ifdefined\useOriginalUrlSetting\useOriginalUrlSetting\fi}
 
 execute:
   freeze: auto

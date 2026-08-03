@@ -350,15 +350,17 @@ These equations are teaching models rather than operational buoyancy or dive-pla
 
 ## Exercises
 
-1. Derive $F_B=\rho gV$ for a submerged rectangular body and show explicitly why $P_0$ cancels.
-2. A body displaces $15\ \mathrm{L}$ of seawater. Calculate its buoyant force in newtons and the mass of the displaced fluid in kilograms.
-3. Repeat Exercise 2 in freshwater. Explain the difference.
-4. A rectangular body has area $0.030\ \mathrm{m^2}$ and height $0.40\ \mathrm{m}$. Verify numerically that $(P_b-P_t)A=\rho gV$.
-5. Find the freshwater and seawater displaced volumes required for neutral buoyancy for an $82\ \mathrm{kg}$ system.
-6. Explain why moving a rigid, completely submerged body from $5$ to $25\ \mathrm{m}$ does not change its buoyant force in the constant-density model.
-7. A flexible gas space occupies $8.0\ \mathrm{L}$ at the surface. Using the diving approximation, calculate its volume and buoyant-force contribution at $0$, $10$, $20$, and $30\ \mathrm{m}$.
-8. Differentiate $F_{B,g}(z)$ with respect to depth. Determine its sign and explain its physical meaning.
-9. Draw the cascade $z\rightarrow P_{\mathrm{abs}}\rightarrow V_g\rightarrow F_{B,g}$ and identify which blocks are affine, nonlinear, and linear.
+1. **C03-E01 · Core.** Derive $F_B=\rho gV$ for a submerged rectangular body and show explicitly why $P_0$ cancels.
+2. **C03-E02 · Notebook Challenge.** A body displaces $15\ \mathrm{L}$ of seawater. Calculate its buoyant force in newtons and the mass of the displaced fluid in kilograms.
+3. **C03-E03 · Recommended.** Repeat C03-E02 in freshwater. Explain the difference.
+4. **C03-E04 · Recommended.** A rectangular body has area $0.030\ \mathrm{m^2}$ and height $0.40\ \mathrm{m}$. Verify numerically that $(P_b-P_t)A=\rho gV$.
+5. **C03-E05 · Core.** Find the freshwater and seawater displaced volumes required for neutral buoyancy for an $82\ \mathrm{kg}$ system.
+6. **C03-E06 · Core.** Explain why moving a rigid, completely submerged body from $5$ to $25\ \mathrm{m}$ does not change its buoyant force in the constant-density model.
+7. **C03-E07 · Notebook Challenge.** A flexible gas space occupies $8.0\ \mathrm{L}$ at the surface. Using the diving approximation, calculate its volume and buoyant-force contribution at $0$, $10$, $20$, and $30\ \mathrm{m}$.
+8. **C03-E08 · Extension.** Differentiate $F_{B,g}(z)$ with respect to depth. Determine its sign and explain its physical meaning.
+9. **C03-E09 · Core.** Draw the cascade $z\rightarrow P_{\mathrm{abs}}\rightarrow V_g\rightarrow F_{B,g}$ and identify which blocks are affine, nonlinear, and linear.
+
+**Notebook alignment.** Notebook 03 directly supports C03-E02; its combined Boyle–Archimedes challenge implements C03-E07 and reinforces C03-E09.
 
 ## Companion Notebook
 

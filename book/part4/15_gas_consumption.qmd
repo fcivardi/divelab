@@ -151,11 +151,13 @@ Gas management resembles energy management in a battery-powered system: remainin
 
 ## Exercises
 
-1. Compare the exact pressure ratio with $1+z/10$ from 0 to $40~\mathrm{m}$.
-2. Derive the constant-depth solution for $G(t)$.
-3. Construct two profiles with equal duration and maximum depth but different gas use.
-4. Add an uncertain workload interval and report a range rather than one forecast.
-5. List the assumptions required to infer free-gas volume from cylinder pressure.
+1. **C15-E01 · Recommended.** Compare the exact pressure ratio with $1+z/10$ from 0 to $40~\mathrm{m}$, then quantify how the approximation changes integrated gas use over one specified profile.
+2. **C15-E02 · Core.** Derive the constant-depth solution for $G(t)$.
+3. **C15-E03 · Core.** Construct two profiles with equal duration and maximum depth but different gas use.
+4. **C15-E04 · Notebook Challenge.** Add an uncertain workload interval and report a range rather than one forecast.
+5. **C15-E05 · Core.** List the assumptions required to infer free-gas volume from cylinder pressure.
+
+**Notebook alignment.** Notebook 15 directly supports C15-E03 and C15-E04; its cylinder-volume and environmental-sensitivity experiments extend C15-E05 and C15-E01.
 
 ## Companion Notebook
 

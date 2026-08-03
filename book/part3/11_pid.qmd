@@ -33,7 +33,7 @@ After completing this chapter, you should be able to:
 - explain why integral action removes constant-disturbance offset;
 - identify integral windup and implement anti-windup;
 - explain why derivative action amplifies measurement noise;
-- compare P, PD, PI, and PID behavior using appropriate metrics;
+- compare PD and PID disturbance rejection using appropriate metrics;
 - recognize tuning as a multi-objective engineering trade-off.
 
 ## Theory
@@ -233,14 +233,16 @@ The force controller remains an educational abstraction. It does not prescribe B
 
 ## Exercises
 
-1. Interpret each PID term using the DiveLab sign convention.
-2. Derive the augmented state matrix and cubic polynomial.
-3. Apply the cubic Routh condition to a proposed gain set.
-4. Explain mathematically why stable integral action removes constant offset.
-5. Simulate windup under a large initial error.
-6. Compare clamping and back-calculation anti-windup.
-7. Explain derivative kick and derivative-on-measurement.
-8. Define three performance metrics and discuss their conflicts.
+1. **C11-E01 · Core.** Interpret each PID term using the DiveLab sign convention.
+2. **C11-E02 · Core.** Derive the augmented state matrix and cubic polynomial.
+3. **C11-E03 · Core.** Apply the cubic Routh condition to a proposed gain set.
+4. **C11-E04 · Core.** Explain mathematically why stable integral action removes constant offset.
+5. **C11-E05 · Notebook Challenge.** Simulate windup under a large initial error.
+6. **C11-E06 · Notebook Challenge.** Compare clamping and back-calculation anti-windup.
+7. **C11-E07 · Recommended.** Explain derivative kick and derivative-on-measurement.
+8. **C11-E08 · Extension.** Define three performance metrics and discuss their conflicts.
+
+**Notebook alignment.** Notebook 11 directly supports C11-E03, C11-E05, C11-E06, and C11-E08; its noise experiment provides evidence for C11-E07.
 
 ## Companion Notebook
 

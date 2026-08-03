@@ -513,16 +513,18 @@ The DiveLab observer uses a local linear model, ideal timing, additive zero-mean
 
 ## Exercises
 
-1. Classify pressure, displayed depth, reconstructed velocity, and projected future depth as measured, derived, estimated, or predicted.
-2. Derive the observability matrix for depth-only output and calculate its determinant and rank.
-3. Explain physically why $\dot y=-\delta v$ makes the system observable from depth history.
-4. Construct $\mathcal{O}_v$ for velocity-only output and determine the condition on $a$ for observability.
-5. Derive the estimation-error equation from the plant and observer equations.
-6. Verify the characteristic polynomial of $A-LC$.
-7. Calculate $L$ for desired poles $p_1=-0.5\ \mathrm{s^{-1}}$ and $p_2=-0.9\ \mathrm{s^{-1}}$.
-8. Explain why stable observer-error dynamics do not require the plant itself to be stable.
-9. Compare the likely effects of slow and fast observer poles on initial-condition error and measurement noise.
-10. Identify three model mismatches that could bias or degrade the DiveLab velocity estimate.
+1. **C07-E01 · Core.** Classify pressure, displayed depth, reconstructed velocity, and projected future depth as measured, derived, estimated, or predicted.
+2. **C07-E02 · Core.** Derive the observability matrix for depth-only output and calculate its determinant and rank.
+3. **C07-E03 · Core.** Explain physically why $\dot y=-\delta v$ makes the system observable from depth history.
+4. **C07-E04 · Extension.** Construct $\mathcal{O}_v$ for velocity-only output and determine the condition on $a$ for observability.
+5. **C07-E05 · Core.** Derive the estimation-error equation from the plant and observer equations.
+6. **C07-E06 · Recommended.** Verify the characteristic polynomial of $A-LC$.
+7. **C07-E07 · Recommended.** Calculate $L$ for desired poles $p_1=-0.5\ \mathrm{s^{-1}}$ and $p_2=-0.9\ \mathrm{s^{-1}}$.
+8. **C07-E08 · Recommended.** Explain why stable observer-error dynamics do not require the plant itself to be stable.
+9. **C07-E09 · Notebook Challenge.** Compare the likely effects of slow and fast observer poles on initial-condition error and measurement noise.
+10. **C07-E10 · Extension.** Identify three model mismatches that could bias or degrade the DiveLab velocity estimate and state an experiment that could reveal each mismatch.
+
+**Notebook alignment.** Notebook 07 supports the observer calculations in C07-E05–C07-E09; its sampling challenge extends C07-E09 by separating sampling, noise, and integration effects.
 
 ## Companion Notebook
 
