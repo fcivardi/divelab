@@ -6,6 +6,10 @@ The book provides the narrative. The notebooks provide the executable laboratory
 
 > **Learn one system deeply. Understand many systems forever.**
 
+::: {.content-visible when-format="html"}
+[Download the complete DiveLab PDF](downloads/DiveLab.pdf){.btn .btn-primary}
+:::
+
 ## Educational scope {.unnumbered}
 
 DiveLab is an educational resource. It is not a diving manual, decompression planner, or substitute for certified training and approved equipment.

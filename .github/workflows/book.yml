@@ -1,0 +1,86 @@
+name: Build and publish DiveLab
+
+on:
+  push:
+    branches:
+      - editorial-v2
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v6
+
+      - name: Set up Quarto and TinyTeX
+        uses: quarto-dev/quarto-actions/setup@v2
+        with:
+          version: 1.10.18
+          tinytex: true
+
+      - name: Render PDF
+        working-directory: book
+        run: quarto render --to pdf
+
+      - name: Preserve PDF
+        run: |
+          mkdir -p build-artifacts
+          cp book/_book/DiveLab.pdf build-artifacts/DiveLab.pdf
+
+      - name: Render HTML
+        working-directory: book
+        run: quarto render --to html
+
+      - name: Add PDF to the website
+        run: |
+          mkdir -p book/_book/downloads
+          cp build-artifacts/DiveLab.pdf book/_book/downloads/DiveLab.pdf
+          touch book/_book/.nojekyll
+
+      - name: Upload build for review
+        uses: actions/upload-artifact@v4
+        with:
+          name: divelab-${{ github.sha }}
+          path: |
+            book/_book
+            build-artifacts/DiveLab.pdf
+          retention-days: 14
+          if-no-files-found: error
+
+      - name: Configure GitHub Pages
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        uses: actions/configure-pages@v5
+
+      - name: Upload GitHub Pages artifact
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: book/_book
+
+  deploy:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
