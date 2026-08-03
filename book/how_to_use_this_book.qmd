@@ -2,6 +2,18 @@
 
 DiveLab combines a continuous book with executable Jupyter notebooks.
 
+## Before you begin {.unnumbered}
+
+The book is progressive, but it is not a mathematics or Python primer. The complete path assumes familiarity with:
+
+- high-school physics, algebra, functions, graphs, and SI units;
+- elementary differential and integral calculus;
+- vectors, matrices, and ordinary differential equations;
+- basic probability concepts;
+- basic Python syntax and running cells in Jupyter or Google Colab.
+
+Eigenvalues, covariance matrices, complex numbers, Laplace transforms, and numerical simulation appear as the curriculum develops. They are explained in context, but readers meeting them for the first time may need a supporting reference. No previous control-theory course is required.
+
 ## Recommended sequence {.unnumbered}
 
 1. Read the physical motivation.
@@ -10,6 +22,14 @@ DiveLab combines a continuous book with executable Jupyter notebooks.
 4. Run all cells.
 5. Change at least one parameter.
 6. Explain what changed and why.
+
+The chapter provides the connected engineering argument; the companion notebook is its executable laboratory. Follow the numbered chapter sequence unless a chapter's prerequisite line confirms that you can enter elsewhere. Study-time estimates include both the chapter and its notebook.
+
+## Two ways to read {.unnumbered}
+
+For the **complete engineering path**, work through Chapters 1–18 in order and complete the companion notebooks.
+
+For a **conceptual reading**, follow the physical motivation, engineering questions, figures, summaries, and model limitations. Mathematical derivations and code experiments can be revisited later, but they should not be mistaken for optional prerequisites to the technical exercises.
 
 ## Safety and scope {.unnumbered}
 
