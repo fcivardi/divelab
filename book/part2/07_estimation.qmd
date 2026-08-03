@@ -1,36 +1,538 @@
-# Observability and State Estimation
+---
+title: "Observability and State Estimation"
+subtitle: "From Measurements to Hidden State"
+---
 
-## Guiding question
+## Companion Resources
 
-What physical or systems-engineering idea does this chapter introduce?
+::: {.callout-tip title="Companion Resources"}
 
-## Learning objectives
+**Chapter:** 7 — Observability and State Estimation
 
-By the end of this chapter, the reader will be able to:
+**Companion notebook:** Notebook 07 — Observability and State Estimation
 
-- explain the central concept;
-- identify the relevant variables;
-- interpret the main equations;
-- connect theory to simulation.
+**Estimated study time:** 150–180 minutes, including the notebook
 
-## Physical motivation
+**Prerequisites:** Chapters 5–6, matrix rank, eigenvalues, and linear differential equations
 
-This section will be developed during the DiveLab v2 refactoring.
+:::
 
-## Mathematical model
+## Engineering Question
 
-The equations will follow the conventions in `STYLE_GUIDE.md`.
+If only depth is available from measurements, can vertical velocity be reconstructed?
 
-## Computational laboratory
+The state-space model contains both depth and velocity, but a sensor does not necessarily expose every state directly. Chapter 7 asks whether the history of the available output contains enough information to infer the hidden state and how a model-based observer can perform that reconstruction in the presence of measurement noise.
 
-[Open `08_Kalman_Filter.ipynb` on GitHub](https://github.com/fcivardi/divelab/blob/main/notebooks/08_Kalman_Filter.ipynb)
+## Learning Objectives
 
-[Open in Colab](https://colab.research.google.com/github/fcivardi/divelab/blob/main/notebooks/08_Kalman_Filter.ipynb)
+After completing this chapter, you should be able to:
 
-## Interpretation
+- distinguish true state, measured quantity, derived quantity, estimated state, and predicted state;
+- write an output equation for the linearized vertical model;
+- construct the observability matrix and apply the rank test;
+- explain physically why depth history contains information about vertical velocity;
+- distinguish structural observability from practical estimation quality;
+- derive the Luenberger observer and its estimation-error dynamics;
+- choose a two-state observer gain from desired observer poles;
+- interpret innovation, estimation error, convergence speed, and noise sensitivity;
+- explain why numerical differentiation is a poor velocity estimator when depth measurements are noisy.
 
-Explain what the simulation shows and why it matters.
+## Theory
+
+The distinction between internal state, measured output, observability, and observer reconstruction follows classical state-estimation theory [@luenberger1964; @chen1999].
+
+### State and Measurement Are Different Objects
+
+Chapter 6 used the perturbation state
+
+$$
+\boldsymbol{\xi}
+=
+\begin{bmatrix}
+\delta z\\
+\delta v
+\end{bmatrix},
+$$
+
+where $\delta z=z-z^{\ast}$ and $\delta v=v-v^{\ast}$. Both components are needed to predict the local vertical motion. That does not mean both must be measured directly.
+
+The following terms have distinct meanings:
+
+| Term | Meaning | DiveLab example |
+|:-----|:--------|:----------------|
+| True state | Actual internal variables in the model | $\delta z$, $\delta v$ |
+| Measured | Obtained directly from a sensor | Ambient pressure |
+| Derived | Calculated directly from measurements | Depth inferred from pressure |
+| Estimated | Reconstructed using measurements and a model | Vertical velocity |
+| Predicted | Projected into the future using a model | Future depth deviation |
+
+A real dive computer senses pressure and converts it to depth using assumptions about the environment. In the simplified output model below, we treat depth deviation as the available measurement and collect sensor and conversion errors into one noise term.
+
+### Output Equation
+
+The local model from Chapter 6 is
+
+$$
+\dot{\boldsymbol{\xi}}=A\boldsymbol{\xi},
+$$
+
+with
+
+$$
+A
+=
+\begin{bmatrix}
+0 & -1\\
+a & 0
+\end{bmatrix},
+\qquad
+a=\frac{k_B}{m}<0.
+$$
+
+If the available output is depth deviation,
+
+$$
+y=\delta z,
+$$
+
+then
+
+$$
+\boxed{
+y=C\boldsymbol{\xi},
+\qquad
+C=
+\begin{bmatrix}
+1 & 0
+\end{bmatrix}
+}.
+$$
+
+With additive measurement noise $n(t)$,
+
+$$
+y_m=C\boldsymbol{\xi}+n.
+$$
+
+The output dimension is one even though the state dimension is two.
+
+### Physical Intuition Before the Rank Test
+
+Because
+
+$$
+y=\delta z,
+$$
+
+the kinematic equation gives
+
+$$
+\dot{y}=\delta\dot{z}=-\delta v.
+$$
+
+Therefore the way measured depth changes over time carries information about velocity. A sequence of depth measurements can reveal more than one instantaneous depth value.
+
+This observation suggests that the state may be reconstructable, but direct differentiation is not yet a satisfactory estimator. Differentiation amplifies high-frequency measurement noise and produces a velocity signal dominated by sample-to-sample fluctuations.
+
+### Observability
+
+A linear time-invariant system
+
+$$
+\dot{\boldsymbol{\xi}}=A\boldsymbol{\xi},
+\qquad
+y=C\boldsymbol{\xi}
+$$
+
+is **observable** if its initial state can be uniquely reconstructed from the output over a finite time interval, assuming the model and output are known exactly.
+
+For an $n$-state model, define the observability matrix
+
+$$
+\mathcal{O}
+=
+\begin{bmatrix}
+C\\
+CA\\
+\vdots\\
+CA^{n-1}
+\end{bmatrix}.
+$$
+
+The pair $(A,C)$ is observable if
+
+$$
+\boxed{
+\operatorname{rank}(\mathcal{O})=n
+}.
+$$
+
+For the two-state vertical model,
+
+$$
+CA
+=
+\begin{bmatrix}
+1 & 0
+\end{bmatrix}
+\begin{bmatrix}
+0 & -1\\
+a & 0
+\end{bmatrix}
+=
+\begin{bmatrix}
+0 & -1
+\end{bmatrix},
+$$
+
+so
+
+$$
+\boxed{
+\mathcal{O}
+=
+\begin{bmatrix}
+1 & 0\\
+0 & -1
+\end{bmatrix}
+}.
+$$
+
+Its rank is two. Measuring depth over time contains enough information, in principle, to reconstruct both depth and upward velocity.
+
+### Structural Observability Is Not Estimation Accuracy
+
+The rank test is a structural statement about an ideal model. It does not guarantee that a practical estimate will be accurate.
+
+Estimation quality can be degraded by:
+
+- measurement noise, bias, drift, or limited resolution;
+- infrequent or irregular sampling;
+- uncertain water density or surface pressure;
+- mismatch between nonlinear dynamics and the local linear model;
+- unmodeled breathing, finning, currents, or actuator motion;
+- poorly chosen observer dynamics.
+
+Observability answers **whether information is theoretically present**. Observer design asks **how to reconstruct the state robustly from imperfect information**.
+
+### The Luenberger Observer
+
+A full-order continuous-time observer is
+
+$$
+\boxed{
+\dot{\hat{\boldsymbol{\xi}}}
+=
+A\hat{\boldsymbol{\xi}}
++L\left(y_m-C\hat{\boldsymbol{\xi}}\right)
+}.
+$$
+
+The estimate is denoted by $\hat{\boldsymbol{\xi}}$. The observer contains two complementary operations:
+
+1. **Prediction:** $A\hat{\boldsymbol{\xi}}$ advances the model-based estimate.
+2. **Correction:** $L(y_m-C\hat{\boldsymbol{\xi}})$ adjusts the estimate using the mismatch between measurement and prediction.
+
+Define the innovation or residual
+
+$$
+r=y_m-C\hat{\boldsymbol{\xi}}.
+$$
+
+The gain vector
+
+$$
+L
+=
+\begin{bmatrix}
+l_1\\
+l_2
+\end{bmatrix}
+$$
+
+determines how strongly the two estimated states respond to the innovation.
+
+### Estimation-Error Dynamics
+
+Define the estimation error
+
+$$
+\mathbf{e}
+=
+\boldsymbol{\xi}-\hat{\boldsymbol{\xi}}.
+$$
+
+For the exact deterministic model with $y=C\boldsymbol{\xi}$,
+
+$$
+\dot{\mathbf{e}}
+=
+(A-LC)\mathbf{e}.
+$$
+
+Thus the observer converges if the eigenvalues of $A-LC$ have negative real parts. The plant itself may be unstable; what must be stable is the autonomous estimation-error system.
+
+### Observer Pole Placement
+
+For
+
+$$
+A
+=
+\begin{bmatrix}
+0 & -1\\
+a & 0
+\end{bmatrix},
+\qquad
+C=
+\begin{bmatrix}
+1 & 0
+\end{bmatrix},
+$$
+
+we obtain
+
+$$
+A-LC
+=
+\begin{bmatrix}
+-l_1 & -1\\
+a-l_2 & 0
+\end{bmatrix}.
+$$
+
+Its characteristic polynomial is
+
+$$
+\det\left[sI-(A-LC)\right]
+=
+s^2+l_1s+(a-l_2).
+$$
+
+For desired observer poles $p_1$ and $p_2$, the desired polynomial is
+
+$$
+(s-p_1)(s-p_2)
+=
+s^2-(p_1+p_2)s+p_1p_2.
+$$
+
+Matching coefficients gives
+
+$$
+\boxed{
+l_1=-(p_1+p_2),
+\qquad
+l_2=a-p_1p_2
+}.
+$$
+
+Both desired poles must lie in the open left half-plane for asymptotic error convergence.
+
+### Observer Speed and Noise Sensitivity
+
+Observer poles farther to the left produce faster deterministic error convergence. They also require larger gains, causing the estimate to react more strongly to measurement noise and model mismatch.
+
+This creates a design trade-off:
+
+$$
+\text{faster correction}
+\quad\longleftrightarrow\quad
+\text{greater noise sensitivity}.
+$$
+
+Pole placement guarantees the ideal error dynamics; it does not select an optimal gain for noisy data. Stochastic estimators such as the Kalman filter address a related problem by representing process and measurement uncertainty explicitly, but that theory is outside the scope of this chapter.
+
+### Output Choice and Physical Coupling
+
+Observability is a property of the pair $(A,C)$, not of $A$ alone. If only velocity deviation were available,
+
+$$
+C_v=
+\begin{bmatrix}
+0 & 1
+\end{bmatrix},
+$$
+
+then
+
+$$
+\mathcal{O}_v
+=
+\begin{bmatrix}
+0 & 1\\
+a & 0
+\end{bmatrix}.
+$$
+
+This matrix has full rank when $a\neq0$. The depth-dependent buoyancy coupling allows velocity history to reveal depth deviation. If $a=0$, corresponding to no local depth dependence in buoyancy, the rank falls to one and absolute depth deviation cannot be reconstructed from velocity alone.
+
+This example connects a formal systems property directly to the underlying physics.
+
+## Worked Examples
+
+### Example 1: Measured, Derived, and Estimated Quantities
+
+Suppose a dive computer contains a pressure sensor and uses a hydrostatic relation to report depth. In the vocabulary of this book:
+
+- ambient pressure is measured;
+- depth is derived from pressure;
+- vertical velocity may be estimated from depth history and a model;
+- future depth is predicted by propagating the estimated state.
+
+Using these terms precisely prevents a calculated or reconstructed quantity from being described as a direct measurement.
+
+### Example 2: Observability from Depth
+
+For depth-only output,
+
+$$
+C=
+\begin{bmatrix}
+1&0
+\end{bmatrix},
+$$
+
+and
+
+$$
+\mathcal{O}
+=
+\begin{bmatrix}
+C\\
+CA
+\end{bmatrix}
+=
+\begin{bmatrix}
+1&0\\
+0&-1
+\end{bmatrix}.
+$$
+
+Therefore
+
+$$
+\operatorname{rank}(\mathcal{O})=2,
+$$
+
+and the two-state model is observable from depth history.
+
+### Example 3: Observer Gain
+
+For the canonical operating state from Chapter 6,
+
+$$
+a=\frac{k_B}{m}\approx-0.01054\ \mathrm{s^{-2}}.
+$$
+
+Choose desired observer poles
+
+$$
+p_1=-0.7\ \mathrm{s^{-1}},
+\qquad
+p_2=-1.0\ \mathrm{s^{-1}}.
+$$
+
+Then
+
+$$
+l_1=-(-0.7-1.0)=1.7\ \mathrm{s^{-1}},
+$$
+
+and
+
+$$
+l_2
+=a-p_1p_2
+=-0.01054-0.70
+=-0.71054\ \mathrm{s^{-2}}.
+$$
+
+The eigenvalues of $A-LC$ are therefore $-0.7$ and $-1.0\ \mathrm{s^{-1}}$, as specified.
+
+## DiveLab Insight
+
+::: {.callout-important title="DiveLab Insight"}
+
+A sensor does not need to measure every state independently.
+
+Depth history reveals velocity because the model contains the kinematic relation
+
+$$
+\delta\dot z=-\delta v.
+$$
+
+Observability formalizes whether the model and outputs expose enough information; the observer turns that information into a running state estimate.
+
+:::
+
+## Engineering Perspective
+
+The observer is itself a dynamical system:
+
+$$
+\text{model prediction}
+\longrightarrow
+\text{predicted output}
+\longrightarrow
+\text{innovation}
+\longrightarrow
+\text{state correction}.
+$$
+
+This structure appears throughout engineering: navigation, robotics, process control, fault detection, and sensor fusion. Its reliability depends on both information structure and model fidelity.
+
+The DiveLab observer uses a local linear model, ideal timing, additive zero-mean noise, and known parameters. It omits pressure-sensor bias, water-density variation, surface-pressure changes, asynchronous samples, nonlinear corrections, and physiological or equipment effects. The resulting estimate is an instructional demonstration, not a substitute for certified instrumentation or diving procedures.
 
 ## Summary
 
-State the central insight and motivate the next chapter.
+- State and output are different: a state may be required by the model without being measured directly.
+- Pressure is measured, depth is derived, and velocity can be estimated.
+- Depth-only output is represented by $C=[1\ 0]$.
+- The two-state vertical model is observable from depth because $\operatorname{rank}(\mathcal{O})=2$.
+- Observability is structural and does not guarantee accurate estimates under noise or model error.
+- A Luenberger observer combines model prediction with innovation-based correction.
+- The ideal estimation error evolves according to $\dot{\mathbf{e}}=(A-LC)\mathbf{e}$.
+- Correct pole placement gives $l_1=-(p_1+p_2)$ and $l_2=a-p_1p_2$.
+- Faster observer poles improve deterministic convergence but increase sensitivity to noisy measurements.
+- Direct numerical differentiation of depth amplifies measurement noise.
+
+## Key Equations
+
+| Equation | Meaning |
+|:---------|:--------|
+| $y=C\boldsymbol{\xi}$ | Linear output equation |
+| $y_m=C\boldsymbol{\xi}+n$ | Noisy measurement model |
+| $\mathcal{O}=[C^{\mathsf T},\ (CA)^{\mathsf T},\ldots]^{\mathsf T}$ | Observability matrix |
+| $\operatorname{rank}(\mathcal{O})=n$ | Observability rank condition |
+| $\dot{\hat{\boldsymbol{\xi}}}=A\hat{\boldsymbol{\xi}}+L(y_m-C\hat{\boldsymbol{\xi}})$ | Luenberger observer |
+| $r=y_m-C\hat{\boldsymbol{\xi}}$ | Innovation or residual |
+| $\mathbf{e}=\boldsymbol{\xi}-\hat{\boldsymbol{\xi}}$ | Estimation error |
+| $\dot{\mathbf{e}}=(A-LC)\mathbf{e}$ | Ideal error dynamics |
+| $l_1=-(p_1+p_2)$, $l_2=a-p_1p_2$ | Two-state observer-gain formula |
+
+## Exercises
+
+1. **C07-E01 · Core.** Classify pressure, displayed depth, reconstructed velocity, and projected future depth as measured, derived, estimated, or predicted.
+2. **C07-E02 · Core.** Derive the observability matrix for depth-only output and calculate its determinant and rank.
+3. **C07-E03 · Core.** Explain physically why $\dot y=-\delta v$ makes the system observable from depth history.
+4. **C07-E04 · Extension.** Construct $\mathcal{O}_v$ for velocity-only output and determine the condition on $a$ for observability.
+5. **C07-E05 · Core.** Derive the estimation-error equation from the plant and observer equations.
+6. **C07-E06 · Recommended.** Verify the characteristic polynomial of $A-LC$.
+7. **C07-E07 · Recommended.** Calculate $L$ for desired poles $p_1=-0.5\ \mathrm{s^{-1}}$ and $p_2=-0.9\ \mathrm{s^{-1}}$.
+8. **C07-E08 · Recommended.** Explain why stable observer-error dynamics do not require the plant itself to be stable.
+9. **C07-E09 · Notebook Challenge.** Compare the likely effects of slow and fast observer poles on initial-condition error and measurement noise.
+10. **C07-E10 · Extension.** Identify three model mismatches that could bias or degrade the DiveLab velocity estimate and state an experiment that could reveal each mismatch.
+
+**Notebook alignment.** Notebook 07 supports the observer calculations in C07-E05–C07-E09; its sampling challenge extends C07-E09 by separating sampling, noise, and integration effects.
+
+## Companion Notebook
+
+Use **Notebook 07 — Observability and State Estimation** to test observability, compare numerical differentiation with model-based estimation, construct a Luenberger observer, and investigate observer-speed versus noise-sensitivity trade-offs.
+
+- [Open the notebook on GitHub](https://github.com/fcivardi/divelab/blob/editorial-v2/notebooks/07_Observability_and_State_Estimation.ipynb)
+- [Run the notebook in Google Colab](https://colab.research.google.com/github/fcivardi/divelab/blob/editorial-v2/notebooks/07_Observability_and_State_Estimation.ipynb)
+
+## Looking Ahead
+
+Chapter 8 replaces manually selected observer gains with a covariance-based correction. The Kalman filter will combine a discrete dynamic model, noisy depth measurements, and explicit uncertainty assumptions to estimate both depth and vertical velocity.

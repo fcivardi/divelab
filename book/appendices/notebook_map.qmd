@@ -1,3 +1,41 @@
 # Notebook Map
 
-This appendix will map each book chapter to the canonical DiveLab notebooks.
+The companion notebooks provide executable experiments for the models developed in the book. Canonical notebook numbers align with chapter numbers.
+
+## Part I — Physics of Diving
+
+| Book chapter | Companion notebook | Access |
+|:-------------|:-------------------|:-------|
+| [Chapter 1 — Pressure and Depth](../part1/01_pressure.qmd) | Notebook 01 — Depth and Pressure | [GitHub](https://github.com/fcivardi/divelab/blob/editorial-v2/notebooks/01_Pressure.ipynb) · [Colab](https://colab.research.google.com/github/fcivardi/divelab/blob/editorial-v2/notebooks/01_Pressure.ipynb) |
+| [Chapter 2 — Compressible Gases](../part1/02_boyle.qmd) | Notebook 02 — Boyle's Law | [GitHub](https://github.com/fcivardi/divelab/blob/editorial-v2/notebooks/02_Boyles_Law.ipynb) · [Colab](https://colab.research.google.com/github/fcivardi/divelab/blob/editorial-v2/notebooks/02_Boyles_Law.ipynb) |
+| [Chapter 3 — Archimedes' Principle](../part1/03_archimedes.qmd) | Notebook 03 — Archimedes' Principle: From Volume to Buoyant Force | [GitHub](https://github.com/fcivardi/divelab/blob/editorial-v2/notebooks/03_Archimedes_Principle.ipynb) · [Colab](https://colab.research.google.com/github/fcivardi/divelab/blob/editorial-v2/notebooks/03_Archimedes_Principle.ipynb) |
+| [Chapter 4 — Buoyancy and Vertical Dynamics](../part1/04_buoyancy_dynamics.qmd) | Notebook 04 — Vertical Forces and Motion | [GitHub](https://github.com/fcivardi/divelab/blob/editorial-v2/notebooks/04_Vertical_Forces_and_Motion.ipynb) · [Colab](https://colab.research.google.com/github/fcivardi/divelab/blob/editorial-v2/notebooks/04_Vertical_Forces_and_Motion.ipynb) |
+
+## Part II — Dynamical Systems
+
+| Book chapter | Companion notebook | Access |
+|:-------------|:-------------------|:-------|
+| [Chapter 5 — State-Space Models](../part2/05_state_space.qmd) | Notebook 05 — State-Space Models | [GitHub](https://github.com/fcivardi/divelab/blob/editorial-v2/notebooks/05_State_Space_Models.ipynb) · [Colab](https://colab.research.google.com/github/fcivardi/divelab/blob/editorial-v2/notebooks/05_State_Space_Models.ipynb) |
+| [Chapter 6 — Equilibria and Stability](../part2/06_stability.qmd) | Notebook 06 — Equilibria and Stability | [GitHub](https://github.com/fcivardi/divelab/blob/editorial-v2/notebooks/06_Equilibria_and_Stability.ipynb) · [Colab](https://colab.research.google.com/github/fcivardi/divelab/blob/editorial-v2/notebooks/06_Equilibria_and_Stability.ipynb) |
+| [Chapter 7 — Observability and State Estimation](../part2/07_estimation.qmd) | Notebook 07 — Observability and State Estimation | [GitHub](https://github.com/fcivardi/divelab/blob/editorial-v2/notebooks/07_Observability_and_State_Estimation.ipynb) · [Colab](https://colab.research.google.com/github/fcivardi/divelab/blob/editorial-v2/notebooks/07_Observability_and_State_Estimation.ipynb) |
+| [Chapter 8 — Kalman Filtering](../part2/08_kalman.qmd) | Notebook 08 — Kalman Filtering | [GitHub](https://github.com/fcivardi/divelab/blob/editorial-v2/notebooks/08_Kalman_Filter.ipynb) · [Colab](https://colab.research.google.com/github/fcivardi/divelab/blob/editorial-v2/notebooks/08_Kalman_Filter.ipynb) |
+
+## Part III — Control Engineering
+
+| Book chapter | Companion notebook | Access |
+|:-------------|:-------------------|:-------|
+| [Chapter 9 — Laplace Transforms and Transfer Functions](../part3/09_laplace.qmd) | Notebook 09 — Laplace Transforms and Transfer Functions | [GitHub](https://github.com/fcivardi/divelab/blob/editorial-v2/notebooks/09_Laplace_and_Transfer_Functions.ipynb) · [Colab](https://colab.research.google.com/github/fcivardi/divelab/blob/editorial-v2/notebooks/09_Laplace_and_Transfer_Functions.ipynb) |
+| [Chapter 10 — Feedback Control](../part3/10_feedback.qmd) | Notebook 10 — Feedback Control | [GitHub](https://github.com/fcivardi/divelab/blob/editorial-v2/notebooks/10_Feedback_Control.ipynb) · [Colab](https://colab.research.google.com/github/fcivardi/divelab/blob/editorial-v2/notebooks/10_Feedback_Control.ipynb) |
+| [Chapter 11 — PID Control](../part3/11_pid.qmd) | Notebook 11 — PID Control | [GitHub](https://github.com/fcivardi/divelab/blob/editorial-v2/notebooks/11_PID_Control.ipynb) · [Colab](https://colab.research.google.com/github/fcivardi/divelab/blob/editorial-v2/notebooks/11_PID_Control.ipynb) |
+| [Chapter 12 — Frequency Response](../part3/12_frequency_response.qmd) | Notebook 12 — Frequency Response | [GitHub](https://github.com/fcivardi/divelab/blob/editorial-v2/notebooks/12_Frequency_Response.ipynb) · [Colab](https://colab.research.google.com/github/fcivardi/divelab/blob/editorial-v2/notebooks/12_Frequency_Response.ipynb) |
+| [Chapter 13 — The Diver in the Loop](../part3/13_human_in_the_loop.qmd) | Notebook 13 — The Diver in the Loop | [GitHub](https://github.com/fcivardi/divelab/blob/editorial-v2/notebooks/13_Human_in_the_Loop.ipynb) · [Colab](https://colab.research.google.com/github/fcivardi/divelab/blob/editorial-v2/notebooks/13_Human_in_the_Loop.ipynb) |
+
+## Part IV — Integrated Diving Systems
+
+| Book chapter | Companion notebook | Access |
+|:-------------|:-------------------|:-------|
+| [Chapter 14 — Breathing Dynamics](../part4/14_breathing.qmd) | Notebook 14 — Breathing Dynamics | [GitHub](https://github.com/fcivardi/divelab/blob/editorial-v2/notebooks/14_Breathing_Dynamics.ipynb) · [Colab](https://colab.research.google.com/github/fcivardi/divelab/blob/editorial-v2/notebooks/14_Breathing_Dynamics.ipynb) |
+| [Chapter 15 — Gas Consumption](../part4/15_gas_consumption.qmd) | Notebook 15 — Gas Consumption | [GitHub](https://github.com/fcivardi/divelab/blob/editorial-v2/notebooks/15_Gas_Consumption.ipynb) · [Colab](https://colab.research.google.com/github/fcivardi/divelab/blob/editorial-v2/notebooks/15_Gas_Consumption.ipynb) |
+| [Chapter 16 — Dive Computers as Real-Time Estimators](../part4/16_dive_computers.qmd) | Notebook 16 — Dive-Computer Estimation Pipeline | [GitHub](https://github.com/fcivardi/divelab/blob/editorial-v2/notebooks/16_Dive_Computer_Estimation.ipynb) · [Colab](https://colab.research.google.com/github/fcivardi/divelab/blob/editorial-v2/notebooks/16_Dive_Computer_Estimation.ipynb) |
+| [Chapter 17 — Decompression Models](../part4/17_decompression_models.qmd) | Notebook 17 — Inert-Gas Compartment Models | [GitHub](https://github.com/fcivardi/divelab/blob/editorial-v2/notebooks/17_Inert_Gas_Compartments.ipynb) · [Colab](https://colab.research.google.com/github/fcivardi/divelab/blob/editorial-v2/notebooks/17_Inert_Gas_Compartments.ipynb) |
+| [Chapter 18 — The Complete Dive as a Dynamic System](../part4/18_complete_dive.qmd) | Notebook 18 — Integrated DiveLab Capstone | [GitHub](https://github.com/fcivardi/divelab/blob/editorial-v2/notebooks/18_Integrated_DiveLab_Capstone.ipynb) · [Colab](https://colab.research.google.com/github/fcivardi/divelab/blob/editorial-v2/notebooks/18_Integrated_DiveLab_Capstone.ipynb) |

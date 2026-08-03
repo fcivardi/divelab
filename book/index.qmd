@@ -1,10 +1,4 @@
----
-title: "DiveLab"
-subtitle: "Teaching Control Engineering Through Scuba Diving"
-author: "Francesco Civardi"
----
-
-# Welcome
+# Welcome {.unnumbered}
 
 DiveLab teaches dynamical systems and control engineering through one coherent physical system: a scuba diver underwater.
 
@@ -12,6 +6,16 @@ The book provides the narrative. The notebooks provide the executable laboratory
 
 > **Learn one system deeply. Understand many systems forever.**
 
-## Educational scope
+::: {.content-visible when-format="html"}
+[Download the complete DiveLab PDF](downloads/DiveLab.pdf){.btn .btn-primary}
+:::
+
+## Educational scope {.unnumbered}
 
 DiveLab is an educational resource. It is not a diving manual, decompression planner, or substitute for certified training and approved equipment.
+
+## Who this book is for {.unnumbered}
+
+DiveLab is written for engineering students, technically experienced divers, instructors, and independent learners who want to study dynamical systems and control through a concrete physical system. Practical diving experience is useful context, but it is not required.
+
+The complete technical path assumes elementary calculus, vectors and matrices, ordinary differential equations, basic probability, and enough Python to run and modify a Jupyter notebook. No prior course in control theory or state estimation is assumed. Readers who do not yet have all of the mathematical prerequisites can still follow the physical narrative, but will need a supporting mathematics or Python resource for some derivations and exercises.

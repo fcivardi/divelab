@@ -2,7 +2,19 @@
 
 DiveLab combines a continuous book with executable Jupyter notebooks.
 
-## Recommended sequence
+## Before you begin {.unnumbered}
+
+The book is progressive, but it is not a mathematics or Python primer. The complete path assumes familiarity with:
+
+- high-school physics, algebra, functions, graphs, and SI units;
+- elementary differential and integral calculus;
+- vectors, matrices, and ordinary differential equations;
+- basic probability concepts;
+- basic Python syntax and running cells in Jupyter or Google Colab.
+
+Eigenvalues, covariance matrices, complex numbers, Laplace transforms, and numerical simulation appear as the curriculum develops. They are explained in context, but readers meeting them for the first time may need a supporting reference. No previous control-theory course is required.
+
+## Recommended sequence {.unnumbered}
 
 1. Read the physical motivation.
 2. Study the model and assumptions.
@@ -11,6 +23,27 @@ DiveLab combines a continuous book with executable Jupyter notebooks.
 5. Change at least one parameter.
 6. Explain what changed and why.
 
-## Safety and scope
+The chapter provides the connected engineering argument; the companion notebook is its executable laboratory. Follow the numbered chapter sequence unless a chapter's prerequisite line confirms that you can enter elsewhere. Study-time estimates include both the chapter and its notebook.
+
+## Exercise pathways {.unnumbered}
+
+Exercise labels are stable references: `C05-E03`, for example, identifies Chapter 5, Exercise 3. Each exercise also belongs to one of four pathways:
+
+- **Core** — essential evidence that the chapter's principal outcomes have been achieved;
+- **Recommended** — consolidation through another calculation, explanation, or application;
+- **Extension** — deeper analysis that may require combining ideas or making additional modelling choices;
+- **Notebook Challenge** — an activity designed to be completed with the companion notebook and its existing code.
+
+For a first complete pass, do the Core exercises and run every companion notebook. Add Recommended exercises when a concept is not yet secure; use Extension and Notebook Challenge exercises for projects, assessment, or deeper independent study. The short notebook-alignment note beneath each exercise set identifies the closest executable activities. It is a guide rather than a duplicate assignment: when a notebook activity directly implements a chapter exercise, one completed solution is sufficient.
+
+The **Core Exercise Checks** appendix provides numerical endpoints, decisive derivation steps, or short assessment rubrics for every Core exercise. Consult it after completing an exercise; it is designed for verification rather than as a substitute for a worked solution.
+
+## Two ways to read {.unnumbered}
+
+For the **complete engineering path**, work through Chapters 1–18 in order and complete the companion notebooks.
+
+For a **conceptual reading**, follow the physical motivation, engineering questions, figures, summaries, and model limitations. Mathematical derivations and code experiments can be revisited later, but they should not be mistaken for optional prerequisites to the technical exercises.
+
+## Safety and scope {.unnumbered}
 
 The models are simplified teaching models and must not be used for operational dive planning.

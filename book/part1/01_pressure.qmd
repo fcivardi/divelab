@@ -1,620 +1,224 @@
 ---
 title: "Pressure and Depth"
-subtitle: "The Surface Paradox"
-number-sections: true
+subtitle: "The First Building Block of the DiveLab Model"
 ---
 
-# Engineering Question
+## Companion Resources
 
-::: {.callout-note title="Engineering Question"}
-Where does pressure change most dramatically during a dive?
+::: {.callout-tip title="Companion Resources"}
+
+**Chapter:** 1 — Pressure and Depth
+
+**Companion notebook:** Notebook 01 — Depth and Pressure
+
+**Estimated study time:** 60–90 minutes, including the notebook
+
+**Prerequisites:** High-school physics, basic algebra, and SI units
+
 :::
 
-The intuitive answer is often: *at great depth*.
+## Engineering Question
 
-That answer is only partly correct.
+How does a diver's depth determine the pressure acting on the diver and the equipment?
 
-Absolute pressure continues to increase as a diver descends, but the **largest relative change** occurs immediately below the surface. This distinction between absolute change and relative change is the key to understanding why the first metres of a dive are so important.
+This is the first question in the DiveLab model because pressure connects the underwater environment to every process developed later. Gas volume, buoyant force, and vertical motion all depend on it.
 
-This chapter develops that idea carefully. We begin with physical intuition, derive the hydrostatic-pressure equation, examine its assumptions, and connect it to the broader systems story of DiveLab.
-
-# Learning Objectives
+## Learning Objectives
 
 After completing this chapter, you should be able to:
 
-- explain why pressure increases with depth;
-- derive the hydrostatic-pressure equation;
-- distinguish gauge pressure from absolute pressure;
-- interpret the pressure gradient physically;
-- explain why pressure is linear with depth;
-- calculate absolute pressure at common diving depths;
-- distinguish absolute pressure change from fractional pressure change;
-- explain why the largest relative pressure change occurs near the surface;
-- connect pressure changes to compressible gas volumes and buoyancy;
-- use the companion notebook to reproduce and extend the chapter results.
+- distinguish atmospheric, hydrostatic, gauge, and absolute pressure;
+- derive the pressure–depth relationship for a fluid at rest;
+- calculate absolute pressure at a specified depth;
+- assess the assumptions behind the common one-bar-per-ten-meters rule;
+- interpret pressure as the first transformation in the DiveLab model.
 
-# A Simple Observation
+## Theory
 
-Imagine descending from the surface to a depth of 10 metres in seawater.
+The hydrostatic model and diving-pressure conventions used here follow standard treatments in fluid mechanics and scientific diving [@white2016; @noaa2017].
 
-At the surface, the diver is already exposed to atmospheric pressure. At approximately 10 metres, the surrounding absolute pressure is about twice the surface value.
+### Pressure in a Fluid at Rest
 
-The next 10 metres, from 10 to 20 metres, add roughly the same **absolute** pressure increment. However, the pressure does not double again. It rises from approximately 2 bar absolute to approximately 3 bar absolute.
-
-The same absolute increment therefore produces a smaller relative change.
-
-This is the surface paradox:
-
-::: {.callout-important title="DiveLab Insight"}
-Hydrostatic pressure increases linearly with depth, but its **fractional increase** is greatest near the surface.
-:::
-
-# Pressure as Force per Unit Area
-
-Pressure measures how a force is distributed over an area:
+Pressure is normal force per unit area:
 
 $$
-P = \frac{F}{A}.
-$$ {#eq-pressure-definition}
-
-where:
-
-- $P$ is pressure;
-- $F$ is the force normal to the surface;
-- $A$ is the area over which the force acts.
-
-The SI unit of pressure is the pascal:
-
-$$
-1\ \mathrm{Pa} = 1\ \mathrm{N\,m^{-2}}.
+P=\frac{F}{A}.
 $$
 
-In diving practice, pressure is also commonly expressed in bar:
+Its SI unit is the pascal, where $1\ \mathrm{Pa}=1\ \mathrm{N\,m^{-2}}$. Diving calculations also use the bar:
 
 $$
-1\ \mathrm{bar} = 10^5\ \mathrm{Pa}.
+1\ \mathrm{bar}=10^5\ \mathrm{Pa}.
 $$
 
-The atmosphere at sea level is approximately:
+Consider a thin horizontal layer of water with area $A$ and thickness $\mathrm{d}z$. Throughout this book, depth $z$ is measured positively downward from the free surface. The pressure force on the lower face must balance the pressure force on the upper face and the weight of the layer. For a fluid at rest,
 
 $$
-P_0 \approx 1.01325 \times 10^5\ \mathrm{Pa}
-\approx 1.01325\ \mathrm{bar}.
+\left(P+\mathrm{d}P\right)A-PA=\rho gA\,\mathrm{d}z,
 $$
 
-For many introductory calculations, this is rounded to:
+so
 
 $$
-P_0 \approx 1\ \mathrm{bar}.
+\frac{\mathrm{d}P}{\mathrm{d}z}=\rho g.
 $$
 
-# Why Pressure Increases with Depth
-
-Consider a vertical column of water with:
-
-- cross-sectional area $A$;
-- height $h$;
-- density $\rho$;
-- gravitational acceleration $g$.
-
-The water column has volume:
+If density $\rho$ and gravitational acceleration $g$ are constant, integration from the surface, where $P=P_0$ at $z=0$, gives
 
 $$
-V = Ah.
+\boxed{P_{\mathrm{abs}}(z)=P_0+\rho gz}.
 $$
 
-Its mass is:
+This affine relationship is the hydrostatic model used throughout Part I: pressure has the offset $P_0$ and increases linearly with depth.
+
+### Gauge and Absolute Pressure
+
+The water column adds the hydrostatic pressure
 
 $$
-m = \rho V = \rho Ah.
+P_{\mathrm{hyd}}=\rho gz.
 $$
 
-Its weight is:
+Because this is measured relative to surface pressure, it is also the gauge pressure:
 
 $$
-W = mg = \rho Ahg.
+P_{\mathrm{gauge}}=P_{\mathrm{abs}}-P_0=\rho gz.
 $$
 
-That weight acts over the area $A$, so the additional pressure caused by the water column is:
+Absolute pressure includes both the atmosphere above the water and the water column above the diver. It is the relevant pressure for the gas laws introduced in Chapter 2. At the surface, gauge pressure is zero, but absolute pressure is approximately one atmosphere.
+
+### The Diving Approximation
+
+For seawater near the surface, take
 
 $$
-\Delta P
-=
-\frac{W}{A}
-=
-\frac{\rho Ahg}{A}.
+\rho=1025\ \mathrm{kg\,m^{-3}},\qquad
+g=9.81\ \mathrm{m\,s^{-2}},\qquad
+P_0=1.013\ \mathrm{bar}.
 $$
 
-The area cancels:
+The hydrostatic pressure then increases by approximately $1\ \mathrm{bar}$ for every $10\ \mathrm{m}$ of depth. A useful mental estimate is therefore
 
 $$
-\boxed{\Delta P = \rho gh}
-$$ {#eq-hydrostatic-gauge}
-
-If the surface pressure is $P_0$, then the absolute pressure at depth $h$ is:
-
-$$
-\boxed{P(h) = P_0 + \rho gh}
-$$ {#eq-hydrostatic-absolute}
-
-This is the hydrostatic-pressure equation.
-
-::: {.callout-tip title="Physical Interpretation"}
-The increase in pressure is caused by the weight of the water above the diver. The deeper the diver, the taller the water column and the greater the pressure.
-:::
-
-# Differential Form
-
-The same result can be written locally.
-
-For a fluid at rest, vertical force balance gives:
-
-$$
-\frac{dP}{dh} = \rho g.
-$$ {#eq-pressure-gradient}
-
-If $\rho$ and $g$ are constant, integration gives:
-
-$$
-P(h) - P_0
-=
-\int_0^h \rho g\,d\eta
-=
-\rho gh.
+P_{\mathrm{abs}}\,[\mathrm{bar}]\approx 1+\frac{z\,[\mathrm{m}]}{10}.
 $$
 
-Therefore:
+| Depth $z$ | Approximate absolute pressure |
+|----------:|------------------------------:|
+| $0\ \mathrm{m}$ | $1\ \mathrm{bar}$ |
+| $10\ \mathrm{m}$ | $2\ \mathrm{bar}$ |
+| $20\ \mathrm{m}$ | $3\ \mathrm{bar}$ |
+| $30\ \mathrm{m}$ | $4\ \mathrm{bar}$ |
+
+This rule is convenient, not exact. Local atmospheric pressure, water density, and gravitational acceleration all affect the result. Use the full hydrostatic equation whenever precision matters.
+
+## Worked Examples
+
+### Example 1: Absolute Pressure at 18 m
+
+Find the absolute pressure at $z=18\ \mathrm{m}$ in seawater using $\rho=1025\ \mathrm{kg\,m^{-3}}$, $g=9.81\ \mathrm{m\,s^{-2}}$, and $P_0=1.013\times10^5\ \mathrm{Pa}$.
+
+First calculate the hydrostatic contribution:
 
 $$
-P(h) = P_0 + \rho gh.
+P_{\mathrm{hyd}}
+=(1025)(9.81)(18)
+=1.81\times10^5\ \mathrm{Pa}.
 $$
 
-The derivative $dP/dh$ is the **pressure gradient**.
-
-For seawater with $\rho \approx 1025\ \mathrm{kg\,m^{-3}}$:
-
-$$
-\frac{dP}{dh}
-\approx
-1025 \times 9.81
-\approx
-1.01 \times 10^4\ \mathrm{Pa\,m^{-1}}.
-$$
-
-So each metre of seawater adds roughly:
-
-$$
-0.10\ \mathrm{bar}.
-$$
-
-# Gauge Pressure and Absolute Pressure
-
-Two pressure conventions are common.
-
-## Gauge Pressure
-
-Gauge pressure measures pressure relative to the atmosphere:
-
-$$
-P_{\mathrm{gauge}} = P - P_0.
-$$
-
-Using @eq-hydrostatic-absolute:
-
-$$
-P_{\mathrm{gauge}} = \rho gh.
-$$
-
-At the surface, $P_{\mathrm{gauge}} = 0$.
-
-## Absolute Pressure
-
-Absolute pressure is measured relative to vacuum:
-
-$$
-P_{\mathrm{abs}} = P_0 + \rho gh.
-$$
-
-At the surface, $P_{\mathrm{abs}} = P_0$.
-
-For gas-volume calculations, **absolute pressure must be used**.
-
-::: {.callout-warning title="Common Misconception"}
-Boyle's law cannot be applied using gauge pressure. A gauge pressure of zero at the surface does not mean that the gas is under zero pressure.
-:::
-
-# A Practical Diving Approximation
-
-In seawater, pressure increases by about 1 bar every 10 metres.
-
-Therefore:
-
-$$
-\boxed{P_{\mathrm{abs}}(h) \approx 1 + \frac{h}{10}}
-$$ {#eq-diving-pressure}
-
-with $P_{\mathrm{abs}}$ in bar and $h$ in metres of seawater.
-
-| Depth | Approximate absolute pressure |
-|---:|---:|
-| 0 m | 1 bar |
-| 5 m | 1.5 bar |
-| 10 m | 2 bar |
-| 20 m | 3 bar |
-| 30 m | 4 bar |
-| 40 m | 5 bar |
-
-# Why Pressure Is Linear with Depth
-
-From @eq-hydrostatic-absolute:
-
-$$
-P(h) = P_0 + \rho gh.
-$$
-
-If $P_0$, $\rho$, and $g$ are constant, this has the linear form:
-
-$$
-P(h) = b + mh,
-$$
-
-with intercept $b=P_0$ and slope $m=\rho g$.
-
-Therefore:
-
-$$
-\frac{dP}{dh} = \rho g
-$$
-
-is constant.
-
-Every additional metre adds approximately the same pressure increment.
-
-::: {.callout-note title="DiveLab Insight"}
-The pressure gradient is constant in the simple hydrostatic model. The special importance of the surface does **not** come from a larger absolute pressure increment per metre.
-:::
-
-The special importance of the surface appears when we examine **relative change**.
-
-# The Surface Paradox
-
-Suppose the diver descends through a small increment $\Delta h$.
-
-The corresponding pressure increment is:
-
-$$
-\Delta P = \rho g\,\Delta h.
-$$
-
-Under the constant-density model, this absolute increment is the same at every depth.
-
-But the fractional increase is:
-
-$$
-\frac{\Delta P}{P(h)}
-=
-\frac{\rho g\,\Delta h}{P_0+\rho gh}.
-$$ {#eq-fractional-change}
-
-As depth increases, the denominator becomes larger.
-
-Therefore $\Delta P/P(h)$ decreases with depth.
-
-For a continuous measure, consider the relative pressure gradient:
-
-$$
-\frac{1}{P}\frac{dP}{dh}.
-$$
-
-Using @eq-pressure-gradient:
-
-$$
-\boxed{
-\frac{1}{P}\frac{dP}{dh}
-=
-\frac{\rho g}{P_0+\rho gh}
-}
-$$ {#eq-relative-gradient}
-
-This quantity is maximum at $h=0$ and decreases monotonically as depth increases.
-
-## Numerical Example
-
-Using the diving approximation:
-
-- from 0 m to 10 m, pressure rises from 1 bar to 2 bar;
-- from 10 m to 20 m, pressure rises from 2 bar to 3 bar;
-- from 20 m to 30 m, pressure rises from 3 bar to 4 bar.
-
-The absolute increase is 1 bar each time.
-
-The relative increases are:
-
-$$
-\frac{2-1}{1} = 100\%,
-$$
-
-$$
-\frac{3-2}{2} = 50\%,
-$$
-
-$$
-\frac{4-3}{3} \approx 33.3\%.
-$$
-
-The first 10 metres therefore produce the largest proportional increase.
-
-::: {.callout-important title="Engineering Answer"}
-The first metres of descent are not special because pressure rises faster in an absolute sense. They are special because the same pressure increment represents the largest fraction of the current pressure.
-:::
-
-# Why Relative Change Matters
-
-Many physical systems respond to ratios rather than differences.
-
-For an ideal gas at constant temperature:
-
-$$
-P_1V_1 = P_2V_2.
-$$
-
-Therefore:
-
-$$
-\frac{V_2}{V_1} = \frac{P_1}{P_2}.
-$$
-
-A change from 1 bar to 2 bar halves the volume.
-
-A change from 2 bar to 3 bar reduces the volume to $2/3$ of its previous value.
-
-The first pressure interval therefore causes the larger relative volume change.
-
-This is why the surface region becomes critical for lungs, buoyancy compensators, dry suits, gas bubbles, and buoyant force generated by compressible volumes.
-
-The pressure law itself is linear.
-
-The consequences are often nonlinear.
-
-# Assumptions of the Hydrostatic Model
-
-The equation $P(h)=P_0+\rho gh$ depends on several assumptions.
-
-## The Fluid Is at Rest
-
-Hydrostatics neglects acceleration and flow effects.
-
-## Density Is Constant
-
-Water is only weakly compressible over ordinary recreational-diving depths, so constant density is an excellent approximation.
-
-## Gravity Is Constant
-
-Over diving depths, variation in $g$ is negligible.
-
-## The Free-Surface Pressure Is Known
-
-At sea level this is approximately atmospheric pressure. At altitude, $P_0$ is lower.
-
-## Depth Is Measured Vertically
-
-Hydrostatic pressure depends on vertical depth below the free surface, not on path length travelled.
-
-::: {.callout-tip title="Modelling Principle"}
-A model is useful when its assumptions match the question being asked. The simple hydrostatic model is extremely accurate for introductory diving calculations.
-:::
-
-# Sea Water and Fresh Water
-
-Typical densities are:
-
-$$
-\rho_{\mathrm{fresh}} \approx 1000\ \mathrm{kg\,m^{-3}},
-$$
-
-$$
-\rho_{\mathrm{sea}} \approx 1025\ \mathrm{kg\,m^{-3}}.
-$$
-
-Therefore, pressure rises slightly faster with depth in seawater.
-
-# Pressure as an Input to the Rest of DiveLab
-
-Pressure is the first external variable in the DiveLab system.
-
-It drives several later models:
-
-- compressible volume;
-- buoyancy;
-- gas consumption;
-- dive-computer depth estimation;
-- decompression compartments.
-
-This gives the first systems chain in the course:
-
-$$
-\boxed{
-\text{depth}
-\rightarrow
-\text{pressure}
-\rightarrow
-\text{gas volume}
-\rightarrow
-\text{buoyancy}
-\rightarrow
-\text{motion}
-}
-$$
-
-# Computational Laboratory
-
-The companion notebook is:
-
-[Notebook 01 — Pressure and Depth](https://github.com/fcivardi/divelab/blob/main/notebooks/01_Pressure.ipynb)
-
-[Open Notebook 01 in Colab](https://colab.research.google.com/github/fcivardi/divelab/blob/main/notebooks/01_Pressure.ipynb)
-
-Use the notebook to:
-
-- plot pressure against depth;
-- compare fresh water and seawater;
-- calculate absolute and gauge pressure;
-- plot relative pressure change;
-- verify that the relative pressure gradient is maximum at the surface;
-- experiment with surface pressure and fluid density.
-
-# Worked Examples
-
-## Absolute Pressure at 18 m
-
-Using @eq-diving-pressure:
+Then add surface pressure:
 
 $$
 P_{\mathrm{abs}}
-\approx
-1+\frac{18}{10}
-=
-2.8\ \mathrm{bar}.
+=1.013\times10^5+1.81\times10^5
+=2.82\times10^5\ \mathrm{Pa}
+=2.82\ \mathrm{bar}.
 $$
 
-## Gauge Pressure at 18 m
+The mental estimate gives $1+18/10=2.8\ \mathrm{bar}$, which is appropriate for a quick check.
+
+### Example 2: Depth at 3 bar
+
+At what seawater depth is the absolute pressure $3.00\ \mathrm{bar}$ under the same assumptions?
+
+Rearrange the hydrostatic equation:
 
 $$
-P_{\mathrm{gauge}}
-\approx
-2.8-1
-=
-1.8\ \mathrm{bar}.
+z=\frac{P_{\mathrm{abs}}-P_0}{\rho g}.
 $$
 
-## Relative Pressure Change from 5 m to 10 m
-
-At 5 m, $P_1\approx1.5\ \mathrm{bar}$.
-
-At 10 m, $P_2\approx2.0\ \mathrm{bar}$.
-
-Therefore:
+Therefore,
 
 $$
-\frac{P_2-P_1}{P_1}
-=
-\frac{0.5}{1.5}
-\approx
-33.3\%.
+z
+=\frac{3.00\times10^5-1.013\times10^5}{(1025)(9.81)}
+=19.8\ \mathrm{m}.
 $$
 
-## Relative Pressure Change from 25 m to 30 m
+The familiar value of $20\ \mathrm{m}$ is the rounded diving approximation.
 
-At 25 m, $P_1\approx3.5\ \mathrm{bar}$.
+## DiveLab Insight
 
-At 30 m, $P_2\approx4.0\ \mathrm{bar}$.
+::: {.callout-important title="DiveLab Insight"}
 
-Therefore:
+Depth does not compress a gas directly. Depth sets the ambient pressure, and pressure acts on the gas.
 
-$$
-\frac{0.5}{3.5}
-\approx
-14.3\%.
-$$
-
-# Common Misconceptions
-
-## “Pressure increases faster near the surface”
-
-Not in the constant-density hydrostatic model. The absolute gradient $dP/dh=\rho g$ is constant. What decreases with depth is the fractional gradient.
-
-## “Pressure is zero at the surface”
-
-Gauge pressure is zero at the surface. Absolute pressure is approximately 1 bar.
-
-## “Depth travelled determines pressure”
-
-Only vertical depth below the free surface matters.
-
-## “A 1 bar increase always has the same effect”
-
-It has the same absolute magnitude, but not the same relative magnitude.
-
-# Exercises
-
-## Conceptual Exercises
-
-1. Explain why the hydrostatic pressure gradient is constant in the simple model.
-2. Explain the difference between gauge and absolute pressure.
-3. Why is absolute pressure required in Boyle's law?
-4. Why do the first 10 m produce a larger gas-volume change than the next 10 m?
-5. A diver swims horizontally at constant depth. Does hydrostatic pressure change?
-6. Why does seawater produce a slightly greater pressure at a given depth than fresh water?
-
-## Calculation Exercises
-
-1. Calculate the approximate absolute pressure at 3 m, 12 m, 25 m, and 40 m.
-2. Calculate the gauge pressure at the same depths.
-3. Using $\rho=1025\ \mathrm{kg\,m^{-3}}$, calculate the pressure increase per metre.
-4. Compare the fractional pressure increase for 0–5 m, 5–10 m, and 20–25 m.
-5. At what depth is the absolute pressure approximately 2.5 bar?
-
-## Computational Exercises
-
-1. Plot absolute pressure from 0 m to 40 m.
-2. Plot gauge and absolute pressure on the same graph.
-3. Plot the relative pressure gradient from @eq-relative-gradient.
-4. Compare fresh water and seawater.
-5. Modify the surface pressure to represent altitude.
-
-# Key Equations
+The first DiveLab transformation is therefore
 
 $$
-P=\frac{F}{A}
+z\longrightarrow P_{\mathrm{abs}}.
 $$
 
-$$
-\Delta P=\rho gh
-$$
+:::
+
+## Engineering Perspective
+
+The hydrostatic equation is a static input–output model:
 
 $$
-P(h)=P_0+\rho gh
+P_{\mathrm{abs}}(z)=P_0+(\rho g)z.
 $$
 
-$$
-\frac{dP}{dh}=\rho g
-$$
+The surface pressure $P_0$ is the offset, and $\rho g$ is the gain that converts depth into pressure. Under the assumptions of constant density and gravity, the model is affine in $z$. It contains no time dependence and no description of the diver's motion; those elements enter later in the book.
 
-$$
-P_{\mathrm{abs}}(h)\approx1+\frac{h}{10}
-$$
+This distinction matters. Chapter 1 defines the environmental input. Subsequent chapters transform that input into gas volume, buoyant force, and finally vertical motion.
 
-$$
-\frac{1}{P}\frac{dP}{dh}
-=
-\frac{\rho g}{P_0+\rho gh}
-$$
+## Summary
 
-# Key Ideas
+- Pressure is force per unit area.
+- In a stationary fluid of constant density, pressure increases linearly with depth.
+- Gauge pressure is the contribution from the water column; absolute pressure also includes surface atmospheric pressure.
+- In seawater, absolute pressure increases by approximately $1\ \mathrm{bar}$ per $10\ \mathrm{m}$ of depth.
+- The first DiveLab model block maps depth $z$ to absolute pressure $P_{\mathrm{abs}}$.
 
-- Pressure increases because of the weight of the water above the diver.
-- Hydrostatic pressure is linear with depth under constant-density assumptions.
-- Gauge pressure and absolute pressure are different.
-- Gas laws require absolute pressure.
-- The absolute pressure increment per metre is approximately constant.
-- The fractional pressure increment is greatest near the surface.
-- Linear pressure variation can drive nonlinear physical consequences.
-- Pressure is the first input to the DiveLab systems chain.
+## Key Equations
 
-# Looking Ahead
+| Equation | Meaning |
+|:---------|:--------|
+| $P=F/A$ | Definition of pressure |
+| $\mathrm{d}P/\mathrm{d}z=\rho g$ | Hydrostatic pressure gradient |
+| $P_{\mathrm{gauge}}=P_{\mathrm{hyd}}=\rho gz$ | Pressure added by the water column |
+| $P_{\mathrm{abs}}=P_0+\rho gz$ | Absolute pressure at depth |
+| $P_{\mathrm{abs}}\,[\mathrm{bar}]\approx1+z\,[\mathrm{m}]/10$ | Approximation for seawater |
 
-Pressure by itself is linear and predictable.
+## Exercises
 
-But many of the volumes affected by pressure are compressible.
+1. **C01-E01 · Core.** Starting from a force balance on a thin water layer, derive $\mathrm{d}P/\mathrm{d}z=\rho g$.
+2. **C01-E02 · Core.** Calculate gauge and absolute pressure at $15\ \mathrm{m}$ in seawater. State every assumption and report the result in pascals and bar.
+3. **C01-E03 · Notebook Challenge.** Repeat the calculation at $15\ \mathrm{m}$ for freshwater with $\rho=1000\ \mathrm{kg\,m^{-3}}$. Explain the difference.
+4. **C01-E04 · Recommended.** Determine the seawater depth at which the absolute pressure is $2.50\ \mathrm{bar}$.
+5. **C01-E05 · Extension.** The surface pressure falls while a diver remains at fixed depth. Use the model to explain which terms change and which remain constant.
+6. **C01-E06 · Core.** Sketch the block $z\rightarrow P_{\mathrm{abs}}$ and label its offset, gain, input, and output.
 
-In the next chapter, we introduce Boyle's law:
+**Notebook alignment.** Notebook 01 directly supports C01-E03 and C01-E04; its numerical-gradient challenge extends C01-E01.
 
-$$
-P_1V_1=P_2V_2.
-$$
+## Companion Notebook
 
-That relation transforms a simple linear pressure law into nonlinear changes in volume, buoyancy, and eventually vertical motion.
+Use **Notebook 01 — Depth and Pressure** to implement the hydrostatic model, compare freshwater and seawater, and visualize the pressure–depth relationship.
 
-The next question is therefore unavoidable:
+- [Open the notebook on GitHub](https://github.com/fcivardi/divelab/blob/editorial-v2/notebooks/01_Pressure.ipynb)
+- [Run the notebook in Google Colab](https://colab.research.google.com/github/fcivardi/divelab/blob/editorial-v2/notebooks/01_Pressure.ipynb)
 
-> What happens to a trapped gas volume when the diver changes depth?
+## Looking Ahead
+
+Chapter 2 takes absolute pressure as its input and introduces Boyle's law. That adds the next model block, $P_{\mathrm{abs}}\rightarrow V$, and the first nonlinear relationship in DiveLab.

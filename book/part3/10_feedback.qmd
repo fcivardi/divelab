@@ -1,0 +1,305 @@
+---
+title: "Feedback Control"
+subtitle: "From Unstable Plant to Regulated Motion"
+---
+
+## Companion Resources
+
+::: {.callout-tip title="Companion Resources"}
+
+**Chapter:** 10 — Feedback Control
+
+**Companion notebook:** Notebook 10 — Feedback Control
+
+**Estimated study time:** 150–180 minutes, including the notebook
+
+**Prerequisites:** Chapters 5–9, poles, and second-order systems
+
+:::
+
+## Engineering Question
+
+How can measured or estimated motion be fed back to stabilize the locally unstable vertical plant?
+
+Open-loop buoyancy feedback reinforces depth errors. A controller must create an opposing loop: depth error generates corrective force, while velocity feedback damps motion.
+
+## Learning Objectives
+
+After completing this chapter, you should be able to:
+
+- distinguish open-loop and closed-loop behavior;
+- define a depth-regulation error using DiveLab signs;
+- construct proportional depth and velocity feedback;
+- derive the closed-loop state matrix and characteristic polynomial;
+- determine conditions for local stability;
+- select gains from desired closed-loop poles;
+- compare disturbance rejection with open-loop behavior;
+- interpret actuator saturation and state-estimation requirements.
+
+## Theory
+
+The feedback architecture, pole-placement interpretation, and stability design follow classical control-system formulations [@astrom2008; @franklin2015].
+
+### Control Objective and Sign Convention
+
+Let $z_r$ be a local reference depth and define
+
+$$
+e=z-z_r.
+$$
+
+Positive $e$ means the diver is too deep. The commanded force $u$ is positive upward, so positive depth error should produce positive $u$.
+
+For a constant local reference, use
+
+$$
+\boxed{u=K_p e-K_d\,\delta v}.
+$$
+
+The proportional term acts against depth error. The velocity term opposes vertical motion: upward velocity produces a downward correction and downward velocity produces an upward correction.
+
+### Closed-Loop Local Model
+
+For regulation about $z_r=z^*$, $e=\delta z$. The plant is
+
+$$
+\delta\dot z=-\delta v,
+$$
+
+$$
+\delta\dot v=a\,\delta z+\frac{1}{m}(u+d),
+$$
+
+where $d$ is an upward-positive disturbance force. Substituting the controller gives
+
+$$
+\dot{\boldsymbol{\xi}}
+=A_{\mathrm{cl}}\boldsymbol{\xi}
++\begin{bmatrix}0\\1/m\end{bmatrix}d,
+$$
+
+with
+
+$$
+\boxed{
+A_{\mathrm{cl}}
+=
+\begin{bmatrix}
+0&-1\\
+a+K_p/m&-K_d/m
+\end{bmatrix}
+}.
+$$
+
+### Characteristic Polynomial and Stability
+
+The closed-loop characteristic polynomial is
+
+$$
+\boxed{
+s^2+\frac{K_d}{m}s+\left(a+\frac{K_p}{m}\right)
+}.
+$$
+
+For this second-order model, local asymptotic stability requires
+
+$$
+K_d>0
+$$
+
+and
+
+$$
+a+\frac{K_p}{m}>0.
+$$
+
+Because $a<0$, proportional feedback must first overcome the destabilizing buoyancy slope:
+
+$$
+\boxed{K_p>-ma=-k_B}.
+$$
+
+$K_p$ creates effective restoring stiffness; $K_d$ creates damping.
+
+### Pole Placement
+
+For desired poles $p_1$ and $p_2$, the desired polynomial is
+
+$$
+(s-p_1)(s-p_2)
+=s^2-(p_1+p_2)s+p_1p_2.
+$$
+
+Coefficient matching gives
+
+$$
+\boxed{
+K_d=-m(p_1+p_2),
+\qquad
+K_p=m(p_1p_2-a)
+}.
+$$
+
+Both poles must lie in the open left half-plane.
+
+### Closed-Loop Transfer Functions
+
+Combining the controller and plant gives
+
+$$
+m\delta\ddot z+K_d\delta\dot z+(ma+K_p)\delta z=-d.
+$$
+
+The disturbance-to-depth transfer function is
+
+$$
+\boxed{
+G_{zd,\mathrm{cl}}(s)
+=-\frac{1}{ms^2+K_ds+(ma+K_p)}
+}.
+$$
+
+Feedback replaces the unstable open-loop denominator with a stable chosen denominator when the gain conditions are satisfied.
+
+### Disturbance Rejection and Offset
+
+For a constant disturbance $d_0$, the steady depth error under PD regulation is
+
+$$
+e_{\mathrm{ss}}
+=-\frac{d_0}{ma+K_p}.
+$$
+
+Feedback bounds the response, but proportional action alone does not generally eliminate constant offset. Chapter 11 introduces integral action for that purpose.
+
+### Estimated-State Feedback
+
+The law requires depth error and velocity. Depth may be derived from pressure, while velocity is often estimated. In practice the controller uses
+
+$$
+u=K_p\hat e-K_d\hat v.
+$$
+
+Chapter 7 and Chapter 8 provide observer mechanisms. This chapter initially assumes the required signals are available so control dynamics can be isolated.
+
+### Saturation and Model Validity
+
+Real actuators cannot generate arbitrary force. A teaching saturation model is
+
+$$
+u_{\mathrm{sat}}
+=\operatorname{clip}(u,-u_{\max},u_{\max}).
+$$
+
+Saturation makes the closed loop nonlinear and invalidates unrestricted linear pole predictions. Likewise, the controller is designed around one operating state; large depth changes alter buoyancy sensitivity and may require a nonlinear model or gain scheduling.
+
+## Worked Examples
+
+### Example 1: Stability Threshold
+
+With $k_B=-0.896\ \mathrm{N,m^{-1}}$, the proportional threshold is
+
+$$
+K_p>-k_B=0.896\ \mathrm{N,m^{-1}}.
+$$
+
+This small value only reverses the local stiffness sign. Useful transient performance generally requires larger gain and adequate damping.
+
+### Example 2: Gain Selection from Poles
+
+For $m=85\ \mathrm{kg}$ and desired poles $-0.6$ and $-0.9\ \mathrm{s^{-1}}$,
+
+$$
+K_d=-85(-1.5)=127.5\ \mathrm{N,s,m^{-1}},
+$$
+
+$$
+K_p=85\left[(0.54)-(-0.01054)\right]
+\approx46.8\ \mathrm{N,m^{-1}}.
+$$
+
+### Example 3: Constant-Disturbance Offset
+
+For $d_0=5\ \mathrm{N}$ and the gains above,
+
+$$
+e_{\mathrm{ss}}
+=-\frac{5}{85(-0.01054)+46.8}
+\approx-0.109\ \mathrm{m}.
+$$
+
+The stable controller limits the response but leaves a nonzero depth error.
+
+## DiveLab Insight
+
+::: {.callout-important title="DiveLab Insight"}
+
+Feedback does not remove the physical buoyancy mechanism. It adds a stronger corrective relationship around it. Stability is created by the closed-loop combination of plant and controller.
+
+:::
+
+## Engineering Perspective
+
+The control architecture is
+
+$$
+z_r
+\longrightarrow
+\text{error}
+\longrightarrow
+\text{controller}
+\longrightarrow
+\text{vertical plant}
+\longrightarrow
+z,
+$$
+
+with measured or estimated motion returned to the controller. Closed-loop performance depends on plant physics, sensing, estimation, actuator authority, sampling, delay, and controller design together.
+
+The abstract force input does not map directly to a BCD command, breathing action, or fin force. The model demonstrates feedback structure, not operational technique.
+
+## Summary
+
+- Positive depth error requires positive upward corrective force.
+- Proportional depth feedback creates restoring stiffness.
+- Velocity feedback creates damping.
+- Closed-loop stability requires $K_d>0$ and $K_p>-ma$.
+- Desired poles determine $K_p$ and $K_d$ by coefficient matching.
+- PD feedback stabilizes the local plant but leaves offset under constant disturbance.
+- Estimated-state feedback connects control to Part II.
+- Saturation and large excursions require nonlinear analysis.
+
+## Key Equations
+
+| Equation | Meaning |
+|:---------|:--------|
+| $e=z-z_r$ | Depth-regulation error |
+| $u=K_pe-K_d\delta v$ | Local PD state feedback |
+| $A_{\mathrm{cl}}=\begin{bmatrix}0&-1\\a+K_p/m&-K_d/m\end{bmatrix}$ | Closed-loop matrix |
+| $K_d=-m(p_1+p_2)$ | Damping gain from poles |
+| $K_p=m(p_1p_2-a)$ | Depth gain from poles |
+| $e_{\mathrm{ss}}=-d_0/(ma+K_p)$ | Constant-disturbance offset |
+
+## Exercises
+
+1. **C10-E01 · Core.** Verify the signs of both feedback terms physically.
+2. **C10-E02 · Core.** Derive the closed-loop characteristic polynomial.
+3. **C10-E03 · Core.** Prove the two stability inequalities.
+4. **C10-E04 · Notebook Challenge.** Calculate gains for a new stable pole pair.
+5. **C10-E05 · Recommended.** Compare overdamped and underdamped pole choices.
+6. **C10-E06 · Recommended.** Calculate constant-disturbance offset for several $K_p$ values.
+7. **C10-E07 · Extension.** Explain how velocity-estimation noise can affect the control force and define a metric that would reveal the effect.
+8. **C10-E08 · Core.** Identify which conclusions fail when the actuator saturates.
+
+**Notebook alignment.** Notebook 10 directly supports C10-E04, C10-E06, and C10-E07; its force-limit experiment tests the boundary identified in C10-E08.
+
+## Companion Notebook
+
+Use **Notebook 10 — Feedback Control** to compare open- and closed-loop motion, place poles, reject disturbances, inspect control effort, and explore actuator saturation.
+
+- [Open the notebook on GitHub](https://github.com/fcivardi/divelab/blob/editorial-v2/notebooks/10_Feedback_Control.ipynb)
+- [Run the notebook in Google Colab](https://colab.research.google.com/github/fcivardi/divelab/blob/editorial-v2/notebooks/10_Feedback_Control.ipynb)
+
+## Looking Ahead
+
+Chapter 11 adds integral action to remove constant offset and develops practical PID issues including windup, derivative noise, and anti-windup.

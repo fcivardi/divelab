@@ -1,0 +1,229 @@
+---
+title: "The Complete Dive as a Dynamic System"
+subtitle: "From Components to Engineering Understanding"
+---
+
+## Companion Resources
+
+::: {.callout-tip title="Companion Resources"}
+**Chapter:** 18 — The Complete Dive as a Dynamic System
+
+**Companion notebook:** Notebook 18 — Integrated DiveLab Capstone
+
+**Estimated study time:** 120–150 minutes, including the notebook
+
+**Prerequisites:** Chapters 1–17
+:::
+
+## Engineering Question
+
+After studying each component separately, how do we reason about a dive as one interconnected dynamic system?
+
+At the beginning of the book, depth appeared to be a single variable. It is now the central signal in a network of physical, computational, human, and physiological processes. Depth changes pressure; pressure changes gas volume, buoyancy, consumption, and inert-gas loading; buoyancy changes motion; motion changes depth; measurements and models inform decisions; decisions act through delayed and constrained actuators.
+
+The achievement of DiveLab is not a collection of formulas. It is the ability to see these connections.
+
+## Learning Objectives
+
+After completing this chapter, you should be able to:
+
+- reconstruct the causal chain developed across the four parts of the book;
+- distinguish physical states, measured quantities, estimated states, control inputs, disturbances, and constraints;
+- explain how local models combine into prescribed-profile and closed-loop simulations;
+- identify where uncertainty and model limitations enter the system;
+- use engineering understanding to ask better questions without confusing it with practical diving qualification.
+
+## Theory
+
+The integrated viewpoint follows the systems-engineering practice of making boundaries, states, interfaces, assumptions, constraints, and verification evidence explicit [@nasa2016].
+
+### The Complete Causal Architecture
+
+The principal relationships developed in the book can be summarized as
+
+$$
+z
+\longrightarrow P_{\mathrm{amb}}
+\longrightarrow
+\begin{cases}
+V_g \longrightarrow F_B \longrightarrow \dot v \longrightarrow z,\\
+q \longrightarrow G,\\
+P_I \longrightarrow \boldsymbol P_t,
+\end{cases}
+$$
+
+with a measurement and decision loop
+
+$$
+P_m\longrightarrow\hat z,\hat v,\hat G,\hat{\boldsymbol P}_t
+\longrightarrow\text{diver or controller}
+\longrightarrow u
+\longrightarrow\text{plant}.
+$$
+
+The first diagram contains the physical and physiological dynamics. The second contains sensing, estimation, decision, and actuation. Neither loop is complete without the other.
+
+The companion notebook therefore uses two complementary experiments. A prescribed synthetic depth history exposes how one common signal propagates through several subsystem models. A separate local closed-loop experiment lets depth evolve from the vertical plant, state feedback, an applied disturbance, and actuator saturation. The first emphasizes subsystem coupling across a complete profile; the second closes the motion–sensing–control loop developed in Parts II and III.
+
+### A Unified State Description
+
+A deliberately simplified integrated state might be
+
+$$
+x=
+\begin{bmatrix}
+z & v & V_L & V_{BCD} & G & P_{t,1} & \cdots & P_{t,n}
+\end{bmatrix}^{T}.
+$$
+
+Its evolution has the general nonlinear form
+
+$$
+\dot x=f(x,u,d,t),
+\qquad
+y=h(x)+\nu,
+$$
+
+where $u$ contains deliberate inputs, $d$ contains disturbances and changing demand, $y$ contains measurements, and $\nu$ represents measurement error.
+
+Not every state is observable from every sensor. Not every model parameter is known. Not every input is continuous or unlimited. These are not imperfections added after the mathematics; they are defining properties of the real system.
+
+### Four Kinds of Knowledge
+
+The book has built four complementary kinds of understanding:
+
+1. **physical understanding** — why pressure, volume, force, and motion change;
+2. **dynamic understanding** — how states evolve and why equilibria can be stable or unstable;
+3. **computational understanding** — how measurements, estimators, and numerical models reconstruct hidden quantities;
+4. **engineering judgment** — how uncertainty, delay, constraints, human action, and validation limit conclusions.
+
+### Models Are Purpose-Dependent
+
+A model is not simply true or false. It is adequate or inadequate for a stated purpose. Boyle's law may be sufficient for understanding gas-volume change; a local linear model may be sufficient for analysing stability; a compartment bank may be sufficient for teaching state propagation. None of these models automatically becomes an operational decision system.
+
+The responsible question is therefore:
+
+> What decision is this model intended to support, under which assumptions, and with what evidence?
+
+::: {.callout-important title="Understanding is not certification"}
+Completing DiveLab can deepen your understanding of what happens during a dive, but it does not qualify you to dive, replace an instructor, determine medical fitness, or validate a dive plan. Practical competence requires recognized training, supervised practice, suitable equipment, medical assessment when appropriate, and adherence to established procedures.
+:::
+
+## Worked Examples
+
+### Example 1: One Depth Change, Several Consequences
+
+Suppose depth increases from $10$ to $20~\mathrm{m}$. The pressure ratio rises from approximately $2$ to $3$ atmospheres absolute. That one change:
+
+- compresses flexible gas spaces;
+- changes buoyancy and therefore vertical acceleration;
+- increases ambient gas demand by approximately $50\%$ relative to the value at $10~\mathrm{m}$ for the same surface-equivalent breathing rate;
+- increases inspired inert-gas pressure;
+- changes what a pressure sensor measures and what the computer's models propagate.
+
+The consequences occur on different time scales. Pressure changes immediately with depth; motion responds dynamically; fast and slow inert-gas compartments respond over minutes to hours.
+
+### Example 2: The Same Display, Different Hidden States
+
+Two divers can be at the same depth with the same indicated vertical speed yet have different:
+
+- cylinder resources;
+- preceding workloads;
+- controller or diver actions;
+- inert-gas compartment states;
+- sensor histories and estimation uncertainty.
+
+The displayed depth is therefore not the complete system state.
+
+### Example 3: A Correction That Propagates
+
+An upward buoyancy correction changes acceleration, then velocity, then depth. The new depth changes ambient pressure, gas volume, respiratory demand, and inspired inert-gas pressure. A local corrective action can therefore propagate through several subsystems. Systems thinking means anticipating those downstream effects.
+
+### Example 4: Closing the Vertical Loop
+
+Near a reference depth $z^*$, let the local state be
+
+$$
+\boldsymbol\xi=
+\begin{bmatrix}
+\delta z & \delta v
+\end{bmatrix}^{T},
+$$
+
+where $\delta v$ is positive upward and $\delta\dot z=-\delta v$. With the PD law from Chapter 10,
+
+$$
+u=K_p\delta z-K_d\delta v,
+$$
+
+the plant evolves as
+
+$$
+\delta\dot v
+=a\delta z+\frac{u+d}{m}.
+$$
+
+This compact loop connects the physical plant, dynamic state, disturbance, and controller. Its resulting depth perturbs ambient pressure and flexible-gas buoyancy, so the controller does not act outside the integrated system. The experiment remains a local educational abstraction: it is not a depth-following algorithm or a prescription for real diver action.
+
+## DiveLab Insight
+
+::: {.callout-important title="DiveLab Insight"}
+
+The most important state in DiveLab is not depth, velocity, or pressure. It is the learner's internal model of how the variables influence one another. Once that causal model is coherent, equations and simulations become tools for testing reasoning rather than isolated results to memorize.
+
+:::
+
+## Engineering Perspective
+
+A publication-quality engineering analysis should always make five elements explicit:
+
+| Element | Question |
+|:--|:--|
+| Boundary | What is inside the model, and what is outside? |
+| State | What information must be remembered to predict future evolution? |
+| Evidence | Which quantities are measured, estimated, or assumed? |
+| Constraints | What limits motion, actuation, resources, and decisions? |
+| Validation | How do we know the implementation is adequate for its purpose? |
+
+This framework applies far beyond diving—to aircraft, robots, medical devices, energy systems, and human–automation teams.
+
+## Summary
+
+- A dive is an interconnected physical, dynamic, computational, human, and physiological system.
+- Depth couples pressure to buoyancy, gas demand, sensing, and inert-gas state.
+- The complete state contains more information than any single display.
+- Models must be judged against a declared purpose and validation boundary.
+- Prescribed-profile propagation and closed-loop simulation answer different engineering questions.
+- A local feedback experiment connects the plant, state, disturbance, actuator constraint, and downstream physical variables.
+- DiveLab provides engineering understanding, not practical certification.
+- You can now look at a dive and see the system beneath it.
+
+## Key Equations
+
+| Equation | Meaning |
+|:--|:--|
+| $\dot x=f(x,u,d,t)$ | Integrated nonlinear state evolution |
+| $y=h(x)+\nu$ | Measurement model with error |
+| $x=[z,v,V_L,V_{BCD},G,\boldsymbol P_t^T]^T$ | Illustrative integrated state vector |
+| $z\rightarrow P_{\mathrm{amb}}\rightarrow\{V_g,F_B,q,G,P_I,\boldsymbol P_t\}$ | Principal pressure-mediated causal connections |
+| $u=K_p\delta z-K_d\delta v$ | Local closed-loop force command |
+
+## Exercises
+
+1. **C18-E01 · Core.** Draw the complete causal graph from memory, then compare it with this chapter.
+2. **C18-E02 · Notebook Challenge.** Classify every variable in the capstone notebook as state, input, disturbance, parameter, measurement, or derived output.
+3. **C18-E03 · Extension.** Choose one omitted phenomenon and explain which state equation or measurement equation it would modify.
+4. **C18-E04 · Core.** Identify three conclusions that the integrated model can support and three that it cannot.
+5. **C18-E05 · Core.** Write a validation plan for one subsystem without claiming validation of the complete system.
+
+**Notebook alignment.** Notebook 18 directly supports C18-E02–C18-E05. Its profile-comparison and uncertainty-band activities provide evidence for C18-E04; its validation matrix operationalizes C18-E05.
+
+## Companion Notebook
+
+Open Notebook 18 — Integrated DiveLab Capstone on [GitHub](https://github.com/fcivardi/divelab/blob/editorial-v2/notebooks/18_Integrated_DiveLab_Capstone.ipynb) or [Google Colab](https://colab.research.google.com/github/fcivardi/divelab/blob/editorial-v2/notebooks/18_Integrated_DiveLab_Capstone.ipynb) to propagate one synthetic pressure history through the book's pressure, buoyancy, gas-resource, sensing, and inert-gas models, then close a compact local loop around the vertical-motion plant.
+
+## Looking Ahead
+
+This is the end of the guided DiveLab sequence, but it is not the end of the investigation. The next step is to question the models: change assumptions, quantify uncertainty, compare predictions with evidence, and improve one subsystem without losing sight of the whole.
+
+You can now dive more deeply into the engineering—and understand why the complete system is always richer than any single equation.

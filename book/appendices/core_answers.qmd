@@ -1,0 +1,444 @@
+# Core Exercise Checks
+
+This appendix provides concise checks for the exercises labelled **Core**. Numerical entries give the expected result and units; derivation entries give the decisive steps; conceptual and design entries state the elements a satisfactory answer should contain. They are not substitutes for showing assumptions, intermediate reasoning, and interpretation.
+
+All diving models in these checks retain the educational scope of the book. They are not operational procedures, validated dive-planning methods, or safety limits.
+
+## Chapter 1 — Pressure and Depth
+
+### C01-E01
+
+For a horizontal layer of area $A$ and thickness $\mathrm{d}z$, vertical force balance gives $(P+\mathrm{d}P)A-PA=\rho gA\,\mathrm{d}z$. Cancelling $A\,\mathrm{d}z$ gives $\mathrm{d}P/\mathrm{d}z=\rho g$. The positive sign follows because $z$ increases downward.
+
+### C01-E02
+
+Using $\rho=1025\ \mathrm{kg\,m^{-3}}$, $g=9.81\ \mathrm{m\,s^{-2}}$, $P_0=1.013\times10^5\ \mathrm{Pa}$, and constant density:
+
+$$
+P_{\mathrm{gauge}}=\rho gz\approx1.51\times10^5\ \mathrm{Pa}=1.51\ \mathrm{bar},
+$$
+
+$$
+P_{\mathrm{abs}}=P_0+P_{\mathrm{gauge}}\approx2.52\times10^5\ \mathrm{Pa}=2.52\ \mathrm{bar}.
+$$
+
+### C01-E06
+
+The block must show input $z$, output $P_{\mathrm{abs}}$, gain $\rho g$, and additive offset $P_0$: $P_{\mathrm{abs}}=P_0+(\rho g)z$. It is affine, not a zero-offset linear map.
+
+## Chapter 2 — Compressible Gases
+
+### C02-E01
+
+A satisfactory answer identifies fixed gas amount $n$, approximately constant temperature $T$, ideal-gas behavior, equilibrium states, and a closed gas space. Corresponding failure mechanisms include gas addition or venting, rapid temperature change, non-equilibrium pressure, leakage, and appreciable non-ideal behavior. Each assumption must be paired with a physical failure example.
+
+### C02-E04
+
+With $P\,[\mathrm{bar}]\approx1+z/10$, ascent from $30$ to $20\ \mathrm{m}$ changes volume by $4/3-1=33.3\%$. Ascent from $10\ \mathrm{m}$ to the surface changes it by $2/1-1=100\%$. Equal depth changes do not give equal percentage changes because $V=K/P$ is nonlinear and its sensitivity is greatest at low pressure.
+
+### C02-E05
+
+$$
+\frac{\mathrm{d}V}{\mathrm{d}z}
+=-\frac{V_0P_0\rho g}{(P_0+\rho gz)^2}<0.
+$$
+
+The sign means that an idealized closed flexible gas volume decreases as depth increases.
+
+### C02-E07
+
+Gauge pressure is zero at the surface. Substitution into $PV=K$ would therefore make the surface product zero or require an unbounded volume, contradicting the finite gas state. Gas laws require absolute pressure, which remains approximately one atmosphere at the surface.
+
+## Chapter 3 — Archimedes' Principle
+
+### C03-E01
+
+For top and bottom area $A$, $F_B=(P_b-P_t)A=(\rho g\Delta z)A=\rho gV$. Substitution of $P=P_0+\rho gz$ shows that $P_0$ appears in both face pressures and cancels. The resultant force is upward.
+
+### C03-E05
+
+Neutral buoyancy requires $V=m/\rho$. For $m=82\ \mathrm{kg}$:
+
+- freshwater: $V=0.0820\ \mathrm{m^3}=82.0\ \mathrm{L}$;
+- seawater with $\rho=1025\ \mathrm{kg\,m^{-3}}$: $V=0.0800\ \mathrm{m^3}=80.0\ \mathrm{L}$.
+
+### C03-E06
+
+For a rigid, fully submerged body, $V$ is constant. With constant $\rho$ and $g$, $F_B=\rho gV$ is therefore independent of depth. Absolute pressures change, but their force difference does not.
+
+### C03-E09
+
+Required cascade: $z\mapsto P_0+\rho gz$ is affine; $P_{\mathrm{abs}}\mapsto V_{g0}P_0/P_{\mathrm{abs}}$ is nonlinear and inverse; $V_g\mapsto\rho gV_g$ is linear. The composition produces a nonlinear depth-to-buoyancy map.
+
+## Chapter 4 — Buoyancy and Vertical Dynamics
+
+### C04-E01
+
+With upward-positive $v$ and downward-positive depth, $\dot z=-v$. In $m\dot v=F_B-mg-cv|v|$, buoyancy is positive upward, weight is negative, and drag always opposes $v$: negative during ascent and positive during descent. A correct diagram shows all three forces and the sign convention.
+
+### C04-E05
+
+Neutral buoyancy makes the static force imbalance zero; it does not make velocity zero. A moving diver has momentum, and drag supplies a finite deceleration, so velocity approaches zero over time rather than discontinuously.
+
+### C04-E08
+
+The two nonlinearities are the depth-dependent flexible-gas buoyancy through $V_g(z)=V_{g0}P_0/(P_0+\rho gz)$ and quadratic drag $v|v|$. The kinematic relation $\dot z=-v$ is linear.
+
+### C04-E09
+
+Required reinforcing sequence: downward displacement $\rightarrow$ higher absolute pressure $\rightarrow$ smaller flexible gas volume $\rightarrow$ smaller buoyant force $\rightarrow$ net downward tendency $\rightarrow$ further increase in depth. The reverse sequence reinforces a small upward displacement.
+
+## Chapter 5 — State-Space Models
+
+### C05-E01
+
+Depth alone does not determine the next state: at the same $z$, different $v$ values give different $\dot z=-v$ and different drag. The minimal vertical-motion state therefore includes both depth and velocity.
+
+### C05-E02
+
+For the chapter model: $z$ and $v$ are states; $u$ is a commanded input; $d$ is a disturbance; $m$ is a parameter; $P_{\mathrm{abs}}$, $V_g$, and $F_B$ are algebraic variables. Output status depends on the chosen measurement equation: $z$ and/or $v$ may also be exposed as outputs without ceasing to be states.
+
+### C05-E05
+
+Under instantaneous Boyle behavior, $V_g$ is uniquely determined by current depth and fixed parameters. It has no independent initial condition or evolution equation, so it is algebraic rather than a state.
+
+### C05-E09
+
+For $\mathbf{x}=[z,v]^{\mathsf T}$, depth-only output is $y=[1\ 0]\mathbf{x}=z$. Depth-and-velocity output is $\mathbf{y}=I_2\mathbf{x}=[z,v]^{\mathsf T}$.
+
+## Chapter 6 — Equilibria and Stability
+
+### C06-E01
+
+An equilibrium requires every state derivative to vanish. Besides $F_B(z^*)=mg$, the kinematic equation requires $v^*=0$; any input and disturbance must also balance at their equilibrium values.
+
+### C06-E03
+
+For $\dot z=-v$ and $\dot v=[F_B(z)-mg-cv|v|]/m$, evaluated at $(z^*,0)$:
+
+$$
+A=\begin{bmatrix}0&-1\\k_B/m&0\end{bmatrix},
+\qquad k_B=\left.\frac{\mathrm{d}F_B}{\mathrm{d}z}\right|_{z^*}.
+$$
+
+The drag derivative at $v=0$ is zero.
+
+### C06-E04
+
+$$
+\det(\lambda I-A)=\lambda^2+\frac{k_B}{m}=0,
+\qquad
+\lambda_\pm=\pm\sqrt{-\frac{k_B}{m}}.
+$$
+
+For flexible-gas buoyancy $k_B<0$, the eigenvalues are real with opposite signs, so the equilibrium is a saddle.
+
+### C06-E05
+
+For each eigenvalue, the eigendirection satisfies $e_v=-\lambda e_z$. Motion approaches the origin along the $\lambda_-<0$ direction and leaves it along the $\lambda_+>0$ direction. A correct phase-plane sketch shows both lines, the saddle, and trajectory arrows.
+
+## Chapter 7 — Observability and State Estimation
+
+### C07-E01
+
+Pressure is measured; displayed depth calculated from pressure is derived; reconstructed velocity is estimated; future depth is predicted. The answer should name the sensor or model dependency that justifies each term.
+
+### C07-E02
+
+For depth output $C=[1\ 0]$ and $A=\begin{bmatrix}0&-1\\a&0\end{bmatrix}$:
+
+$$
+\mathcal O=\begin{bmatrix}C\\CA\end{bmatrix}
+=\begin{bmatrix}1&0\\0&-1\end{bmatrix}.
+$$
+
+Thus $\det\mathcal O=-1$ and $\operatorname{rank}(\mathcal O)=2$: the two-state system is observable.
+
+### C07-E03
+
+Because $y=\delta z$ and $\dot y=-\delta v$, the time history and slope of depth contain velocity information. A single instantaneous depth value is insufficient; observability uses the model and measurements over time.
+
+### C07-E05
+
+With $\mathbf e=\boldsymbol\xi-\hat{\boldsymbol\xi}$, subtracting observer dynamics from plant dynamics gives $\dot{\mathbf e}=(A-LC)\mathbf e$ under the ideal assumptions of identical models and noise-free output. Measurement noise or mismatch adds forcing terms.
+
+## Chapter 8 — Kalman Filtering
+
+### C08-E01
+
+Process noise represents unmodelled state evolution, for example fin-force disturbances and changing drag or buoyancy. Measurement noise represents sensor-channel error, for example pressure noise and quantization. The distinction is where uncertainty enters the model, not whether it is physically random.
+
+### C08-E02
+
+The required prediction is
+
+$$
+P_k^-=FP_{k-1}^+F^{\mathsf T}+Q.
+$$
+
+A correct numerical calculation preserves matrix order, produces a symmetric covariance of the state dimension, and adds $Q$ after propagation.
+
+### C08-E03
+
+For scalar measurement noise,
+
+$$
+S_k=CP_k^-C^{\mathsf T}+R,
+\qquad
+K_k=\frac{P_k^-C^{\mathsf T}}{S_k}.
+$$
+
+$S_k$ is scalar and $K_k$ is a two-component column vector. A numerical answer should report both components and maintain consistent covariance units.
+
+### C08-E04
+
+The correction is $\hat{\boldsymbol\xi}_k^+=\hat{\boldsymbol\xi}_k^-+K_kr_k$. A scalar innovation changes both state components when both elements of $K_k$ are nonzero; prior cross-covariance carries depth information into the velocity correction.
+
+## Chapter 9 — Laplace Transforms and Transfer Functions
+
+### C09-E02
+
+With zero initial conditions, $(\tau s+1)Y(s)=KU(s)$, hence
+
+$$
+G(s)=\frac{Y(s)}{U(s)}=\frac{K}{\tau s+1}.
+$$
+
+### C09-E04
+
+From $sZ=-V$ and $sV=aZ+U/m$, eliminate $V$ to obtain
+
+$$
+G_{zu}(s)=\frac{Z(s)}{U(s)}=-\frac{1}{m(s^2+a)}.
+$$
+
+Zero initial conditions are essential to this transfer-function derivation.
+
+### C09-E05
+
+A positive force command is upward-positive, so it raises the diver while depth $z$ is downward-positive. The output depth therefore responds with the opposite sign, producing the negative numerator.
+
+### C09-E07
+
+A transfer function describes a selected input-output relation under zero initial conditions and exposes poles, zeros, and gain. A state-space realization retains internal states, initial conditions, and multiple-input/multiple-output structure. Different realizations can share the same transfer function.
+
+## Chapter 10 — Feedback Control
+
+### C10-E01
+
+For $e=z-z_r$, positive error means too deep, so $+K_pe$ commands upward force. Positive $v$ means ascent, so $-K_dv$ opposes upward motion and supplies damping. The signs are consistent with upward-positive force and velocity.
+
+### C10-E02
+
+For
+
+$$
+A_{\mathrm{cl}}=\begin{bmatrix}0&-1\\a+K_p/m&-K_d/m\end{bmatrix},
+$$
+
+the characteristic polynomial is
+
+$$
+s^2+\frac{K_d}{m}s+\left(a+\frac{K_p}{m}\right).
+$$
+
+### C10-E03
+
+A monic second-order polynomial is asymptotically stable when both remaining coefficients are positive. Therefore $K_d>0$ and $a+K_p/m>0$, or equivalently $K_p>-ma=-k_B$ for $m>0$.
+
+### C10-E08
+
+With saturation, the commanded linear law is not applied whenever the force limit is active. Exact pole placement, linear superposition, the unsaturated transient prediction, and associated settling or offset formulas no longer describe that interval. Local conclusions remain applicable only after the actuator returns to its linear range.
+
+## Chapter 11 — PID Control
+
+### C11-E01
+
+With $e=z-z_r$, $K_pe$ gives immediate restoring force, $K_i\eta$ accumulates persistent depth error to reject constant offset, and $-K_dv$ opposes vertical motion. A complete interpretation also notes integral windup under saturation and derivative sensitivity to estimated-velocity noise.
+
+### C11-E02
+
+For state $[z,v,\eta]^{\mathsf T}$ and zero reference,
+
+$$
+A_{\mathrm{PID}}=
+\begin{bmatrix}
+0&-1&0\\
+a+K_p/m&-K_d/m&K_i/m\\
+1&0&0
+\end{bmatrix},
+$$
+
+with characteristic polynomial
+
+$$
+s^3+\frac{K_d}{m}s^2+\left(a+\frac{K_p}{m}\right)s+\frac{K_i}{m}.
+$$
+
+### C11-E03
+
+For positive coefficients, the additional cubic Routh condition is
+
+$$
+\frac{K_d}{m}\left(a+\frac{K_p}{m}\right)>\frac{K_i}{m}.
+$$
+
+A proposed set passes only if $K_d>0$, $a+K_p/m>0$, $K_i>0$, and this inequality all hold.
+
+### C11-E04
+
+If a stable closed loop reaches a bounded steady state, the integral state must stop changing. Since $\dot\eta=e$, this requires $e_{\mathrm{ss}}=0$. This conclusion assumes equilibrium exists and the actuator is not trapped in saturation.
+
+## Chapter 12 — Frequency Response
+
+### C12-E01
+
+For $G(s)=K/(\tau s+1)$,
+
+$$
+|G(j\omega)|=\frac{|K|}{\sqrt{1+(\omega\tau)^2}},
+\qquad
+\angle G(j\omega)=\arg K-\tan^{-1}(\omega\tau).
+$$
+
+For positive $K$, $\arg K=0$; for negative $K$, include the corresponding $180^\circ$ sign phase consistently.
+
+### C12-E03
+
+For the chapter's closed-loop gains,
+
+$$
+\omega_n=\sqrt{a+K_p/m}\quad[\mathrm{rad\,s^{-1}}],
+\qquad
+\zeta=\frac{K_d}{2m\omega_n}.
+$$
+
+A valid calculation first verifies $a+K_p/m>0$.
+
+### C12-E04
+
+For the standard second-order low-pass form, a resonant peak is possible when $0<\zeta<1/\sqrt2$. At $\zeta\ge1/\sqrt2$ there is no magnitude peak above the static value. This criterion presumes a stable second-order model.
+
+### C12-E07
+
+For disturbance amplitude $D$ at frequency $\omega$, the steady-state depth amplitude is
+
+$$
+Z=|G_d(j\omega)|D,
+$$
+
+and the depth phase relative to the disturbance is $\angle G_d(j\omega)$. Units must reduce to metres. This prediction requires a stable linear system in sinusoidal steady state.
+
+## Chapter 13 — The Diver in the Loop
+
+### C13-E01
+
+The architecture should identify reference depth, comparison/error, human controller, actuator command, plant, depth/velocity response, sensor, and estimator, with disturbances entering the plant and delay, sampling, deadband, and saturation located in the human/control path.
+
+### C13-E03
+
+For simulation step $\Delta t$, reaction delay and decision interval become $N_\tau\approx\tau/\Delta t$ and $N_d\approx T_d/\Delta t$ samples. The answer must state a rounding policy and use an integer number of samples consistently.
+
+### C13-E04
+
+Increasing gain strengthens correction but amplifies the effect of delayed or stale information. Increasing delay adds phase lag; together they raise overshoot and oscillation risk and can destabilize the loop. A satisfactory prediction distinguishes response speed from robustness.
+
+### C13-E08
+
+Simulation metrics measure behavior of a specified model, parameter set, task, and disturbance—not competence of a person. Real performance also depends on training, physiology, perception, equipment, environment, and unmodelled decisions. No safety or competency claim is justified without a validated assessment protocol and evidence.
+
+## Chapter 14 — Breathing Dynamics
+
+### C14-E01
+
+Using $\Delta F_B=\rho g\Delta V$ with seawater $\rho=1025\ \mathrm{kg\,m^{-3}}$ gives approximately:
+
+- $0.25\ \mathrm{L}\rightarrow2.51\ \mathrm{N}$;
+- $0.50\ \mathrm{L}\rightarrow5.03\ \mathrm{N}$;
+- $0.75\ \mathrm{L}\rightarrow7.54\ \mathrm{N}$.
+
+These are model amplitudes, not prescribed breathing volumes.
+
+### C14-E02
+
+For $G_L(s)=1/(\tau_Ls+1)$,
+
+$$
+|G_L(j\omega)|=\frac{1}{\sqrt{1+(\omega\tau_L)^2}},
+\qquad
+\angle G_L(j\omega)=-\tan^{-1}(\omega\tau_L).
+$$
+
+### C14-E03
+
+Increasing frequency reduces the actuator magnitude and increases phase lag; the vertical plant and human loop add further dynamics and delay. Faster breathing therefore does not imply larger useful correction and may increase oscillatory interaction. The model is explanatory, not breathing guidance.
+
+## Chapter 15 — Gas Consumption
+
+### C15-E02
+
+At constant depth and constant $q_S$,
+
+$$
+G(t)=G(0)-q_S\frac{P_{\mathrm{amb}}}{P_0}t.
+$$
+
+The slope has surface-equivalent volume per unit time and remains valid only while the assumed demand and pressure are constant.
+
+### C15-E03
+
+An acceptable pair has equal total duration and equal maximum depth but different time-at-depth histories. The profile with the larger value of $\int_0^T q_S(t)P_{\mathrm{amb}}(t)/P_0\,\mathrm{d}t$ uses more gas. The comparison must show the profiles and evaluate or compare these integrals.
+
+### C15-E05
+
+Required assumptions include known cylinder internal volume, an appropriate gas equation or compressibility correction, known/reference temperature, absolute rather than gauge pressure handling, calibrated pressure measurement, known gas composition where relevant, and a defined usable reference state. The educational ideal-gas conversion is not a reserve-planning rule.
+
+## Chapter 16 — Dive Computers
+
+### C16-E01
+
+For $z=(P_m-P_0)/(\rho g)$ and independent uncertainties,
+
+$$
+\sigma_z^2\approx
+\frac{\sigma_{P_m}^2+\sigma_{P_0}^2}{(\rho g)^2}
++\left(\frac{P_m-P_0}{\rho^2g}\right)^2\sigma_\rho^2.
+$$
+
+A complete answer states independence or includes covariance terms, reports metres, and distinguishes parameter uncertainty from sensor noise.
+
+### C16-E03
+
+A frozen-sample test should combine unchanged consecutive samples with elapsed time and expected sensor resolution; a jump test should compare $|P_k-P_{k-1}|/\Delta t$ with a justified physical or instrument rate bound. Both need persistence logic, missing-data handling, and defined responses. Thresholds in this teaching model are illustrative, not certified limits.
+
+### C16-E05
+
+A threshold alone does not establish detection performance. Verification must specify the hazard or condition, units, timing, tolerance, sensor and model errors, false-positive and false-negative criteria, boundary cases, and test evidence. It must also define behavior for stale, missing, or implausible data.
+
+## Chapter 17 — Decompression Models
+
+### C17-E01
+
+For constant $P_I$, the remaining gap is $P_I-P_t(t)=[P_I-P_t(0)]e^{-kt}$. At $t=T_{1/2}$ and $k=\ln2/T_{1/2}$, the multiplier is $e^{-\ln2}=1/2$.
+
+### C17-E04
+
+The two profiles must end at the same depth but have different pressure histories, such as a direct return and a profile with longer deep exposure. Applying the same compartment updates must produce different final $\boldsymbol P_t$ values, demonstrating that compartment state depends on history rather than current depth alone.
+
+### C17-E05
+
+These influences are absent from $\dot P_t=k(P_I-P_t)$: neither a state, input, nor validated parameter represents them. Adding a variable requires a mechanistic relation, data for identification, uncertainty characterization, and independent validation. The current model therefore cannot support individual physiological or operational safety conclusions.
+
+## Chapter 18 — The Complete Dive
+
+### C18-E01
+
+A complete graph includes depth-to-pressure coupling; pressure-to-gas-volume, buoyancy, breathing demand, and inspired-gas branches; buoyancy-to-vertical-motion feedback; sensors and estimation; controller and actuators; remaining-gas and compartment states; disturbances, noise, and uncertainty. Arrows must distinguish physical influence from measurement or information flow.
+
+### C18-E04
+
+Supported conclusions include qualitative causal propagation, internally consistent comparison of scenarios under fixed assumptions, and identification of state, sensitivity, or uncertainty pathways. Unsupported conclusions include operational gas or decompression limits, guarantees for a real diver, and certified equipment or controller performance. Credit requires tying each claim to model assumptions and available evidence.
+
+### C18-E05
+
+A satisfactory subsystem plan defines intended use, inputs and outputs, reference measurements, test conditions and operating range, parameter-identification data, quantitative acceptance metrics, uncertainty treatment, boundary and fault cases, and independent validation data. It must explicitly limit the result to that subsystem and avoid claiming validation of the integrated dive model.

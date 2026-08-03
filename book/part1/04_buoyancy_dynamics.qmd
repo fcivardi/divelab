@@ -1,36 +1,393 @@
-# Buoyancy and Vertical Dynamics
+---
+title: "Buoyancy and Vertical Dynamics"
+subtitle: "From Force to Motion"
+---
 
-## Guiding question
+## Companion Resources
 
-What physical or systems-engineering idea does this chapter introduce?
+::: {.callout-tip title="Companion Resources"}
 
-## Learning objectives
+**Chapter:** 4 — Buoyancy and Vertical Dynamics
 
-By the end of this chapter, the reader will be able to:
+**Companion notebook:** Notebook 04 — Vertical Forces and Motion
 
-- explain the central concept;
-- identify the relevant variables;
-- interpret the main equations;
-- connect theory to simulation.
+**Estimated study time:** 120–150 minutes, including the notebook
 
-## Physical motivation
+**Prerequisites:** Chapters 1–3, Newton's second law, and elementary differential equations
 
-This section will be developed during the DiveLab v2 refactoring.
+:::
 
-## Mathematical model
+## Engineering Question
 
-The equations will follow the conventions in `STYLE_GUIDE.md`.
+How does a buoyancy imbalance change a diver's vertical motion?
 
-## Computational laboratory
+The first three chapters built a static causal chain:
 
-[Open `03_Buoyancy_Feedback.ipynb` on GitHub](https://github.com/fcivardi/divelab/blob/main/notebooks/03_Buoyancy_Feedback.ipynb)
+$$
+z
+\longrightarrow
+P_{\mathrm{abs}}
+\longrightarrow
+V
+\longrightarrow
+F_B.
+$$
 
-[Open in Colab](https://colab.research.google.com/github/fcivardi/divelab/blob/main/notebooks/03_Buoyancy_Feedback.ipynb)
+Chapter 4 closes Part I by adding Newton's second law. Force now changes velocity, velocity changes depth, and depth feeds back into the pressure–volume–buoyancy chain.
 
-## Interpretation
+## Learning Objectives
 
-Explain what the simulation shows and why it matters.
+After completing this chapter, you should be able to:
+
+- draw and interpret a vertical free-body model of a diver;
+- distinguish buoyant force, weight, drag, and net force;
+- apply Newton's second law using the DiveLab sign conventions;
+- calculate initial acceleration from a buoyancy imbalance;
+- derive terminal velocity for a quadratic-drag model;
+- explain why neutral buoyancy does not necessarily imply zero velocity;
+- construct the coupled nonlinear equations for depth and vertical velocity;
+- identify the reinforcing buoyancy mechanism without yet performing formal stability analysis.
+
+## Theory
+
+The vertical plant combines classical rigid-body force balance with a simplified hydrodynamic drag law; both the form and its limits should be read as an engineering model [@white2016; @noaa2017].
+
+### Coordinate and Force Conventions
+
+DiveLab measures depth $z\geq0$ positively downward. Vertical velocity $v$ is defined positively upward. The kinematic relation is therefore
+
+$$
+\boxed{\dot{z}=-v}.
+$$
+
+The vertical forces are:
+
+- buoyant force $F_B$, acting upward;
+- weight $W=mg$, acting downward;
+- hydrodynamic drag, acting opposite the velocity.
+
+All scalar forces in the equation of motion are signed in the upward direction.
+
+### Newton's Second Law
+
+Let $m$ be the total mass of the diver and equipment. With upward taken as positive,
+
+$$
+m\dot{v}=F_B-mg+F_D(v),
+$$
+
+where $F_D(v)$ is the signed drag force.
+
+For motion through water, a useful teaching model is quadratic drag:
+
+$$
+F_D(v)=-c\,v|v|,
+$$
+
+with
+
+$$
+c=\frac{1}{2}\rho C_DA.
+$$
+
+Here, $C_D$ is a drag coefficient and $A$ is a representative projected area. When $v>0$, the diver is ascending and $F_D<0$ acts downward. When $v<0$, the diver is descending and $F_D>0$ acts upward.
+
+The equation of motion becomes
+
+$$
+\boxed{
+m\dot{v}=F_B-mg-c\,v|v|
+}.
+$$
+
+Together with $\dot{z}=-v$, this is the first dynamical model in DiveLab.
+
+### Buoyancy Imbalance and Initial Acceleration
+
+Define the buoyancy imbalance
+
+$$
+\Delta F_B=F_B-mg.
+$$
+
+At the instant when $v=0$, drag is zero, so
+
+$$
+\dot{v}(0)=\frac{\Delta F_B}{m}.
+$$
+
+A positive imbalance produces upward acceleration; a negative imbalance produces downward acceleration. Mass determines how strongly a given force imbalance changes velocity.
+
+Neutral buoyancy means $\Delta F_B=0$. It is a force condition, not a velocity condition. If a neutrally buoyant diver is already moving, inertia carries the motion while drag reduces its magnitude. Only the simultaneous conditions
+
+$$
+\Delta F_B=0,
+\qquad
+v=0
+$$
+
+describe a stationary equilibrium.
+
+### Terminal Velocity
+
+Suppose $\Delta F_B$ is constant. Terminal velocity occurs when acceleration is zero:
+
+$$
+0=\Delta F_B-c\,v_{\infty}|v_{\infty}|.
+$$
+
+Solving gives
+
+$$
+\boxed{
+v_{\infty}
+=\operatorname{sgn}(\Delta F_B)
+\sqrt{\frac{|\Delta F_B|}{c}}
+}.
+$$
+
+Positive $v_{\infty}$ represents ascent and negative $v_{\infty}$ descent. Quadratic drag prevents unbounded acceleration in this simplified constant-force model.
+
+### Coupling Depth to Buoyancy
+
+Chapter 3 showed that a fixed displaced volume produces depth-independent buoyancy in constant-density water. A flexible gas volume introduces the missing depth dependence.
+
+Let $V_f$ denote fixed displaced volume and let $V_{g0}$ be a flexible gas volume measured at the surface. From Boyle's law,
+
+$$
+V_g(z)
+=V_{g0}\frac{P_0}{P_0+\rho gz}.
+$$
+
+The total buoyant force is
+
+$$
+F_B(z)
+=\rho g\left[
+V_f
++V_{g0}\frac{P_0}{P_0+\rho gz}
+\right].
+$$
+
+Substitution into Newton's second law gives
+
+$$
+\boxed{
+\begin{aligned}
+\dot{z}
+&=-v,\\
+m\dot{v}
+&=
+\rho g\left[
+V_f
++V_{g0}\frac{P_0}{P_0+\rho gz}
+\right]
+-mg
+-c\,v|v|.
+\end{aligned}
+}
+$$
+
+This coupled model is nonlinear because it contains both the reciprocal pressure–volume relation and quadratic drag.
+
+### The Reinforcing Buoyancy Mechanism
+
+Consider a diver initially at rest and neutrally buoyant:
+
+$$
+F_B(z^\ast)=mg,
+\qquad
+v^\ast=0.
+$$
+
+A small upward displacement reduces $z$. Pressure falls, the flexible gas expands, and buoyant force increases. The resulting upward acceleration reinforces the initial displacement:
+
+1. depth decreases and ambient pressure falls;
+2. the flexible gas expands;
+3. buoyant force increases;
+4. the resulting acceleration reinforces the rise.
+
+A small downward displacement produces the opposite reinforcing sequence. Drag opposes velocity, but it does not remove the underlying depth–buoyancy coupling. Formal equilibrium and stability analysis are reserved for later chapters.
+
+## Worked Examples
+
+### Example 1: Initial Acceleration
+
+An $80.0\ \mathrm{kg}$ diver-and-equipment system has buoyant force $F_B=797\ \mathrm{N}$. Using $g=9.81\ \mathrm{m\,s^{-2}}$, find the initial acceleration when $v=0$.
+
+The weight is
+
+$$
+mg=(80.0)(9.81)=784.8\ \mathrm{N}.
+$$
+
+The buoyancy imbalance is
+
+$$
+\Delta F_B=797-784.8=12.2\ \mathrm{N}.
+$$
+
+Because drag is initially zero,
+
+$$
+\dot{v}(0)
+=\frac{12.2}{80.0}
+=0.153\ \mathrm{m\,s^{-2}}.
+$$
+
+The positive sign indicates upward acceleration.
+
+### Example 2: Terminal Ascent Velocity
+
+Assume a constant upward buoyancy imbalance of $8.0\ \mathrm{N}$ in seawater, with $C_D=0.80$ and projected area $A=0.70\ \mathrm{m^2}$.
+
+First calculate the drag parameter:
+
+$$
+c
+=\frac{1}{2}(1025)(0.80)(0.70)
+=287\ \mathrm{kg\,m^{-1}}.
+$$
+
+The terminal velocity is
+
+$$
+v_{\infty}
+=\sqrt{\frac{8.0}{287}}
+=0.167\ \mathrm{m\,s^{-1}}.
+$$
+
+This value belongs to the simplified model and is not an operational ascent-rate recommendation.
+
+### Example 3: A Small Displacement from Neutral Depth
+
+An $85.0\ \mathrm{kg}$ system has a flexible gas space with surface volume $V_{g0}=8.0\ \mathrm{L}$. The fixed displaced volume is chosen so that the system is neutral at $z^\ast=20.0\ \mathrm{m}$ in seawater.
+
+Using $P_0=101325\ \mathrm{Pa}$, $\rho=1025\ \mathrm{kg\,m^{-3}}$, and $g=9.80665\ \mathrm{m\,s^{-2}}$, the gas volumes are approximately
+
+$$
+V_g(20\ \mathrm{m})=2.68\ \mathrm{L}
+$$
+
+and
+
+$$
+V_g(19\ \mathrm{m})=2.77\ \mathrm{L}.
+$$
+
+The one-metre ascent increases displaced volume by approximately $0.092\ \mathrm{L}$, so buoyant force increases by
+
+$$
+\Delta F_B
+\approx
+\rho g\left(0.092\times10^{-3}\right)
+=0.93\ \mathrm{N}.
+$$
+
+If the system is momentarily at rest at $19\ \mathrm{m}$, its upward acceleration is approximately
+
+$$
+\dot{v}
+=\frac{0.93}{85.0}
+=0.011\ \mathrm{m\,s^{-2}}.
+$$
+
+The force change is small, but it acts in the same direction as the initial upward displacement.
+
+## DiveLab Insight
+
+::: {.callout-important title="DiveLab Insight"}
+
+Neutral buoyancy is not the same as zero motion.
+
+Force changes velocity, velocity changes depth, and depth can change buoyancy:
+
+$$
+F_{\mathrm{net}}
+\longrightarrow
+v
+\longrightarrow
+z
+\longrightarrow
+P
+\longrightarrow
+V_g
+\longrightarrow
+F_B.
+$$
+
+Closing this causal chain creates the first feedback mechanism in DiveLab.
+
+:::
+
+## Engineering Perspective
+
+Chapters 1–3 described memoryless input–output relations. Chapter 4 introduces variables that evolve with time. Depth and vertical velocity are the minimum quantities needed to determine the future motion of this model:
+
+$$
+z(t),
+\qquad
+v(t).
+$$
+
+The model also separates three kinds of quantities:
+
+| Role | Examples |
+|:-----|:---------|
+| Time-varying variables | $z(t)$, $v(t)$, $V_g(z)$, $F_B(z)$ |
+| Parameters | $m$, $\rho$, $g$, $C_D$, $A$, $V_f$, $V_{g0}$ |
+| Environmental reference | $P_0$ |
+
+Chapter 5 will formalize this distinction using state-space language. For now, the central engineering step is the passage from an algebraic force balance to coupled differential equations.
+
+The model deliberately omits diver control actions, breathing cycles, BCD valve dynamics, gas migration, added mass, waves, currents, and changes in body orientation. Its drag coefficient and projected area are aggregate approximations. It is suitable for understanding causal structure, not for operational dive planning or ascent-rate selection.
 
 ## Summary
 
-State the central insight and motivate the next chapter.
+- Depth is positive downward, while vertical velocity is positive upward, so $\dot{z}=-v$.
+- Newton's second law converts net upward force into upward acceleration.
+- Quadratic drag is modeled as $-c\,v|v|$ and always opposes motion.
+- Neutral buoyancy is a force condition; stationary equilibrium additionally requires $v=0$.
+- Constant buoyancy imbalance and quadratic drag produce a terminal velocity.
+- Flexible gas volume couples depth back into buoyant force.
+- The resulting equations are nonlinear and dynamical.
+- The closed depth–pressure–volume–buoyancy–motion chain contains a reinforcing feedback mechanism.
+
+## Key Equations
+
+| Equation | Meaning |
+|:---------|:--------|
+| $\dot{z}=-v$ | Kinematic relation for the DiveLab sign convention |
+| $F_D(v)=-c\,v|v|$ | Signed quadratic drag |
+| $c=\rho C_DA/2$ | Quadratic-drag parameter |
+| $m\dot{v}=F_B-mg-c\,v|v|$ | Vertical equation of motion |
+| $\dot{v}(0)=\Delta F_B/m$ | Initial acceleration at zero velocity |
+| $v_{\infty}=\operatorname{sgn}(\Delta F_B)\sqrt{|\Delta F_B|/c}$ | Terminal velocity for constant imbalance |
+| $V_g(z)=V_{g0}P_0/(P_0+\rho gz)$ | Flexible gas volume |
+| $F_B(z)=\rho g[V_f+V_g(z)]$ | Depth-dependent buoyant force |
+
+## Exercises
+
+1. **C04-E01 · Core.** Draw the vertical free-body model and explain the sign of every term in $m\dot{v}=F_B-mg-c\,v|v|$.
+2. **C04-E02 · Notebook Challenge.** A $90\ \mathrm{kg}$ system has an upward buoyancy imbalance of $15\ \mathrm{N}$ and is initially at rest. Calculate its initial acceleration.
+3. **C04-E03 · Recommended.** Calculate the drag force for $v=+0.30\ \mathrm{m\,s^{-1}}$ and $v=-0.30\ \mathrm{m\,s^{-1}}$ using $\rho=1025\ \mathrm{kg\,m^{-3}}$, $C_D=0.80$, and $A=0.70\ \mathrm{m^2}$. Interpret the signs.
+4. **C04-E04 · Extension.** Derive the terminal-velocity expression for both positive and negative buoyancy imbalance.
+5. **C04-E05 · Core.** Explain why a neutrally buoyant diver moving upward does not stop instantaneously.
+6. **C04-E06 · Recommended.** Choose a mass and flexible surface-gas volume. Determine the fixed displaced volume required for neutral buoyancy at $15\ \mathrm{m}$.
+7. **C04-E07 · Extension.** For the system in C04-E06, calculate the net force one metre above and one metre below the neutral depth while $v=0$.
+8. **C04-E08 · Core.** Identify the two nonlinear terms in the coupled depth–velocity model.
+9. **C04-E09 · Core.** Trace the reinforcing causal sequence following a small downward displacement from neutral depth.
+10. **C04-E10 · Extension.** List three omitted physical effects and explain how each could alter the predicted motion.
+
+**Notebook alignment.** Notebook 04 directly supports C04-E02; its `vertical_rhs` challenge prepares the implementation of C04-E01 and C04-E08.
+
+## Companion Notebook
+
+Use **Notebook 04 — Vertical Forces and Motion** to calculate acceleration, explore signed quadratic drag, determine terminal velocities, and evaluate the depth-dependent buoyancy imbalance without yet performing numerical time integration.
+
+- [Open the notebook on GitHub](https://github.com/fcivardi/divelab/blob/editorial-v2/notebooks/04_Vertical_Forces_and_Motion.ipynb)
+- [Run the notebook in Google Colab](https://colab.research.google.com/github/fcivardi/divelab/blob/editorial-v2/notebooks/04_Vertical_Forces_and_Motion.ipynb)
+
+## Looking Ahead
+
+Part II begins by formalizing the evolving variables $z(t)$ and $v(t)$ as a state vector. Chapter 5 rewrites the vertical dynamics in state-space form and distinguishes states, inputs, parameters, and outputs.

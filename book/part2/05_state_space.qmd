@@ -1,36 +1,432 @@
-# State-Space Models
+---
+title: "State-Space Models"
+subtitle: "From Motion to State"
+---
 
-## Guiding question
+## Companion Resources
 
-What physical or systems-engineering idea does this chapter introduce?
+::: {.callout-tip title="Companion Resources"}
 
-## Learning objectives
+**Chapter:** 5 — State-Space Models
 
-By the end of this chapter, the reader will be able to:
+**Companion notebook:** Notebook 05 — State-Space Models
 
-- explain the central concept;
-- identify the relevant variables;
-- interpret the main equations;
-- connect theory to simulation.
+**Estimated study time:** 120–150 minutes, including the notebook
 
-## Physical motivation
+**Prerequisites:** Chapters 1–4, vectors, first-order differential equations, and basic Python
 
-This section will be developed during the DiveLab v2 refactoring.
+:::
 
-## Mathematical model
+## Engineering Question
 
-The equations will follow the conventions in `STYLE_GUIDE.md`.
+What information must be known now to predict a diver's future vertical motion?
 
-## Computational laboratory
+Chapter 4 produced two coupled differential equations for depth and vertical velocity. Chapter 5 reorganizes those equations around a central systems-engineering idea: the **state** contains the minimum information needed to continue the model into the future once the inputs are specified.
 
-[Open `07_Observability_and_State_Estimation.ipynb` on GitHub](https://github.com/fcivardi/divelab/blob/main/notebooks/07_Observability_and_State_Estimation.ipynb)
+## Learning Objectives
 
-[Open in Colab](https://colab.research.google.com/github/fcivardi/divelab/blob/main/notebooks/07_Observability_and_State_Estimation.ipynb)
+After completing this chapter, you should be able to:
 
-## Interpretation
+- distinguish a state from an algebraic variable, input, disturbance, parameter, and output;
+- construct a state vector for the DiveLab vertical-motion model;
+- rewrite coupled differential equations as a nonlinear state-space model;
+- evaluate a state derivative at a specified operating condition;
+- explain the role of initial conditions in predicting a trajectory;
+- distinguish autonomous, forced, nonlinear, and linear state-space models;
+- interpret a numerical trajectory without performing formal stability analysis.
 
-Explain what the simulation shows and why it matters.
+## Theory
+
+The state-space language used throughout Part II follows standard linear- and nonlinear-systems formulations [@chen1999; @khalil2002].
+
+### From a Snapshot to a Prediction
+
+A static model answers a question about one operating condition. For example, Archimedes' principle calculates buoyant force from displaced volume. A dynamic model asks how the condition changes with time.
+
+Knowing depth alone is not enough to predict the next depth. Two divers can be at the same depth while one is stationary and the other is moving upward. Their immediate futures differ because their velocities differ.
+
+For the Chapter 4 model, the required evolving quantities are
+
+$$
+z(t),
+\qquad
+v(t),
+$$
+
+where depth $z$ is positive downward and velocity $v$ is positive upward. We collect them in the state vector
+
+$$
+\boxed{
+\mathbf{x}(t)
+=
+\begin{bmatrix}
+z(t)\\
+v(t)
+\end{bmatrix}
+}.
+$$
+
+The order of the entries matters. Throughout Part II, the first state is depth and the second is upward velocity.
+
+### What Is—and Is Not—a State?
+
+A quantity is a state when its present value is needed, together with future inputs, to determine the future evolution of the model.
+
+The flexible gas volume
+
+$$
+V_g(z)=V_{g0}\frac{P_0}{P_0+\rho gz}
+$$
+
+changes with depth, but it is not an independent state in the present model. Boyle's law determines it immediately from $z$. The same is true of ambient pressure, buoyant force, and drag:
+
+$$
+P_{\mathrm{abs}}=P_0+\rho gz,
+$$
+
+$$
+F_B=\rho g\left[V_f+V_g(z)\right],
+$$
+
+$$
+F_D=-c\,v|v|.
+$$
+
+These are **algebraic variables** derived from the current state and parameters.
+
+The classification depends on modeling assumptions. If gas entered or left a BCD through a valve with finite dynamics, its gas volume could no longer be calculated from depth alone and might need to become an additional state.
+
+### Inputs, Disturbances, Parameters, and Outputs
+
+We introduce an upward-positive control force $u(t)$ and an upward-positive disturbance force $d(t)$. They enter the force balance as
+
+$$
+m\dot{v}=F_B(z)-mg-c\,v|v|+u(t)+d(t).
+$$
+
+The categories now have distinct roles:
+
+| Category | DiveLab examples | Role in the model |
+|:---------|:-----------------|:------------------|
+| State | $z(t)$, $v(t)$ | Carries the model's memory |
+| Input | $u(t)$ | Deliberate action applied to the plant |
+| Disturbance | $d(t)$ | External influence not chosen by the controller |
+| Parameter | $m$, $\rho$, $g$, $c$, $V_f$, $V_{g0}$, $P_0$ | Fixed value for one simulation |
+| Algebraic variable | $P_{\mathrm{abs}}$, $V_g$, $F_B$, $F_D$ | Calculated from state, input, and parameters |
+| Output | $y(t)$ | Quantity exposed by the model or measurement process |
+
+An input and a disturbance can have identical physical units and enter the same equation. Their distinction is conceptual: the model treats $u$ as commanded and $d$ as uncommanded.
+
+### The Nonlinear State Equation
+
+Using the DiveLab sign convention,
+
+$$
+\dot{z}=-v.
+$$
+
+Define the drag parameter
+
+$$
+c=\frac{1}{2}\rho C_DA
+$$
+
+and the flexible gas volume
+
+$$
+V_g(z)=V_{g0}\frac{P_0}{P_0+\rho gz}.
+$$
+
+The complete state equation is
+
+$$
+\boxed{
+\dot{\mathbf{x}}
+=
+\mathbf{f}(\mathbf{x},u,d)
+=
+\begin{bmatrix}
+-v\\[4pt]
+\dfrac{
+\rho g\left[V_f+V_{g0}\dfrac{P_0}{P_0+\rho gz}\right]
+-mg-c\,v|v|+u+d
+}{m}
+\end{bmatrix}
+}.
+$$
+
+The first component is kinematic: velocity changes depth. The second is dynamic: net force changes velocity.
+
+This model is nonlinear because it contains the reciprocal dependence on depth and the quadratic term $v|v|$.
+
+### Output Equations
+
+The state equation describes internal evolution. An output equation specifies what the model exposes:
+
+$$
+\mathbf{y}=\mathbf{h}(\mathbf{x},u).
+$$
+
+If both depth and velocity are available as ideal model outputs,
+
+$$
+\mathbf{y}
+=
+\begin{bmatrix}
+z\\
+v
+\end{bmatrix}
+=\mathbf{x}.
+$$
+
+If only depth is measured,
+
+$$
+y=z.
+$$
+
+The state and output are therefore not synonyms. A variable may be part of the mathematical state even when it is not measured directly. Later chapters will distinguish measurement from estimation.
+
+### Initial Conditions and Trajectories
+
+A differential equation does not define one trajectory until an initial condition is supplied:
+
+$$
+\mathbf{x}(0)
+=
+\mathbf{x}_0
+=
+\begin{bmatrix}
+z_0\\
+v_0
+\end{bmatrix}.
+$$
+
+Given the model, parameters, future inputs, disturbances, and $\mathbf{x}_0$, numerical integration generates a state trajectory
+
+$$
+\mathbf{x}(t)
+=
+\begin{bmatrix}
+z(t)\\
+v(t)
+\end{bmatrix}.
+$$
+
+At a single instant, the derivative $\dot{\mathbf{x}}$ gives the local direction of evolution. A numerical solver repeatedly evaluates that derivative to advance the state through time.
+
+### Autonomous and Forced Models
+
+When $u(t)=0$ and $d(t)=0$, the model becomes
+
+$$
+\dot{\mathbf{x}}=\mathbf{f}(\mathbf{x}),
+$$
+
+which is an **autonomous** system. Its evolution depends on the current state and parameters but not explicitly on time.
+
+When an input or disturbance is applied,
+
+$$
+\dot{\mathbf{x}}=\mathbf{f}(\mathbf{x},u,d),
+$$
+
+the response is **forced**. This distinction will matter when uncontrolled and controlled motion are compared.
+
+### Nonlinear and Linear State-Space Forms
+
+The familiar linear state-space model
+
+$$
+\dot{\mathbf{x}}=A\mathbf{x}+B\mathbf{u},
+\qquad
+\mathbf{y}=C\mathbf{x}+D\mathbf{u}
+$$
+
+is a special case, not the definition of state space itself. The DiveLab vertical model is naturally nonlinear. Chapter 6 will examine an equilibrium and obtain a local linear approximation before using its eigenstructure to interpret stability.
+
+## Worked Examples
+
+### Example 1: Classifying Model Quantities
+
+Consider a diver model with depth $z$, upward velocity $v$, flexible gas volume $V_g(z)$, BCD actuation force $u$, current-induced vertical force $d$, and mass $m$.
+
+The classifications are:
+
+- $z$ and $v$: states;
+- $V_g(z)$: algebraic variable under the instantaneous Boyle-law assumption;
+- $u$: input;
+- $d$: disturbance;
+- $m$: parameter.
+
+If the BCD inflation process were modeled with its own differential equation, its gas content would become another state.
+
+### Example 2: Evaluating the State Derivative
+
+Consider an $85.0\ \mathrm{kg}$ system that is neutrally buoyant and stationary at $20.0\ \mathrm{m}$. At the operating state,
+
+$$
+\mathbf{x}^{\ast}
+=
+\begin{bmatrix}
+20.0\\
+0
+\end{bmatrix},
+$$
+
+and with $u=d=0$,
+
+$$
+\dot{z}=-v=0,
+$$
+
+$$
+\dot{v}=\frac{F_B-mg}{m}=0.
+$$
+
+Therefore,
+
+$$
+\dot{\mathbf{x}}^{\ast}
+=
+\begin{bmatrix}
+0\\
+0
+\end{bmatrix}.
+$$
+
+Now suppose the same system is at $20.0\ \mathrm{m}$ with upward velocity $v=0.20\ \mathrm{m\,s^{-1}}$. Then
+
+$$
+\dot{z}=-0.20\ \mathrm{m\,s^{-1}},
+$$
+
+and drag makes $\dot{v}<0$. The same depth does not imply the same future because the complete states are different.
+
+### Example 3: One Explicit Euler Step
+
+Suppose a state and derivative are
+
+$$
+\mathbf{x}_k
+=
+\begin{bmatrix}
+20.0\ \mathrm{m}\\
+0.10\ \mathrm{m\,s^{-1}}
+\end{bmatrix},
+\qquad
+\dot{\mathbf{x}}_k
+=
+\begin{bmatrix}
+-0.10\ \mathrm{m\,s^{-1}}\\
+0.02\ \mathrm{m\,s^{-2}}
+\end{bmatrix}.
+$$
+
+With time step $\Delta t=0.50\ \mathrm{s}$, explicit Euler integration gives
+
+$$
+\mathbf{x}_{k+1}
+\approx
+\mathbf{x}_k+\Delta t\,\dot{\mathbf{x}}_k
+=
+\begin{bmatrix}
+19.95\ \mathrm{m}\\
+0.11\ \mathrm{m\,s^{-1}}
+\end{bmatrix}.
+$$
+
+The calculation illustrates how a derivative becomes a trajectory. Production simulations use more accurate numerical integration, but the state-update idea is the same.
+
+## DiveLab Insight
+
+::: {.callout-important title="DiveLab Insight"}
+
+The state is not a list of every variable in the model. It is the information that must be carried forward in time.
+
+For the present vertical model,
+
+$$
+\mathbf{x}=[z,\ v]^{\mathsf T}
+$$
+
+is sufficient because pressure, gas volume, buoyancy, and drag can all be reconstructed from $z$, $v$, and the parameters.
+
+:::
+
+## Engineering Perspective
+
+State-space modeling creates an interface between physics and systems engineering:
+
+$$
+(\mathbf{x},u,d,\boldsymbol{\theta})
+\longrightarrow
+\dot{\mathbf{x}}
+\longrightarrow
+\mathbf{x}(t)
+\longrightarrow
+\mathbf{y}(t),
+$$
+
+where $\boldsymbol{\theta}$ denotes the model parameters.
+
+This interface separates three questions:
+
+1. **Physics:** What forces and constitutive relations define $\mathbf{f}$?
+2. **Simulation:** How is $\dot{\mathbf{x}}=\mathbf{f}(\cdot)$ integrated accurately?
+3. **Systems analysis:** What do equilibria, perturbations, inputs, and outputs reveal about behavior?
+
+The current model treats $u$ as an abstract upward force. It does not yet represent a BCD valve, lung-volume dynamics, finning, or a human control strategy. Keeping the input abstract lets us establish the system structure before adding actuator detail.
+
+The simulations are educational models and are not operational guidance for ascent, descent, weighting, or buoyancy-control decisions.
 
 ## Summary
 
-State the central insight and motivate the next chapter.
+- The state contains the minimum information required to predict future model evolution once future inputs are known.
+- Depth alone is insufficient; the Chapter 4 model requires both depth and vertical velocity.
+- Pressure, flexible gas volume, buoyancy, and drag are algebraic variables in the present model.
+- Inputs are commanded influences, disturbances are uncommanded influences, and parameters are fixed during one simulation.
+- The nonlinear model has the form $\dot{\mathbf{x}}=\mathbf{f}(\mathbf{x},u,d)$.
+- An output equation specifies which state-dependent quantities are exposed or measured.
+- Initial conditions select a trajectory.
+- Linear state-space equations are a special case of the more general nonlinear formulation.
+
+## Key Equations
+
+| Equation | Meaning |
+|:---------|:--------|
+| $\mathbf{x}=[z,\ v]^{\mathsf T}$ | Vertical-motion state vector |
+| $\dot{z}=-v$ | Kinematic relation |
+| $V_g(z)=V_{g0}P_0/(P_0+\rho gz)$ | Algebraic flexible-gas volume |
+| $m\dot{v}=F_B(z)-mg-cv|v|+u+d$ | Forced vertical dynamics |
+| $\dot{\mathbf{x}}=\mathbf{f}(\mathbf{x},u,d)$ | Nonlinear state equation |
+| $\mathbf{y}=\mathbf{h}(\mathbf{x},u)$ | General output equation |
+| $\mathbf{x}(0)=\mathbf{x}_0$ | Initial condition |
+| $\mathbf{x}_{k+1}\approx\mathbf{x}_k+\Delta t\,\dot{\mathbf{x}}_k$ | Explicit Euler state update |
+| $\dot{\mathbf{x}}=A\mathbf{x}+B\mathbf{u}$ | Linear state-space special case |
+
+## Exercises
+
+1. **C05-E01 · Core.** Explain why two divers at the same depth can require different state descriptions if their vertical velocities differ.
+2. **C05-E02 · Core.** Classify each quantity in the vertical model as a state, input, disturbance, parameter, algebraic variable, or output: $z$, $v$, $m$, $P_{\mathrm{abs}}$, $V_g$, $F_B$, $u$, and $d$.
+3. **C05-E03 · Recommended.** Write the state derivative for $\mathbf{x}=[12.0\ \mathrm{m},\ 0.30\ \mathrm{m\,s^{-1}}]^{\mathsf T}$, leaving the acceleration in symbolic form.
+4. **C05-E04 · Recommended.** At neutral buoyancy, compare $\dot{\mathbf{x}}$ for $v=0$, $v=+0.20\ \mathrm{m\,s^{-1}}$, and $v=-0.20\ \mathrm{m\,s^{-1}}$.
+5. **C05-E05 · Core.** Explain why $V_g(z)$ is not an independent state under the instantaneous Boyle-law assumption.
+6. **C05-E06 · Notebook Challenge.** Describe one more realistic gas or actuator model in which an additional state would be required.
+7. **C05-E07 · Notebook Challenge.** Starting from a specified $\mathbf{x}_k$, $\dot{\mathbf{x}}_k$, and $\Delta t$, perform two explicit Euler steps.
+8. **C05-E08 · Recommended.** Give one example each of a commanded input and an uncommanded disturbance for vertical motion.
+9. **C05-E09 · Core.** Define an output equation for a model that exposes depth only. Then define one that exposes both depth and velocity.
+10. **C05-E10 · Extension.** Explain why writing a nonlinear model in state-space form does not make it linear.
+
+**Notebook alignment.** Notebook 05 implements C05-E07; its actuator-memory challenge is the computational continuation of C05-E06.
+
+## Companion Notebook
+
+Use **Notebook 05 — State-Space Models** to implement the nonlinear state derivative, inspect operating states, integrate trajectories, and compare autonomous and forced responses.
+
+- [Open the notebook on GitHub](https://github.com/fcivardi/divelab/blob/editorial-v2/notebooks/05_State_Space_Models.ipynb)
+- [Run the notebook in Google Colab](https://colab.research.google.com/github/fcivardi/divelab/blob/editorial-v2/notebooks/05_State_Space_Models.ipynb)
+
+## Looking Ahead
+
+Chapter 6 will ask whether the neutral operating state returns after a small disturbance. It will introduce equilibria, local linearization, eigenvalues, and the phase portrait of the vertical-motion model.

@@ -8,6 +8,7 @@ book:
   author: "Francesco Civardi"
   date: today
   repo-url: https://github.com/fcivardi/divelab
+  repo-branch: editorial-v2
   repo-actions: [edit, issue]
   chapters:
     - index.qmd
@@ -24,24 +25,24 @@ book:
         - part2/05_state_space.qmd
         - part2/06_stability.qmd
         - part2/07_estimation.qmd
-        - part2/08_laplace.qmd
+        - part2/08_kalman.qmd
     - part: "Part III — Control Engineering"
       chapters:
-        - part3/09_feedback.qmd
-        - part3/10_pid.qmd
-        - part3/11_frequency_response.qmd
-        - part3/12_human_in_the_loop.qmd
+        - part3/09_laplace.qmd
+        - part3/10_feedback.qmd
+        - part3/11_pid.qmd
+        - part3/12_frequency_response.qmd
+        - part3/13_human_in_the_loop.qmd
     - part: "Part IV — Integrated Diving Systems"
       chapters:
-        - part4/13_breathing.qmd
-        - part4/14_gas_consumption.qmd
-        - part4/15_dive_computers.qmd
-        - part4/16_decompression_models.qmd
-    - part: "Appendices"
-      chapters:
-        - appendices/python.qmd
-        - appendices/mathematics.qmd
-        - appendices/notebook_map.qmd
+        - part4/14_breathing.qmd
+        - part4/15_gas_consumption.qmd
+        - part4/16_dive_computers.qmd
+        - part4/17_decompression_models.qmd
+        - part4/18_complete_dive.qmd
+  appendices:
+    - appendices/notebook_map.qmd
+    - appendices/core_answers.qmd
 
 bibliography: references.bib
 
@@ -57,6 +58,18 @@ format:
     documentclass: scrreprt
     toc: true
     number-sections: true
+    pdf-engine: xelatex
+    callout-icon: false
+    include-in-header:
+      text: |
+        \IfFileExists{fontawesome5.sty}{}{\input{latex/fontawesome5-fallback.sty}}
+        \usepackage{scrhack}
+        \makeatletter
+        \renewcommand{\@pnumwidth}{2.2em}
+        \makeatother
+        \DeclareTOCStyleEntry[numwidth=3.2em]{tocline}{section}
+        \DeclareTOCStyleEntry[numwidth=4.2em]{tocline}{subsection}
+        \AtBeginDocument{\ifdefined\useOriginalUrlSetting\useOriginalUrlSetting\fi}
 
 execute:
   freeze: auto
