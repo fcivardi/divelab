@@ -81,7 +81,7 @@ has used notebooks for problem generation and classroom exposition
 which equations, code, data, and figures remain adjacent [@granger2021]. Their
 reproducibility is not automatic, however: execution order, hidden state,
 dependency drift, and incomplete environments can undermine an apparently
-self-contained artifact [@samuel2021]. DiveLab therefore treats whole-curriculum
+self-contained artifact [@samuel2024]. DiveLab therefore treats whole-curriculum
 execution as a tested property rather than an assumed benefit of the file format.
 
 Scuba buoyancy has also been modeled for engineering purposes. Valenko et al.
@@ -212,7 +212,7 @@ pressure law, plant structure, and reference parameters.
 | Feedback | 10--14 | PD/PID, saturation, frequency response, human decisions, breathing disturbance | controlled vertical response |
 | Integrated systems | 15--18 | gas consumption, dive-computer estimation, inert-gas states, capstone | coupled state history |
 
-: Curriculum progression and its causal hand-offs. {#tbl-curriculum}
+: Curriculum progression and its causal hand-offs.
 
 The architecture separates explanation from experiment. Chapters derive
 assumptions, equations, examples, and limitations. Notebooks expose parameters,
@@ -307,8 +307,9 @@ respiratory model.
 
 The final notebook combines a prescribed reference-depth history, local vertical
 feedback, ambient-pressure calculation, synthetic measurement, gas-use
-integration, and simplified parallel inert-gas compartments. Figure 7 presents
-the coupled outputs on a common time base. The capstone's
+integration, and simplified parallel inert-gas compartments with nominal
+half-times of 5, 20, 80, and 240 minutes. Figure 7 presents the coupled outputs
+on a common time base. The capstone's
 main contribution is architectural: quantities can be labeled as prescribed,
 measured, derived, estimated, predicted, or controlled within one state history.
 
@@ -350,9 +351,9 @@ records representative anchors selected across the sequence.
 | Finite-difference velocity RMSE | 1.4356 m/s |
 | Kalman-filter velocity RMSE | 0.01593 m/s |
 | Designed closed-loop poles | -0.6, -0.9 $\mathrm{s^{-1}}$ |
-| Windup / anti-windup IAE | 177.47 / 5.17 m s |
+| Windup / anti-windup IAE | $177.47 / 5.17\ \mathrm{m\cdot s}$ |
 
-: Representative numerical regression anchors. {#tbl-validation}
+: Representative numerical regression anchors.
 
 These are deterministic or seeded computational checks, not measurements of
 divers. Before archival release, the anchors should be encoded with explicit
