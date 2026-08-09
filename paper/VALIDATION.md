@@ -26,11 +26,10 @@ exceptions. The run produced 66 Matplotlib figures.
 | Finite-difference velocity RMSE | 1.4356 m/s |
 | Designed closed-loop poles | -0.6, -0.9 1/s |
 | PID final error in test case | approximately 0 m |
-| Anti-windup IAE | 5.17 m s |
-| Windup IAE | 177.47 m s |
+| Anti-windup IAE | 5.17 m·s |
+| Windup IAE | 177.47 m·s |
 | Kalman velocity RMSE | 0.01593 m/s |
 
 These values are regression anchors for the paper, not empirical measurements
 of real divers. Before submission, CI will repeat execution through a real
 Jupyter kernel and compare selected values against explicit tolerances.
-
