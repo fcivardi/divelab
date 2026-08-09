@@ -193,7 +193,7 @@ gap}\label{related-work-and-design-gap}}
 Notebook-centered teaching has been used to combine exposition, code,
 and results in engineering curricula. Engineers Code organized reusable
 open learning modules as Jupyter lessons
-(\protect\hyperlink{ref-barba2020}{Barba et al. 2020}), and
+(\protect\hyperlink{ref-barba2020}{Barba 2020}), and
 chemical-engineering work has used notebooks for problem generation and
 classroom exposition (\protect\hyperlink{ref-dominguez2021}{Domínguez et
 al. 2021}). More generally, computational notebooks support narratives
@@ -202,7 +202,7 @@ in which equations, code, data, and figures remain adjacent
 reproducibility is not automatic, however: execution order, hidden
 state, dependency drift, and incomplete environments can undermine an
 apparently self-contained artifact
-(\protect\hyperlink{ref-samuel2021}{Samuel and Mietchen 2021}). DiveLab
+(\protect\hyperlink{ref-samuel2024}{Samuel and Mietchen 2024}). DiveLab
 therefore treats whole-curriculum execution as a tested property rather
 than an assumed benefit of the file format.
 
@@ -363,8 +363,8 @@ pressure law, plant structure, and reference parameters.
   >{\raggedleft\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.3077}}
   >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2308}}
   >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2308}}@{}}
-\caption{Curriculum progression and its causal hand-offs.
-\{\#tbl-curriculum\}}\tabularnewline
+\caption{Curriculum progression and its causal
+hand-offs.}\tabularnewline
 \toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedright
 Stage
@@ -554,11 +554,11 @@ physiological action without claiming a complete respiratory model.
 
 The final notebook combines a prescribed reference-depth history, local
 vertical feedback, ambient-pressure calculation, synthetic measurement,
-gas-use integration, and simplified parallel inert-gas compartments.
-Figure 7 presents the coupled outputs on a common time base. The
-capstone's main contribution is architectural: quantities can be labeled
-as prescribed, measured, derived, estimated, predicted, or controlled
-within one state history.
+gas-use integration, and simplified parallel inert-gas compartments with
+nominal half-times of 5, 20, 80, and 240 minutes. Figure 7 presents the
+coupled outputs on a common time base. The capstone's main contribution
+is architectural: quantities can be labeled as prescribed, measured,
+derived, estimated, predicted, or controlled within one state history.
 
 \begin{figure}
 \hypertarget{fig-capstone}{%
@@ -605,8 +605,7 @@ figures. Table 2 records representative anchors selected across the
 sequence.
 
 \begin{longtable}[]{@{}lr@{}}
-\caption{Representative numerical regression anchors.
-\{\#tbl-validation\}}\tabularnewline
+\caption{Representative numerical regression anchors.}\tabularnewline
 \toprule\noalign{}
 Experiment & Recomputed result \\
 \midrule\noalign{}
@@ -625,7 +624,7 @@ Observer velocity RMSE & 0.00078 m/s \\
 Finite-difference velocity RMSE & 1.4356 m/s \\
 Kalman-filter velocity RMSE & 0.01593 m/s \\
 Designed closed-loop poles & -0.6, -0.9 \(\mathrm{s^{-1}}\) \\
-Windup / anti-windup IAE & 177.47 / 5.17 m s \\
+Windup / anti-windup IAE & \(177.47 / 5.17\ \mathrm{m\cdot s}\) \\
 \end{longtable}
 
 These are deterministic or seeded computational checks, not measurements
@@ -724,10 +723,9 @@ Introduction for Scientists and Engineers}. Princeton University Press.
 \url{https://fbsbook.org/}.
 
 \leavevmode\vadjust pre{\hypertarget{ref-barba2020}{}}%
-Barba, Lorena A., Lecia J. Barker, Douglas S. Blank, Jed Brown, Allen B.
-Downey, Timothy George, Lindsey J. Heagy, et al. 2020. {``Engineers
-Code: Reusable Open Learning Modules for Engineering Computations.''}
-\emph{Computing in Science \& Engineering} 22 (4): 26--35.
+Barba, Lorena A. 2020. {``Engineers Code: Reusable Open Learning Modules
+for Engineering Computations.''} \emph{Computing in Science \&
+Engineering} 22 (4): 26--35.
 \url{https://doi.org/10.1109/MCSE.2020.2976002}.
 
 \leavevmode\vadjust pre{\hypertarget{ref-dominguez2021}{}}%
@@ -753,20 +751,20 @@ Publishing: Players, Agents and Agendas}, 87--90.
 \url{https://doi.org/10.3233/978-1-61499-649-1-87}.
 
 \leavevmode\vadjust pre{\hypertarget{ref-muskinja2023}{}}%
-Muškinja, Niko, Miloš Rižnar, and Marjan Golob. 2023. {``Optimized Fuzzy
-Logic Control System for Diver's Automatic Buoyancy Control Device.''}
-\emph{Mathematics} 11 (1): 22.
+Muškinja, Nenad, Matej Rižnar, and Marjan Golob. 2023. {``Optimized
+Fuzzy Logic Control System for Diver's Automatic Buoyancy Control
+Device.''} \emph{Mathematics} 11 (1): 22.
 \url{https://doi.org/10.3390/math11010022}.
 
 \leavevmode\vadjust pre{\hypertarget{ref-ogata2010}{}}%
 Ogata, Katsuhiko. 2010. \emph{Modern Control Engineering}. 5th ed.
-Prentice Hall.
+Pearson.
 
-\leavevmode\vadjust pre{\hypertarget{ref-samuel2021}{}}%
-Samuel, Sheeba, and Daniel Mietchen. 2021. {``Computational
+\leavevmode\vadjust pre{\hypertarget{ref-samuel2024}{}}%
+Samuel, Sheeba, and Daniel Mietchen. 2024. {``Computational
 Reproducibility of Jupyter Notebooks from Biomedical Publications.''}
-\emph{GigaScience} 10 (10).
-\url{https://doi.org/10.1093/gigascience/giab047}.
+\emph{GigaScience} 13: giad113.
+\url{https://doi.org/10.1093/gigascience/giad113}.
 
 \leavevmode\vadjust pre{\hypertarget{ref-valenko2016}{}}%
 Valenko, Darko, Zdenko Mezgec, Martin Pec, and Marjan Golob. 2016.
