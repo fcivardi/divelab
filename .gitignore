@@ -7,3 +7,11 @@
 /book/index.tex
 /book/index.toc
 /book/tmp/
+/.venv/
+__pycache__/
+.ipynb_checkpoints/
+/paper/_build/
+/paper/arxiv/main.aux
+/paper/arxiv/main.log
+/paper/arxiv/main.out
+/paper/arxiv/main.pdf
