@@ -1,0 +1,413 @@
+{
+  "execution": "isolated Jupyter kernels with figure capture after each original code cell",
+  "notebooks": [
+    {
+      "notebook": "01_Pressure.ipynb",
+      "status": "passed",
+      "figures": 2,
+      "anchors": [
+        {
+          "expression": "rho*g",
+          "actual": 10051.81625,
+          "expected": 10051.81625,
+          "atol": 1e-07
+        }
+      ],
+      "environment": {
+        "python": "3.12.14",
+        "numpy": "2.3.5",
+        "scipy": "1.17.0",
+        "matplotlib": "3.10.8",
+        "nbformat": "5.11.1",
+        "nbclient": "0.11.0",
+        "ipykernel": "7.4.0"
+      }
+    },
+    {
+      "notebook": "02_Boyles_Law.ipynb",
+      "status": "passed",
+      "figures": 2,
+      "anchors": [],
+      "environment": {
+        "python": "3.12.14",
+        "numpy": "2.3.5",
+        "scipy": "1.17.0",
+        "matplotlib": "3.10.8",
+        "nbformat": "5.11.1",
+        "nbclient": "0.11.0",
+        "ipykernel": "7.4.0"
+      }
+    },
+    {
+      "notebook": "03_Archimedes_Principle.ipynb",
+      "status": "passed",
+      "figures": 3,
+      "anchors": [],
+      "environment": {
+        "python": "3.12.14",
+        "numpy": "2.3.5",
+        "scipy": "1.17.0",
+        "matplotlib": "3.10.8",
+        "nbformat": "5.11.1",
+        "nbclient": "0.11.0",
+        "ipykernel": "7.4.0"
+      }
+    },
+    {
+      "notebook": "04_Vertical_Forces_and_Motion.ipynb",
+      "status": "passed",
+      "figures": 2,
+      "anchors": [],
+      "environment": {
+        "python": "3.12.14",
+        "numpy": "2.3.5",
+        "scipy": "1.17.0",
+        "matplotlib": "3.10.8",
+        "nbformat": "5.11.1",
+        "nbclient": "0.11.0",
+        "ipykernel": "7.4.0"
+      }
+    },
+    {
+      "notebook": "05_State_Space_Models.ipynb",
+      "status": "passed",
+      "figures": 2,
+      "anchors": [],
+      "environment": {
+        "python": "3.12.14",
+        "numpy": "2.3.5",
+        "scipy": "1.17.0",
+        "matplotlib": "3.10.8",
+        "nbformat": "5.11.1",
+        "nbclient": "0.11.0",
+        "ipykernel": "7.4.0"
+      }
+    },
+    {
+      "notebook": "06_Equilibria_and_Stability.ipynb",
+      "status": "passed",
+      "figures": 6,
+      "anchors": [
+        {
+          "expression": "k_b",
+          "actual": -0.8958663035924416,
+          "expected": -0.895866307,
+          "atol": 1e-08
+        },
+        {
+          "expression": "lambda_unstable",
+          "actual": 0.10266257142540207,
+          "expected": 0.10266257,
+          "atol": 1e-08
+        },
+        {
+          "expression": "1/lambda_unstable",
+          "actual": 9.740648282189504,
+          "expected": 9.74064835,
+          "atol": 1e-06
+        },
+        {
+          "expression": "np.max(np.abs(equilibrium_residual))",
+          "actual": 0.0,
+          "expected": 0.0,
+          "atol": 1e-10
+        },
+        {
+          "expression": "abs(k_b-k_b_numerical)",
+          "actual": 9.821691238087737e-10,
+          "expected": 0.0,
+          "atol": 1e-07
+        }
+      ],
+      "environment": {
+        "python": "3.12.14",
+        "numpy": "2.3.5",
+        "scipy": "1.17.0",
+        "matplotlib": "3.10.8",
+        "nbformat": "5.11.1",
+        "nbclient": "0.11.0",
+        "ipykernel": "7.4.0"
+      }
+    },
+    {
+      "notebook": "07_Observability_and_State_Estimation.ipynb",
+      "status": "passed",
+      "figures": 7,
+      "anchors": [
+        {
+          "expression": "difference_rmse",
+          "actual": 1.4355924551321364,
+          "expected": 1.4356,
+          "atol": 5e-05
+        },
+        {
+          "expression": "observer_rmse",
+          "actual": 0.0007775919388096655,
+          "expected": 0.00078,
+          "atol": 5e-06
+        },
+        {
+          "expression": "observability_rank",
+          "actual": 2.0,
+          "expected": 2,
+          "atol": 0
+        }
+      ],
+      "environment": {
+        "python": "3.12.14",
+        "numpy": "2.3.5",
+        "scipy": "1.17.0",
+        "matplotlib": "3.10.8",
+        "nbformat": "5.11.1",
+        "nbclient": "0.11.0",
+        "ipykernel": "7.4.0"
+      }
+    },
+    {
+      "notebook": "08_Kalman_Filter.ipynb",
+      "status": "passed",
+      "figures": 7,
+      "anchors": [
+        {
+          "expression": "rmse[1]",
+          "actual": 0.01592957867959859,
+          "expected": 0.01593,
+          "atol": 5e-06
+        }
+      ],
+      "environment": {
+        "python": "3.12.14",
+        "numpy": "2.3.5",
+        "scipy": "1.17.0",
+        "matplotlib": "3.10.8",
+        "nbformat": "5.11.1",
+        "nbclient": "0.11.0",
+        "ipykernel": "7.4.0"
+      }
+    },
+    {
+      "notebook": "09_Laplace_and_Transfer_Functions.ipynb",
+      "status": "passed",
+      "figures": 4,
+      "anchors": [],
+      "environment": {
+        "python": "3.12.14",
+        "numpy": "2.3.5",
+        "scipy": "1.17.0",
+        "matplotlib": "3.10.8",
+        "nbformat": "5.11.1",
+        "nbclient": "0.11.0",
+        "ipykernel": "7.4.0"
+      }
+    },
+    {
+      "notebook": "10_Feedback_Control.ipynb",
+      "status": "passed",
+      "figures": 4,
+      "anchors": [
+        {
+          "expression": "np.sort(np.linalg.eigvals(Acl))",
+          "actual": [
+            -0.8999999999999999,
+            -0.6000000000000001
+          ],
+          "expected": [
+            -0.9,
+            -0.6
+          ],
+          "atol": 1e-10
+        },
+        {
+          "expression": "x_d[0,-1]",
+          "actual": -0.1089324568936527,
+          "expected": -0.1089,
+          "atol": 5e-05
+        }
+      ],
+      "environment": {
+        "python": "3.12.14",
+        "numpy": "2.3.5",
+        "scipy": "1.17.0",
+        "matplotlib": "3.10.8",
+        "nbformat": "5.11.1",
+        "nbclient": "0.11.0",
+        "ipykernel": "7.4.0"
+      }
+    },
+    {
+      "notebook": "11_PID_Control.ipynb",
+      "status": "passed",
+      "figures": 2,
+      "anchors": [
+        {
+          "expression": "metrics(t,x_w[0],app_w)['IAE [m s]']",
+          "actual": 177.46660855356808,
+          "expected": 177.46660855,
+          "atol": 0.0001
+        },
+        {
+          "expression": "metrics(t,x_aw[0],app_aw)['IAE [m s]']",
+          "actual": 5.173345739866951,
+          "expected": 5.17334574,
+          "atol": 1e-05
+        }
+      ],
+      "environment": {
+        "python": "3.12.14",
+        "numpy": "2.3.5",
+        "scipy": "1.17.0",
+        "matplotlib": "3.10.8",
+        "nbformat": "5.11.1",
+        "nbclient": "0.11.0",
+        "ipykernel": "7.4.0"
+      }
+    },
+    {
+      "notebook": "12_Frequency_Response.ipynb",
+      "status": "passed",
+      "figures": 3,
+      "anchors": [
+        {
+          "expression": "wn",
+          "actual": 0.7348469228349535,
+          "expected": 0.734846923,
+          "atol": 1e-08
+        },
+        {
+          "expression": "zeta",
+          "actual": 1.0206207261596576,
+          "expected": 1.020620726,
+          "atol": 1e-08
+        },
+        {
+          "expression": "w_bw",
+          "actual": 0.46460497381768207,
+          "expected": 0.465,
+          "atol": 0.001
+        }
+      ],
+      "environment": {
+        "python": "3.12.14",
+        "numpy": "2.3.5",
+        "scipy": "1.17.0",
+        "matplotlib": "3.10.8",
+        "nbformat": "5.11.1",
+        "nbclient": "0.11.0",
+        "ipykernel": "7.4.0"
+      }
+    },
+    {
+      "notebook": "13_Human_in_the_Loop.ipynb",
+      "status": "passed",
+      "figures": 3,
+      "anchors": [],
+      "environment": {
+        "python": "3.12.14",
+        "numpy": "2.3.5",
+        "scipy": "1.17.0",
+        "matplotlib": "3.10.8",
+        "nbformat": "5.11.1",
+        "nbclient": "0.11.0",
+        "ipykernel": "7.4.0"
+      }
+    },
+    {
+      "notebook": "14_Breathing_Dynamics.ipynb",
+      "status": "passed",
+      "figures": 3,
+      "anchors": [],
+      "environment": {
+        "python": "3.12.14",
+        "numpy": "2.3.5",
+        "scipy": "1.17.0",
+        "matplotlib": "3.10.8",
+        "nbformat": "5.11.1",
+        "nbclient": "0.11.0",
+        "ipykernel": "7.4.0"
+      }
+    },
+    {
+      "notebook": "15_Gas_Consumption.ipynb",
+      "status": "passed",
+      "figures": 2,
+      "anchors": [],
+      "environment": {
+        "python": "3.12.14",
+        "numpy": "2.3.5",
+        "scipy": "1.17.0",
+        "matplotlib": "3.10.8",
+        "nbformat": "5.11.1",
+        "nbclient": "0.11.0",
+        "ipykernel": "7.4.0"
+      }
+    },
+    {
+      "notebook": "16_Dive_Computer_Estimation.ipynb",
+      "status": "passed",
+      "figures": 3,
+      "anchors": [],
+      "environment": {
+        "python": "3.12.14",
+        "numpy": "2.3.5",
+        "scipy": "1.17.0",
+        "matplotlib": "3.10.8",
+        "nbformat": "5.11.1",
+        "nbclient": "0.11.0",
+        "ipykernel": "7.4.0"
+      }
+    },
+    {
+      "notebook": "17_Inert_Gas_Compartments.ipynb",
+      "status": "passed",
+      "figures": 2,
+      "anchors": [],
+      "environment": {
+        "python": "3.12.14",
+        "numpy": "2.3.5",
+        "scipy": "1.17.0",
+        "matplotlib": "3.10.8",
+        "nbformat": "5.11.1",
+        "nbclient": "0.11.0",
+        "ipykernel": "7.4.0"
+      }
+    },
+    {
+      "notebook": "18_Integrated_DiveLab_Capstone.ipynb",
+      "status": "passed",
+      "figures": 7,
+      "anchors": [
+        {
+          "expression": "np.sort(closed_loop_poles)",
+          "actual": [
+            -0.55,
+            -0.35
+          ],
+          "expected": [
+            -0.55,
+            -0.35
+          ],
+          "atol": 1e-10
+        },
+        {
+          "expression": "depth_error[-1]",
+          "actual": -0.3055767319937171,
+          "expected": -0.306,
+          "atol": 0.0005
+        }
+      ],
+      "environment": {
+        "python": "3.12.14",
+        "numpy": "2.3.5",
+        "scipy": "1.17.0",
+        "matplotlib": "3.10.8",
+        "nbformat": "5.11.1",
+        "nbclient": "0.11.0",
+        "ipykernel": "7.4.0"
+      }
+    }
+  ],
+  "passed": 18,
+  "figures": 64,
+  "anchors": 19,
+  "complete": true
+}
