@@ -468,3 +468,10 @@ The author used OpenAI's ChatGPT as a writing and software-development assistant
 for code inspection, computational validation, editorial restructuring, and
 language revision. The author remains responsible for the models, claims,
 citations, and final manuscript.
+
+# References {.unnumbered}
+
+::: {#refs}
+:::
+
+Book companion website for Åström and Murray (2008): <https://fbsbook.org/>.
