@@ -1,20 +1,17 @@
 # arXiv source package
 
-`main.tex` is the standalone LaTeX source generated from `paper/index.qmd` with
-Pandoc and citeproc. The `generated/` directory contains the seven figures
-selected from the executable notebooks.
-
-To refresh and test this directory from `paper/`:
+main.tex embeds the bibliography and refers only to seven PNGs under
+generated/. It compiles with standard pdfLaTeX packages without Quarto.
 
 ```bash
-mkdir -p arxiv/generated
-cp generated/*.png arxiv/generated/
-pandoc index.qmd --from markdown --to latex --standalone --citeproc \
-  --bibliography=references.bib --resource-path=. --number-sections \
-  -V geometry:margin=1in -V colorlinks:true -o arxiv/main.tex
-(cd arxiv && pdflatex -interaction=nonstopmode -halt-on-error main.tex)
+pdflatex -interaction=nonstopmode -halt-on-error main.tex
+pdflatex -interaction=nonstopmode -halt-on-error main.tex
 ```
 
-The generated `main.pdf` and LaTeX auxiliary files are intentionally ignored.
-Before submission, create a versioned repository release and replace the
-provisional code-availability statement with its archival identifier.
+From paper/, refresh the source using bash tools/build_paper.sh.
+Upload a ZIP or tar.gz containing main.tex and generated/*.png, retaining
+relative paths. Exclude logs, auxiliary files and the compiled PDF from the
+TeX submission; the PDF is for author preview.
+
+Author metadata, category, distribution license and submission are chosen
+by the author. Local compilation does not establish arXiv acceptance.

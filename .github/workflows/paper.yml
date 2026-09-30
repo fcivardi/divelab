@@ -1,0 +1,48 @@
+name: Validate DiveLab paper
+
+on:
+  push:
+    branches: [paper/arxiv-draft]
+    paths: ['paper/**', 'notebooks/**', '.github/workflows/paper.yml']
+  pull_request:
+    branches: [editorial-v2, main]
+    paths: ['paper/**', 'notebooks/**', '.github/workflows/paper.yml']
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+          cache: pip
+          cache-dependency-path: paper/requirements-lock.txt
+      - name: Install validated dependencies
+        run: python -m pip install -r paper/requirements-lock.txt
+      - name: Execute notebooks in isolated kernels and check anchors
+        run: python paper/tools/validate_kernel.py
+      - name: Check model and numerical sensitivity
+        run: python paper/tools/check_model.py
+      - name: Install LaTeX
+        run: sudo apt-get update && sudo apt-get install -y texlive-latex-extra texlive-fonts-recommended
+      - name: Compile submission source independently
+        working-directory: paper/arxiv
+        run: |
+          pdflatex -interaction=nonstopmode -halt-on-error main.tex
+          pdflatex -interaction=nonstopmode -halt-on-error main.tex
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: divelab-paper-validation
+          path: |
+            paper/_build/kernel-validation/validation.json
+            paper/_build/model-checks.json
+            paper/arxiv/main.pdf
+            paper/arxiv/main.log
+          if-no-files-found: error
